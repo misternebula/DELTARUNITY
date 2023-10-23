@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850ccaf2e9029b046ac07fe129760a9c, type: 3}
+  m_Name: RoomDatabase
+  m_EditorClassIdentifier: 
+  Rooms:
+  - m_SceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+    m_SceneName: PLACE_CHAPTER_SELELCT_2x
+  - m_SceneAsset: {fileID: 102900000, guid: 1c3902a9efa6e444195cf998dd28a2a7, type: 3}
+    m_SceneName: ROOM_INITIALIZE_ch1

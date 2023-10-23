@@ -1,0 +1,323 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3674086130920108318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8069532870861984223}
+  - component: {fileID: 1906750983868139515}
+  m_Layer: 0
+  m_Name: obj_writer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8069532870861984223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674086130920108318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906750983868139515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674086130920108318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39dded9582fefd54096cb386d158a370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  depth: 0
+  object_index: obj_writer
+  sprite_index: 
+  image_index: 0
+  image_speed: 1
+  image_blend: 16777215
+  image_alpha: 1
+  persistent: 0
+  gravity: 0
+  visible: 1
+  xstart: 0
+  ystart: 0
+  friction: 0
+  margins: {x: 0, y: 0, z: 0, w: 0}
+  path_speed: 0
+  drawOffset: 0
+  _createRan: 0
+  alarm: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+  application_surface: 0
+  i: 0
+  j: 0
+  q: 0
+  spellid: 0
+  spellname: 
+  spellnameb: 
+  spelldescb: 
+  spelldesc: 
+  cost: 0
+  spellusable: 0
+  spelltarget: 0
+  spellanim: 0
+  spelltext: 
+  usable: 0
+  itemid: 0
+  itemnameb: 
+  itemdescb: 
+  value: 0
+  itemtarget: 0
+  roomchoice: 
+  menu_go: 0
+  quit_timer: 0
+  keyboard_active: 0
+  gamepad_active: 0
+  gamepad_check_timer: 0
+  gamepad_id: 0
+  axis_value: 0
+  fullscreen_toggle: 0
+  window_center_toggle: 0
+  screenshot_number: 0
+  display_height: 0
+  display_width: 0
+  window_size_multiplier: 0
+  _ww: 0
+  _xsndinstance: {fileID: 0}
+  SONG_THAT_EMERGES_FROM_A_SLEEPING_DOG: 
+  EVENT: 0
+  TIMER: 0
+  HEARTMADE: 0
+  HSINER: 0
+  OBMADE: 0
+  ALREADY: 0
+  TRUE_ALREADY: 0
+  SKIPBUFFER: 0
+  FADED: 0
+  FADEFACTOR: 0
+  FADEUP: 0
+  OB_DEPTH: 0
+  obacktimer: 0
+  OBM: 0
+  WHITEFADE: 0
+  W: {fileID: 0}
+  SOUL: {fileID: 0}
+  skipme: 0
+  textsound: 
+  charline: 0
+  originalcharline: 0
+  hspace: 0
+  vspace: 0
+  rate: 0
+  mycolor: 0
+  myfont: 
+  shake: 0
+  special: 0
+  skippable: 0
+  automash_timer: 0
+  f: 0
+  autoaster: 0
+  pos: 0
+  lineno: 0
+  aster: 0
+  halt: 0
+  xcolor: 0
+  wxskip: 0
+  msgno: 0
+  first_alarm: 0
+  firstnoise: 0
+  noiseskip: 0
+  formatted: 0
+  colorchange: 0
+  fontchange: 0
+  sound_played: 0
+  writingx: 0
+  writingy: 0
+  dialoguer: 0
+  smallface: {fileID: 0}
+  faced: 0
+  facedever: 0
+  facer: 0
+  siner: 0
+  specfade: 0
+  specx:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  specy:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  mystring: 
+  nstring:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  length: 0
+  getchar: 
+  nextchar: 
+  button1: 0
+  button2: 0
+  button3: 0
+  playtextsound: 0
+  play: 0
+  playcheck: 0
+  textscale: 0
+  charpos: 0
+  remspace: 0
+  remchar: 0
+  linecount: 0
+  stringmax: 0
+  textalignment: 
+  skip: 0
+  thischar: 
+  nextchar2: 
+  accept: 0
+  wx: 0
+  wy: 0
+  n: 0
+  mychar: 
+  fam: 0
+  ddir: 0
+  con: 0
+  t: 0
+  m: 0
+  tmax: 0
+  momentum: 0
+  xs: 0
+  stringpos: 0
+  part: 0
+  partstring: 
+  type: 0
+  active: 0
+  finished: 0
+  getrid: 0
+  writergod: {fileID: 0}
+  nowdir: 0
+  facealpha: 0
+  mouthmove: 0
+  mouthtimer: 0
+  face_index: 0
+  nowface: 0
+  facechange: 0
+  buffer: 0
+  face: 

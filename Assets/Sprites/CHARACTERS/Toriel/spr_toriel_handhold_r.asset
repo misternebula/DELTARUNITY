@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_toriel_handhold_r
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 44, z: 52, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 19, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 4f4098aa700047d41a5641525afc2602, type: 3}
+  - {fileID: 2800000, guid: e6034d7b4f1fa5641bf61915e151e656, type: 3}
+  - {fileID: 2800000, guid: f73c6b4a5da48c24ca47cf25147e3651, type: 3}
+  - {fileID: 2800000, guid: d8f1643ba4fa3a345be29b799b5c56ab, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

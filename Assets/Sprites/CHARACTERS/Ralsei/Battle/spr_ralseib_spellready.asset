@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_ralseib_spellready
+  m_EditorClassIdentifier: 
+  Margins: {x: 5, y: 42, z: 47, w: 2}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 9, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 6223b70f661a06045ac06f4f6295e8d0, type: 3}
+  - {fileID: 2800000, guid: 60f2c25a1fd7a524ca59a918314c305b, type: 3}
+  - {fileID: 2800000, guid: abd279b82e29eae4486aacae2769e2d3, type: 3}
+  - {fileID: 2800000, guid: 8ce4fdce220f2d047a94e26ba5a0caf5, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

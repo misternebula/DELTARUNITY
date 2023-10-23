@@ -1,0 +1,2650 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eeeea8069b29154b9970d21e025f8c4, type: 3}
+  m_Name: FontLibrary
+  m_EditorClassIdentifier: 
+  fonts:
+  - name: fnt_main
+    size: 0
+    sep: 0
+    spriteIndex: 
+    texture: {fileID: 2800000, guid: 9c84e82f24830bd418c3b8834c00a6df, type: 3}
+    entries:
+    - characterIndex: 32
+      x: 94
+      y: 92
+      w: 3
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 33
+      x: 77
+      y: 92
+      w: 4
+      h: 16
+      shift: 6
+      offset: 1
+    - characterIndex: 34
+      x: 25
+      y: 92
+      w: 5
+      h: 16
+      shift: 6
+      offset: 0
+    - characterIndex: 35
+      x: 75
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 36
+      x: 10
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 37
+      x: 66
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 38
+      x: 48
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 39
+      x: 111
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 40
+      x: 59
+      y: 92
+      w: 4
+      h: 16
+      shift: 5
+      offset: 0
+    - characterIndex: 41
+      x: 53
+      y: 92
+      w: 4
+      h: 16
+      shift: 5
+      offset: 0
+    - characterIndex: 42
+      x: 2
+      y: 2
+      w: 8
+      h: 16
+      shift: 9
+      offset: 0
+    - characterIndex: 43
+      x: 2
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 44
+      x: 107
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 45
+      x: 114
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 46
+      x: 103
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 47
+      x: 98
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 48
+      x: 90
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 49
+      x: 82
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 50
+      x: 10
+      y: 92
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 51
+      x: 18
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 52
+      x: 34
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 53
+      x: 42
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 54
+      x: 50
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 55
+      x: 58
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 56
+      x: 66
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 57
+      x: 26
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 58
+      x: 119
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 59
+      x: 99
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 60
+      x: 39
+      y: 92
+      w: 5
+      h: 16
+      shift: 6
+      offset: 0
+    - characterIndex: 61
+      x: 106
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 62
+      x: 46
+      y: 92
+      w: 5
+      h: 16
+      shift: 6
+      offset: 0
+    - characterIndex: 63
+      x: 26
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 64
+      x: 34
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 65
+      x: 42
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 66
+      x: 50
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 67
+      x: 58
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 68
+      x: 66
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 69
+      x: 74
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 70
+      x: 82
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 71
+      x: 90
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 72
+      x: 98
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 73
+      x: 106
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 74
+      x: 114
+      y: 74
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 75
+      x: 2
+      y: 92
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 76
+      x: 74
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 77
+      x: 57
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 78
+      x: 106
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 79
+      x: 18
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 80
+      x: 82
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 81
+      x: 74
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 82
+      x: 66
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 83
+      x: 58
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 84
+      x: 50
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 85
+      x: 42
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 86
+      x: 34
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 87
+      x: 21
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 88
+      x: 18
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 89
+      x: 10
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 90
+      x: 2
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 91
+      x: 83
+      y: 92
+      w: 4
+      h: 16
+      shift: 5
+      offset: 0
+    - characterIndex: 92
+      x: 116
+      y: 2
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 93
+      x: 71
+      y: 92
+      w: 4
+      h: 16
+      shift: 5
+      offset: 0
+    - characterIndex: 94
+      x: 108
+      y: 2
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 95
+      x: 65
+      y: 92
+      w: 4
+      h: 16
+      shift: 5
+      offset: 0
+    - characterIndex: 96
+      x: 89
+      y: 92
+      w: 3
+      h: 16
+      shift: 4
+      offset: 0
+    - characterIndex: 97
+      x: 100
+      y: 2
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 98
+      x: 92
+      y: 2
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 99
+      x: 84
+      y: 2
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 100
+      x: 90
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 101
+      x: 106
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 102
+      x: 2
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 103
+      x: 114
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 104
+      x: 114
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 105
+      x: 10
+      y: 56
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 106
+      x: 98
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 107
+      x: 90
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 108
+      x: 82
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 109
+      x: 30
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 110
+      x: 66
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 111
+      x: 58
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 112
+      x: 50
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 113
+      x: 42
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 114
+      x: 34
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 115
+      x: 26
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 116
+      x: 18
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 117
+      x: 10
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 118
+      x: 2
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 119
+      x: 39
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+    - characterIndex: 120
+      x: 98
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 121
+      x: 74
+      y: 38
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 122
+      x: 26
+      y: 20
+      w: 6
+      h: 16
+      shift: 7
+      offset: 0
+    - characterIndex: 123
+      x: 18
+      y: 92
+      w: 5
+      h: 16
+      shift: 6
+      offset: 0
+    - characterIndex: 124
+      x: 115
+      y: 92
+      w: 2
+      h: 16
+      shift: 3
+      offset: 0
+    - characterIndex: 125
+      x: 32
+      y: 92
+      w: 5
+      h: 16
+      shift: 6
+      offset: 0
+    - characterIndex: 126
+      x: 12
+      y: 2
+      w: 7
+      h: 16
+      shift: 8
+      offset: 0
+  - name: fnt_mainbig
+    size: 0
+    sep: 0
+    spriteIndex: 
+    texture: {fileID: 2800000, guid: 3ad8226bfbcbdd5418183809edd1a38f, type: 3}
+    entries:
+    - characterIndex: 32
+      x: 214
+      y: 138
+      w: 6
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 33
+      x: 186
+      y: 138
+      w: 8
+      h: 32
+      shift: 12
+      offset: 2
+    - characterIndex: 34
+      x: 98
+      y: 138
+      w: 10
+      h: 32
+      shift: 12
+      offset: 0
+    - characterIndex: 35
+      x: 132
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 36
+      x: 114
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 37
+      x: 116
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 38
+      x: 84
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 39
+      x: 240
+      y: 138
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 40
+      x: 156
+      y: 138
+      w: 8
+      h: 32
+      shift: 10
+      offset: 0
+    - characterIndex: 41
+      x: 146
+      y: 138
+      w: 8
+      h: 32
+      shift: 10
+      offset: 0
+    - characterIndex: 42
+      x: 2
+      y: 2
+      w: 16
+      h: 32
+      shift: 18
+      offset: 0
+    - characterIndex: 43
+      x: 100
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 44
+      x: 234
+      y: 138
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 45
+      x: 86
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 46
+      x: 228
+      y: 138
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 47
+      x: 58
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 48
+      x: 44
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 49
+      x: 30
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 50
+      x: 72
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 51
+      x: 128
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 52
+      x: 198
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 53
+      x: 212
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 54
+      x: 226
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 55
+      x: 240
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 56
+      x: 2
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 57
+      x: 184
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 58
+      x: 2
+      y: 172
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 59
+      x: 222
+      y: 138
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 60
+      x: 122
+      y: 138
+      w: 10
+      h: 32
+      shift: 12
+      offset: 0
+    - characterIndex: 61
+      x: 72
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 62
+      x: 134
+      y: 138
+      w: 10
+      h: 32
+      shift: 12
+      offset: 0
+    - characterIndex: 63
+      x: 142
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 64
+      x: 156
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 65
+      x: 170
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 66
+      x: 184
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 67
+      x: 198
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 68
+      x: 212
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 69
+      x: 226
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 70
+      x: 240
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 71
+      x: 2
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 72
+      x: 16
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 73
+      x: 30
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 74
+      x: 44
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 75
+      x: 58
+      y: 138
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 76
+      x: 16
+      y: 104
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 77
+      x: 100
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 78
+      x: 114
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 79
+      x: 170
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 80
+      x: 114
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 81
+      x: 100
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 82
+      x: 86
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 83
+      x: 72
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 84
+      x: 58
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 85
+      x: 44
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 86
+      x: 30
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 87
+      x: 36
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 88
+      x: 2
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 89
+      x: 232
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 90
+      x: 218
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 91
+      x: 196
+      y: 138
+      w: 8
+      h: 32
+      shift: 10
+      offset: 0
+    - characterIndex: 92
+      x: 204
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 93
+      x: 176
+      y: 138
+      w: 8
+      h: 32
+      shift: 10
+      offset: 0
+    - characterIndex: 94
+      x: 190
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 95
+      x: 166
+      y: 138
+      w: 8
+      h: 32
+      shift: 10
+      offset: 0
+    - characterIndex: 96
+      x: 206
+      y: 138
+      w: 6
+      h: 32
+      shift: 8
+      offset: 0
+    - characterIndex: 97
+      x: 176
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 98
+      x: 162
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 99
+      x: 148
+      y: 2
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 100
+      x: 128
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 101
+      x: 156
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 102
+      x: 142
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 103
+      x: 170
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 104
+      x: 128
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 105
+      x: 156
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 106
+      x: 100
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 107
+      x: 86
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 108
+      x: 72
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 109
+      x: 52
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 110
+      x: 44
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 111
+      x: 30
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 112
+      x: 16
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 113
+      x: 2
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 114
+      x: 240
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 115
+      x: 226
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 116
+      x: 212
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 117
+      x: 198
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 118
+      x: 184
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 119
+      x: 68
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+    - characterIndex: 120
+      x: 142
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 121
+      x: 58
+      y: 70
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 122
+      x: 16
+      y: 36
+      w: 12
+      h: 32
+      shift: 14
+      offset: 0
+    - characterIndex: 123
+      x: 86
+      y: 138
+      w: 10
+      h: 32
+      shift: 12
+      offset: 0
+    - characterIndex: 124
+      x: 246
+      y: 138
+      w: 4
+      h: 32
+      shift: 6
+      offset: 0
+    - characterIndex: 125
+      x: 110
+      y: 138
+      w: 10
+      h: 32
+      shift: 12
+      offset: 0
+    - characterIndex: 126
+      x: 20
+      y: 2
+      w: 14
+      h: 32
+      shift: 16
+      offset: 0
+  - name: fnt_small
+    size: 0
+    sep: 0
+    spriteIndex: 
+    texture: {fileID: 2800000, guid: f5d40484c9b49cd4c92f1ec206270a6a, type: 3}
+    entries:
+    - characterIndex: 32
+      x: 2
+      y: 2
+      w: 4
+      h: 7
+      shift: 4
+      offset: 0
+    - characterIndex: 33
+      x: 107
+      y: 25
+      w: 2
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 34
+      x: 2
+      y: 33
+      w: 3
+      h: 3
+      shift: 5
+      offset: 0
+    - characterIndex: 36
+      x: 14
+      y: 2
+      w: 4
+      h: 6
+      shift: 5
+      offset: 0
+    - characterIndex: 39
+      x: 11
+      y: 33
+      w: 2
+      h: 3
+      shift: 5
+      offset: 1
+    - characterIndex: 40
+      x: 68
+      y: 25
+      w: 3
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 41
+      x: 78
+      y: 25
+      w: 3
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 43
+      x: 96
+      y: 25
+      w: 3
+      h: 4
+      shift: 5
+      offset: 0
+    - characterIndex: 44
+      x: 88
+      y: 25
+      w: 2
+      h: 6
+      shift: 5
+      offset: 1
+    - characterIndex: 45
+      x: 101
+      y: 25
+      w: 4
+      h: 3
+      shift: 5
+      offset: 0
+    - characterIndex: 46
+      x: 111
+      y: 25
+      w: 2
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 47
+      x: 92
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 48
+      x: 8
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 49
+      x: 68
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 50
+      x: 74
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 51
+      x: 74
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 52
+      x: 44
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 53
+      x: 50
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 54
+      x: 92
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 55
+      x: 32
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 56
+      x: 80
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 57
+      x: 26
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 58
+      x: 119
+      y: 25
+      w: 2
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 59
+      x: 92
+      y: 25
+      w: 2
+      h: 6
+      shift: 5
+      offset: 1
+    - characterIndex: 60
+      x: 116
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 61
+      x: 62
+      y: 25
+      w: 4
+      h: 4
+      shift: 5
+      offset: 0
+    - characterIndex: 62
+      x: 56
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 63
+      x: 32
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 65
+      x: 26
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 66
+      x: 110
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 67
+      x: 62
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 68
+      x: 8
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 69
+      x: 26
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 70
+      x: 38
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 71
+      x: 98
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 72
+      x: 116
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 73
+      x: 2
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 74
+      x: 26
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 75
+      x: 44
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 76
+      x: 14
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 77
+      x: 62
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 78
+      x: 92
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 79
+      x: 44
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 80
+      x: 14
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 81
+      x: 20
+      y: 2
+      w: 4
+      h: 6
+      shift: 5
+      offset: 0
+    - characterIndex: 82
+      x: 20
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 83
+      x: 20
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 84
+      x: 38
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 85
+      x: 2
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 86
+      x: 2
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 87
+      x: 68
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 88
+      x: 110
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 89
+      x: 14
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 90
+      x: 50
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 91
+      x: 73
+      y: 25
+      w: 3
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 92
+      x: 38
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 93
+      x: 83
+      y: 25
+      w: 3
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 95
+      x: 104
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 96
+      x: 7
+      y: 33
+      w: 2
+      h: 3
+      shift: 5
+      offset: 1
+    - characterIndex: 97
+      x: 50
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 98
+      x: 32
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 99
+      x: 116
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 100
+      x: 56
+      y: 25
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 101
+      x: 50
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 102
+      x: 68
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 103
+      x: 80
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 104
+      x: 74
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 105
+      x: 86
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 106
+      x: 104
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 107
+      x: 38
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 108
+      x: 56
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 109
+      x: 32
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 110
+      x: 8
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 111
+      x: 80
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 112
+      x: 86
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 113
+      x: 8
+      y: 2
+      w: 4
+      h: 6
+      shift: 5
+      offset: 0
+    - characterIndex: 114
+      x: 110
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 115
+      x: 98
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 116
+      x: 62
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 117
+      x: 86
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 118
+      x: 44
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 119
+      x: 20
+      y: 11
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 120
+      x: 98
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 121
+      x: 56
+      y: 2
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 122
+      x: 104
+      y: 18
+      w: 4
+      h: 5
+      shift: 5
+      offset: 0
+    - characterIndex: 124
+      x: 115
+      y: 25
+      w: 2
+      h: 5
+      shift: 5
+      offset: 1
+    - characterIndex: 127
+      x: 15
+      y: 33
+      w: 1
+      h: 6
+      shift: 4
+      offset: 0
+  - name: fnt_dotumche
+    size: 0
+    sep: 0
+    spriteIndex: 
+    texture: {fileID: 2800000, guid: e402488b19a2eb84080943403668eee9, type: 3}
+    entries:
+    - characterIndex: 32
+      x: 2
+      y: 2
+      w: 9
+      h: 16
+      shift: 9
+      offset: 0
+    - characterIndex: 33
+      x: 96
+      y: 102
+      w: 2
+      h: 14
+      shift: 9
+      offset: 4
+    - characterIndex: 34
+      x: 77
+      y: 102
+      w: 5
+      h: 6
+      shift: 9
+      offset: 3
+    - characterIndex: 35
+      x: 13
+      y: 2
+      w: 9
+      h: 14
+      shift: 9
+      offset: 0
+    - characterIndex: 36
+      x: 75
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 37
+      x: 32
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 38
+      x: 92
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 39
+      x: 122
+      y: 102
+      w: 2
+      h: 6
+      shift: 9
+      offset: 4
+    - characterIndex: 40
+      x: 9
+      y: 102
+      w: 5
+      h: 15
+      shift: 9
+      offset: 3
+    - characterIndex: 41
+      x: 16
+      y: 102
+      w: 5
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 42
+      x: 43
+      y: 102
+      w: 6
+      h: 10
+      shift: 9
+      offset: 1
+    - characterIndex: 43
+      x: 63
+      y: 85
+      w: 8
+      h: 11
+      shift: 9
+      offset: 1
+    - characterIndex: 44
+      x: 63
+      y: 102
+      w: 3
+      h: 15
+      shift: 9
+      offset: 3
+    - characterIndex: 45
+      x: 23
+      y: 102
+      w: 8
+      h: 8
+      shift: 9
+      offset: 1
+    - characterIndex: 46
+      x: 84
+      y: 102
+      w: 2
+      h: 14
+      shift: 9
+      offset: 4
+    - characterIndex: 47
+      x: 38
+      y: 85
+      w: 7
+      h: 13
+      shift: 9
+      offset: 1
+    - characterIndex: 48
+      x: 82
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 49
+      x: 57
+      y: 102
+      w: 4
+      h: 14
+      shift: 9
+      offset: 2
+    - characterIndex: 50
+      x: 92
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 51
+      x: 74
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 52
+      x: 82
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 53
+      x: 11
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 54
+      x: 83
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 55
+      x: 29
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 56
+      x: 38
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 57
+      x: 20
+      y: 85
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 58
+      x: 112
+      y: 102
+      w: 2
+      h: 12
+      shift: 9
+      offset: 3
+    - characterIndex: 59
+      x: 68
+      y: 102
+      w: 3
+      h: 14
+      shift: 9
+      offset: 3
+    - characterIndex: 60
+      x: 73
+      y: 85
+      w: 8
+      h: 11
+      shift: 9
+      offset: 1
+    - characterIndex: 61
+      x: 109
+      y: 85
+      w: 8
+      h: 10
+      shift: 9
+      offset: 1
+    - characterIndex: 62
+      x: 83
+      y: 85
+      w: 8
+      h: 11
+      shift: 9
+      offset: 1
+    - characterIndex: 63
+      x: 52
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 64
+      x: 12
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 65
+      x: 102
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 66
+      x: 72
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 67
+      x: 52
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 68
+      x: 72
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 69
+      x: 42
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 70
+      x: 62
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 71
+      x: 2
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 72
+      x: 62
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 73
+      x: 92
+      y: 102
+      w: 2
+      h: 14
+      shift: 9
+      offset: 4
+    - characterIndex: 74
+      x: 101
+      y: 85
+      w: 6
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 75
+      x: 32
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 76
+      x: 11
+      y: 85
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 77
+      x: 42
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 78
+      x: 42
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 79
+      x: 112
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 80
+      x: 2
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 81
+      x: 55
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 82
+      x: 92
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 83
+      x: 2
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 84
+      x: 92
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 85
+      x: 12
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 86
+      x: 22
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 87
+      x: 22
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 88
+      x: 22
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 89
+      x: 95
+      y: 2
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 90
+      x: 56
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 91
+      x: 2
+      y: 102
+      w: 5
+      h: 15
+      shift: 9
+      offset: 3
+    - characterIndex: 92
+      x: 24
+      y: 2
+      w: 9
+      h: 14
+      shift: 9
+      offset: 0
+    - characterIndex: 93
+      x: 119
+      y: 85
+      w: 5
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 94
+      x: 104
+      y: 102
+      w: 6
+      h: 4
+      shift: 9
+      offset: 2
+    - characterIndex: 95
+      x: 85
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 96
+      x: 116
+      y: 102
+      w: 4
+      h: 4
+      shift: 9
+      offset: 2
+    - characterIndex: 97
+      x: 102
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 98
+      x: 52
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 99
+      x: 32
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 100
+      x: 82
+      y: 52
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 101
+      x: 12
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 102
+      x: 110
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 103
+      x: 102
+      y: 52
+      w: 7
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 104
+      x: 2
+      y: 85
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 105
+      x: 88
+      y: 102
+      w: 2
+      h: 14
+      shift: 9
+      offset: 4
+    - characterIndex: 106
+      x: 51
+      y: 102
+      w: 4
+      h: 15
+      shift: 9
+      offset: 2
+    - characterIndex: 107
+      x: 101
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 108
+      x: 100
+      y: 102
+      w: 2
+      h: 14
+      shift: 9
+      offset: 4
+    - characterIndex: 109
+      x: 72
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 110
+      x: 2
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 111
+      x: 115
+      y: 2
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 112
+      x: 35
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 113
+      x: 65
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 114
+      x: 93
+      y: 85
+      w: 6
+      h: 14
+      shift: 9
+      offset: 2
+    - characterIndex: 115
+      x: 20
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 116
+      x: 65
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 117
+      x: 47
+      y: 69
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 118
+      x: 62
+      y: 36
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 119
+      x: 112
+      y: 20
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 120
+      x: 105
+      y: 2
+      w: 8
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 121
+      x: 45
+      y: 2
+      w: 8
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 122
+      x: 29
+      y: 85
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1
+    - characterIndex: 123
+      x: 47
+      y: 85
+      w: 6
+      h: 15
+      shift: 9
+      offset: 2
+    - characterIndex: 124
+      x: 73
+      y: 102
+      w: 2
+      h: 15
+      shift: 9
+      offset: 4
+    - characterIndex: 125
+      x: 55
+      y: 85
+      w: 6
+      h: 15
+      shift: 9
+      offset: 1
+    - characterIndex: 126
+      x: 33
+      y: 102
+      w: 8
+      h: 8
+      shift: 9
+      offset: 1
+    - characterIndex: 127
+      x: 111
+      y: 52
+      w: 7
+      h: 14
+      shift: 9
+      offset: 1

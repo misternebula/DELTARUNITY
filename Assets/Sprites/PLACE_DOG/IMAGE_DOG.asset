@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: IMAGE_DOG
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 27, z: 12, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 13, y: 6}
+  SubImages:
+  - {fileID: 2800000, guid: 0853fb95dac1c864da2d434d0ede5344, type: 3}
+  - {fileID: 2800000, guid: d25e54a168f24644692f5efa69802c86, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

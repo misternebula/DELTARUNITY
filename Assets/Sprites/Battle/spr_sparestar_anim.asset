@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_sparestar_anim
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 12, z: 12, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 6, y: 6}
+  SubImages:
+  - {fileID: 2800000, guid: e6dae2dac4581e848a5f32150778ecca, type: 3}
+  - {fileID: 2800000, guid: e1737644a87f6524db388c34d2282cf4, type: 3}
+  - {fileID: 2800000, guid: a77da63d1979f5041af483252366903d, type: 3}
+  - {fileID: 2800000, guid: 3e57cae5b0eb8e44baccbe479f92a0cf, type: 3}
+  - {fileID: 2800000, guid: e979069931684b94a82ef82bd6cdc9bf, type: 3}
+  - {fileID: 2800000, guid: b244a9e55a6bfee43b040921d59dbd91, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

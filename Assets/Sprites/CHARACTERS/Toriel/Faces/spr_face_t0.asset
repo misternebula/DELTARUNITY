@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_face_t0
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 34, z: 32, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: a613d873c88d88e43807bf6bed7c6122, type: 3}
+  - {fileID: 2800000, guid: d71759261bb81004eb5324e812ddf0ca, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

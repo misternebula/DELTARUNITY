@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_darkmenudesc
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 35, z: 18, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 8a41c9cdeefc66347b54b598e3f13e12, type: 3}
+  - {fileID: 2800000, guid: d43fe514d43b1f942aa5e3899eec26f2, type: 3}
+  - {fileID: 2800000, guid: a00d259a6e1198b438dfae14a6baffd4, type: 3}
+  - {fileID: 2800000, guid: 8e4e881be80e17340ac620dc37f547da, type: 3}
+  - {fileID: 2800000, guid: fd04fc6f28951f74e8365a9ef3fc57c5, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

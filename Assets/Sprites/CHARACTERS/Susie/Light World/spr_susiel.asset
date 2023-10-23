@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susiel
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 25, z: 46, w: 26}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: d01f2d7663b39ef4ca510aa7ec3c8883, type: 3}
+  - {fileID: 2800000, guid: c73ee570f73ea8a4d845d11341c3c642, type: 3}
+  - {fileID: 2800000, guid: 02d5b51426929834597d45aa008e1055, type: 3}
+  - {fileID: 2800000, guid: c08803e04b53b4a49839bc1d54ce5d8b, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: IMAGE_GONERLEGS
+  m_EditorClassIdentifier: 
+  Margins: {x: 4, y: 17, z: 8, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 1, y: 1}
+  SubImages:
+  - {fileID: 2800000, guid: fafdeb95e79fba440868aaf660137673, type: 3}
+  - {fileID: 2800000, guid: ba8cf857cdf5b0640933144237c5b54b, type: 3}
+  - {fileID: 2800000, guid: 9214f58c25bafcf44ad334d5a8664a55, type: 3}
+  - {fileID: 2800000, guid: 8afb32e9338494246ae9a808d3760a89, type: 3}
+  - {fileID: 2800000, guid: cd3a54205f7475141a014893a51914ea, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_heartenemy_idle
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 53, z: 48, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: ccaea40dc644465418a3820f54898726, type: 3}
+  - {fileID: 2800000, guid: f8c05d83ccaba0f4f8d5b5551464731f, type: 3}
+  - {fileID: 2800000, guid: b74c2cfc000141040b3c312687f10c0c, type: 3}
+  - {fileID: 2800000, guid: caa26fa00af348e43a2746b191c953ff, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

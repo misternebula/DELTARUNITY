@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_darkitembt
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 33, z: 24, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 1ee680e82a5d6914998e184b20bf6e23, type: 3}
+  - {fileID: 2800000, guid: b276bbfac4f811d4b8a12771e09f604d, type: 3}
+  - {fileID: 2800000, guid: 2e01a4174fce6e84ea03ea502fec2e27, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

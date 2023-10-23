@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_diamondm_spared
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 35, z: 40, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 3e14e49dc0477214db17cd52873db3bd, type: 3}
+  - {fileID: 2800000, guid: e1a42a52eb83ca643b1d3407a1ab17b1, type: 3}
+  - {fileID: 2800000, guid: 1c33d0fe5ff1f674aa1c7bf30d0b2e17, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

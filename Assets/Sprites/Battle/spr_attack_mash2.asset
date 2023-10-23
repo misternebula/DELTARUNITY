@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_attack_mash2
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 41, z: 44, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 25, y: 25}
+  SubImages:
+  - {fileID: 2800000, guid: a67c1da76ebc6f343a89b0192409155a, type: 3}
+  - {fileID: 2800000, guid: 00ee07da8caa04747a74d435e584ab27, type: 3}
+  - {fileID: 2800000, guid: 8cf30629f3883474da6370610d86fa4b, type: 3}
+  - {fileID: 2800000, guid: 04fa13138fb1f7b4e84810a4babd9ad8, type: 3}
+  - {fileID: 2800000, guid: 5fa73f5340f10544cb27bf1305c9628c, type: 3}
+  - {fileID: 2800000, guid: 79f404973bb51904b9b443015dd0a11c, type: 3}
+  - {fileID: 2800000, guid: 063a6d66e2b6ecd45ac18e5d47761ae8, type: 3}
+  - {fileID: 2800000, guid: 6472ec06d1f43d24385d2b545661b31f, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

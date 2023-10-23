@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susie_krisgrab_eat
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 43, z: 45, w: 2}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 19, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: abfec0a2eb87cf64f969bb7546431386, type: 3}
+  - {fileID: 2800000, guid: b9b8a0580a2bb2b4eb093047bce9961b, type: 3}
+  - {fileID: 2800000, guid: 9dc5f0740cd829a41bd28d043b94820a, type: 3}
+  - {fileID: 2800000, guid: 809dea7bfa1c8c544bde114f01e83584, type: 3}
+  - {fileID: 2800000, guid: 5ad11ab0150e12644a49249879bb4a28, type: 3}
+  - {fileID: 2800000, guid: 6e606c9dc16ccd3438c3526a8c6a6e23, type: 3}
+  - {fileID: 2800000, guid: dd514b090fe77384e97e23b846756bf4, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

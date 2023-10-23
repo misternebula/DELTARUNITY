@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_heartenemy_overworld
+  m_EditorClassIdentifier: 
+  Margins: {x: 6, y: 51, z: 48, w: 30}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 917508f168bd68c448dfcaad16c0c2f9, type: 3}
+  - {fileID: 2800000, guid: 6ace0aaa766a4d944b9bf3a229049fae, type: 3}
+  - {fileID: 2800000, guid: afd3a16c2b8be2e418c115363d77afb5, type: 3}
+  - {fileID: 2800000, guid: 1aefc4e6980fdeb459cfa66c2adbe6a1, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

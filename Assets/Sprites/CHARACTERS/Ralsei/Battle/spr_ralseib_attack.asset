@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_ralseib_attack
+  m_EditorClassIdentifier: 
+  Margins: {x: 5, y: 74, z: 46, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 8, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: db7ef2239c1bd4a409e65ca13b2f8972, type: 3}
+  - {fileID: 2800000, guid: 93e54b2415032ba478b9457bad892056, type: 3}
+  - {fileID: 2800000, guid: 8510befb987cc3c46ba535fcd0e60f83, type: 3}
+  - {fileID: 2800000, guid: 14cd0567b7d772244a79519ec3cab57e, type: 3}
+  - {fileID: 2800000, guid: d6ab367587a138f479c0ba64703c1e45, type: 3}
+  - {fileID: 2800000, guid: 42a04707a31616946a70408db4ff1006, type: 3}
+  CollisionMask: {fileID: 0}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 
