@@ -1,8 +1,8 @@
 # DELTARUNITY
 
-DELTARUNITY is an implementation of GameMaker script execution and graphical rendering inside Unity.
+DELTARUNITY is an implementation of GameMaker script execution and graphical rendering inside Unity, with the example game of DELTARUNE Chapter 1.
 
-This project also contains all the .meta files for a WIP Deltarune Chapter 1 port, but not the game assets or converted scripts.
+Sprites and sounds are not included for this project, a tool to export these from your existing game is coming soon.
 
 ## Rendering Details
 Rendering is accomplished via GL calls to a camera (the GL Capture Camera), where `Render()` is manually called to render the camera to a RenderTexture.
