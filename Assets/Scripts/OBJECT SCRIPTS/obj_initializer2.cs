@@ -73,6 +73,8 @@ namespace OBJECT_SCRIPTS
 			scr_getchar(3);
 			roomchoice = "room_field_checkers4";*/
 
+			roomchoice = "room_krisroom";
+
 			room_goto(roomchoice);
 		}
 	}

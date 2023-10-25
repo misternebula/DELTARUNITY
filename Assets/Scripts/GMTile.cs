@@ -54,9 +54,11 @@ namespace Assets
 			}
 
 			var baseSprite = spriteAsset.SubImages[0];
-			_gizmoTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-			var readPixels = baseSprite.GetPixels(left, baseSprite.height - top - height, width, height);
-			_gizmoTexture.SetPixels(0, 0, width, height, readPixels);
+			var useWidth = Math.Min(width, baseSprite.width);
+			var useHeight = Math.Min(height, baseSprite.height);
+			_gizmoTexture = new Texture2D(useWidth, useHeight, TextureFormat.RGBA32, false);
+			var readPixels = baseSprite.GetPixels(left, baseSprite.height - top - useHeight, useWidth, useHeight);
+			_gizmoTexture.SetPixels(0, 0, useWidth, useHeight, readPixels);
 			_gizmoTexture.filterMode = FilterMode.Point;
 			_gizmoTexture.Apply();
 		}

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 using Assets.SpriteManager;
+using Debug = UnityEngine.Debug;
+using UnityEngine.TextCore.Text;
 
 public class LoadGameAssets
 {
@@ -117,6 +117,48 @@ public class LoadGameAssets
 		}
 
 		EditorUtility.SetDirty(database);
+		AssetDatabase.SaveAssets();
+		AssetDatabase.Refresh();
+
+		PopulateCollisionMasks();
+	}
+
+	[MenuItem("DELTARUNITY/Generate Collision Masks")]
+	public static void PopulateCollisionMasks()
+	{
+		var assetGUIDs = AssetDatabase.FindAssets("t:SpriteSubLibrary");
+		foreach (var guid in assetGUIDs)
+		{
+			var assetPath = AssetDatabase.GUIDToAssetPath(guid);
+			var asset = AssetDatabase.LoadAssetAtPath<SpriteSubLibrary>(assetPath);
+
+			if (asset.CollisionMask == null)
+			{
+				continue;
+			}
+
+			asset.CollisionMaskPreload = new CollisionMaskPreload();
+
+			var pixels = asset.CollisionMask.GetPixels();
+			var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
+
+			asset.CollisionMaskPreload.Width = asset.CollisionMask.width;
+			asset.CollisionMaskPreload.Height = asset.CollisionMask.height;
+			asset.CollisionMaskPreload.Data = new bool[asset.CollisionMask.width * asset.CollisionMask.height];
+
+			var index = 0;
+			for (var i = (asset.CollisionMask.height - 1); i >= 0; i--)
+			{
+				for (var j = 0; j < asset.CollisionMask.width; j++)
+				{
+					asset.CollisionMaskPreload.Data[(i * asset.CollisionMask.width) + j] = pixelsAsBool[index];
+					index++;
+				}
+			}
+
+			EditorUtility.SetDirty(asset);
+		}
+
 		AssetDatabase.SaveAssets();
 		AssetDatabase.Refresh();
 	}

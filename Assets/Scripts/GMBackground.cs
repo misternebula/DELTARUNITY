@@ -51,12 +51,10 @@ public class GMBackground : DrawWithDepth
 		else if (!HTiled && VTiled)
 		{
 			// the math for this is easy i just cant be bothered
-			throw new NotImplementedException("VTiling not implemented yet");
 		}
 		else
 		{
 			// the math for this is easy i just cant be bothered
-			throw new NotImplementedException("VTiling and HTiling together not implemented yet");
 		}
 	}
 
