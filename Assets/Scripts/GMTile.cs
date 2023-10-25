@@ -21,6 +21,9 @@ namespace Assets
 		private int height => (int)Source.w;
 
 		private Texture2D _gizmoTexture;
+		private string _prevSprite;
+		private int _holdWidth;
+		private int _holdHeight;
 
 		public override void Draw()
 		{
@@ -29,7 +32,18 @@ namespace Assets
 				return;
 			}
 
-			SpriteManager.SpriteManager.DrawSpritePartExt(Definition, 0, (int)Source.x, (int)Source.y, (int)Source.z, (int)Source.w, transform.position.x, -transform.position.y, 1, 1, 16777215, Alpha);
+			if (_prevSprite != Definition)
+			{
+				_prevSprite = Definition;
+				var sprite = SpriteManager.SpriteManager.GetSprite(Definition, 0);
+				_holdWidth = sprite.width;
+				_holdHeight = sprite.height;
+			}
+
+			var useWidth = Math.Min(width, _holdWidth);
+			var useHeight = Math.Min(height, _holdHeight);
+
+			SpriteManager.SpriteManager.DrawSpritePartExt(Definition, 0, left, top, useWidth, useHeight, transform.position.x, -transform.position.y, 1, 1, 16777215, Alpha);
 		}
 
 		private void Awake()
