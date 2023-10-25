@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_dkris_heartthrow
+  m_EditorClassIdentifier: 
+  Margins: {x: 12, y: 104, z: 48, w: 4}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 12, y: 8}
+  SubImages:
+  - {fileID: 2800000, guid: 715da9e667d15db429eece39a434752c, type: 3}
+  - {fileID: 2800000, guid: 82ca69f500aa9b2479f9172618b5d0bb, type: 3}
+  - {fileID: 2800000, guid: 785fbe523ee19b0438701951eb498877, type: 3}
+  - {fileID: 2800000, guid: 7fc46567a466f544aa300eceabe13801, type: 3}
+  - {fileID: 2800000, guid: abf4efe3e80d68b40aa8476f9a3b4172, type: 3}
+  - {fileID: 2800000, guid: 2f6d583f704362a45b9dbb7d8038e091, type: 3}
+  - {fileID: 2800000, guid: 9c71e8410a2fd214382d327406e01ba4, type: 3}
+  - {fileID: 2800000, guid: de20f8455d030554ebef9b7cf4737167, type: 3}
+  - {fileID: 2800000, guid: d664368370624ec4b8e688ec02d2b06f, type: 3}
+  - {fileID: 2800000, guid: 4c32dd7ac9023c24c8a33d0468ddf8b2, type: 3}
+  - {fileID: 2800000, guid: 36078d8cd72a9384e86b13c87ce90c04, type: 3}
+  - {fileID: 2800000, guid: c0db77913a5540d4cb5a571e18a28152, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 11ee9750d0e466d4eb4b8bec7a2a67db, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

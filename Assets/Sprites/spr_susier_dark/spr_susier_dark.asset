@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susier_dark
+  m_EditorClassIdentifier: 
+  Margins: {x: 3, y: 22, z: 46, w: 32}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 380553fee611d804481cc3664bd19704, type: 3}
+  - {fileID: 2800000, guid: a41a582401cdf9449a20677f2ec37983, type: 3}
+  - {fileID: 2800000, guid: af6c4df9d35533b48b7d4af1adec7ca3, type: 3}
+  - {fileID: 2800000, guid: 1d6c245a82adf5b409ab59870f0c10f3, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 3ba3f0bf762fb214bbc725d66391b551, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

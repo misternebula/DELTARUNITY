@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_noelle_d
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 23, z: 46, w: 30}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: ed7cab028438b1e44af4a81caccfc386, type: 3}
+  - {fileID: 2800000, guid: b6c09e69f26b63648b767eebc2cca866, type: 3}
+  - {fileID: 2800000, guid: 234cffd8679673c42b52209f0ea23bfc, type: 3}
+  - {fileID: 2800000, guid: ca4d3e87a702a7349be502c9581d5e61, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 0a8f2c3205ae6b145a5f03e8e75a1ce6, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

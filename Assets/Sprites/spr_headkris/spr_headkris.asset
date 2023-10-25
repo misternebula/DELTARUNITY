@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_headkris
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 29, z: 24, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 67d47f52f4c4b3641b7176e69bf91dcf, type: 3}
+  - {fileID: 2800000, guid: dba9fb02346360c42867425128fc38a4, type: 3}
+  - {fileID: 2800000, guid: 557853ebed7c40f42b59edfe20e85e01, type: 3}
+  - {fileID: 2800000, guid: 7bc72d921d5666a4ca2853da51b86dea, type: 3}
+  - {fileID: 2800000, guid: 34fb27bfb3dc0f744b4cba0152eb4add, type: 3}
+  - {fileID: 2800000, guid: 3f118435ece7a5b4e8f36cb44a837898, type: 3}
+  - {fileID: 2800000, guid: 95f670fc79a881543966a8d9bd6fe8c6, type: 3}
+  - {fileID: 2800000, guid: 4126a8ce7dba77d49bcec7156862d3a4, type: 3}
+  - {fileID: 2800000, guid: 9880882b1bf305c419d14a670685f1aa, type: 3}
+  - {fileID: 2800000, guid: 7add1d888ae49614b96126d56fab3421, type: 3}
+  - {fileID: 2800000, guid: 65cddf848246e1c498b1f51f0862c12e, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 38a8c342d3cebdd42bbb07864814b05c, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

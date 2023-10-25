@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_castle_torch
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 14, z: 20, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: f4b0771d42757fc47a2d56f47a9f6fe4, type: 3}
+  - {fileID: 2800000, guid: 3c384e8d2df580847a0224bbef6a89d2, type: 3}
+  - {fileID: 2800000, guid: bd863fb5bdda23845b09c9c66ad27657, type: 3}
+  - {fileID: 2800000, guid: eaa2cb7782306724099660c82c2ca8f6, type: 3}
+  - {fileID: 2800000, guid: 22fd2b861b9c19b4e970a96d39b518c2, type: 3}
+  - {fileID: 2800000, guid: 663342bc0cbc205489fb8d7d6309e5f1, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 34d223379e223f24a93326f5d076fb7d, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

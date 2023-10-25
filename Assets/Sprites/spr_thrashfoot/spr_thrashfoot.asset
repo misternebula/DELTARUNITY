@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_thrashfoot
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 34, z: 11, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: fe6fed57073685b49845871a3c12ee13, type: 3}
+  - {fileID: 2800000, guid: 5302967456cf86448ac60d755ec05635, type: 3}
+  - {fileID: 2800000, guid: 04f3c829abbb6bf4597238bb3381e525, type: 3}
+  - {fileID: 2800000, guid: 94163a01773706b4397f3b2c5194e30d, type: 3}
+  - {fileID: 2800000, guid: d0138213e29728e4a938da8bbc2495bb, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 180f18702d8e2e749a037eaa2101f178, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

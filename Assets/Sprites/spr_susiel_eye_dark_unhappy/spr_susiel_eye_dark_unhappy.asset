@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susiel_eye_dark_unhappy
+  m_EditorClassIdentifier: 
+  Margins: {x: 3, y: 22, z: 46, w: 32}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: af3409fc54a261240a388ac9b220a1e2, type: 3}
+  - {fileID: 2800000, guid: a456abe9835b0234fb3a1341d9bc210c, type: 3}
+  - {fileID: 2800000, guid: ff8d86b9b0f4a1643993af0431e814c5, type: 3}
+  - {fileID: 2800000, guid: b5b67b34bdd9aff44a968b0f1c485163, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 7b5cc1f633906d44ca46d1158b6640bb, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

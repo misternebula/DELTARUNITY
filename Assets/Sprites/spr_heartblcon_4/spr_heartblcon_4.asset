@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_heartblcon_4
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 48, z: 49, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: cda18d0e83482924881fa7029c33a119, type: 3}
+  - {fileID: 2800000, guid: 0eff176ec2493044e8ec004dab88e3c7, type: 3}
+  - {fileID: 2800000, guid: 8b12121c3509a9f4a9c3775cc3c831fc, type: 3}
+  - {fileID: 2800000, guid: c48d0f643c4ef484ba7bab3892b08861, type: 3}
+  - {fileID: 2800000, guid: 0f08fbd07a864ea4c9686333e723fe34, type: 3}
+  - {fileID: 2800000, guid: e60bc08f94e624b4397b84064dd137fb, type: 3}
+  CollisionMask: {fileID: 2800000, guid: c4729f3e3bde93a42a612fa22afcce9b, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

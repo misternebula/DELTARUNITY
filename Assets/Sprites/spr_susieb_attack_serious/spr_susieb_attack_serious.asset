@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susieb_attack_serious
+  m_EditorClassIdentifier: 
+  Margins: {x: 12, y: 100, z: 71, w: 6}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 21, y: 24}
+  SubImages:
+  - {fileID: 2800000, guid: a0973b69d0a1d224d951d387f978f050, type: 3}
+  - {fileID: 2800000, guid: 2ba7b37fe34bbf04abf9b24b415f8705, type: 3}
+  - {fileID: 2800000, guid: 5ab4f2db49d4b334a875ff5c99fabbf4, type: 3}
+  - {fileID: 2800000, guid: e58ff0053f44c604292ce977d02af760, type: 3}
+  - {fileID: 2800000, guid: 734873f6fa103a94ba8ecc8682809786, type: 3}
+  - {fileID: 2800000, guid: df3a6a486db37034ea742f3b3d8b6e8d, type: 3}
+  CollisionMask: {fileID: 2800000, guid: e3899874c6176d34e960c5903ec935ed, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

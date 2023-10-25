@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_ralsei_sit
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 24, z: 43, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: dc80d270ae685704e8d3b8d9ffa578c5, type: 3}
+  - {fileID: 2800000, guid: 2b14a0cd5c6736b48908110fc8c58c76, type: 3}
+  - {fileID: 2800000, guid: 395afd845c88d994fb9a4c31bec2a98b, type: 3}
+  - {fileID: 2800000, guid: d6d7941971b0e414d9cc917d3e9af67e, type: 3}
+  CollisionMask: {fileID: 2800000, guid: d1078779c2904e14b8dd9305f7a7b889, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

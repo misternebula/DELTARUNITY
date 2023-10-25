@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_glowtile_step
+  m_EditorClassIdentifier: 
+  Margins: {x: 5, y: 15, z: 9, w: 3}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 63beb81dfaabe62479f6912739832a93, type: 3}
+  - {fileID: 2800000, guid: 2e10d215b0c917e4eb80a4ba4b732b85, type: 3}
+  - {fileID: 2800000, guid: ffa9018a77634834eb4700f3ff193fa6, type: 3}
+  - {fileID: 2800000, guid: f959b0bb6b2b1c247917d476d6c4f1a9, type: 3}
+  - {fileID: 2800000, guid: 1fee4fcd3b0a36e4caed2d86a49b0d98, type: 3}
+  - {fileID: 2800000, guid: 5cd6167fe2d6c1140a47a8ad531bdb88, type: 3}
+  - {fileID: 2800000, guid: d51ec51212b4510459eb851d6d82a273, type: 3}
+  - {fileID: 2800000, guid: 53847aac773d2874c9f7cf649a0a8df8, type: 3}
+  - {fileID: 2800000, guid: 04974f6e0f7d8814590e7076098cc85f, type: 3}
+  - {fileID: 2800000, guid: 6ef21be2936bbec4fa887ce17b74908d, type: 3}
+  - {fileID: 2800000, guid: 3716097ba1427e24b8e0b746e4107b9e, type: 3}
+  CollisionMask: {fileID: 2800000, guid: b46583e40b7bc474fac52a66f2c45204, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

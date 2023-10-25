@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susiel_dark_eyes
+  m_EditorClassIdentifier: 
+  Margins: {x: 3, y: 22, z: 46, w: 32}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 52f367fd163090448be9d9efe0ddd3a8, type: 3}
+  - {fileID: 2800000, guid: d855c9889689f304ba87686a47166442, type: 3}
+  - {fileID: 2800000, guid: c160bda8d5aed03438d4918ee916b00c, type: 3}
+  - {fileID: 2800000, guid: 5aa94303f71232d4ea3c7455a2a776c5, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 39574d33f81b54d4db8e56b9a2dc852a, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

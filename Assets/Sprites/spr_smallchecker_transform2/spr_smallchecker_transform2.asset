@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_smallchecker_transform2
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 43, z: 81, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 9, y: 49}
+  SubImages:
+  - {fileID: 2800000, guid: b41518820ff605042b8651c89001f5fb, type: 3}
+  - {fileID: 2800000, guid: 0a0192f4a6d84df4cb6194e8e420a2cd, type: 3}
+  - {fileID: 2800000, guid: 1d2ecc5ac4d676646b9e7d8ce9666fb3, type: 3}
+  - {fileID: 2800000, guid: a34e6a37f80afbe448074ed9af434146, type: 3}
+  - {fileID: 2800000, guid: 120fa8fbf8743c943854b24f949101cb, type: 3}
+  - {fileID: 2800000, guid: 486c0cb4777c1cd45a7e850afe45cfe1, type: 3}
+  CollisionMask: {fileID: 2800000, guid: b7bdb7d441f8a154fbbe98e880255eb4, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

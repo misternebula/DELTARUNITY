@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_heartshards
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 9, z: 9, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 74f68b9b24385054e9e617536d1255a3, type: 3}
+  - {fileID: 2800000, guid: 7383780368c5a0440a112a86df72bc43, type: 3}
+  - {fileID: 2800000, guid: 9adae3cf0c5d2a34bbdbb33e12e95d0f, type: 3}
+  - {fileID: 2800000, guid: 01d89621f0470cb48915ed398ec951b0, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 3bd41651a0a3dbc44b827b8418fd8682, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_krisb_act
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 62, z: 43, w: 6}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 4, y: 5}
+  SubImages:
+  - {fileID: 2800000, guid: cf534e79a0368ad4abf46af6a5f748ce, type: 3}
+  - {fileID: 2800000, guid: d0c047affdfa2a243a3f4ec2b6229146, type: 3}
+  - {fileID: 2800000, guid: 27892c39e5411424b897653c06f399c0, type: 3}
+  - {fileID: 2800000, guid: 0f76e0aa834f2974c95bfd79e122a9fa, type: 3}
+  - {fileID: 2800000, guid: e52744ba76cd7ef4c9f1ca026c05828b, type: 3}
+  - {fileID: 2800000, guid: 8b4842a1fb5ea0c48afade626825a907, type: 3}
+  - {fileID: 2800000, guid: 025ea382a92568e458408a122dd99fdb, type: 3}
+  - {fileID: 2800000, guid: f38b398be29a557439a73b0abceb97fc, type: 3}
+  - {fileID: 2800000, guid: 58b6d2d9422721340b096b5bec90a2e5, type: 3}
+  - {fileID: 2800000, guid: 80ec8bafb4029cf45964f755dcd1828b, type: 3}
+  - {fileID: 2800000, guid: 28d8a4e24d2d2fb4b8a1c1d435f08772, type: 3}
+  CollisionMask: {fileID: 2800000, guid: e06bdc458e0669c408e342b2021211c4, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

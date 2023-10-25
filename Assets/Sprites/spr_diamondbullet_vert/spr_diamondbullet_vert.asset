@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_diamondbullet_vert
+  m_EditorClassIdentifier: 
+  Margins: {x: 14, y: 19, z: 23, w: 11}
+  BoundingBoxMode: 2
+  SepMasks: 1
+  Origin: {x: 16, y: 16}
+  SubImages:
+  - {fileID: 2800000, guid: e89dc8d87f9bc7f4fbc718a406e82754, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 538eeb9d078d70c45b62f78eda6de406, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

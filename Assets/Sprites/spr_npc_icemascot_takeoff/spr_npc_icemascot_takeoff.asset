@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_npc_icemascot_takeoff
+  m_EditorClassIdentifier: 
+  Margins: {x: 6, y: 41, z: 51, w: 30}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 7410706ddcce5d645b0ffef6ef958592, type: 3}
+  - {fileID: 2800000, guid: d6acb50067bf3f84c8b7d3e5b0737c67, type: 3}
+  - {fileID: 2800000, guid: 00c1cd8d031c3ea479fc68490a40360f, type: 3}
+  - {fileID: 2800000, guid: d029a82f218a351428e900939badccc1, type: 3}
+  - {fileID: 2800000, guid: d1fdf55b546f17c49918ee88531d1202, type: 3}
+  - {fileID: 2800000, guid: e2369271bf7f33f43acbc917df63c674, type: 3}
+  - {fileID: 2800000, guid: efb61ad354b071148a6ec452ddb08b03, type: 3}
+  - {fileID: 2800000, guid: 3175c602a2878f14e85431b5d4d94c17, type: 3}
+  - {fileID: 2800000, guid: 2507dde11b4a87b4089618a9111a2377, type: 3}
+  - {fileID: 2800000, guid: 50a74e442437f154d96be00d8ec96476, type: 3}
+  - {fileID: 2800000, guid: 52fe8ddf5abf5e7489416ddccc7c121c, type: 3}
+  - {fileID: 2800000, guid: db739caec0afbd14a8cae1fdc0ba985e, type: 3}
+  - {fileID: 2800000, guid: bd5121a1159b7d64098089ea842f7474, type: 3}
+  - {fileID: 2800000, guid: f3f00ecf809be2a4e8d9352a4c874a7a, type: 3}
+  CollisionMask: {fileID: 2800000, guid: e3ba4e8d46599674d939febad455f40d, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

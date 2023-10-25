@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_thrashbody_b
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 82, z: 50, w: 2}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 54, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 15c7405cd6309494e989fb412aaa2373, type: 3}
+  - {fileID: 2800000, guid: 66af6e8bea7ba5643870b571bda51484, type: 3}
+  - {fileID: 2800000, guid: bddeadbf694af8b478fbc42fc67d8800, type: 3}
+  - {fileID: 2800000, guid: 9b2601537941ff34099c064c0b933be1, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 0fc199fae4a117641b75c9de83cc60c2, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

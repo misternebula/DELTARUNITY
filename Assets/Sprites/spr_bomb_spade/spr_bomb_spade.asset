@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_bomb_spade
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 23, z: 23, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 11, y: 11}
+  SubImages:
+  - {fileID: 2800000, guid: d956534c2f519af438b5ba0992b930c7, type: 3}
+  - {fileID: 2800000, guid: db95319248b70604a82cc242bc8544ae, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 282d80bf2ff6f784dbf2b86b6476b961, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

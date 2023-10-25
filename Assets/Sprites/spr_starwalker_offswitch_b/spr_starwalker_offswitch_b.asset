@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_starwalker_offswitch_b
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 19, z: 41, w: 0}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: eb00685b37075bf47921d35c50fdbfe8, type: 3}
+  - {fileID: 2800000, guid: 428488d118d73c7408e3472fc1bdd625, type: 3}
+  - {fileID: 2800000, guid: b5742c449fbdafb42bfd847496c5ea76, type: 3}
+  - {fileID: 2800000, guid: ba25e8b74b7edb2468cbe63fb3845593, type: 3}
+  - {fileID: 2800000, guid: 5abfa946a242f404db152cb6d896f5c1, type: 3}
+  - {fileID: 2800000, guid: 09de8068c30045d4d9cc6041f0ffe585, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 98537b1e780971e44a2da72c09c26a30, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_hammerguy_powerup
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 43, z: 57, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 3, y: 4}
+  SubImages:
+  - {fileID: 2800000, guid: 416037dc35a719c4fa84e866fb8ceb50, type: 3}
+  - {fileID: 2800000, guid: c34b7a12f31cff34f9bf60672db7363d, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 1f2a723b806b8174584c5e581b6755c8, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

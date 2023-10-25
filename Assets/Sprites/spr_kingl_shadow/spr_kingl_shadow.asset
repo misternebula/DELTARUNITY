@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_kingl_shadow
+  m_EditorClassIdentifier: 
+  Margins: {x: 18, y: 68, z: 77, w: 4}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: c771a83aef7d1594d9ad6ba53f536160, type: 3}
+  - {fileID: 2800000, guid: 78a06472bb6e1184a986b3a37986c138, type: 3}
+  - {fileID: 2800000, guid: 2c0606ddecbdf69459d8b0e606c17cb1, type: 3}
+  - {fileID: 2800000, guid: 6a461513227f6d64cb9e9f820a7ccf90, type: 3}
+  CollisionMask: {fileID: 2800000, guid: d1284368901e6294483b67a60df278a2, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

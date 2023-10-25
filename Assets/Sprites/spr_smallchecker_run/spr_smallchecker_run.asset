@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_smallchecker_run
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 39, z: 36, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 5, y: 3}
+  SubImages:
+  - {fileID: 2800000, guid: 585ea8d4c9f756a42b2d7c3f58881a5f, type: 3}
+  - {fileID: 2800000, guid: 8195fb4e228bc22499f5d1166eccd622, type: 3}
+  - {fileID: 2800000, guid: 289cbb934b025714d84a21c737ffa28c, type: 3}
+  - {fileID: 2800000, guid: 283ed4eb4f185c34e861045ae90ed8cc, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 1aa37c309d3ff52488c6932f63e9fbac, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

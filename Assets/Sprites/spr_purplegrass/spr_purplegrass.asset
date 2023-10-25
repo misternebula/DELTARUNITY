@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_purplegrass
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 40, z: 40, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: c59de92ff950d0542bbfeb94efcb3d99, type: 3}
+  - {fileID: 2800000, guid: c25a837578c55064a827533e6f4bb44a, type: 3}
+  - {fileID: 2800000, guid: df29d4ea0f617864d829e9cfc8edb2e2, type: 3}
+  - {fileID: 2800000, guid: 16d900b7195c0654a833b51ae1d62aeb, type: 3}
+  - {fileID: 2800000, guid: f7aa2953bdc748c47af51e56857533f8, type: 3}
+  - {fileID: 2800000, guid: 338ee3a2169770f4395cc5150a22671f, type: 3}
+  - {fileID: 2800000, guid: ebc17c33cf6546e4d9da4362f52736d6, type: 3}
+  - {fileID: 2800000, guid: fdb9448a9cb41264c94950ea06382fe2, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 5863f6e8bddcf4a458cbb1225126382c, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

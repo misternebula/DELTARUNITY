@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_carrotbullet
+  m_EditorClassIdentifier: 
+  Margins: {x: 3, y: 11, z: 11, w: 3}
+  BoundingBoxMode: 2
+  SepMasks: 1
+  Origin: {x: 6, y: 6}
+  SubImages:
+  - {fileID: 2800000, guid: 13526c63ff9a5304d833f1b9dbcaee52, type: 3}
+  - {fileID: 2800000, guid: e25d01db003ccf64d9fcea127067314d, type: 3}
+  - {fileID: 2800000, guid: 47a64c05c356d504daf6aa7ded6654ac, type: 3}
+  - {fileID: 2800000, guid: efa3a7d082dbe4c4785c72d112c66c97, type: 3}
+  CollisionMask: {fileID: 2800000, guid: d2e39de59aba7944f881c3e0f4112c22, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_jokerdoor
+  m_EditorClassIdentifier: 
+  Margins: {x: 26, y: 53, z: 114, w: 70}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 3e68ed832d9e78f4b9e356aafb2fb879, type: 3}
+  - {fileID: 2800000, guid: 5c99bb80ed4d70848b357fd9ea287191, type: 3}
+  - {fileID: 2800000, guid: c266db3971051af4ba0f6f5d80e5adee, type: 3}
+  CollisionMask: {fileID: 2800000, guid: da2ca889d9b20704a9ed27d113ac330d, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

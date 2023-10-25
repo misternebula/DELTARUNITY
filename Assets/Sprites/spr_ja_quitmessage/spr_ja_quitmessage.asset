@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_ja_quitmessage
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 82, z: 10, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 046fbebc6174bee47bf7ad30cde38a44, type: 3}
+  - {fileID: 2800000, guid: fb641d82c5f99c345ad9db9e125e83c2, type: 3}
+  - {fileID: 2800000, guid: be51fea67073df640811f5f30a5be84e, type: 3}
+  - {fileID: 2800000, guid: 01d11c0656d7e7948bbe8db6aa769903, type: 3}
+  - {fileID: 2800000, guid: de8d4ceb5387bb84a94e4531a7bc09b8, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 05f9edc563336044a85fefc1a9323f71, type: 3}
+  PlaybackSpeed: 15
+  PlaybackSpeedType: 0
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

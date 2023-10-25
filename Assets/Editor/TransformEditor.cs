@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [CustomEditor(typeof(Transform))]
-public class TransformEditor : Editor
+public class TransformEditor : UnityEditor.Editor
 {
 	Transform transform;
 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_btspare
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 31, z: 32, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 59826aab4e4fb8a4f8c8f9ff27e40da9, type: 3}
+  - {fileID: 2800000, guid: e30d04a7c6618334089911c11fbc7cb4, type: 3}
+  - {fileID: 2800000, guid: f0d88f580a793e9468e3f89d2a938d68, type: 3}
+  CollisionMask: {fileID: 2800000, guid: e01e82831426b0346b0182a3a9da3461, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

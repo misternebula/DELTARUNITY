@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: IMAGE_GONERBODY
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 21, z: 15, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 1, y: 1}
+  SubImages:
+  - {fileID: 2800000, guid: 2b2e4397ad8061d408a5fe43504384e8, type: 3}
+  - {fileID: 2800000, guid: 97cbb404a6003424aafdeba5566359ec, type: 3}
+  - {fileID: 2800000, guid: 7fabe5d2d048f4144ac806d39830073a, type: 3}
+  - {fileID: 2800000, guid: c4dd247c703f56a4fa48b46d5e0cb0c8, type: 3}
+  - {fileID: 2800000, guid: 1eb128d35f0b06d43a74ff909885b48d, type: 3}
+  - {fileID: 2800000, guid: 59df4464f6d66e14480c351524208b64, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 2c21eeeb7bb959445a363fb03c517774, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

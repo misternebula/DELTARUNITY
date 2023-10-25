@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_classdoorslam
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 52, z: 58, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: bd893d9c64e6a004f9149cf87ad5f1fc, type: 3}
+  - {fileID: 2800000, guid: 0761d6d27f025514498f1bdb592c707b, type: 3}
+  - {fileID: 2800000, guid: eae348436a28c154caf3ee1bf8dd1d89, type: 3}
+  - {fileID: 2800000, guid: 856c79ce1a9147a41b5fec24335457e1, type: 3}
+  - {fileID: 2800000, guid: 62b5c2b92eb344d40b35097331b797c5, type: 3}
+  - {fileID: 2800000, guid: 74905440464358b4d945a7e48fda51b4, type: 3}
+  - {fileID: 2800000, guid: ef6faf2ba30b07741933a97a7f83c097, type: 3}
+  - {fileID: 2800000, guid: 236253e19e15865408c3322f60e65137, type: 3}
+  CollisionMask: {fileID: 2800000, guid: bd60acf509164864d80b8253b5d10b1d, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

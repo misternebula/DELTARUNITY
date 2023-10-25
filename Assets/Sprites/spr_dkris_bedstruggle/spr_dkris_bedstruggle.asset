@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_dkris_bedstruggle
+  m_EditorClassIdentifier: 
+  Margins: {x: 13, y: 43, z: 55, w: 18}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 8ccca6cf6078aab4c85ed73847b78801, type: 3}
+  - {fileID: 2800000, guid: 263cf9486f0a7394eab29e7f10f3c36e, type: 3}
+  - {fileID: 2800000, guid: 04719c7e86a59424384276846b27b1f6, type: 3}
+  CollisionMask: {fileID: 2800000, guid: f092893c51b991b4faa20898787ebc01, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

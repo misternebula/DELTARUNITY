@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_dustball
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 5, z: 5, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 391b7c3dac25ce845ab1ad1ba0f929e4, type: 3}
+  - {fileID: 2800000, guid: 4b81482a2d037d542b69a2c86df4c9d8, type: 3}
+  - {fileID: 2800000, guid: 7e940ab25e2d9614196720a30e2ee69d, type: 3}
+  - {fileID: 2800000, guid: c67c368332c0b4f4fabe8b2b2069d0f6, type: 3}
+  CollisionMask: {fileID: 2800000, guid: dbbc666b9138b9c48bf3d3856df7b6e9, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

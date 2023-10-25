@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_alphysd
+  m_EditorClassIdentifier: 
+  Margins: {x: 5, y: 24, z: 34, w: 20}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 30cc9116c72cc5c44b1473d93d16142c, type: 3}
+  - {fileID: 2800000, guid: 1f12720b675421d448f0f1bce0736142, type: 3}
+  - {fileID: 2800000, guid: ee4e055f0b88ccc41b690df64cf2ea62, type: 3}
+  - {fileID: 2800000, guid: 3aaeb440d1d3b304bbb5c914dd3975d4, type: 3}
+  CollisionMask: {fileID: 2800000, guid: b5515470194ff1c4a9ff3a7f4a8548c7, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

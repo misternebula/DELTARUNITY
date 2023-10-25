@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_rudebuster_beam
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 43, z: 62, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 20, y: 30}
+  SubImages:
+  - {fileID: 2800000, guid: f13803a6228af0c49ba7b1a828098b9f, type: 3}
+  - {fileID: 2800000, guid: 74704a6e80fc18245a3cfc5db6349011, type: 3}
+  - {fileID: 2800000, guid: 03a5b60480478784cb77aef583b875f2, type: 3}
+  - {fileID: 2800000, guid: 2ed15b2ef344edc4ead4feaabc3a881c, type: 3}
+  - {fileID: 2800000, guid: fdcbdc40b3a6b89418e3a0c35a01a5bc, type: 3}
+  - {fileID: 2800000, guid: a88cad5a42914ba4ab53e695702f5244, type: 3}
+  - {fileID: 2800000, guid: 5603a00dd4095734884bc2ad8ed067d5, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 00cac09b2aa66d841a9b3cdf6015d2df, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

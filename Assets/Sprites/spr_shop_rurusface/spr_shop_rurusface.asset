@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_shop_rurusface
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 27, z: 29, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 11f1ade4ba9d52d479c7b8a588b865dc, type: 3}
+  - {fileID: 2800000, guid: f3a679ef548a4c74987502af0ee3bbb2, type: 3}
+  - {fileID: 2800000, guid: 49fe2596c3f9a9c478dc54d33810e222, type: 3}
+  - {fileID: 2800000, guid: b91520ecd9b9ab3418383bcd00cd2c8a, type: 3}
+  - {fileID: 2800000, guid: 3991ada4258ed324f9f976b401803bbe, type: 3}
+  - {fileID: 2800000, guid: b8381bfea3760e248bafe24814d49f0c, type: 3}
+  - {fileID: 2800000, guid: 566522b2ef364e345813cb87e71ea204, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 72c6d0de2c1ef644cb1674ce69f50f17, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

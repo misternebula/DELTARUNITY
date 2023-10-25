@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_battlebg_spikes
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 49, z: 49, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 24, y: 24}
+  SubImages:
+  - {fileID: 2800000, guid: 7211ab9720c6e9d4a9d689b1d9c5d167, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 1bbcf1568d3414946b97710146f50e8b, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

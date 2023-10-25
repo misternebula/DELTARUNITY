@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_rabbitthrower
+  m_EditorClassIdentifier: 
+  Margins: {x: 8, y: 21, z: 23, w: 15}
+  BoundingBoxMode: 2
+  SepMasks: 1
+  Origin: {x: 11, y: 17}
+  SubImages:
+  - {fileID: 2800000, guid: 124c8e1199fa0374cb450f60bbb3b9e9, type: 3}
+  - {fileID: 2800000, guid: bf31dabc09463954fbe7536b68a42f3c, type: 3}
+  - {fileID: 2800000, guid: 523d678bb5c8f8949837ac3dc242189a, type: 3}
+  - {fileID: 2800000, guid: cc1a33c735935644dbc36cb11f480c4b, type: 3}
+  CollisionMask: {fileID: 2800000, guid: e47033ecbafa83244812cdc718957c08, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_npc_cage_animals
+  m_EditorClassIdentifier: 
+  Margins: {x: 33, y: 95, z: 72, w: 21}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 50c420b3a7a247d4f889aee94077bb5e, type: 3}
+  - {fileID: 2800000, guid: f517fe3fbfa8b9444af63615e0c15b1a, type: 3}
+  - {fileID: 2800000, guid: 89c82a8c14b19b944b7f996d89e8003f, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 452cfda0a5acdc64ea48657061c679b3, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

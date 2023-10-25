@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_checkers_leap
+  m_EditorClassIdentifier: 
+  Margins: {x: 15, y: 31, z: 77, w: 15}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: b64dda3974d932c41ae00a6b87de09c1, type: 3}
+  - {fileID: 2800000, guid: 23ba886bda55d594985f7601f690608b, type: 3}
+  - {fileID: 2800000, guid: 16de5917a022da44eb81ecfc599404b1, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 8595b7e9807a2ac43ab821c9dd1ee859, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

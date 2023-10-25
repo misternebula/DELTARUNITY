@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_battlebg_1
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 49, z: 49, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 24, y: 24}
+  SubImages:
+  - {fileID: 2800000, guid: 8bd1d5a5f5ecef7408c1596c9fd34de7, type: 3}
+  - {fileID: 2800000, guid: 248ff7547eb411a40908341dbf411923, type: 3}
+  CollisionMask: {fileID: 2800000, guid: bd40a321e50242f4da839f9a7540d0e0, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

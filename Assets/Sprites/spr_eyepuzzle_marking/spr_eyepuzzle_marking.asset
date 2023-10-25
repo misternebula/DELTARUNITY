@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_eyepuzzle_marking
+  m_EditorClassIdentifier: 
+  Margins: {x: 1, y: 18, z: 12, w: 7}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: df232be7a463ecd4c9a35d20d91d0d59, type: 3}
+  - {fileID: 2800000, guid: 33b9c49c328882d48ab087343a7fc513, type: 3}
+  - {fileID: 2800000, guid: 5ae4fc5a021d48740996461d972cadce, type: 3}
+  CollisionMask: {fileID: 2800000, guid: af6e79e09b7372b4dad668453aa76ee5, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

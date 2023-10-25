@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_npc_greenfire
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 18, z: 42, w: 34}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: c3416da805737a94d9ad24a4c456c157, type: 3}
+  - {fileID: 2800000, guid: 86924a7be72e664419fbdfb5f483bc6a, type: 3}
+  - {fileID: 2800000, guid: 6d71bb6557afdca4aaf1130306fe7391, type: 3}
+  - {fileID: 2800000, guid: 4d4bcfa89280b2e4db8570223614f18a, type: 3}
+  CollisionMask: {fileID: 2800000, guid: f4fdb94d374ebfb499b589c33484b9a5, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

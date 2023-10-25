@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_dodgeheartmask
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 18, z: 18, w: 2}
+  BoundingBoxMode: 0
+  SepMasks: 1
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: dbd8d52b43865c24582700345ca0de09, type: 3}
+  - {fileID: 2800000, guid: d4d3cb20096054b448f7b492059193d8, type: 3}
+  CollisionMask: {fileID: 2800000, guid: a3e1418c458a0e0499fb5c53f0b76843, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

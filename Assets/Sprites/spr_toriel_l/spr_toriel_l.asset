@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_toriel_l
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 23, z: 54, w: 35}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 78b9ac53997570143970607f1e43440b, type: 3}
+  - {fileID: 2800000, guid: 3551d25e672484547a15fa9043e63c72, type: 3}
+  - {fileID: 2800000, guid: 4123ad8ce9db1ab4ca33eeddb2610f51, type: 3}
+  - {fileID: 2800000, guid: f1c90aa7971db224290512bd61dae3a0, type: 3}
+  CollisionMask: {fileID: 2800000, guid: d5c7e1bdc1d613141bbf37efc911d4e1, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 [CustomEditor(typeof(GamemakerObject), true)]
 [CanEditMultipleObjects]
-public class GamemakerObjectEditor : Editor
+public class GamemakerObjectEditor : UnityEditor.Editor
 {
 	private SerializedProperty instanceId;
 	private SerializedProperty spriteIndex;

@@ -82,7 +82,7 @@ namespace Assets.AudioManager
 			if (name == null || !_audioClips.ContainsKey(name))
 			{
 				Debug.LogError($"AudioDatabase doesn't contain {name}!");
-				name = "snd_error";
+				Debug.Break();
 			}
 
 			var newSource = Instantiate(AudioSourcePrefab);

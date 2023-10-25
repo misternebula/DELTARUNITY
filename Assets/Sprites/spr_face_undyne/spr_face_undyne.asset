@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_face_undyne
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 47, z: 51, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: d68fd7bec48e0204abd4f93cfa615856, type: 3}
+  - {fileID: 2800000, guid: f3dffb39b3252a34f878dfafe463c6de, type: 3}
+  - {fileID: 2800000, guid: ae22750b8b2ae154b9abd2d76877f0c7, type: 3}
+  - {fileID: 2800000, guid: 8bd705a8d1a9fa246bc14ed7cbaa5327, type: 3}
+  - {fileID: 2800000, guid: 123c400d8823502418383a4dc9b52bb4, type: 3}
+  - {fileID: 2800000, guid: 22492a233a771944b81bf95590d136b3, type: 3}
+  - {fileID: 2800000, guid: ba12753f8fd27964086114c86e0bc46b, type: 3}
+  - {fileID: 2800000, guid: 4f5969701453c8c4c82314b924965135, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 7a90c765ea555ea49b3a553b6620c8aa, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

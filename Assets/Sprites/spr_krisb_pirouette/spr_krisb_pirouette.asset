@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_krisb_pirouette
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 32, z: 39, w: 1}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 5, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: c6a347148e40f3d49a1c10baaebf8eae, type: 3}
+  - {fileID: 2800000, guid: 3f4a7fb9dda0ba4458f64cb3b2c0351c, type: 3}
+  - {fileID: 2800000, guid: eaacd51287373ae4dbbf2f9e9efe8da0, type: 3}
+  - {fileID: 2800000, guid: 16d23815a9ffa4248923ae5922d065e0, type: 3}
+  - {fileID: 2800000, guid: 75fafb9403c967849b379271e08813f6, type: 3}
+  - {fileID: 2800000, guid: 28dcfc74cfd642646bde616a678e2ddc, type: 3}
+  CollisionMask: {fileID: 2800000, guid: b2094de4d9ba1eb479b8e9e94c93f78a, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

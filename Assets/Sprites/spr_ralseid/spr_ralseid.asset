@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_ralseid
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 21, z: 45, w: 31}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 508bcad2777ded743b7b7635c51b2e6d, type: 3}
+  - {fileID: 2800000, guid: 2492f2a4fd00c6d43865c615a5cd139c, type: 3}
+  - {fileID: 2800000, guid: fba9b87896d561947b66ac28acf8bc73, type: 3}
+  - {fileID: 2800000, guid: 67ae6274e34aa2b41919d16440109f94, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 8c33e933e33e6b34e8b7bd00f37b6096, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

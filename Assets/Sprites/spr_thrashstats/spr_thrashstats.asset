@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_thrashstats
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 28, z: 9, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 4266004af41703f42afa284714eba354, type: 3}
+  - {fileID: 2800000, guid: 47abd182a522edf49a1231fd826cce2c, type: 3}
+  - {fileID: 2800000, guid: cf977c03e074aca43b675f44d5ec7a31, type: 3}
+  - {fileID: 2800000, guid: b2b91114df40c764ea2955f8838cbf74, type: 3}
+  - {fileID: 2800000, guid: 5d01e4628fdfb83408c2ae101d427c8b, type: 3}
+  - {fileID: 2800000, guid: 4895d483244041a47bfa1a6d98810554, type: 3}
+  CollisionMask: {fileID: 2800000, guid: ffb4f5bad2cb3c242a6fb7210554aee1, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

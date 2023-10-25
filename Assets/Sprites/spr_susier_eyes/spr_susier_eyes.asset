@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_susier_eyes
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 25, z: 47, w: 26}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: d0043290126cc8447b82d7cf1499fc29, type: 3}
+  - {fileID: 2800000, guid: f8d05b18eb1308d4ba24f2868245d6bb, type: 3}
+  - {fileID: 2800000, guid: c809d7d69fed08e45ace4d14f3486c62, type: 3}
+  - {fileID: 2800000, guid: 0c27b13917db3c9419209a6c0c427b0c, type: 3}
+  CollisionMask: {fileID: 2800000, guid: d426fc4c566ce6a488852be2938172e8, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

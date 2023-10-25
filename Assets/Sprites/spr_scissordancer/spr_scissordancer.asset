@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_scissordancer
+  m_EditorClassIdentifier: 
+  Margins: {x: 3, y: 43, z: 51, w: 15}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 2b0a474aafbdc0049b4b4435b810c437, type: 3}
+  - {fileID: 2800000, guid: 5930f2a00b41cfb45a99bd0c376f58ea, type: 3}
+  - {fileID: 2800000, guid: 9cdb6044abc6ad944b465ef8c90adff5, type: 3}
+  - {fileID: 2800000, guid: 7c13b6388dc81554589e9c148773ec61, type: 3}
+  - {fileID: 2800000, guid: 7b9e8f851c15cad4b88e5575ad96d64b, type: 3}
+  - {fileID: 2800000, guid: dabcfcc88609d7747b3a6d53a973681a, type: 3}
+  - {fileID: 2800000, guid: 111a2eabe28f76f45bb9a3abfa94b051, type: 3}
+  - {fileID: 2800000, guid: bed570ceba868e146ae21ad314861422, type: 3}
+  - {fileID: 2800000, guid: 2b35a5bdda069714eb0be78178126924, type: 3}
+  - {fileID: 2800000, guid: 08ae7cabc215e2946bd562901371f02c, type: 3}
+  - {fileID: 2800000, guid: e8ed40f7d1063214fa824f370db31f97, type: 3}
+  - {fileID: 2800000, guid: af7cb209d5e94d3448ae04bd6f59a5d1, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 34a547006251d304f9631e955dd6179d, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

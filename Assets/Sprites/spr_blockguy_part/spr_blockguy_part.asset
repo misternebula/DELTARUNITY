@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_blockguy_part
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 25, z: 14, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: cf0200c2542bedb43bc5e4ce04981ae3, type: 3}
+  - {fileID: 2800000, guid: 89cd42d39695dee4593fcf258f1e768b, type: 3}
+  - {fileID: 2800000, guid: bd246abb30e00fd4ba8850f444805b8d, type: 3}
+  - {fileID: 2800000, guid: a45f48d9c4f7b334fa570b78b9aa1bd2, type: 3}
+  - {fileID: 2800000, guid: eed673ef0ac603e4faa72b8cfe30fbb3, type: 3}
+  - {fileID: 2800000, guid: 962b87897d5297148925dd1c6888a699, type: 3}
+  - {fileID: 2800000, guid: d27db2c8e892fb944b07f856abc2c983, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 60b18a3a0282bd347b89d38e3ebe9936, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

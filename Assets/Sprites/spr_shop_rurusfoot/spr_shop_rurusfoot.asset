@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_shop_rurusfoot
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 34, z: 45, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: d6957929c3dcfc8498fdde9dc1c64736, type: 3}
+  - {fileID: 2800000, guid: 055ff7cbbb6a9aa428054522c5d4ec34, type: 3}
+  - {fileID: 2800000, guid: af5ad5484400f9b4499af88d6f86f31f, type: 3}
+  - {fileID: 2800000, guid: 0d7147de405e59c4183e1d0064bd38d4, type: 3}
+  - {fileID: 2800000, guid: 54ef22f7ff12c8b44934b3d1833e335d, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 23445c81adc83f74b8a40d4ca37cb745, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

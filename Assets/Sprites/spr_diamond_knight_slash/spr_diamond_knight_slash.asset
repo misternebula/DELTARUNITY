@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_diamond_knight_slash
+  m_EditorClassIdentifier: 
+  Margins: {x: 2, y: 33, z: 40, w: 25}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 20, y: 10}
+  SubImages:
+  - {fileID: 2800000, guid: 7e8cc01e57cf24c4490a4e327f8f17cc, type: 3}
+  - {fileID: 2800000, guid: 109d9409a208b18488bd003ef246a15f, type: 3}
+  - {fileID: 2800000, guid: 90ea9e0da2346b849b3cfcdb3e83c00c, type: 3}
+  - {fileID: 2800000, guid: 1c34c314cd3700f4fa055722885b4f56, type: 3}
+  - {fileID: 2800000, guid: f8d976358d99a5b4faec42d7a971c6b9, type: 3}
+  - {fileID: 2800000, guid: 2ba3bef91cd56dd43afb708e05a5b0d0, type: 3}
+  CollisionMask: {fileID: 2800000, guid: a0304692f29e8254d84a67d762c64870, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

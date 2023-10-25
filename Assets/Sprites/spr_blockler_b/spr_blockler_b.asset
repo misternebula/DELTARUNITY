@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_blockler_b
+  m_EditorClassIdentifier: 
+  Margins: {x: 0, y: 30, z: 33, w: 0}
+  BoundingBoxMode: 0
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 0a4501b480b8f7a43be300ccb7e87938, type: 3}
+  - {fileID: 2800000, guid: 639ba5306fce2314db34a858e0ba9f71, type: 3}
+  - {fileID: 2800000, guid: 4692e6fe14652f84db37edf31f84869c, type: 3}
+  - {fileID: 2800000, guid: 907cb0c4323083e46b1eb2257a906de4, type: 3}
+  - {fileID: 2800000, guid: 16f7f9d0479697f43b3d5064ee1aa573, type: 3}
+  - {fileID: 2800000, guid: f31d8de1326920f4dab307dcc4247aba, type: 3}
+  CollisionMask: {fileID: 2800000, guid: fd861a596541b9746a4769e76a8b9b6a, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 

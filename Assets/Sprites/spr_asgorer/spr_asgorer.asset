@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f27696c2e7ac9de4995d427bad06e18a, type: 3}
+  m_Name: spr_asgorer
+  m_EditorClassIdentifier: 
+  Margins: {x: 4, y: 43, z: 63, w: 40}
+  BoundingBoxMode: 2
+  SepMasks: 0
+  Origin: {x: 0, y: 0}
+  SubImages:
+  - {fileID: 2800000, guid: 40463b2da08f25347802266f7d7dc4e5, type: 3}
+  - {fileID: 2800000, guid: 3a64208451140e2409b7988b8e1c184a, type: 3}
+  - {fileID: 2800000, guid: 899d9044e8a593f41a2b19253298f954, type: 3}
+  - {fileID: 2800000, guid: 72e7b93b5c971a9418613d2ef166df0b, type: 3}
+  CollisionMask: {fileID: 2800000, guid: 740218b1eea057a44aa50fbc9e785cee, type: 3}
+  PlaybackSpeed: 1
+  PlaybackSpeedType: 1
+  CollisionMaskPreload:
+    Width: 0
+    Height: 0
+    Data: 
