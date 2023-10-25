@@ -2483,6 +2483,43 @@ namespace Assets
 					}
 
 					break;
+				case 145:
+					global.choicemsg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_357_0");
+					global.choicemsg[1] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_358_0");
+					global.choicemsg[2] = " ";
+					global.choicemsg[3] = " ";
+					if (global.flag[101] == 0)
+					{
+						global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_363_0");
+						global.msg[1] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_364_0");
+						global.msg[2] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_365_0");
+					}
+
+					if (global.flag[101] == 1)
+					{
+						global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_369_0");
+						global.msg[1] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_370_0");
+						global.msg[2] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_371_0");
+					}
+
+					if (global.flag[101] >= 2)
+						global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_376_0");
+					break;
+				case 146:
+					if (global.choice == 0)
+					{
+						scr_itemget(1);
+						if (noroom == false)
+						{
+							global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_387_0");
+							global.flag[101] += 1;
+						}
+						else
+							global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_392_0");
+					}
+					else
+						global.msg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_398_0");
+					break;
 				case 147:
 					global.choicemsg[0] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_403_0");
 					global.choicemsg[1] = scr_84_get_lang_string("scr_text_slash_scr_text_gml_404_0");
