@@ -16,14 +16,14 @@ namespace Assets.SpriteManager
 		public BoundingBoxMode BoundingBoxMode;
 		public SepMasks SepMasks;
 		public Vector2 Origin;
-		public List<Texture2D> SubImages;
-		public Texture2D CollisionMask;
+		public List<Texture2D> SubImages = new List<Texture2D>();
+		public List<Texture2D> CollisionMasks = new List<Texture2D>();
 
 		public int PlaybackSpeed;
 		public PlaybackSpeedType PlaybackSpeedType;
 
 		[HideInInspector]
-		public CollisionMaskPreload CollisionMaskPreload;
+		public List<CollisionMaskPreload> CollisionMaskPreloads = new List<CollisionMaskPreload>();
 	}
 
 	[Serializable]

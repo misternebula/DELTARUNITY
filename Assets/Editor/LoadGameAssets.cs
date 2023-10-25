@@ -76,6 +76,7 @@ public class LoadGameAssets
 			asset.PlaybackSpeedType = (PlaybackSpeedType)spriteData.animationType;
 			asset.Margins = new Vector4(spriteData.marginLeft, spriteData.marginRight + 1, spriteData.marginBottom + 1, spriteData.marginTop);
 			asset.SubImages = new List<Texture2D>();
+			asset.CollisionMasks = new List<Texture2D>();
 
 			var spriteDir = Path.Combine(destSpritesFolder, spriteData.name);
 			if (!Directory.Exists(spriteDir))
@@ -105,9 +106,7 @@ public class LoadGameAssets
 				File.Copy(maskFile.FullName, Path.Combine(maskDir, maskFile.Name));
 				AssetDatabase.ImportAsset(unityDestFile);
 				var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(unityDestFile);
-				asset.CollisionMask = texture; 
-				// note - this means that sprites with multiple collision masks will only use the last one.
-				// need to rewrite the collision handlers to account for multiple masks... ughhhhhhh
+				asset.CollisionMasks.Add(texture); 
 			}
 
 			var destAssetPath = $"Assets/Sprites/{spriteData.name}/{spriteData.name}.asset";
@@ -132,28 +131,28 @@ public class LoadGameAssets
 			var assetPath = AssetDatabase.GUIDToAssetPath(guid);
 			var asset = AssetDatabase.LoadAssetAtPath<SpriteSubLibrary>(assetPath);
 
-			if (asset.CollisionMask == null)
+			foreach (var collisionMask in asset.CollisionMasks)
 			{
-				continue;
-			}
+				var preload = new CollisionMaskPreload();
 
-			asset.CollisionMaskPreload = new CollisionMaskPreload();
+				var pixels = collisionMask.GetPixels();
+				var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
 
-			var pixels = asset.CollisionMask.GetPixels();
-			var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
+				preload.Width = collisionMask.width;
+				preload.Height = collisionMask.height;
+				preload.Data = new bool[collisionMask.width * collisionMask.height];
 
-			asset.CollisionMaskPreload.Width = asset.CollisionMask.width;
-			asset.CollisionMaskPreload.Height = asset.CollisionMask.height;
-			asset.CollisionMaskPreload.Data = new bool[asset.CollisionMask.width * asset.CollisionMask.height];
-
-			var index = 0;
-			for (var i = (asset.CollisionMask.height - 1); i >= 0; i--)
-			{
-				for (var j = 0; j < asset.CollisionMask.width; j++)
+				var index = 0;
+				for (var i = (collisionMask.height - 1); i >= 0; i--)
 				{
-					asset.CollisionMaskPreload.Data[(i * asset.CollisionMask.width) + j] = pixelsAsBool[index];
-					index++;
+					for (var j = 0; j < collisionMask.width; j++)
+					{
+						preload.Data[(i * collisionMask.width) + j] = pixelsAsBool[index];
+						index++;
+					}
 				}
+
+				asset.CollisionMaskPreloads.Add(preload);
 			}
 
 			EditorUtility.SetDirty(asset);

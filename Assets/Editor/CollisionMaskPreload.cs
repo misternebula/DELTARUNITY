@@ -17,23 +17,28 @@ namespace Assets.Editor
 		{
 			var spriteAsset = Selection.activeObject as SpriteSubLibrary;
 
-			spriteAsset.CollisionMaskPreload = new SpriteManager.CollisionMaskPreload();
-
-			var pixels = spriteAsset.CollisionMask.GetPixels();
-			var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
-
-			spriteAsset.CollisionMaskPreload.Width = spriteAsset.CollisionMask.width;
-			spriteAsset.CollisionMaskPreload.Height = spriteAsset.CollisionMask.height;
-			spriteAsset.CollisionMaskPreload.Data = new bool[spriteAsset.CollisionMask.width * spriteAsset.CollisionMask.height];
-
-			var index = 0;
-			for (var i = (spriteAsset.CollisionMask.height - 1); i >= 0 ; i--)
+			foreach (var collisionMask in spriteAsset.CollisionMasks)
 			{
-				for (var j = 0; j < spriteAsset.CollisionMask.width; j++)
+				var preload = new SpriteManager.CollisionMaskPreload();
+
+				var pixels = collisionMask.GetPixels();
+				var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
+
+				preload.Width = collisionMask.width;
+				preload.Height = collisionMask.height;
+				preload.Data = new bool[collisionMask.width * collisionMask.height];
+
+				var index = 0;
+				for (var i = (collisionMask.height - 1); i >= 0; i--)
 				{
-					spriteAsset.CollisionMaskPreload.Data[(i * spriteAsset.CollisionMask.width) + j] = pixelsAsBool[index];
-					index++;
+					for (var j = 0; j < collisionMask.width; j++)
+					{
+						preload.Data[(i * collisionMask.width) + j] = pixelsAsBool[index];
+						index++;
+					}
 				}
+
+				spriteAsset.CollisionMaskPreloads.Add(preload);
 			}
 		}
 	}

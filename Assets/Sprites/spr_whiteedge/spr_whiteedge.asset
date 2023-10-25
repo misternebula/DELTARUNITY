@@ -18,10 +18,11 @@ MonoBehaviour:
   Origin: {x: 0, y: 0}
   SubImages:
   - {fileID: 2800000, guid: 6e9ffbdd9ee87834bb4e1d09097d8bb9, type: 3}
-  CollisionMask: {fileID: 2800000, guid: 4ee6678e90c00be47b7541f151393080, type: 3}
+  CollisionMasks:
+  - {fileID: 2800000, guid: 4ee6678e90c00be47b7541f151393080, type: 3}
   PlaybackSpeed: 1
   PlaybackSpeedType: 1
-  CollisionMaskPreload:
-    Width: 8
+  CollisionMaskPreloads:
+  - Width: 8
     Height: 8
     Data: 01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101

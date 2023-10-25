@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.SpriteManager;
 using OBJECT_SCRIPTS;
 using UnityEditor;
 using UnityEngine;
@@ -78,46 +79,34 @@ namespace Assets.CollisionManager
 		{
 			var spriteAsset = SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index);
 
-			if (spriteAsset.CollisionMask != null
-				&& spriteAsset.CollisionMaskPreload.Height == 0
-				&& spriteAsset.CollisionMaskPreload.Width == 0)
+
+			CollisionMaskPreload preload = null;
+			Texture2D actualMask = null;
+			if (spriteAsset.CollisionMasks.Count < (int)sprite.image_index)
 			{
-				Debug.LogError($"{sprite.sprite_index} has a CollisionMask, but no preloaded data!");
-
-				spriteAsset.CollisionMaskPreload = new SpriteManager.CollisionMaskPreload();
-
-				var pixels = spriteAsset.CollisionMask.GetPixels();
-				var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
-
-				spriteAsset.CollisionMaskPreload.Width = spriteAsset.CollisionMask.width;
-				spriteAsset.CollisionMaskPreload.Height = spriteAsset.CollisionMask.height;
-				spriteAsset.CollisionMaskPreload.Data = new bool[spriteAsset.CollisionMask.width * spriteAsset.CollisionMask.height];
-
-				var index = 0;
-				for (var i = (spriteAsset.CollisionMask.height - 1); i >= 0; i--)
-				{
-					for (var j = 0; j < spriteAsset.CollisionMask.width; j++)
-					{
-						spriteAsset.CollisionMaskPreload.Data[(i * spriteAsset.CollisionMask.width) + j] = pixelsAsBool[index];
-						index++;
-					}
-				}
+				preload = spriteAsset.CollisionMaskPreloads[0];
+				actualMask = spriteAsset.CollisionMasks[0];
+			}
+			else
+			{
+				preload = spriteAsset.CollisionMaskPreloads[(int)sprite.image_index];
+				actualMask = spriteAsset.CollisionMasks[(int)sprite.image_index];
 			}
 
-			var collisionMask = new bool[spriteAsset.CollisionMaskPreload.Height, spriteAsset.CollisionMaskPreload.Width];
+			var collisionMask = new bool[preload.Height, preload.Width];
 
-			if (spriteAsset.CollisionMask == null)
+			if (actualMask == null)
 			{
 				collisionMask = null;
 			}
 			else
 			{
 				var index = 0;
-				for (var i = 0; i < spriteAsset.CollisionMaskPreload.Height; i++)
+				for (var i = 0; i < preload.Height; i++)
 				{
-					for (var j = 0; j < spriteAsset.CollisionMaskPreload.Width; j++)
+					for (var j = 0; j < preload.Width; j++)
 					{
-						var val = spriteAsset.CollisionMaskPreload.Data[index++];
+						var val = preload.Data[index++];
 						collisionMask[i, j] = val;
 					}
 				}
@@ -188,14 +177,12 @@ namespace Assets.CollisionManager
 					continue;
 				}
 
-#if UNITY_EDITOR
 				// generate the collision mask if in editor
 				if (checkBox.CollisionMask == null || movedBox.CollisionMask == null)
 				{
 					var spriteIndex = checkBox.CollisionMask == null ? checkBox.GMObject.sprite_index : movedBox.GMObject.sprite_index;
-					AssignMask(spriteIndex);
+					throw new Exception($"collision mask not defined for {spriteIndex}");
 				}
-#endif
 
 				if ((checkBox.SepMasks == SepMasks.Precise
 					&& movedBox.SepMasks == SepMasks.Precise)
@@ -294,47 +281,6 @@ namespace Assets.CollisionManager
 			current.y = savedY;
 			return null;
 		}
-
-		private static void AssignMask(string spriteIndex)
-		{
-#if UNITY_EDITOR
-			Debug.LogWarning($"Assigning mask for {spriteIndex}");
-
-			var maskTexture = AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Sprites/Masks/{spriteIndex}_0.png");
-
-			if (maskTexture == null)
-			{
-				Debug.LogError($"No collision mask defined for {spriteIndex}, but we're checking collision on it!");
-				Debug.Break();
-			}
-
-			var database = SpriteManager.SpriteManager.Instance.Asset;
-			var spriteAsset = database.Sprites.First(x => x.name == spriteIndex);
-			spriteAsset.CollisionMask = maskTexture;
-
-			spriteAsset.CollisionMaskPreload = new SpriteManager.CollisionMaskPreload();
-
-			var pixels = spriteAsset.CollisionMask.GetPixels();
-			var pixelsAsBool = pixels.Select(x => x == Color.white).ToArray();
-
-			spriteAsset.CollisionMaskPreload.Width = spriteAsset.CollisionMask.width;
-			spriteAsset.CollisionMaskPreload.Height = spriteAsset.CollisionMask.height;
-			spriteAsset.CollisionMaskPreload.Data = new bool[spriteAsset.CollisionMask.width * spriteAsset.CollisionMask.height];
-
-			var index = 0;
-			for (var i = (spriteAsset.CollisionMask.height - 1); i >= 0; i--)
-			{
-				for (var j = 0; j < spriteAsset.CollisionMask.width; j++)
-				{
-					spriteAsset.CollisionMaskPreload.Data[(i * spriteAsset.CollisionMask.width) + j] = pixelsAsBool[index];
-					index++;
-				}
-			}
-
-			EditorUtility.SetDirty(spriteAsset);
-#endif
-		}
-
 
 		public static T collision_rectangle<T>(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, bool precise, bool notme, GamemakerObject current)
 			where T : GamemakerObject

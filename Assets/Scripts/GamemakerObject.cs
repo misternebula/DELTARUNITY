@@ -170,6 +170,7 @@ namespace Assets
 
 		private string _cachedSpriteName;
 		private string _cachedMaskName;
+		private int _cachedImageIndex;
 		private bool _baseDraw;
 
 		public string room => RoomManager.Room.Instance.name;
@@ -404,6 +405,12 @@ namespace Assets
 				{
 					CollisionManager.CollisionManager.RegisterCollider(this, margins);
 				}
+			}
+
+			if (_cachedImageIndex != (int)image_index)
+			{
+				_cachedImageIndex = (int)image_index;
+				CollisionManager.CollisionManager.RegisterCollider(this, margins);
 			}
 		}
 

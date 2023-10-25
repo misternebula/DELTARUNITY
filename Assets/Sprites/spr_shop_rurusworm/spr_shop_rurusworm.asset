@@ -23,10 +23,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: c7ea308bea7541042a4da5e16ca46e2b, type: 3}
   - {fileID: 2800000, guid: 391441cda1e7f054299c4604daebe287, type: 3}
   - {fileID: 2800000, guid: 644744953bb92df4a8fe202bc4d835b4, type: 3}
-  CollisionMask: {fileID: 2800000, guid: eedb53a9c9a468845b6d657b24fc6319, type: 3}
+  CollisionMasks:
+  - {fileID: 2800000, guid: eedb53a9c9a468845b6d657b24fc6319, type: 3}
   PlaybackSpeed: 1
   PlaybackSpeedType: 1
-  CollisionMaskPreload:
-    Width: 13
+  CollisionMaskPreloads:
+  - Width: 13
     Height: 6
     Data: 010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
