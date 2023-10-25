@@ -13,12 +13,18 @@ namespace Assets
 	{
 		public static GamemakerCamera Instance;
 
+		/// <summary>
+		/// The x position of the top left corner of the camera, in unity space.
+		/// </summary>
 		public int x
 		{
 			get => (int)transform.position.x - ((int)Room.Instance.ViewSize.x / 2);
 			set => SetPosition(new Vector2(value, y));
 		}
 
+		/// <summary>
+		/// The y position of the top left corner of the camera, in unity space.
+		/// </summary>
 		public int y
 		{
 			get => (int)transform.position.y + ((int)Room.Instance.ViewSize.y / 2);

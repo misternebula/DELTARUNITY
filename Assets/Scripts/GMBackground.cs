@@ -32,13 +32,21 @@ public class GMBackground : DrawWithDepth
 		if (!HTiled && !VTiled)
 		{
 			SpriteManager.DrawSprite(sprite, 0, _layer.X, _layer.Y);
+			return;
 		}
-		else if (HTiled && !VTiled)
+
+		var spriteAsset = SpriteManager.GetSpriteAsset(sprite);
+		var spriteWidth = spriteAsset.SubImages[0].width;
+		var spriteHeight = spriteAsset.SubImages[0].height;
+		var distToCameraLeft = _layer.X - GamemakerCamera.Instance.x;
+		var distToCameraTop = _layer.Y + GamemakerCamera.Instance.y;
+
+		// bug : this will always draw 1 extra to the right and down, even when not needed (like backgrounds that fill the room)
+		// probably just missing some simple math
+
+		if (HTiled && !VTiled) // only horizontal
 		{
-			var spriteAsset = SpriteManager.GetSpriteAsset(sprite);
-			var spriteWidth = spriteAsset.SubImages[0].width;
-			var distToCameraEdge = _layer.X - GamemakerCamera.Instance.x;
-			var ceilingToMultipleOfWidth = (int)Math.Ceiling(distToCameraEdge / spriteWidth) * spriteWidth;
+			var ceilingToMultipleOfWidth = (int)Math.Ceiling(distToCameraLeft / spriteWidth) * spriteWidth;
 
 			for (
 				var i = 0; 
@@ -48,13 +56,36 @@ public class GMBackground : DrawWithDepth
 				SpriteManager.DrawSprite(sprite, 0, _layer.X - ceilingToMultipleOfWidth + (i * spriteWidth), _layer.Y);
 			}
 		}
-		else if (!HTiled && VTiled)
+		else if (!HTiled && VTiled) // only vertical
 		{
-			// the math for this is easy i just cant be bothered
+			var ceilingToMultipleOfHeight = (int)Math.Ceiling(distToCameraTop / spriteHeight) * spriteHeight;
+
+			for (
+				var i = 0;
+				i < Math.Ceiling(Room.Instance.ViewSize.y / spriteHeight) + 1;
+				i++)
+			{
+				SpriteManager.DrawSprite(sprite, 0, _layer.X, _layer.Y - ceilingToMultipleOfHeight + (i * spriteHeight));
+			}
 		}
-		else
+		else // both horizontal and vertical
 		{
-			// the math for this is easy i just cant be bothered
+			var ceilingToMultipleOfWidth = (int)Math.Ceiling(distToCameraLeft / spriteWidth) * spriteWidth;
+			var ceilingToMultipleOfHeight = (int)Math.Ceiling(distToCameraTop / spriteHeight) * spriteHeight;
+
+			for (
+				var i = 0;
+				i < Math.Ceiling(Room.Instance.ViewSize.y / spriteHeight) + 1;
+				i++)
+			{
+				for (
+					var j = 0;
+					j < Math.Ceiling(Room.Instance.ViewSize.x / spriteWidth) + 1;
+					j++)
+				{
+					SpriteManager.DrawSprite(sprite, 0, _layer.X - ceilingToMultipleOfWidth + (j * spriteWidth), _layer.Y - ceilingToMultipleOfHeight + (i * spriteHeight));
+				}
+			}
 		}
 	}
 
