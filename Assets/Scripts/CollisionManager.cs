@@ -77,12 +77,14 @@ namespace Assets.CollisionManager
 
 		public static void RegisterCollider(GamemakerObject sprite, Vector4 margins)
 		{
-			var spriteAsset = SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index);
+			var spriteAsset = string.IsNullOrEmpty(sprite.texture_mask_id)
+				? SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index)
+				: SpriteManager.SpriteManager.GetSpriteAsset(sprite.texture_mask_id);
 
 
 			CollisionMaskPreload preload = null;
 			Texture2D actualMask = null;
-			if (spriteAsset.CollisionMasks.Count < (int)sprite.image_index)
+			if (spriteAsset.CollisionMasks.Count - 1 < (int)sprite.image_index)
 			{
 				preload = spriteAsset.CollisionMaskPreloads[0];
 				actualMask = spriteAsset.CollisionMasks[0];
