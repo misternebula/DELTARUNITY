@@ -28,23 +28,24 @@ namespace Assets.CollisionManager
 
 		private Vector3 _pos => GMObject.transform.position;
 		private Vector3 _scale => GMObject.transform.localScale;
-		private Vector2 _origin; /*=> SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);*/
+
+		public Vector2 Origin; /*=> SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);*/
 
 		public ColliderClass(GamemakerObject obj)
 		{
 			GMObject = obj;
-			_origin = SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);
+			Origin = SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);
 		}
 
 		public Vector4 Margins;
 
 		public Vector2 BBTopLeft => new(
-			_pos.x + (Margins.x * _scale.x) - (_origin.x * _scale.x),
-			_pos.y - (Margins.w * _scale.y) + (_origin.y * _scale.y));
+			_pos.x + (Margins.x * _scale.x) - (Origin.x * _scale.x),
+			_pos.y - (Margins.w * _scale.y) + (Origin.y * _scale.y));
 
 		public Vector2 BBBottomRight => new(
-			_pos.x + (Margins.y * _scale.x) - (_origin.x * _scale.x),
-			_pos.y - (Margins.z * _scale.y) + (_origin.y * _scale.y));
+			_pos.x + (Margins.y * _scale.x) - (Origin.x * _scale.x),
+			_pos.y - (Margins.z * _scale.y) + (Origin.y * _scale.y));
 
 		public Vector3 BBCenter => new(
 			(BBTopLeft.x + BBBottomRight.x) / 2,
@@ -56,7 +57,7 @@ namespace Assets.CollisionManager
 			BBTopLeft.y - BBBottomRight.y,
 			1);
 
-		public Vector3 Position => new Vector3(_pos.x + _origin.x, _pos.y - _origin.y, 0);
+		public Vector3 Position => new Vector3(_pos.x + Origin.x, _pos.y - Origin.y, 0);
 		public Vector3 Scale => _scale;
 
 		public SepMasks SepMasks;
@@ -121,6 +122,7 @@ namespace Assets.CollisionManager
 				collider.SepMasks = spriteAsset.SepMasks;
 				collider.BoundingBoxMode = spriteAsset.BoundingBoxMode;
 				collider.CollisionMask = collisionMask;
+				collider.Origin = spriteAsset.Origin;
 				return;
 			}
 
@@ -129,7 +131,8 @@ namespace Assets.CollisionManager
 				Margins = margins,
 				SepMasks = spriteAsset.SepMasks,
 				BoundingBoxMode = spriteAsset.BoundingBoxMode,
-				CollisionMask = collisionMask
+				CollisionMask = collisionMask,
+				Origin = spriteAsset.Origin
 			});
 		}
 
@@ -408,6 +411,10 @@ namespace Assets.CollisionManager
 			{
 				Gizmos.color = Color.red;
 				Gizmos.DrawWireCube(box.BBCenter, box.BBSize);
+				Gizmos.DrawWireSphere(box.BBTopLeft, 5);
+				Gizmos.DrawWireSphere(box.BBBottomRight, 5);
+				Gizmos.color = Color.yellow;
+				Gizmos.DrawWireSphere(box.Position, 5);
 				Gizmos.color = Color.white;
 
 				var objCenter = new Vector3(
