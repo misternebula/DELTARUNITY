@@ -90,8 +90,8 @@ public class LoadGameAssets
 				var unityDestFile = $"Assets/Sprites/{spriteData.name}/{subtexture.Name}";
 				File.Copy(subtexture.FullName, destFile);
 				AssetDatabase.ImportAsset(unityDestFile);
-				var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(unityDestFile);
-				asset.SubImages.Add(texture);
+				//var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(unityDestFile);
+				//asset.SubImages.Add(texture);
 			}
 
 			var maskDir = Path.Combine(spriteDir, "Masks");
@@ -105,8 +105,8 @@ public class LoadGameAssets
 				var unityDestFile = $"Assets/Sprites/{spriteData.name}/Masks/{maskFile.Name}";
 				File.Copy(maskFile.FullName, Path.Combine(maskDir, maskFile.Name));
 				AssetDatabase.ImportAsset(unityDestFile);
-				var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(unityDestFile);
-				asset.CollisionMasks.Add(texture); 
+				//var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(unityDestFile);
+				//asset.CollisionMasks.Add(texture); 
 			}
 
 			var destAssetPath = $"Assets/Sprites/{spriteData.name}/{spriteData.name}.asset";
@@ -119,18 +119,49 @@ public class LoadGameAssets
 		AssetDatabase.SaveAssets();
 		AssetDatabase.Refresh();
 
-		PopulateCollisionMasks();
+		RegenerateSpriteAssets();
 	}
 
-	[MenuItem("DELTARUNITY/Generate Collision Masks")]
-	public static void PopulateCollisionMasks()
+	[MenuItem("DELTARUNITY/Regenerate Sprite Assets")]
+	public static void RegenerateSpriteAssets()
 	{
 		var assetGUIDs = AssetDatabase.FindAssets("t:SpriteSubLibrary");
 		foreach (var guid in assetGUIDs)
 		{
 			var assetPath = AssetDatabase.GUIDToAssetPath(guid);
 			var asset = AssetDatabase.LoadAssetAtPath<SpriteSubLibrary>(assetPath);
+			asset.SubImages = new List<Texture2D>();
+			asset.CollisionMasks = new List<Texture2D>();
+			asset.CollisionMaskPreloads = new List<CollisionMaskPreload>();
 
+			var assetFolderDi = new DirectoryInfo(Path.GetDirectoryName(assetPath));
+
+			var subimageTexturesFiles = assetFolderDi.GetFiles("*.png");
+			var textures = subimageTexturesFiles.Select(x =>
+			{
+				var path = $@"Assets\{x.FullName.Replace('\\', '/').Replace(Application.dataPath, "")}";
+				return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+			}).ToArray();
+			Array.Sort(textures.Select(x => int.Parse(x.name[(x.name.LastIndexOf('_') + 1)..])).ToArray(), textures);
+			asset.SubImages = textures.ToList();
+
+			var directories = assetFolderDi.GetDirectories("masks");
+			if (directories.Length == 0)
+			{
+				EditorUtility.SetDirty(asset);
+				continue;
+			}
+
+			var maskTexturesFiles = assetFolderDi.GetDirectories("masks")[0].GetFiles("*.png");
+			var masks = maskTexturesFiles.Select(x =>
+			{
+				var path = $@"Assets\{x.FullName.Replace('\\', '/').Replace(Application.dataPath, "")}";
+				return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+			}).ToArray();
+			Array.Sort(masks.Select(x => int.Parse(x.name[(x.name.LastIndexOf('_') + 1)..])).ToArray(), masks);
+			asset.CollisionMasks = masks.ToList();
+
+			// preload collision masks
 			foreach (var collisionMask in asset.CollisionMasks)
 			{
 				var preload = new CollisionMaskPreload();
