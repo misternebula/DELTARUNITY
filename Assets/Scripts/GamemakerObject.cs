@@ -11,6 +11,8 @@ using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
 using Assets.Instances;
 using System.Reflection;
+using UnityEngine.Serialization;
+using System.Security.Policy;
 
 namespace Assets
 {
@@ -83,10 +85,102 @@ namespace Assets
 		#endregion
 
 		public string object_index => GetType().Name;
-		public string sprite_index;
-		public string texture_mask_id;
-		public double image_index = 0;
+
+		[SerializeField]
+		[FormerlySerializedAs("sprite_index")]
+		private string _sprite_index;
+		public string sprite_index
+		{
+			get => _sprite_index;
+			set
+			{
+				_sprite_index = value;
+
+				if (string.IsNullOrEmpty(value))
+				{
+					return;
+				}
+
+				var sprite = SpriteManager.SpriteManager.GetSpriteAsset(_sprite_index);
+				_cachedSpriteWidth = sprite.SubImages[0].width;
+				_cachedSpriteHeight = sprite.SubImages[0].height;
+				_cached_sprite_xoffset = sprite.Origin.x;
+				_cached_sprite_yoffset = sprite.Origin.y;
+
+				if (!string.IsNullOrEmpty(mask_id))
+				{
+					return;
+				}
+
+				if (sprite == null)
+				{
+					return;
+				}
+
+				margins = sprite.Margins;
+
+				if (margins != Vector4.zero)
+				{
+					CollisionManager.CollisionManager.RegisterCollider(this, margins);
+				}
+			}
+		}
+
+		[SerializeField]
+		[FormerlySerializedAs("texture_mask_id")]
+		private string _mask_id;
+		public string mask_id
+		{
+			get => _mask_id;
+			set
+			{
+				_mask_id = value;
+
+				if (string.IsNullOrEmpty(value))
+				{
+					sprite_index = sprite_index; // force the setter to run again
+					return;
+				}
+
+				var maskSprite = SpriteManager.SpriteManager.GetSpriteAsset(_mask_id);
+
+				if (maskSprite == null)
+				{
+					return;
+				}
+
+				margins = maskSprite.Margins;
+				_cached_sprite_xoffset = maskSprite.Origin.x;
+				_cached_sprite_yoffset = maskSprite.Origin.y;
+
+				if (margins != Vector4.zero)
+				{
+					CollisionManager.CollisionManager.RegisterCollider(this, margins);
+				}
+			}
+		}
+
+		[SerializeField]
+		[FormerlySerializedAs("image_index")]
+		private double _image_index;
+		public double image_index
+		{
+			get => _image_index;
+			set
+			{
+				_image_index = value;
+
+				if (!string.IsNullOrEmpty(mask_id))
+				{
+					return;
+				}
+
+				CollisionManager.CollisionManager.RegisterCollider(this, margins);
+			}
+		}
+
 		public double image_speed = 1;
+
 		private double _hspeed;
 		public double hspeed
 		{
@@ -98,6 +192,7 @@ namespace Assets
 				___speed = Mathf.Sign((float)___speed) * Math.Sqrt(Math.Pow(_hspeed, 2) + Math.Pow(_vspeed, 2));
 			}
 		}
+
 		private double _vspeed;
 		public double vspeed
 		{
@@ -109,10 +204,13 @@ namespace Assets
 				___speed = Mathf.Sign((float)___speed) * Math.Sqrt(Math.Pow(_hspeed, 2) + Math.Pow(_vspeed, 2));
 			}
 		}
+
 		public int image_blend = 16777215;
 		public double image_alpha = 1;
+
 		private bool _persistentPrev = false;
 		public bool persistent = false;
+
 		public double gravity = 0;
 		public double gravity_direction = 270;
 		public bool visible = true;
@@ -167,10 +265,6 @@ namespace Assets
 		public float path_speed = 0;
 
 		public float drawOffset;
-
-		private string _cachedSpriteName;
-		private string _cachedMaskName;
-		private int _cachedImageIndex;
 		private bool _baseDraw;
 
 		public string room => RoomManager.Room.Instance.name;
@@ -179,9 +273,6 @@ namespace Assets
 
 		public void OnDrawGizmos()
 		{
-			Gizmos.DrawRay(transform.position, new Vector3((float)hspeed, (float)-vspeed, 0));
-			Gizmos.DrawWireSphere(transform.position, 1f);
-
 			if (Application.isPlaying || string.IsNullOrEmpty(sprite_index))
 			{
 				return;
@@ -236,9 +327,9 @@ namespace Assets
 		{
 			var spriteDatabase = AssetDatabase.LoadAssetAtPath<CustomSpriteLibrary>("Assets/ScriptableObjects/SpriteDatabase.asset");
 
-			if (!string.IsNullOrEmpty(texture_mask_id))
+			if (!string.IsNullOrEmpty(mask_id))
 			{
-				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.name == texture_mask_id);
+				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.name == mask_id);
 
 				if (sprite == null)
 				{
@@ -246,6 +337,10 @@ namespace Assets
 				}
 
 				margins = sprite.Margins;
+				_cachedSpriteWidth = sprite.SubImages[0].width;
+				_cachedSpriteHeight = sprite.SubImages[0].height;
+				_cached_sprite_xoffset = sprite.Origin.x;
+				_cached_sprite_yoffset = sprite.Origin.y;
 			}
 			else if (!string.IsNullOrEmpty(sprite_index))
 			{
@@ -257,6 +352,10 @@ namespace Assets
 				}
 
 				margins = sprite.Margins;
+				_cachedSpriteWidth = sprite.SubImages[0].width;
+				_cachedSpriteHeight = sprite.SubImages[0].height;
+				_cached_sprite_xoffset = sprite.Origin.x;
+				_cached_sprite_yoffset = sprite.Origin.y;
 			}
 		}
 #endif
@@ -273,8 +372,10 @@ namespace Assets
 			set => transform.localScale = new Vector3(transform.localScale.x, (float)value, transform.localScale.z);
 		}
 
-		public double sprite_width => SpriteManager.SpriteManager.GetSprite(sprite_index, image_index).width * image_xscale;
-		public double sprite_height => SpriteManager.SpriteManager.GetSprite(sprite_index, image_index).height * image_yscale;
+		private int _cachedSpriteWidth;
+		private int _cachedSpriteHeight;
+		public double sprite_width => _cachedSpriteWidth * image_xscale;
+		public double sprite_height => _cachedSpriteHeight * image_yscale;
 
 		public double x
 		{
@@ -293,19 +394,17 @@ namespace Assets
 		public double bbox_top => -(transform.position.y - (margins.w * image_yscale)) - (sprite_yoffset * image_yscale);
 		public double bbox_bottom => -(transform.position.y - (margins.z * image_yscale)) - (sprite_yoffset * image_yscale);
 
+		private double _cached_sprite_xoffset;
 		public double sprite_xoffset 
 			=> string.IsNullOrEmpty(sprite_index)
 					? x
-					: string.IsNullOrEmpty(texture_mask_id)
-						? SpriteManager.SpriteManager.GetSpriteOrigin(sprite_index).x
-						: SpriteManager.SpriteManager.GetSpriteOrigin(texture_mask_id).x;
+					: _cached_sprite_xoffset;
 
+		private double _cached_sprite_yoffset;
 		public double sprite_yoffset
 			=> string.IsNullOrEmpty(sprite_index)
-				? x
-				: string.IsNullOrEmpty(texture_mask_id)
-					? SpriteManager.SpriteManager.GetSpriteOrigin(sprite_index).y
-					: SpriteManager.SpriteManager.GetSpriteOrigin(texture_mask_id).y;
+				? y
+				: _cached_sprite_yoffset;
 
 		public int[] alarm = Enumerable.Repeat(-1, 12).ToArray();
 
@@ -364,54 +463,6 @@ namespace Assets
 			}
 
 			drawOffset = 0;
-
-			if (_cachedMaskName != texture_mask_id)
-			{
-				_cachedMaskName = texture_mask_id;
-
-				if (string.IsNullOrEmpty(texture_mask_id))
-				{
-					return;
-				}
-
-				var sprite = SpriteManager.SpriteManager.GetSpriteAsset(texture_mask_id);
-
-				if (sprite == null)
-				{
-					return;
-				}
-
-				margins = sprite.Margins;
-
-				if (margins != Vector4.zero)
-				{
-					CollisionManager.CollisionManager.RegisterCollider(this, margins);
-				}
-			}
-
-			if (_cachedSpriteName != sprite_index && string.IsNullOrEmpty(_cachedMaskName))
-			{
-				_cachedSpriteName = sprite_index;
-				var sprite = SpriteManager.SpriteManager.GetSpriteAsset(sprite_index);
-
-				if (sprite == null)
-				{
-					return;
-				}
-
-				margins = sprite.Margins;
-
-				if (margins != Vector4.zero)
-				{
-					CollisionManager.CollisionManager.RegisterCollider(this, margins);
-				}
-			}
-
-			if (_cachedImageIndex != (int)image_index)
-			{
-				_cachedImageIndex = (int)image_index;
-				CollisionManager.CollisionManager.RegisterCollider(this, margins);
-			}
 		}
 
 		private List<Type> CollideObjects = new();

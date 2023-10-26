@@ -16,10 +16,10 @@ public class GamemakerObjectEditor : UnityEditor.Editor
 	private void OnEnable()
 	{
 		instanceId = serializedObject.FindProperty("instanceId");
-		spriteIndex = serializedObject.FindProperty("sprite_index");
+		spriteIndex = serializedObject.FindProperty("_sprite_index");
 		visible = serializedObject.FindProperty("visible");
 		persistent = serializedObject.FindProperty("persistent");
-		textureMaskId = serializedObject.FindProperty("texture_mask_id");
+		textureMaskId = serializedObject.FindProperty("_mask_id");
 	}
 
 	public override void OnInspectorGUI()

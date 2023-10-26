@@ -77,9 +77,9 @@ namespace Assets.CollisionManager
 
 		public static void RegisterCollider(GamemakerObject sprite, Vector4 margins)
 		{
-			var spriteAsset = string.IsNullOrEmpty(sprite.texture_mask_id)
+			var spriteAsset = string.IsNullOrEmpty(sprite.mask_id)
 				? SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index)
-				: SpriteManager.SpriteManager.GetSpriteAsset(sprite.texture_mask_id);
+				: SpriteManager.SpriteManager.GetSpriteAsset(sprite.mask_id);
 
 
 			CollisionMaskPreload preload = null;
