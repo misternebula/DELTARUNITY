@@ -70,7 +70,7 @@ namespace Assets.SpriteManager
 			return _spriteDict[name].SubImages.Count;
 		}
 
-		public static Vector2 GetSpriteOrigin(string name)
+		public static Vector2Int GetSpriteOrigin(string name)
 		{
 			if (!Application.isPlaying)
 			{
@@ -78,7 +78,7 @@ namespace Assets.SpriteManager
 				var spriteDatabase = AssetDatabase.LoadAssetAtPath<CustomSpriteLibrary>("Assets/ScriptableObjects/SpriteDatabase.asset");
 				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.name == name);
 
-				return sprite == null ? Vector2.zero : sprite.Origin;
+				return sprite == null ? Vector2Int.zero : sprite.Origin;
 #endif
 			}
 

@@ -67,13 +67,10 @@ namespace OBJECT_SCRIPTS
 		global.charauto[2] = false;
 		roomchoice = "room_cc_joker";*/
 
-			/*global.plot = 50;
+			global.plot = 20;
 			scr_become_dark();
-			scr_getchar(2);
 			scr_getchar(3);
-			roomchoice = "room_field_checkers4";*/
-
-			roomchoice = "room_krisroom";
+			roomchoice = "room_field2";
 
 			room_goto(roomchoice);
 		}

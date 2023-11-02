@@ -175,7 +175,10 @@ namespace Assets
 					return;
 				}
 
-				CollisionManager.CollisionManager.RegisterCollider(this, margins);
+				if (margins != Vector4.zero)
+				{
+					CollisionManager.CollisionManager.RegisterCollider(this, margins);
+				}
 			}
 		}
 

@@ -15,7 +15,7 @@ namespace Assets.SpriteManager
 		public Vector4 Margins;
 		public BoundingBoxMode BoundingBoxMode;
 		public SepMasks SepMasks;
-		public Vector2 Origin;
+		public Vector2Int Origin;
 		public List<Texture2D> SubImages = new List<Texture2D>();
 		public List<Texture2D> CollisionMasks = new List<Texture2D>();
 

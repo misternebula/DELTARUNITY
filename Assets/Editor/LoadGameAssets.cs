@@ -71,7 +71,7 @@ public class LoadGameAssets
 
 			asset.BoundingBoxMode = (Assets.CollisionManager.BoundingBoxMode)spriteData.boundingBoxMode;
 			asset.SepMasks = (Assets.CollisionManager.SepMasks)spriteData.sepMasks;
-			asset.Origin = new Vector2(spriteData.originX, spriteData.originY);
+			asset.Origin = new Vector2Int(spriteData.originX, spriteData.originY);
 			asset.PlaybackSpeed = (int)spriteData.animationSpeed;
 			asset.PlaybackSpeedType = (PlaybackSpeedType)spriteData.animationType;
 			asset.Margins = new Vector4(spriteData.marginLeft, spriteData.marginRight + 1, spriteData.marginBottom + 1, spriteData.marginTop);
