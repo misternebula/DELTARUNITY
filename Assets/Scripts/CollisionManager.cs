@@ -57,7 +57,9 @@ namespace Assets.CollisionManager
 			BBTopLeft.y - BBBottomRight.y,
 			1);
 
-		public Vector3 Position => new Vector3(_pos.x + Origin.x, _pos.y - Origin.y, 0);
+		public Vector3 Position => new(
+			_pos.x - (Origin.x * _scale.x),
+			_pos.y + (Origin.y * _scale.y), 0);
 		public Vector3 Scale => _scale;
 
 		public SepMasks SepMasks;
@@ -212,8 +214,8 @@ namespace Assets.CollisionManager
 						continue;
 					}
 
-					var (currentRotatedMask, currentOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin);
-					var (checkRotatedMask, checkOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin);
+					var (currentRotatedMask, currentOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin, movedBox.Scale.x, movedBox.Scale.y);
+					var (checkRotatedMask, checkOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin, checkBox.Scale.x, movedBox.Scale.y);
 
 					var currentMaskHeight = currentRotatedMask.GetLength(0);
 					var currentMaskLength = currentRotatedMask.GetLength(1);
@@ -385,7 +387,7 @@ namespace Assets.CollisionManager
 			=> x1 <= (b.BBBottomRight.x - 1) && x2 - 1 >= b.BBTopLeft.x &&
 			   y1 >= (b.BBBottomRight.y - 1) && y2 - 1 <= b.BBTopLeft.y;
 
-		public static (bool[,] buffer, Vector2Int topLeftOffset) RotateMask(bool[,] mask, double angle, Vector2Int pivot)
+		public static (bool[,] buffer, Vector2Int topLeftOffset) RotateMask(bool[,] mask, double angle, Vector2Int pivot, double xScale, double yScale)
 		{
 			/*
 			 * Nearest-Neighbour algorithm for rotating a collision mask.
@@ -415,9 +417,9 @@ namespace Assets.CollisionManager
 
 			// Calculate where the corners of the given mask will be when rotated.
 			var newTL = RotateAroundPoint(pivot, false, new Vector2Int(0, 0));
-			var newTR = RotateAroundPoint(pivot, false, new Vector2Int(mask.GetLength(0), 0));
-			var newBL = RotateAroundPoint(pivot, false, new Vector2Int(0, -mask.GetLength(1)));
-			var newBR = RotateAroundPoint(pivot, false, new Vector2Int(mask.GetLength(0), -mask.GetLength(1)));
+			var newTR = RotateAroundPoint(pivot, false, new Vector2Int((int)(mask.GetLength(0) * xScale), 0));
+			var newBL = RotateAroundPoint(pivot, false, new Vector2Int(0, -(int)(mask.GetLength(1) * yScale)));
+			var newBR = RotateAroundPoint(pivot, false, new Vector2Int((int)(mask.GetLength(0) * xScale), -(int)(mask.GetLength(1) * yScale)));
 
 			// Calculate where the edges of the bounding box will be.
 			var fMinX = Mathf.Min(newTL.x, newTR.x, newBL.x, newBR.x);
@@ -450,6 +452,12 @@ namespace Assets.CollisionManager
 
 					// Rotate the center position backwards around the pivot to get a position in the original mask.
 					var centerRotated = RotateAroundPoint(pivot, true, pixelCenter);
+
+					// account for scaling
+					var vector = centerRotated - pivot;
+					vector.x /= (float)xScale;
+					vector.y /= (float)yScale;
+					centerRotated = vector + pivot;
 
 					// Force this position to be an (int, int), so we can sample the original mask.
 					var snappedToGrid = new Vector2Int(Mathf.FloorToInt(centerRotated.x), Mathf.CeilToInt(centerRotated.y));
