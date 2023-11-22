@@ -12,7 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -1221,7 +1220,7 @@ namespace Assets
 
 			if (string.IsNullOrEmpty(name))
 			{
-				name = $"_layer_{new GUID()}";
+				name = $"_layer_{Guid.NewGuid()}";
 			}
 
 			var newObj = new GameObject(name);

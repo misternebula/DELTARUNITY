@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using Assets.SpriteManager;
 using OBJECT_SCRIPTS;
+using Unity.Profiling;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,6 +27,9 @@ namespace Assets.CollisionManager
 	public class ColliderClass
 	{
 		public GamemakerObject GMObject;
+
+		public string spriteAssetName;
+		public int collisionMaskIndex;
 
 		private Vector3 _pos => GMObject.transform.position;
 		private Vector3 _scale => GMObject.transform.localScale;
@@ -57,14 +62,22 @@ namespace Assets.CollisionManager
 			BBTopLeft.y - BBBottomRight.y,
 			1);
 
+		/// <summary>
+		/// The position of the collider, in Unity space (up = +y)
+		/// </summary>
 		public Vector3 Position => new(
 			_pos.x - (Origin.x * _scale.x),
-			_pos.y + (Origin.y * _scale.y), 0);
+			_pos.y + (Origin.y * _scale.y),
+			0);
+
 		public Vector3 Scale => _scale;
 
 		public SepMasks SepMasks;
 		public BoundingBoxMode BoundingBoxMode;
 		public bool[,] CollisionMask;
+
+		public bool[,] CachedRotatedMask = null;
+		public Vector2Int CachedRotatedMaskOffset;
 	}
 
 	public class CollisionManager : MonoBehaviour
@@ -76,6 +89,18 @@ namespace Assets.CollisionManager
 		public void Awake()
 		{
 			Instance = this;
+		}
+
+		public static void UpdateRotationMask(GamemakerObject obj)
+		{
+			var collider = colliders.Single(x => x.GMObject == obj);
+
+			if (collider.SepMasks != SepMasks.Precise)
+			{
+				return;
+			}
+
+			(collider.CachedRotatedMask, collider.CachedRotatedMaskOffset) = RotateMask(collider.CollisionMask, collider.GMObject.image_angle, collider.Origin.x, collider.Origin.y, collider.Scale.x, collider.Scale.y);
 		}
 
 		public static void RegisterCollider(GamemakerObject sprite, Vector4 margins)
@@ -99,15 +124,19 @@ namespace Assets.CollisionManager
 				return;
 			}
 
+			int colIndex = 0;
+
 			if (spriteAsset.CollisionMasks.Count - 1 < (int)sprite.image_index)
 			{
 				preload = spriteAsset.CollisionMaskPreloads[0];
 				actualMask = spriteAsset.CollisionMasks[0];
+				colIndex = 0;
 			}
 			else
 			{
 				preload = spriteAsset.CollisionMaskPreloads[(int)sprite.image_index];
 				actualMask = spriteAsset.CollisionMasks[(int)sprite.image_index];
+				colIndex = (int)sprite.image_index;
 			}
 
 			var collisionMask = new bool[preload.Height, preload.Width];
@@ -137,6 +166,15 @@ namespace Assets.CollisionManager
 				collider.BoundingBoxMode = spriteAsset.BoundingBoxMode;
 				collider.CollisionMask = collisionMask;
 				collider.Origin = spriteAsset.Origin;
+
+				if (collider.spriteAssetName != spriteAsset.name
+				    || collider.collisionMaskIndex != colIndex)
+				{
+					UpdateRotationMask(sprite);
+				}
+
+				collider.spriteAssetName = spriteAsset.name;
+				collider.collisionMaskIndex = colIndex;
 				return;
 			}
 
@@ -148,6 +186,7 @@ namespace Assets.CollisionManager
 				CollisionMask = collisionMask,
 				Origin = spriteAsset.Origin
 			});
+			UpdateRotationMask(sprite);
 		}
 
 		public static void UnregisterCollider(GamemakerObject sprite)
@@ -173,12 +212,17 @@ namespace Assets.CollisionManager
 
 		public static GamemakerObject instance_place(double x, double y, GamemakerObject current, Type checkType)
 		{
-			var savedX = current.x;
-			var savedY = current.y;
+			var marker = new ProfilerMarker("instance_place");
+			marker.Begin(current);
 
 			// gamemaker floors the x/y coords
-			current.x = Math.Floor(x);
-			current.y = Math.Floor(y);
+			x = Math.Floor(x);
+			y = Math.Floor(y);
+
+			var savedX = current.x;
+			var savedY = current.y;
+			current.x = x;
+			current.y = y;
 
 			var movedBox = colliders.Single(b => b.GMObject == current);
 
@@ -208,45 +252,72 @@ namespace Assets.CollisionManager
 					|| (checkBox.SepMasks != movedBox.SepMasks))
 				{
 					// precise collisions
+
 					if (!DoBoxesOverlap(movedBox, checkBox))
 					{
 						// bounding boxes don't even overlap, don't bother testing precise collision
 						continue;
 					}
 
-					var (currentRotatedMask, currentOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin, movedBox.Scale.x, movedBox.Scale.y);
-					var (checkRotatedMask, checkOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin, checkBox.Scale.x, movedBox.Scale.y);
+					//var (currentRotatedMask, currentOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin.x, movedBox.Origin.y, movedBox.Scale.x, movedBox.Scale.y);
+					//var (checkRotatedMask, checkOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin.x, checkBox.Origin.y, checkBox.Scale.x, checkBox.Scale.y);
+
+					if (movedBox.CachedRotatedMask == null)
+					{
+						(movedBox.CachedRotatedMask, movedBox.CachedRotatedMaskOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin.x, movedBox.Origin.y, movedBox.Scale.x, movedBox.Scale.y);
+					}
+
+					if (checkBox.CachedRotatedMask == null)
+					{
+						(checkBox.CachedRotatedMask, checkBox.CachedRotatedMaskOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin.x, checkBox.Origin.y, checkBox.Scale.x, checkBox.Scale.y);
+					}
+
+					var currentRotatedMask = movedBox.CachedRotatedMask;
+					var currentOffset = movedBox.CachedRotatedMaskOffset;
+					var checkRotatedMask = checkBox.CachedRotatedMask;
+					var checkOffset = checkBox.CachedRotatedMaskOffset;
 
 					var currentMaskHeight = currentRotatedMask.GetLength(0);
 					var currentMaskLength = currentRotatedMask.GetLength(1);
 					var checkMaskHeight = checkRotatedMask.GetLength(0);
 					var checkMaskLength = checkRotatedMask.GetLength(1);
 
+					// iterate through every pixel in the current object's rotated mask
 					for (var row = 0; row < currentMaskHeight; row++)
 					{
 						for (var col = 0; col < currentMaskLength; col++)
 						{
+							// if it's false, dont even both checking the value of the other mask
 							if (currentRotatedMask[row, col] == false)
 							{
 								continue;
 							}
 
-							var currentPixelPos = new Vector2Int((int)movedBox.Position.x + currentOffset.x + col, (int)movedBox.Position.y + currentOffset.y - row);
-							var temp = new Vector2Int((int)checkBox.Position.x + checkOffset.x, (int)checkBox.Position.y + checkOffset.y);
-							var placeInOtherMask = currentPixelPos - temp;
+							// Get the world space position of the center of this pixel (up = +y)
+							var currentPixelPos = new Vector2((int)movedBox.Position.x + currentOffset.x + col + 0.5f, (int)movedBox.Position.y + currentOffset.y - row - 0.5f);
 
-							if (placeInOtherMask.x < 0 || placeInOtherMask.x >= checkMaskLength)
+							// Get the world space position of the top-left of the other rotated mask (up = +y)
+							var checkMaskTopLeft = new Vector2Int((int)checkBox.Position.x + checkOffset.x, (int)checkBox.Position.y + checkOffset.y);
+
+							var placeInOtherMask = currentPixelPos - checkMaskTopLeft;
+
+							var snappedToGrid = new Vector2Int((int)Math.Floor(placeInOtherMask.x), (int)Math.Ceiling(-placeInOtherMask.y));
+
+							if (snappedToGrid.x < 0 || snappedToGrid.x >= checkMaskLength)
 							{
 								continue;
 							}
 
-							if (placeInOtherMask.y > 0 || placeInOtherMask.y <= -checkMaskHeight)
+							if (snappedToGrid.y < 0 || snappedToGrid.y >= checkMaskHeight)
 							{
 								continue;
 							}
 
-							if (checkRotatedMask[-placeInOtherMask.y, placeInOtherMask.x])
+							if (checkRotatedMask[snappedToGrid.y, snappedToGrid.x])
 							{
+								current.x = savedX;
+								current.y = savedY;
+								marker.End();
 								return checkBox.GMObject;
 							}
 						}
@@ -259,6 +330,7 @@ namespace Assets.CollisionManager
 					{
 						current.x = savedX;
 						current.y = savedY;
+						marker.End();
 						return checkBox.GMObject;
 					}
 				}
@@ -266,6 +338,7 @@ namespace Assets.CollisionManager
 
 			current.x = savedX;
 			current.y = savedY;
+			marker.End();
 			return null;
 		}
 
@@ -387,7 +460,7 @@ namespace Assets.CollisionManager
 			=> x1 <= (b.BBBottomRight.x - 1) && x2 - 1 >= b.BBTopLeft.x &&
 			   y1 >= (b.BBBottomRight.y - 1) && y2 - 1 <= b.BBTopLeft.y;
 
-		public static (bool[,] buffer, Vector2Int topLeftOffset) RotateMask(bool[,] mask, double angle, Vector2Int pivot, double xScale, double yScale)
+		public static (bool[,] buffer, Vector2Int topLeftOffset) RotateMask(bool[,] mask, double angle, int pivotX, int pivotY, double xScale, double yScale)
 		{
 			/*
 			 * Nearest-Neighbour algorithm for rotating a collision mask.
@@ -395,13 +468,19 @@ namespace Assets.CollisionManager
 			 * We need to return the rotated mask in a new buffer, and where the top left of the new mask is, relative to (0, 0).
 			 */
 
+			var marker = new ProfilerMarker("Rotate Mask");
+			marker.Begin();
+
 			var sin = Math.Sin(Mathf.Deg2Rad * angle);
 			var cos = Math.Cos(Mathf.Deg2Rad * angle);
 
-			Vector2 RotateAroundPoint(Vector2 pivot, bool reverse, Vector2 point)
+			var maskWidth = mask.GetLength(1);
+			var maskHeight = mask.GetLength(0);
+
+			void RotateAroundPoint(int pivotX, int pivotY, bool reverse, double x, double y, out float rotatedX, out float rotatedY)
 			{
-				point.x -= pivot.x;
-				point.y -= pivot.y;
+				x -= pivotX;
+				y -= pivotY;
 
 				var useSin = sin;
 				if (reverse)
@@ -409,23 +488,24 @@ namespace Assets.CollisionManager
 					useSin = -sin;
 				}
 
-				var xnew = (point.x * cos) - (point.y * useSin);
-				var ynew = (point.x * useSin) + (point.y * cos);
+				var xnew = (x * cos) - (y * useSin);
+				var ynew = (x * useSin) + (y * cos);
 
-				return new Vector2((float)xnew + pivot.x, (float)ynew + pivot.y);
+				rotatedX = (float)xnew + pivotX;
+				rotatedY = (float)ynew + pivotY;
 			}
 
 			// Calculate where the corners of the given mask will be when rotated.
-			var newTL = RotateAroundPoint(pivot, false, new Vector2Int(0, 0));
-			var newTR = RotateAroundPoint(pivot, false, new Vector2Int((int)(mask.GetLength(0) * xScale), 0));
-			var newBL = RotateAroundPoint(pivot, false, new Vector2Int(0, -(int)(mask.GetLength(1) * yScale)));
-			var newBR = RotateAroundPoint(pivot, false, new Vector2Int((int)(mask.GetLength(0) * xScale), -(int)(mask.GetLength(1) * yScale)));
+			RotateAroundPoint(pivotX, pivotY, false, 0, 0, out var newTLx, out var newTLy);
+			RotateAroundPoint(pivotX, pivotY, false, (int)(maskWidth * xScale), 0, out var newTRx, out var newTRy);
+			RotateAroundPoint(pivotX, pivotY, false, 0, -(int)(maskHeight * yScale), out var newBLx, out var newBLy);
+			RotateAroundPoint(pivotX, pivotY, false, (int)(maskWidth * xScale), -(int)(maskHeight * yScale), out var newBRx, out var newBRy);
 
 			// Calculate where the edges of the bounding box will be.
-			var fMinX = Mathf.Min(newTL.x, newTR.x, newBL.x, newBR.x);
-			var fMaxX = Mathf.Max(newTL.x, newTR.x, newBL.x, newBR.x);
-			var fMinY = Mathf.Min(newTL.y, newTR.y, newBL.y, newBR.y);
-			var fMaxY = Mathf.Max(newTL.y, newTR.y, newBL.y, newBR.y);
+			var fMinX = Mathf.Min(newTLx, newTRx, newBLx, newBRx);
+			var fMaxX = Mathf.Max(newTLx, newTRx, newBLx, newBRx);
+			var fMinY = Mathf.Min(newTLy, newTRy, newBLy, newBRy);
+			var fMaxY = Mathf.Max(newTLy, newTRy, newBLy, newBRy);
 
 			// Get the minimum-sized bounding box in pixels.
 			var iMinX = Mathf.FloorToInt(fMinX);
@@ -434,12 +514,14 @@ namespace Assets.CollisionManager
 			var iMaxY = Mathf.CeilToInt(fMaxY);
 
 			// Define the (needed) corners of the bounding box.
-			var bbTopLeft = new Vector2Int(iMinX, iMaxY);
+			/*var bbTopLeft = new Vector2Int(iMinX, iMaxY);
 			var bbTopRight = new Vector2Int(iMaxX, iMaxY);
-			var bbBottomLeft = new Vector2Int(iMinX, iMinY);
+			var bbBottomLeft = new Vector2Int(iMinX, iMinY);*/
 
-			var bbWidth = bbTopRight.x - bbTopLeft.x;
-			var bbHeight = bbTopLeft.y - bbBottomLeft.y;
+			//var bbWidth = bbTopRight.x - bbTopLeft.x;
+			//var bbHeight = bbTopLeft.y - bbBottomLeft.y;
+			var bbWidth = iMaxX - iMinX;
+			var bbHeight = iMaxY - iMinY;
 			var returnBuffer = new bool[bbHeight, bbWidth];
 
 			// For each pixel in the return buffer...
@@ -448,24 +530,32 @@ namespace Assets.CollisionManager
 				for (var col = 0; col < bbWidth; col++)
 				{
 					// Get the position of the center of this pixel
-					var pixelCenter = new Vector2(bbTopLeft.x + col + 0.5f, bbTopLeft.y - row - 0.5f);
+					var pixelCenterX = iMinX + col + 0.5f;
+					var pixelCenterY = iMaxY - row - 0.5f;
 
 					// Rotate the center position backwards around the pivot to get a position in the original mask.
-					var centerRotated = RotateAroundPoint(pivot, true, pixelCenter);
+					RotateAroundPoint(pivotX, pivotY, true, pixelCenterX, pixelCenterY, out var centerRotatedX, out var centerRotatedY);
 
 					// account for scaling
-					var vector = centerRotated - pivot;
-					vector.x /= (float)xScale;
-					vector.y /= (float)yScale;
-					centerRotated = vector + pivot;
+					var vectorX = centerRotatedX - pivotX;
+					var vectorY = centerRotatedY - pivotY;
+					vectorX /= (float)xScale;
+					vectorY /= (float)yScale;
+
+					centerRotatedX = vectorX;
+					centerRotatedY = vectorY;
+
+					centerRotatedX += pivotX / (float)xScale;
+					centerRotatedY += pivotY / (float)yScale;
 
 					// Force this position to be an (int, int), so we can sample the original mask.
-					var snappedToGrid = new Vector2Int(Mathf.FloorToInt(centerRotated.x), Mathf.CeilToInt(centerRotated.y));
+					var snappedToGridX = Mathf.FloorToInt(centerRotatedX);
+					var snappedToGridY = Mathf.CeilToInt(centerRotatedY);
 
-					if (snappedToGrid.x < 0 || 
-					    snappedToGrid.x > mask.GetLength(1) - 1 ||
-					    snappedToGrid.y > 0 ||
-					    -snappedToGrid.y > mask.GetLength(0) - 1)
+					if (snappedToGridX < 0 || 
+					    snappedToGridX > maskWidth - 1 ||
+					    snappedToGridY > 0 ||
+					    -snappedToGridY > maskHeight - 1)
 					{
 						// Sampling position is outside the original mask.
 						continue;
@@ -473,17 +563,19 @@ namespace Assets.CollisionManager
 
 					try
 					{
-						returnBuffer[row, col] = mask[-snappedToGrid.y, snappedToGrid.x];
+						returnBuffer[row, col] = mask[-snappedToGridY, snappedToGridX];
 					}
 					catch (IndexOutOfRangeException e)
 					{
-						Debug.LogError($"Mask size : ({mask.GetLength(0)}, {mask.GetLength(1)}) -snappedToGrid.y:{-snappedToGrid.y} snappedToGrid.x:{snappedToGrid.x}");
+						Debug.LogError($"Mask size : ({mask.GetLength(0)}, {mask.GetLength(1)}) -snappedToGrid.y:{-snappedToGridY} snappedToGrid.x:{snappedToGridX}");
 						Debug.Break();
 					}
 				}
 			}
 
-			return (returnBuffer, bbTopLeft);
+			marker.End();
+
+			return (returnBuffer, new Vector2Int(iMinX, iMaxY));
 		}
 
 		private void OnDrawGizmos()

@@ -94,6 +94,11 @@ namespace Assets
 			get => _sprite_index;
 			set
 			{
+				if (_sprite_index == value)
+				{
+					return;
+				}
+
 				_sprite_index = value;
 
 				if (string.IsNullOrEmpty(value))
@@ -155,6 +160,7 @@ namespace Assets
 
 				if (margins != Vector4.zero)
 				{
+					Debug.Log($"mask_id changed");
 					CollisionManager.CollisionManager.RegisterCollider(this, margins);
 				}
 			}
@@ -168,6 +174,13 @@ namespace Assets
 			get => _image_index;
 			set
 			{
+				if ((int)_image_index == (int)value)
+				{
+					return;
+				}
+
+				var prevValue = _image_index;
+
 				_image_index = value;
 
 				if (!string.IsNullOrEmpty(mask_id))
@@ -261,7 +274,13 @@ namespace Assets
 
 			set
 			{
+				if (transform.rotation.eulerAngles.z == (float)value)
+				{
+					return;
+				}
+
 				transform.rotation = Quaternion.Euler(0, 0, (float)value);
+				CollisionManager.CollisionManager.UpdateRotationMask(this);
 			}
 		}
 
@@ -366,13 +385,31 @@ namespace Assets
 		public double image_xscale
 		{
 			get => transform.localScale.x;
-			set => transform.localScale = new Vector3((float)value, transform.localScale.y, transform.localScale.z);
+			set
+			{
+				if (transform.localScale.x == value)
+				{
+					return;
+				}
+
+				transform.localScale = new Vector3((float)value, transform.localScale.y, transform.localScale.z);
+				CollisionManager.CollisionManager.UpdateRotationMask(this);
+			}
 		}
 
 		public double image_yscale
 		{
 			get => transform.localScale.y;
-			set => transform.localScale = new Vector3(transform.localScale.x, (float)value, transform.localScale.z);
+			set
+			{
+				if (transform.localScale.y == value)
+				{
+					return;
+				}
+
+				transform.localScale = new Vector3(transform.localScale.x, (float)value, transform.localScale.z);
+				CollisionManager.CollisionManager.UpdateRotationMask(this);
+			}
 		}
 
 		private int _cachedSpriteWidth;
