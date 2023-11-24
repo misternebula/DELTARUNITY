@@ -10,12 +10,10 @@ namespace Assets.VirtualMachineRunner
 	public static class VMExecuter
 	{
 		public static Stack<NewGamemakerObject> EnvironmentStack = new();
-		//public static Stack<object> DataStack = new();
+		public static Stack<object> DataStack = new();
 
 		public static void ExecuteScript(VMScript script, NewGamemakerObject obj)
 		{
-			var dataStack = new Stack<object>();
-
 			Debug.Log($"Executing script {script.name} ...");
 
 			// Make the current object the current instance
@@ -119,31 +117,20 @@ namespace Assets.VirtualMachineRunner
 					DataStack.Push(instruction.IntData);
 					break;
 				case VMOpcode.CALL:
-					Func<Arguments, object> builtInFunction = null;
-
-					if (ScriptResolver.Instance.VoidBuiltInFunctions.TryGetValue(instruction.FunctionName, out var voidBuiltInFunction)
-					    || ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out builtInFunction))
+					if (ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out var builtInFunction))
 					{
 						var arguments = new Arguments
 						{
 							Context = EnvironmentStack.Peek(),
-							ArgumentList = new List<object>( new object[instruction.FunctionArgumentCount])
+							ArgumentArray = new object[instruction.FunctionArgumentCount]
 						};
 
 						for (var i = 0; i < instruction.FunctionArgumentCount; i++)
 						{
-							arguments.ArgumentList[instruction.FunctionArgumentCount - 1 - i] = DataStack.Pop();
+							arguments.ArgumentArray[instruction.FunctionArgumentCount - 1 - i] = DataStack.Pop();
 						}
 
-						if (voidBuiltInFunction == null && builtInFunction != null)
-						{
-							DataStack.Push(builtInFunction(arguments));
-						}
-						else
-						{
-							voidBuiltInFunction(arguments);
-							DataStack.Push(null);
-						}
+						DataStack.Push(builtInFunction(arguments));
 						
 						break;
 					}

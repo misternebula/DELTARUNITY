@@ -13,12 +13,10 @@ namespace Assets.VirtualMachineRunner
 
 		public List<VMScript> Scripts = new();
 
-		public Dictionary<string, Action<Arguments>> VoidBuiltInFunctions = new()
+		public Dictionary<string, Func<Arguments, object>> BuiltInFunctions = new()
 		{
 			{ "layer_force_draw_depth", layer_force_draw_depth }
 		};
-
-		public Dictionary<string, Func<Arguments, object>> BuiltInFunctions = new();
 
 		public Dictionary<string, VMScript> NameToScript = new();
 
@@ -31,17 +29,21 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		private static void layer_force_draw_depth(Arguments args)
+		private static object layer_force_draw_depth(Arguments args)
 		{
-			var force = VMExecuter.Convert<bool>(args.ArgumentList[0]);
-			var depth = VMExecuter.Convert<int>(args.ArgumentList[1]);
+			var force = VMExecuter.Convert<bool>(args.ArgumentArray[0]);
+			var depth = VMExecuter.Convert<int>(args.ArgumentArray[1]);
 			Debug.Log($"layer_force_draw_depth force:{force} depth:{depth}");
+
+			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
+
+			return null;
 		}
 	}
 
 	public class Arguments
 	{
 		public NewGamemakerObject Context;
-		public List<object> ArgumentList = new();
+		public object[] ArgumentArray;
 	}
 }
