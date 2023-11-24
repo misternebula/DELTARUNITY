@@ -1,0 +1,39 @@
+﻿namespace Assets.VirtualMachineRunner
+{
+	public enum VMOpcode
+	{
+		CONV,
+		MUL,
+		DIV,
+		REM,
+		MOD,
+		ADD,
+		SUB,
+		AND,
+		OR,
+		XOR,
+		NEG,
+		NOT,
+		SHL,
+		SHR,
+		CMP,
+		POP,
+		DUP,
+		RET,
+		EXIT,
+		POPZ,
+		B,
+		BT,
+		BF,
+		PUSHENV,
+		POPENV,
+		PUSH,
+		PUSHLOC,
+		PUSHGLB,
+		PUSHBLTN,
+		PUSHI,
+		CALL,
+		CALLV,
+		BREAK
+	}
+}
