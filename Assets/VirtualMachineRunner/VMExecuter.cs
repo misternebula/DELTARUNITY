@@ -12,9 +12,7 @@ namespace Assets.VirtualMachineRunner
 	public static class VMExecuter
 	{
 		public static Stack<NewGamemakerObject> EnvironmentStack = new();
-		//public static Stack<object> DataStack = new();
 
-		private static Stack<object> _currentDataStack = new();
 		private static object returnValue = null;
 		private static Dictionary<string, object> _localVariables = new();
 
@@ -307,7 +305,7 @@ namespace Assets.VirtualMachineRunner
 					returnValue = stack.Pop();
 					return true;
 				case VMOpcode.CONV:
-					var toType = GetType(instruction.TypeOne);
+					var toType = GetType(instruction.TypeTwo);
 					stack.Push(Convert(stack.Pop(), toType));
 					break;
 				case VMOpcode.POPZ:
