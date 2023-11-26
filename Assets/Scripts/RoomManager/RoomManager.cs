@@ -49,7 +49,7 @@ namespace Assets.RoomManager
 				return;
 			}
 
-			if (Room.Instance.Persistent)
+			if (Room.Instance != null && Room.Instance.Persistent)
 			{
 				// oh god we gotta save the current scene aaaaaaaa
 			}

@@ -37,7 +37,7 @@ namespace Assets.VirtualMachineRunner
 		{
 			var force = VMExecuter.Convert<bool>(args.ArgumentArray[0]);
 			var depth = VMExecuter.Convert<int>(args.ArgumentArray[1]);
-			Debug.Log($"layer_force_draw_depth force:{force} depth:{depth}");
+			//Debug.Log($"layer_force_draw_depth force:{force} depth:{depth}");
 
 			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
 
@@ -47,7 +47,7 @@ namespace Assets.VirtualMachineRunner
 		public static object draw_set_colour(Arguments args)
 		{
 			var color = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			Debug.Log($"draw_set_color color:{color}");
+			//Debug.Log($"draw_set_color color:{color}");
 
 			SpriteManager.SpriteManager.DrawColor = color;
 

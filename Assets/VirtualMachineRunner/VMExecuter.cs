@@ -225,10 +225,11 @@ namespace Assets.VirtualMachineRunner
 					switch (instruction.TypeOne)
 					{
 						case VMType.i:
+							//Debug.Log($"Pushing {instruction.IntData}");
 							stack.Push(instruction.IntData);
 							break;
 						case VMType.v:
-							Debug.Log($"Pushing variable {instruction.StringData}");
+							//Debug.Log($"Pushing variable {instruction.StringData}");
 							variableName = instruction.StringData;
 							indexingArray = variableName.StartsWith("[array]");
 							if (indexingArray)
@@ -246,12 +247,12 @@ namespace Assets.VirtualMachineRunner
 								{
 									arrayIndex = Convert<int>(stack.Pop());
 									stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex));
-									Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex)}");
+									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex)}");
 								}
 								else
 								{
 									stack.Push(VariableResolver.GetGlobalVariable(variableName[7..]));
-									Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName[7..])}");
+									//Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName[7..])}");
 								}
 							}
 							else if (isLocal)
@@ -260,12 +261,12 @@ namespace Assets.VirtualMachineRunner
 								{
 									arrayIndex = Convert<int>(stack.Pop());
 									stack.Push(((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]);
-									Debug.Log($" - {((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]}");
+									//Debug.Log($" - {((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]}");
 								}
 								else
 								{
 									stack.Push(_localVariables[variableName[6..]]);
-									Debug.Log($" - {_localVariables[variableName[6..]]}");
+									//Debug.Log($" - {_localVariables[variableName[6..]]}");
 								}
 							}
 							else
@@ -274,19 +275,23 @@ namespace Assets.VirtualMachineRunner
 							}
 							break;
 						case VMType.b:
+							//Debug.Log($"Pushing {instruction.BoolData}");
 							stack.Push(instruction.BoolData);
 							break;
 						case VMType.d:
+							//Debug.Log($"Pushing {instruction.DoubleData}");
 							stack.Push(instruction.DoubleData);
 							break;
 						case VMType.e:
 							// i think this is just an int always???
+							//Debug.Log($"Pushing {instruction.IntData}");
 							stack.Push(instruction.IntData);
 							break;
 						case VMType.s:
 							var indexOfLast = instruction.StringData.LastIndexOf('@');
 							var stringValue = instruction.StringData.Substring(0, indexOfLast);
 							stringValue = stringValue[1..^1];
+							//Debug.Log($"Pushing {stringValue}");
 							stack.Push(stringValue);
 							break;
 						case VMType.None:
@@ -312,11 +317,13 @@ namespace Assets.VirtualMachineRunner
 							var index = Convert<int>(stack.Pop());
 							var unknown = stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
 							var value = stack.Pop();
+							//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
 							VariableResolver.SetGlobalArrayIndex(variableName[7..], index, value);
 						}
 						else
 						{
 							var value = stack.Pop();
+							//Debug.Log($"Set global {variableName[7..]} to {value}");
 							VariableResolver.SetGlobalVariable(variableName[7..], value);
 						}
 					}
@@ -333,12 +340,14 @@ namespace Assets.VirtualMachineRunner
 								_localVariables[variableName[6..]] = new Dictionary<int, object>();
 							}
 
+							//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
 							((Dictionary<int, object>)_localVariables[variableName[6..]])[index] = value;
 
 						}
 						else
 						{
 							var value = stack.Pop();
+							//Debug.Log($"Set {variableName[6..]} to {value}");
 							_localVariables[variableName[6..]] = value;
 						}
 					}

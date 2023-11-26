@@ -36,6 +36,7 @@ namespace Assets.VirtualMachineRunner
 					continue;
 				}
 
+				//Debug.Log($"line:{line} - {i - headerLineNumber - 1}");
 				NameToIndex.Add(line, i - headerLineNumber - 1);
 			}
 
@@ -43,6 +44,8 @@ namespace Assets.VirtualMachineRunner
 			{
 				VMExecuter.ExecuteScript(script, null);
 			}
+
+			RoomManager.RoomManager.Instance.ChangeRoom(0);
 		}
 	}
 }
