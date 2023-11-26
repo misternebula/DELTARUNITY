@@ -12,6 +12,7 @@ namespace Assets.VirtualMachineRunner
 	public class VMScript : ScriptableObject
 	{
 		public string Name;
+		public List<string> LocalVariables;
 		public List<VMScriptBlock> Blocks = new();
 	}
 

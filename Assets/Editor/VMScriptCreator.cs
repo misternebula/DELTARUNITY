@@ -19,6 +19,8 @@ namespace Assets.Editor
 			var defaultAsset = Selection.activeObject as DefaultAsset;
 			var lines = File.ReadAllLines(AssetDatabase.GetAssetPath(defaultAsset));
 
+			var localVariables = new List<string>();
+
 			int startLine = 0;
 			for (var i = 0; i < lines.Length; i++)
 			{
@@ -26,12 +28,22 @@ namespace Assets.Editor
 				{
 					startLine = i;
 				}
+
+				if (lines[i].StartsWith(".localvar"))
+				{
+					var split = lines[i].Split(' ');
+					localVariables.Add(split[2]);
+				}
 			}
 
 			lines = lines.Skip(startLine).ToArray();
 			lines = lines.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
 			var asset = ScriptableObject.CreateInstance<VMScript>();
+			asset.LocalVariables = localVariables;
+			asset.Name = defaultAsset.name.StartsWith("gml_Object_")
+				? defaultAsset.name.Substring("gml_Object_".Length)
+				: defaultAsset.name.Substring("gml_Script_".Length);
 
 			foreach (var line in lines)
 			{
@@ -64,7 +76,7 @@ namespace Assets.Editor
 						Raw = line,
 						Opcode = enumOperation,
 						TypeOne = types.Length >= 1 ? (VMType)Enum.Parse(typeof(VMType), types[0]) : VMType.None,
-						TypeTwo = types.Length == 2 ? (VMType)Enum.Parse(typeof(VMType), types[1]) : VMType.None
+						TypeTwo = types.Length == 2 ? (VMType)Enum.Parse(typeof(VMType), types[1]) : VMType.None,
 					};
 
 					switch (enumOperation)
@@ -143,7 +155,6 @@ namespace Assets.Editor
 						case VMOpcode.PUSHGLB:
 						case VMOpcode.PUSHBLTN:
 						case VMOpcode.PUSHI:
-							Debug.Log(line);
 							var data = line.Substring(opcode.Length + 1);
 							switch (instruction.TypeOne)
 							{

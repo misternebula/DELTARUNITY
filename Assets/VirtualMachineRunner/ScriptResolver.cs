@@ -15,7 +15,10 @@ namespace Assets.VirtualMachineRunner
 
 		public Dictionary<string, Func<Arguments, object>> BuiltInFunctions = new()
 		{
-			{ "layer_force_draw_depth", layer_force_draw_depth }
+			{ "layer_force_draw_depth", layer_force_draw_depth },
+			{ "draw_set_colour", draw_set_colour },
+			{ "array_length_1d", array_length_1d },
+			{ "@@NewGMLArray@@", newgmlarray }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -38,6 +41,27 @@ namespace Assets.VirtualMachineRunner
 			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
 
 			return null;
+		}
+
+		public static object draw_set_colour(Arguments args)
+		{
+			var color = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			Debug.Log($"draw_set_color color:{color}");
+
+			SpriteManager.SpriteManager.DrawColor = color;
+
+			return null;
+		}
+
+		public static object array_length_1d(Arguments args)
+		{
+			var array = (Dictionary<int, object>)args.ArgumentArray[0];
+			return array.Count;
+		}
+
+		public static object newgmlarray(Arguments args)
+		{
+			return new Dictionary<int, object>();
 		}
 	}
 
