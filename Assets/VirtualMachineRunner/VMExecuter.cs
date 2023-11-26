@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -105,7 +106,8 @@ namespace Assets.VirtualMachineRunner
 				{
 					return i == 1;
 				}
-				else if (type == typeof(double))
+
+				if (type == typeof(double))
 				{
 					return (double)i;
 				}
@@ -113,6 +115,18 @@ namespace Assets.VirtualMachineRunner
 			else if (obj is bool b)
 			{
 
+			}
+			else if (obj is double d)
+			{
+				if (type == typeof(bool))
+				{
+					return d > 0.5;
+				}
+
+				if (type == typeof(int))
+				{
+					return (int)d;
+				}
 			}
 
 			Debug.LogError($"Can't convert {obj} ({obj.GetType().FullName}) to {type}");
@@ -130,20 +144,51 @@ namespace Assets.VirtualMachineRunner
 
 			switch (instruction.Opcode)
 			{
+				case VMOpcode.ADD:
+					stack.Push(Convert<double>(stack.Pop()) + Convert<double>(stack.Pop()));
+					break;
+				case VMOpcode.B:
+				{
+					if (instruction.JumpToEnd)
+					{
+						return true;
+					}
+
+					ExecuteBlock(script, script.Blocks[instruction.IntData], stack);
+					break;
+				}
+				case VMOpcode.BT:
+				{
+					var boolValue = Convert<bool>(stack.Pop());
+					if (!boolValue)
+					{
+						break;
+					}
+
+					if (instruction.JumpToEnd)
+					{
+						return true;
+					}
+
+					ExecuteBlock(script, script.Blocks[instruction.IntData], stack);
+					break;
+				}
 				case VMOpcode.BF:
+				{
 					var boolValue = Convert<bool>(stack.Pop());
 					if (boolValue)
 					{
 						break;
 					}
-					var blockId = instruction.StringData[1..^1];
-					if (blockId == "end")
+
+					if (instruction.JumpToEnd)
 					{
 						return true;
 					}
 
-					ExecuteBlock(script, script.Blocks[int.Parse(blockId)], stack);
+					ExecuteBlock(script, script.Blocks[instruction.IntData], stack);
 					break;
+				}
 				case VMOpcode.CMP:
 					var secondNumber = Convert<double>(stack.Pop());
 					var firstNumber = Convert<double>(stack.Pop());
@@ -241,6 +286,7 @@ namespace Assets.VirtualMachineRunner
 						case VMType.s:
 							var indexOfLast = instruction.StringData.LastIndexOf('@');
 							var stringValue = instruction.StringData.Substring(0, indexOfLast);
+							stringValue = stringValue[1..^1];
 							stack.Push(stringValue);
 							break;
 						case VMType.None:
@@ -292,7 +338,8 @@ namespace Assets.VirtualMachineRunner
 						}
 						else
 						{
-							_localVariables[variableName[6..]] = stack.Pop();
+							var value = stack.Pop();
+							_localVariables[variableName[6..]] = value;
 						}
 					}
 					else
@@ -347,7 +394,6 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.DIV:
 				case VMOpcode.REM:
 				case VMOpcode.MOD:
-				case VMOpcode.ADD:
 				case VMOpcode.SUB:
 				case VMOpcode.AND:
 				case VMOpcode.OR:
@@ -358,8 +404,6 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.SHR:
 				case VMOpcode.DUP:
 				case VMOpcode.EXIT:
-				case VMOpcode.B:
-				case VMOpcode.BT:
 				case VMOpcode.PUSHENV:
 				case VMOpcode.POPENV:
 				case VMOpcode.CALLV:

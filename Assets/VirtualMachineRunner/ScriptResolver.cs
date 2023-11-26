@@ -18,7 +18,8 @@ namespace Assets.VirtualMachineRunner
 			{ "layer_force_draw_depth", layer_force_draw_depth },
 			{ "draw_set_colour", draw_set_colour },
 			{ "array_length_1d", array_length_1d },
-			{ "@@NewGMLArray@@", newgmlarray }
+			{ "@@NewGMLArray@@", newgmlarray },
+			{ "asset_get_index", asset_get_index }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -62,6 +63,12 @@ namespace Assets.VirtualMachineRunner
 		public static object newgmlarray(Arguments args)
 		{
 			return new Dictionary<int, object>();
+		}
+
+		public static object asset_get_index(Arguments args)
+		{
+			var name = (string)args.ArgumentArray[0];
+			return GameLoader.Instance.NameToIndex[name];
 		}
 	}
 
