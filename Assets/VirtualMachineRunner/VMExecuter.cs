@@ -433,8 +433,7 @@ namespace Assets.VirtualMachineRunner
 					if (ScriptResolver.Instance.NameToScript.TryGetValue(instruction.FunctionName, out var scriptName))
 					{
 						Debug.Log($"Calling script {instruction.FunctionName} with {instruction.FunctionArgumentCount} arguments");
-						// current environment is immediately pushed again in ExecuteScript, so it's okay to pop here
-						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Pop()));
+						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek()));
 						break;
 					}
 
