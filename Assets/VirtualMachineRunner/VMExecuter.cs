@@ -146,12 +146,12 @@ namespace Assets.VirtualMachineRunner
 			{
 				if (type == typeof(int))
 				{
-					return (int)(b ? 0 : 1);
+					return (int)(b ? 1 : 0);
 				}
 
 				if (type == typeof(double))
 				{
-					return (double)(b ? 0 : 1);
+					return (double)(b ? 1 : 0);
 				}
 
 				if (type == typeof(string))
@@ -174,7 +174,7 @@ namespace Assets.VirtualMachineRunner
 				if (type == typeof(string))
 				{
 					var isInt = Math.Abs(d % 1) <= (double.Epsilon * 100);
-
+					// https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Strings/string.htm
 					return isInt ? d.ToString("0") : (object)d.ToString("0.00");
 				}
 			}
