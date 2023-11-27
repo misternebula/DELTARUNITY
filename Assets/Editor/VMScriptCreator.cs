@@ -14,7 +14,7 @@ namespace Assets.Editor
 	internal class VMScriptCreator
 	{
 		[MenuItem("Assets/Create VMScript")]
-		private static void CreateFont()
+		private static void CreateScript()
 		{
 			var defaultAsset = Selection.activeObject as DefaultAsset;
 			var lines = File.ReadAllLines(AssetDatabase.GetAssetPath(defaultAsset));
