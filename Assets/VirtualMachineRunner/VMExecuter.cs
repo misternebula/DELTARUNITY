@@ -1,11 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -88,6 +83,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static T Convert<T>(object obj) => (T)Convert(obj, Activator.CreateInstance(typeof(T), null).GetType());
 
+		// TODO nebula: double check this matches gamemaker, idk
 		public static object Convert(object obj, Type type)
 		{
 			if (type == typeof(object))
@@ -100,7 +96,25 @@ namespace Assets.VirtualMachineRunner
 				return obj;
 			}
 
-			if (obj is int i)
+			if (obj is string s)
+			{
+				if (type == typeof(int))
+				{
+					return int.Parse(s);
+				}
+
+				if (type == typeof(double))
+				{
+					return double.Parse(s);
+				}
+				
+				if (type == typeof(bool))
+				{
+					return bool.Parse(s);
+				}
+
+			}
+			else if (obj is int i)
 			{
 				if (type == typeof(bool))
 				{
@@ -111,10 +125,28 @@ namespace Assets.VirtualMachineRunner
 				{
 					return (double)i;
 				}
+
+				if (type == typeof(string))
+				{
+					return i.ToString();
+				}
 			}
 			else if (obj is bool b)
 			{
+				if (type == typeof(int))
+				{
+					return (int)(b ? 0 : 1);
+				}
 
+				if (type == typeof(double))
+				{
+					return (double)(b ? 0 : 1);
+				}
+
+				if (type == typeof(string))
+				{
+					return b.ToString();
+				}
 			}
 			else if (obj is double d)
 			{
@@ -126,6 +158,11 @@ namespace Assets.VirtualMachineRunner
 				if (type == typeof(int))
 				{
 					return (int)d;
+				}
+
+				if (type == typeof(string))
+				{
+					return d.ToString();
 				}
 			}
 
@@ -187,7 +224,6 @@ namespace Assets.VirtualMachineRunner
 					var firstNumber = Convert<double>(stack.Pop());
 					switch (instruction.Comparison)
 					{
-						
 						case VMComparison.LT:
 							stack.Push(firstNumber < secondNumber);
 							break;
@@ -339,7 +375,6 @@ namespace Assets.VirtualMachineRunner
 
 							//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
 							((Dictionary<int, object>)_localVariables[variableName[6..]])[index] = value;
-
 						}
 						else
 						{
@@ -383,7 +418,7 @@ namespace Assets.VirtualMachineRunner
 						}
 
 						stack.Push(builtInFunction(arguments));
-						
+
 						break;
 					}
 
@@ -393,7 +428,7 @@ namespace Assets.VirtualMachineRunner
 						stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek()));
 						break;
 					}
-					
+
 					Debug.LogError($"Can't resolve script {instruction.FunctionName} !");
 					Debug.Break();
 					return true;
