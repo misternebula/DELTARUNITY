@@ -9,8 +9,6 @@ namespace Assets.VirtualMachineRunner
 	{
 		public static Stack<NewGamemakerObject> EnvironmentStack = new();
 
-		private static Dictionary<string, object> _localVariables = new();
-
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj)
 		{
 			Debug.Log($"Executing script {script.name} ...");
@@ -18,10 +16,10 @@ namespace Assets.VirtualMachineRunner
 			object returnValue = null;
 			var dataStack = new Stack<object>();
 
-			_localVariables = new Dictionary<string, object>();
+			var localVariables = new Dictionary<string, object>();
 			foreach (var item in script.LocalVariables)
 			{
-				_localVariables.Add(item, null);
+				localVariables.Add(item, null);
 			}
 
 			// Make the current object the current instance
@@ -29,7 +27,7 @@ namespace Assets.VirtualMachineRunner
 
 			// Execute the first block, which will execute the next needed block, and so on.
 			var zeroBlock = script.Blocks[0];
-			ExecuteBlock(script, zeroBlock, dataStack, ref returnValue);
+			ExecuteBlock(script, zeroBlock, dataStack, localVariables, ref returnValue);
 
 			// Current object has finished executing, remove from stack
 			EnvironmentStack.Pop();
@@ -37,11 +35,11 @@ namespace Assets.VirtualMachineRunner
 			return returnValue;
 		}
 
-		public static void ExecuteBlock(VMScript script, VMScriptBlock block, Stack<object> dataStack, ref object returnValue)
+		public static void ExecuteBlock(VMScript script, VMScriptBlock block, Stack<object> dataStack, Dictionary<string, object> localVariables, ref object returnValue)
 		{
 			foreach (var instruction in block.Instructions)
 			{
-				var hasJumped = ExecuteInstruction(script, instruction, dataStack, ref returnValue);
+				var hasJumped = ExecuteInstruction(script, instruction, dataStack, localVariables, ref returnValue);
 
 				if (hasJumped)
 				{
@@ -55,7 +53,7 @@ namespace Assets.VirtualMachineRunner
 			var nextBlock = script.Blocks.SingleOrDefault(x => x.ID == nextId);
 			if (nextBlock != default)
 			{
-				ExecuteBlock(script, nextBlock, dataStack, ref returnValue);
+				ExecuteBlock(script, nextBlock, dataStack, localVariables, ref returnValue);
 			}
 
 			return;
@@ -168,7 +166,8 @@ namespace Assets.VirtualMachineRunner
 			return default;
 		}
 
-		public static bool ExecuteInstruction(VMScript script, VMScriptInstruction instruction, Stack<object> dataStack, ref object returnValue)
+		// returns true when jumping or when error. maybe should use exceptions instead? since Convert can throw
+		public static bool ExecuteInstruction(VMScript script, VMScriptInstruction instruction, Stack<object> dataStack, Dictionary<string, object> localVariables, ref object returnValue)
 		{
 			switch (instruction.Opcode)
 			{
@@ -182,7 +181,7 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, ref returnValue);
+					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, localVariables, ref returnValue);
 					break;
 				}
 				case VMOpcode.BT:
@@ -198,7 +197,7 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, ref returnValue);
+					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, localVariables, ref returnValue);
 					break;
 				}
 				case VMOpcode.BF:
@@ -214,7 +213,7 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, ref returnValue);
+					ExecuteBlock(script, script.Blocks[instruction.IntData], dataStack, localVariables, ref returnValue);
 					break;
 				}
 				case VMOpcode.CMP:
@@ -288,12 +287,12 @@ namespace Assets.VirtualMachineRunner
 								if (indexingArray)
 								{
 									var index = Convert<int>(dataStack.Pop());
-									dataStack.Push(((Dictionary<int, object>)_localVariables[variableName[6..]])[index]);
+									dataStack.Push(((Dictionary<int, object>)localVariables[variableName[6..]])[index]);
 									//Debug.Log($" - {((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]}");
 								}
 								else
 								{
-									dataStack.Push(_localVariables[variableName[6..]]);
+									dataStack.Push(localVariables[variableName[6..]]);
 									//Debug.Log($" - {_localVariables[variableName[6..]]}");
 								}
 							}
@@ -366,19 +365,19 @@ namespace Assets.VirtualMachineRunner
 							var unknown = dataStack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
 							var value = dataStack.Pop();
 
-							if (_localVariables[variableName[6..]] == null)
+							if (localVariables[variableName[6..]] == null)
 							{
-								_localVariables[variableName[6..]] = new Dictionary<int, object>();
+								localVariables[variableName[6..]] = new Dictionary<int, object>();
 							}
 
 							//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
-							((Dictionary<int, object>)_localVariables[variableName[6..]])[index] = value;
+							((Dictionary<int, object>)localVariables[variableName[6..]])[index] = value;
 						}
 						else
 						{
 							var value = dataStack.Pop();
 							//Debug.Log($"Set {variableName[6..]} to {value}");
-							_localVariables[variableName[6..]] = value;
+							localVariables[variableName[6..]] = value;
 						}
 					}
 					else
