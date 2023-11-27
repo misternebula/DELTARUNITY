@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace Assets.VirtualMachineRunner
 {
 	public class NewGamemakerObject : MonoBehaviour
 	{
+		[NonSerialized] // should this serialized? idk
+		public Dictionary<string, object> Variables;
+		
 		[Header("Events")]
 		public VMScript Create;
 		public VMScript Destroy;
