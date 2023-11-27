@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Assets.TextManager;
+using Assets.VirtualMachineRunner;
 using UnityEngine.TextCore;
 using UnityEngine.TextCore.Text;
 
@@ -31,7 +32,7 @@ namespace Assets
 			set => SetPosition(new Vector2(x, value));
 		}
 
-		public GamemakerObject ObjectToFollow;
+		public NewGamemakerObject ObjectToFollow;
 
 		public Material SpriteMaterial;
 		public Material TriangleMaterial;

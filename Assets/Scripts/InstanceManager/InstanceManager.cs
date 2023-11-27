@@ -1,4 +1,5 @@
 ﻿using Assets.RoomManager;
+using Assets.VirtualMachineRunner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Assets.Instances
 
 		private Dictionary<string, GameObject> dict = new();
 
-		public List<GamemakerObject> instances = new List<GamemakerObject>();
+		public List<NewGamemakerObject> instances = new List<NewGamemakerObject>();
 
 		public int _highestInstanceId = 0;
 
@@ -54,20 +55,20 @@ namespace Assets.Instances
 
 			var layerDepth = global.__objectID2Depth[objID];
 
-			instance.GetComponent<GamemakerObject>().depth = layerDepth;
+			instance.GetComponent<NewGamemakerObject>().depth = layerDepth;
 			instance.transform.position = new Vector3((float)x, -(float)y, 0);
 
-			instance.GetComponent<GamemakerObject>().instanceId = _highestInstanceId++;
+			instance.GetComponent<NewGamemakerObject>().instanceId = _highestInstanceId++;
 
-			instance.GetComponent<GamemakerObject>().Precreate();
+			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().PreCreateScript, instance.GetComponent<NewGamemakerObject>());
 
-			instance.GetComponent<GamemakerObject>().Create();
-			instance.GetComponent<GamemakerObject>()._createRan = true;
+			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().CreateScript, instance.GetComponent<NewGamemakerObject>());
+			instance.GetComponent<NewGamemakerObject>()._createRan = true;
 
 			return instance;
 		}
 
-		public void RegisterInstance(GamemakerObject obj)
+		public void RegisterInstance(NewGamemakerObject obj)
 		{
 			instances.Add(obj);
 			if (_highestInstanceId < obj.instanceId)
@@ -82,7 +83,7 @@ namespace Assets.Instances
 			return instances.Count(x => x.object_index == name);
 		}
 
-		public void instance_destroy(GamemakerObject obj)
+		public void instance_destroy(NewGamemakerObject obj)
 		{
 			if (obj != null)
 			{

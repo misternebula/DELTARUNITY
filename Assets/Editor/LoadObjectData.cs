@@ -4,6 +4,7 @@ using Assets.SpriteManager;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Assets.VirtualMachineRunner;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -76,7 +77,7 @@ public class LoadObjectData
 				newObj.transform.localPosition = position;
 				newObj.transform.localScale = scale;
 
-				var gmo = newObj.GetComponent<GamemakerObject>();
+				var gmo = newObj.GetComponent<NewGamemakerObject>();
 
 				if (gmo != null)
 				{

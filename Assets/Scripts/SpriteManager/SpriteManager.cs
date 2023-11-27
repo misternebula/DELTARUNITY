@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.VirtualMachineRunner;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -85,7 +86,7 @@ namespace Assets.SpriteManager
 			return _spriteDict[name].Origin;
 		}
 
-		public static void DrawSelf(GamemakerObject obj)
+		public static void DrawSelf(NewGamemakerObject obj)
 		{
 			if (!obj.visible || string.IsNullOrEmpty(obj.sprite_index))
 			{

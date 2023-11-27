@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.VirtualMachineRunner;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.SceneManagement;
@@ -17,21 +18,21 @@ namespace Assets.RoomManager
 		public string Name => gameObject.name;
 		public Vector2 Size;
 		public Vector2 ViewSize;
-		public GamemakerObject ObjectToFollow;
+		public NewGamemakerObject ObjectToFollow;
 		public bool Persistent;
 
 		public void Awake()
 		{
 			Instance = this;
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>())
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
 			{
-				item.Other_4();
+				item.TryExecuteScript(item.OtherScript, OtherType.RoomStart);
 			}
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>().OrderBy(x => x.instanceId))
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
-				item.Precreate();
+				item.TryExecuteScript(item.PreCreateScript);
 			}
 		}
 
@@ -49,7 +50,7 @@ namespace Assets.RoomManager
 			camera.SetPosition(Vector2.zero);
 			camera.ObjectToFollow = ObjectToFollow;
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>().OrderBy(x => x.instanceId))
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
 				if (item._createRan)
 				{
@@ -57,7 +58,7 @@ namespace Assets.RoomManager
 				}
 
 				item._createRan = true;
-				item.Create();
+				item.TryExecuteScript(item.CreateScript);
 			}
 		}
 

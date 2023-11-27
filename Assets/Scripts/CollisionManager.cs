@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using Assets.SpriteManager;
-using OBJECT_SCRIPTS;
+using Assets.VirtualMachineRunner;
 using Unity.Profiling;
 using UnityEditor;
 using UnityEngine;
@@ -26,7 +26,7 @@ namespace Assets.CollisionManager
 
 	public class ColliderClass
 	{
-		public GamemakerObject GMObject;
+		public NewGamemakerObject GMObject;
 
 		public string spriteAssetName;
 		public int collisionMaskIndex;
@@ -36,7 +36,7 @@ namespace Assets.CollisionManager
 
 		public Vector2Int Origin; /*=> SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);*/
 
-		public ColliderClass(GamemakerObject obj)
+		public ColliderClass(NewGamemakerObject obj)
 		{
 			GMObject = obj;
 			Origin = SpriteManager.SpriteManager.GetSpriteOrigin(GMObject.sprite_index);
@@ -91,7 +91,7 @@ namespace Assets.CollisionManager
 			Instance = this;
 		}
 
-		public static void UpdateRotationMask(GamemakerObject obj)
+		public static void UpdateRotationMask(NewGamemakerObject obj)
 		{
 			var collider = colliders.Single(x => x.GMObject == obj);
 
@@ -103,7 +103,7 @@ namespace Assets.CollisionManager
 			(collider.CachedRotatedMask, collider.CachedRotatedMaskOffset) = RotateMask(collider.CollisionMask, collider.GMObject.image_angle, collider.Origin.x, collider.Origin.y, collider.Scale.x, collider.Scale.y);
 		}
 
-		public static void RegisterCollider(GamemakerObject sprite, Vector4 margins)
+		public static void RegisterCollider(NewGamemakerObject sprite, Vector4 margins)
 		{
 			var spriteAsset = string.IsNullOrEmpty(sprite.mask_id)
 				? SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index)
@@ -189,7 +189,7 @@ namespace Assets.CollisionManager
 			UpdateRotationMask(sprite);
 		}
 
-		public static void UnregisterCollider(GamemakerObject sprite)
+		public static void UnregisterCollider(NewGamemakerObject sprite)
 		{
 			colliders.RemoveAll(x => x.GMObject == sprite);
 		}
@@ -210,7 +210,7 @@ namespace Assets.CollisionManager
 			colliders = new();
 		}*/
 
-		public static GamemakerObject instance_place(double x, double y, GamemakerObject current, Type checkType)
+		public static NewGamemakerObject instance_place(double x, double y, NewGamemakerObject current, Type checkType)
 		{
 			var marker = new ProfilerMarker("instance_place");
 			marker.Begin(current);
@@ -342,8 +342,8 @@ namespace Assets.CollisionManager
 			return null;
 		}
 
-		public static T collision_rectangle<T>(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, bool precise, bool notme, GamemakerObject current)
-			where T : GamemakerObject
+		public static T collision_rectangle<T>(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, bool precise, bool notme, NewGamemakerObject current)
+			where T : NewGamemakerObject
 		{
 			if (bottomRightX < topLeftX)
 			{
@@ -438,7 +438,7 @@ namespace Assets.CollisionManager
 			return null;
 		}
 
-		public static GamemakerObject collision_line(float x1, float y1, float x2, float y2, string name, bool prec, bool notme)
+		public static NewGamemakerObject collision_line(float x1, float y1, float x2, float y2, string name, bool prec, bool notme)
 		{
 			if (prec)
 			{

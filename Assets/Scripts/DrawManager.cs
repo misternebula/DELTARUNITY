@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.VirtualMachineRunner;
 using UnityEngine;
 
 namespace Assets
@@ -41,7 +42,7 @@ namespace Assets
 			//foreach (var item in _drawObjects.ToList())
 			foreach (var item in stepList)
 			{
-				if (item is GamemakerObject gm)
+				if (item is NewGamemakerObject gm)
 				{
 					gm.Step();
 				}
