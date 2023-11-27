@@ -168,7 +168,9 @@ namespace Assets.VirtualMachineRunner
 
 				if (type == typeof(string))
 				{
-					return d.ToString();
+					var isInt = Math.Abs(d % 1) <= (double.Epsilon * 100);
+
+					return isInt ? d.ToString("0") : (object)d.ToString("0.00");
 				}
 			}
 
