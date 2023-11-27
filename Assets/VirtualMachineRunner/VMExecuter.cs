@@ -135,13 +135,6 @@ namespace Assets.VirtualMachineRunner
 
 		public static bool ExecuteInstruction(VMScript script, VMScriptInstruction instruction, Stack<object> stack)
 		{
-			string variableName;
-			bool indexingArray;
-			bool isGlobal;
-			bool isLocal;
-			bool isSelf;
-			int arrayIndex;
-
 			switch (instruction.Opcode)
 			{
 				case VMOpcode.ADD:
@@ -222,6 +215,7 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.PUSHLOC:
 				case VMOpcode.PUSHBLTN:
 				case VMOpcode.PUSH:
+				{
 					switch (instruction.TypeOne)
 					{
 						case VMType.i:
@@ -230,23 +224,23 @@ namespace Assets.VirtualMachineRunner
 							break;
 						case VMType.v:
 							//Debug.Log($"Pushing variable {instruction.StringData}");
-							variableName = instruction.StringData;
-							indexingArray = variableName.StartsWith("[array]");
+							var variableName = instruction.StringData;
+							var indexingArray = variableName.StartsWith("[array]");
 							if (indexingArray)
 							{
 								variableName = variableName[7..]; // skip [array]
 							}
 
-							isGlobal = variableName.StartsWith("global.");
-							isLocal = variableName.StartsWith("local.");
-							isSelf = variableName.StartsWith("self.");
+							var isGlobal = variableName.StartsWith("global.");
+							var isLocal = variableName.StartsWith("local.");
+							var isSelf = variableName.StartsWith("self.");
 
 							if (isGlobal)
 							{
 								if (indexingArray)
 								{
-									arrayIndex = Convert<int>(stack.Pop());
-									stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex));
+									var index = Convert<int>(stack.Pop());
+									stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
 									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex)}");
 								}
 								else
@@ -259,8 +253,8 @@ namespace Assets.VirtualMachineRunner
 							{
 								if (indexingArray)
 								{
-									arrayIndex = Convert<int>(stack.Pop());
-									stack.Push(((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]);
+									var index = Convert<int>(stack.Pop());
+									stack.Push(((Dictionary<int, object>)_localVariables[variableName[6..]])[index]);
 									//Debug.Log($" - {((Dictionary<int, object>)_localVariables[variableName[6..]])[arrayIndex]}");
 								}
 								else
@@ -300,16 +294,19 @@ namespace Assets.VirtualMachineRunner
 					}
 
 					break;
+				}
 				case VMOpcode.POP:
-					variableName = instruction.StringData;
-					indexingArray = variableName.StartsWith("[array]");
+				{
+					var variableName = instruction.StringData;
+					var indexingArray = variableName.StartsWith("[array]");
 					if (indexingArray)
 					{
 						variableName = variableName[7..]; // skip [array]
 					}
-					isGlobal = variableName.StartsWith("global.");
-					isLocal = variableName.StartsWith("local.");
-					isSelf = variableName.StartsWith("self.");
+
+					var isGlobal = variableName.StartsWith("global.");
+					var isLocal = variableName.StartsWith("local.");
+					var isSelf = variableName.StartsWith("self.");
 					if (isGlobal)
 					{
 						if (indexingArray)
@@ -357,6 +354,7 @@ namespace Assets.VirtualMachineRunner
 					}
 
 					break;
+				}
 				case VMOpcode.RET:
 					returnValue = stack.Pop();
 					return true;
