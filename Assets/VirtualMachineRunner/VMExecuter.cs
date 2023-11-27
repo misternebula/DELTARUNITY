@@ -105,6 +105,11 @@ namespace Assets.VirtualMachineRunner
 
 			if (obj is string s)
 			{
+				// not sure how to implement numeric -> string properly
+
+				// "numbers, minus signs, decimal points and exponential parts in the string are taken into account,
+				// while other characters (such as letters) will cause an error to be thrown."
+
 				if (type == typeof(int))
 				{
 					return int.Parse(s);
@@ -117,7 +122,7 @@ namespace Assets.VirtualMachineRunner
 
 				if (type == typeof(bool))
 				{
-					return bool.Parse(s);
+					return bool.Parse(s); // dunno if "true" or "false" should convert properly, since bools are just ints?
 				}
 			}
 			else if (obj is int i)
@@ -134,7 +139,7 @@ namespace Assets.VirtualMachineRunner
 
 				if (type == typeof(string))
 				{
-					return i.ToString();
+					return i.ToString(); // not sure if positive numbers need to have a "+" in front?
 				}
 			}
 			else if (obj is bool b)
@@ -151,14 +156,14 @@ namespace Assets.VirtualMachineRunner
 
 				if (type == typeof(string))
 				{
-					return b.ToString();
+					return b ? "1" : "0"; // GM represents bools as integers
 				}
 			}
 			else if (obj is double d)
 			{
 				if (type == typeof(bool))
 				{
-					return d > 0.5;
+					return d > 0.5; // https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Variable_Functions/bool.htm
 				}
 
 				if (type == typeof(int))
