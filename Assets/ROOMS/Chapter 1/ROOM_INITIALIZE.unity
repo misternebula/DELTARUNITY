@@ -152,19 +152,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de6579bf7f503f4396d23ab195b6ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Create: {fileID: 11400000, guid: 02de510a6dadf374292acc8101cdd8ad, type: 2}
-  Destroy: {fileID: 0}
-  Alarm:
-    _serializedList: []
-  Step:
-    _serializedList:
-    - Key: 0
-      Value: {fileID: 11400000, guid: 2f23e7d0010671e4d82e63bb6c0face9, type: 2}
-  Other:
-    _serializedList: []
-  Draw:
-    _serializedList: []
-  PreCreate: {fileID: 11400000, guid: 0e102635ca9703340b16085cc24d6746, type: 2}
+  instanceId: 100000
+  depth: 0
+  Definition: {fileID: 11400000, guid: e06f7768453fd2b43bc75789cf732fa2, type: 2}
+  _sprite_index: 
+  _mask_id: 
+  _image_index: 0
+  image_speed: 1
+  image_blend: 16777215
+  image_alpha: 1
+  persistent: 0
+  gravity: 0
+  gravity_direction: 270
+  visible: 1
+  xstart: 0
+  ystart: 0
+  friction: 0
+  margins: {x: 0, y: 0, z: 0, w: 0}
+  view_current: 0
+  path_speed: 0
+  drawOffset: 0
+  alarm: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 --- !u!4 &1559006499
 Transform:
   m_ObjectHideFlags: 0
@@ -173,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559006497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 32, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4934286080839078920}
   - component: {fileID: 4934286080839078921}
   - component: {fileID: 4934286080839078922}
+  - component: {fileID: 2548785805852989606}
+  - component: {fileID: 3008653541710871464}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -52,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asset: {fileID: 11400000, guid: 0a4d60bfe7d8c9e4eb13ed1449bc4395, type: 2}
-  TriangleMaterial: {fileID: 2100000, guid: a4db7f093666aed49a43965450f5754e, type: 2}
   TextColorMaterial: {fileID: 2100000, guid: 24451c4e672af274da2bfec0090df671, type: 2}
 --- !u!114 &4934286080839078924
 MonoBehaviour:
@@ -149,3 +150,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e6f6b995d842f45b0b962d602bbbe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2548785805852989606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934286080839078923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f916ed9b25f9148afaeab048444889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalScripts:
+  - {fileID: 11400000, guid: 7fa9188cfa8782c46a3d2f7973c39a23, type: 2}
+  - {fileID: 11400000, guid: f964bd85a77197742b3626024dfa03c0, type: 2}
+  AssetNames: {fileID: 4900000, guid: a70f7d2dd5ee2c644b627fc087426bb0, type: 3}
+--- !u!114 &3008653541710871464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934286080839078923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468b85eb6bf010c4e893a801b84cd403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Scripts:
+  - {fileID: 11400000, guid: 17c0a5a46d8f42f4eb86b424d2169d80, type: 2}
+  - {fileID: 11400000, guid: 939becf637bdc4148acba3a3c5407de0, type: 2}
