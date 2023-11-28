@@ -60,9 +60,9 @@ namespace Assets.Instances
 
 			instance.GetComponent<NewGamemakerObject>().instanceId = _highestInstanceId++;
 
-			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().PreCreateScript, instance.GetComponent<NewGamemakerObject>());
+			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().Definition.PreCreateScript, instance.GetComponent<NewGamemakerObject>());
 
-			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().CreateScript, instance.GetComponent<NewGamemakerObject>());
+			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().Definition.CreateScript, instance.GetComponent<NewGamemakerObject>());
 			instance.GetComponent<NewGamemakerObject>()._createRan = true;
 
 			return instance;

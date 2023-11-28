@@ -16,6 +16,8 @@ namespace Assets.VirtualMachineRunner
 {
 	public class NewGamemakerObject : DrawWithDepth
 	{
+		public ObjectDefinition Definition;
+
 		public string object_index => GetType().Name;
 
 		[SerializeField]
@@ -291,42 +293,16 @@ namespace Assets.VirtualMachineRunner
 
 		private int _updateCounter;
 
-		#region EVENTS
-
-		[Header("Events")]
-		public VMScript CreateScript;
-		public VMScript DestroyScript;
-
-		[SerializedDictionary("Subtype ID", "Actions")]
-		public SerializedDictionary<int, VMScript> AlarmScript = new();
-
-		[SerializedDictionary("Subtype ID", "Actions")]
-		public SerializedDictionary<StepType, VMScript> StepScript = new();
-
-		//collision
-		//keyboard
-		//mouse
-
-		[SerializedDictionary("Subtype ID", "Actions")]
-		public SerializedDictionary<OtherType, VMScript> OtherScript = new();
-
-		[SerializedDictionary("Subtype ID", "Actions")]
-		public SerializedDictionary<DrawType, VMScript> DrawScript = new();
-
-		//keypress
-		//trigger
-		//cleanup
-		//gesture
-
-		public VMScript PreCreateScript;
-
-		#endregion
-
 		internal bool _createRan;
 		public int[] alarm = Enumerable.Repeat(-1, 12).ToArray();
 
 		private void Awake()
 		{
+			sprite_index = Definition.sprite;
+			visible = Definition.visible;
+			persistent = Definition.persistent;
+			mask_id = Definition.textureMaskId;
+
 			InstanceManager.Instance.RegisterInstance(this);
 			DrawManager.Register(this);
 
@@ -351,7 +327,7 @@ namespace Assets.VirtualMachineRunner
 		private void OnDestroy()
 		{
 			DrawManager.Unregister(this);
-			VMExecuter.ExecuteScript(DestroyScript, this);
+			VMExecuter.ExecuteScript(Definition.DestroyScript, this);
 
 			if (margins != Vector4.zero)
 			{
@@ -384,14 +360,14 @@ namespace Assets.VirtualMachineRunner
 		{
 			if (visible && gameObject.activeInHierarchy)
 			{
-				TryExecuteScript(DrawScript, DrawType.PreDraw);
-				TryExecuteScript(DrawScript, DrawType.DrawBegin);
-				TryExecuteScript(DrawScript, DrawType.Draw);
-				TryExecuteScript(DrawScript, DrawType.DrawEnd);
-				TryExecuteScript(DrawScript, DrawType.PostDraw);
-				TryExecuteScript(DrawScript, DrawType.DrawGUIBegin);
-				TryExecuteScript(DrawScript, DrawType.DrawGUI);
-				TryExecuteScript(DrawScript, DrawType.DrawGUIEnd);
+				TryExecuteScript(Definition.DrawScript, DrawType.PreDraw);
+				TryExecuteScript(Definition.DrawScript, DrawType.DrawBegin);
+				TryExecuteScript(Definition.DrawScript, DrawType.Draw);
+				TryExecuteScript(Definition.DrawScript, DrawType.DrawEnd);
+				TryExecuteScript(Definition.DrawScript, DrawType.PostDraw);
+				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUIBegin);
+				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUI);
+				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUIEnd);
 			}
 
 			for (var i = 0; i < alarm.Length; i++)
@@ -402,7 +378,7 @@ namespace Assets.VirtualMachineRunner
 
 					if (alarm[i] == 0)
 					{
-						VMExecuter.ExecuteScript(AlarmScript[i], this);
+						VMExecuter.ExecuteScript(Definition.AlarmScript[i], this);
 
 						if (alarm[i] == 0)
 						{
@@ -469,7 +445,7 @@ namespace Assets.VirtualMachineRunner
 					_updateCounter = 0;
 					if (image_index + 1 == SpriteManager.SpriteManager.GetNumberOfFrames(sprite_index))
 					{
-						VMExecuter.ExecuteScript(OtherScript[OtherType.AnimationEnd], this);
+						VMExecuter.ExecuteScript(Definition.OtherScript[OtherType.AnimationEnd], this);
 						image_index = 0;
 					}
 					else
@@ -491,6 +467,10 @@ namespace Assets.VirtualMachineRunner
 			{
 				VMExecuter.ExecuteScript(script, this);
 			}
+			else if (Definition.parent != null)
+			{
+
+			}
 		}
 
 		public void TryExecuteScript<T>(Dictionary<T, VMScript> dict, T enumValue)
@@ -503,12 +483,12 @@ namespace Assets.VirtualMachineRunner
 
 		public void Step()
 		{
-			TryExecuteScript(StepScript, StepType.BeginStep);
+			TryExecuteScript(Definition.StepScript, StepType.BeginStep);
 
 			// DO COLLISION STUFF
 
-			TryExecuteScript(StepScript, StepType.Step);
-			TryExecuteScript(StepScript, StepType.EndStep);
+			TryExecuteScript(Definition.StepScript, StepType.Step);
+			TryExecuteScript(Definition.StepScript, StepType.EndStep);
 		}
 
 		public double degtorad(double deg) => deg * (Math.PI / 180);

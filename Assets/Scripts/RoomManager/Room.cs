@@ -27,12 +27,12 @@ namespace Assets.RoomManager
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
 			{
-				item.TryExecuteScript(item.OtherScript, OtherType.RoomStart);
+				item.TryExecuteScript(item.Definition.OtherScript, OtherType.RoomStart);
 			}
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
-				item.TryExecuteScript(item.PreCreateScript);
+				item.TryExecuteScript(item.Definition.PreCreateScript);
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace Assets.RoomManager
 				}
 
 				item._createRan = true;
-				item.TryExecuteScript(item.CreateScript);
+				item.TryExecuteScript(item.Definition.CreateScript);
 			}
 		}
 
