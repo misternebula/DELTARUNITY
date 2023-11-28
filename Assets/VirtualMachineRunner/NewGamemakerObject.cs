@@ -11,6 +11,7 @@ using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -360,14 +361,14 @@ namespace Assets.VirtualMachineRunner
 		{
 			if (visible && gameObject.activeInHierarchy)
 			{
-				TryExecuteScript(Definition.DrawScript, DrawType.PreDraw);
-				TryExecuteScript(Definition.DrawScript, DrawType.DrawBegin);
-				TryExecuteScript(Definition.DrawScript, DrawType.Draw);
-				TryExecuteScript(Definition.DrawScript, DrawType.DrawEnd);
-				TryExecuteScript(Definition.DrawScript, DrawType.PostDraw);
-				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUIBegin);
-				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUI);
-				TryExecuteScript(Definition.DrawScript, DrawType.DrawGUIEnd);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PreDraw);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawBegin);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.Draw);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawEnd);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PostDraw);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIBegin);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUI);
+				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIEnd);
 			}
 
 			for (var i = 0; i < alarm.Length; i++)
@@ -461,34 +462,84 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		public void TryExecuteScript(VMScript script)
+		public static void ExecuteScript(NewGamemakerObject obj, ObjectDefinition definition, EventType type, int otherData = 0)
 		{
-			if (script != null)
+			void TryExecute(VMScript script)
 			{
-				VMExecuter.ExecuteScript(script, this);
+				if (script != null)
+				{
+					VMExecuter.ExecuteScript(script, obj);
+				}
+				else if (definition.parent != null)
+				{
+					ExecuteScript(obj, definition.parent, type, otherData);
+				}
+				else
+				{
+					// event not found, and no parent to check
+				}
 			}
-			else if (Definition.parent != null)
-			{
 
+			void TryExecuteDict<T>(Dictionary<T, VMScript> dict, T index)
+			{
+				if (dict.TryGetValue(index, out var script))
+				{
+					VMExecuter.ExecuteScript(script, obj);
+				}
+				else if (definition.parent != null)
+				{
+					ExecuteScript(obj, definition.parent, type, otherData);
+				}
+				else
+				{
+					// event not found, and no parent to check
+				}
 			}
-		}
 
-		public void TryExecuteScript<T>(Dictionary<T, VMScript> dict, T enumValue)
-		{
-			if (dict.TryGetValue(enumValue, out var script))
+			switch (type)
 			{
-				VMExecuter.ExecuteScript(script, this);
+				case EventType.Create:
+					TryExecute(definition.CreateScript);
+					break;
+				case EventType.Destroy:
+					TryExecute(definition.DestroyScript);
+					break;
+				case EventType.Alarm:
+					TryExecuteDict(definition.AlarmScript, otherData);
+					break;
+				case EventType.Step:
+					TryExecuteDict(definition.StepScript, (StepType)otherData);
+					break;
+				case EventType.Other:
+					TryExecuteDict(definition.OtherScript, (OtherType)otherData);
+					break;
+				case EventType.Draw:
+					TryExecuteDict(definition.DrawScript, (DrawType)otherData);
+					break;
+				case EventType.PreCreate:
+					TryExecute(definition.PreCreateScript);
+					break;
+				case EventType.KeyPress:
+				case EventType.KeyRelease:
+				case EventType.Trigger:
+				case EventType.CleanUp:
+				case EventType.Gesture:
+				case EventType.Collision:
+				case EventType.Keyboard:
+				case EventType.Mouse:
+					Debug.LogError($"{type} not implemented!");
+					break;
 			}
 		}
 
 		public void Step()
 		{
-			TryExecuteScript(Definition.StepScript, StepType.BeginStep);
+			ExecuteScript(this, Definition, EventType.Step, (int)StepType.BeginStep);
 
 			// DO COLLISION STUFF
 
-			TryExecuteScript(Definition.StepScript, StepType.Step);
-			TryExecuteScript(Definition.StepScript, StepType.EndStep);
+			ExecuteScript(this, Definition, EventType.Step, (int)StepType.Step);
+			ExecuteScript(this, Definition, EventType.Step, (int)StepType.EndStep);
 		}
 
 		public double degtorad(double deg) => deg * (Math.PI / 180);

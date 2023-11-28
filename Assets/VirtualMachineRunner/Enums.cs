@@ -1,5 +1,24 @@
 namespace Assets.VirtualMachineRunner
 {
+	public enum EventType
+	{
+		Create,
+		Destroy,
+		Alarm,
+		Step,
+		Collision,
+		Keyboard,
+		Mouse,
+		Other,
+		Draw,
+		KeyPress,
+		KeyRelease,
+		Trigger,
+		CleanUp,
+		Gesture,
+		PreCreate
+	}
+
 	public enum StepType
 	{
 		Step,

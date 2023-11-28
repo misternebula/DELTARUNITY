@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using EventType = Assets.VirtualMachineRunner.EventType;
 
 namespace Assets.RoomManager
 {
@@ -27,12 +28,12 @@ namespace Assets.RoomManager
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
 			{
-				item.TryExecuteScript(item.Definition.OtherScript, OtherType.RoomStart);
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.Other, (int)OtherType.RoomStart);
 			}
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
-				item.TryExecuteScript(item.Definition.PreCreateScript);
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.PreCreate);
 			}
 		}
 
@@ -58,7 +59,7 @@ namespace Assets.RoomManager
 				}
 
 				item._createRan = true;
-				item.TryExecuteScript(item.Definition.CreateScript);
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.Create);
 			}
 		}
 
