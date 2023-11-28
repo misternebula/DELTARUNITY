@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Assets.Scripts.IniFiles;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -20,7 +23,10 @@ namespace Assets.VirtualMachineRunner
 			{ "array_length_1d", array_length_1d },
 			{ "@@NewGMLArray@@", newgmlarray },
 			{ "asset_get_index", asset_get_index },
-			{ "event_inherited", event_inherited }
+			{ "event_inherited", event_inherited },
+			{ "ini_open", ini_open },
+			{ "ini_read_string", ini_read_string },
+			{ "ini_close", ini_close }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -81,6 +87,107 @@ namespace Assets.VirtualMachineRunner
 
 			NewGamemakerObject.ExecuteScript(args.Context.Self, args.Context.ObjectDefinition.parent, args.Context.EventType, args.Context.EventIndex);
 			return null;
+		}
+
+		private static IniFile _iniFile;
+
+		public static object ini_open(Arguments args)
+		{
+			var name = (string)args.ArgumentArray[0];
+
+			if (_iniFile != null)
+			{
+				throw new Exception("Cannot open a new .ini file while an old one is still open!");
+			}
+
+			var filepath = Path.Combine(Application.persistentDataPath, name);
+
+			if (!System.IO.File.Exists(filepath))
+			{
+				_iniFile = new IniFile { Name = name };
+				return null;
+			}
+
+			var lines = System.IO.File.ReadAllLines(filepath);
+
+			KeyValuePair<string, string> ParseKeyValue(string line)
+			{
+				var lineByEquals = line.Split('=');
+				var key = lineByEquals[0].Trim();
+				var value = lineByEquals[1].Trim();
+				value = value.Trim('"');
+				return new KeyValuePair<string, string>(key, value);
+			}
+
+			_iniFile = new IniFile { Name = name };
+			IniSection currentSection = null;
+
+			for (var i = 0; i < lines.Length; i++)
+			{
+				var currentLine = lines[i];
+				if (currentLine.StartsWith('[') && currentLine.EndsWith("]"))
+				{
+					currentSection = new IniSection(currentLine.TrimStart('[').TrimEnd(']'));
+					_iniFile.Sections.Add(currentSection);
+					continue;
+				}
+
+				if (string.IsNullOrEmpty(currentLine))
+				{
+					continue;
+				}
+
+				var keyvalue = ParseKeyValue(currentLine);
+				currentSection.Dict.Add(keyvalue.Key, keyvalue.Value);
+			}
+
+			return null;
+		}
+
+		public static object ini_read_string(Arguments args)
+		{
+			var section = (string)args.ArgumentArray[0];
+			var key = (string)args.ArgumentArray[1];
+			var value = (string)args.ArgumentArray[2];
+
+			var sectionClass = _iniFile.Sections.FirstOrDefault(x => x.Name == section);
+
+			if (sectionClass == null)
+			{
+				return value;
+			}
+
+			if (!sectionClass.Dict.ContainsKey(key))
+			{
+				return value;
+			}
+
+			return sectionClass.Dict[key];
+		}
+
+		public static object ini_close(Arguments args)
+		{
+			var filepath = Path.Combine(Application.persistentDataPath, _iniFile.Name);
+			System.IO.File.Delete(filepath);
+			var fileStream = new FileStream(filepath, FileMode.Append, FileAccess.Write);
+			var streamWriter = new StreamWriter(fileStream);
+
+			foreach (var section in _iniFile.Sections)
+			{
+				streamWriter.WriteLine($"[{section.Name}]");
+				foreach (var kv in section.Dict)
+				{
+					streamWriter.WriteLine($"{kv.Key}=\"{kv.Value}\"");
+				}
+			}
+
+			var text = streamWriter.ToString();
+
+			streamWriter.Close();
+			streamWriter.Dispose();
+			_iniFile = null;
+
+			return text;
 		}
 	}
 
