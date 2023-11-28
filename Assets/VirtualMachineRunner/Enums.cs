@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Assets.VirtualMachineRunner
 {
+	public enum StepType
+	{
+		Step,
+		BeginStep,
+		EndStep
+	}
+
 	public enum OtherType
 	{
 		OutsideRoom,
@@ -67,5 +68,77 @@ namespace Assets.VirtualMachineRunner
 		AsyncAudioRecording,
 		AsyncAudioPlayback,
 		AsyncSystem
+	}
+
+	public enum DrawType
+	{
+		Draw,
+		DrawGUI,
+		Resize,
+		DrawBegin,
+		DrawEnd,
+		DrawGUIBegin,
+		DrawGUIEnd,
+		PreDraw,
+		PostDraw
+	}
+
+	public enum VMOpcode
+	{
+		CONV,
+		MUL,
+		DIV,
+		REM,
+		MOD,
+		ADD,
+		SUB,
+		AND,
+		OR,
+		XOR,
+		NEG,
+		NOT,
+		SHL,
+		SHR,
+		CMP,
+		POP,
+		DUP,
+		RET,
+		EXIT,
+		POPZ,
+		B,
+		BT,
+		BF,
+		PUSHENV,
+		POPENV,
+		PUSH,
+		PUSHLOC,
+		PUSHGLB,
+		PUSHBLTN,
+		PUSHI,
+		CALL,
+		CALLV,
+		BREAK
+	}
+
+	public enum VMType
+	{
+		None,
+		i,
+		v,
+		b,
+		d,
+		e,
+		s
+	}
+
+	public enum VMComparison
+	{
+		None,
+		LT,
+		LTE,
+		EQ,
+		NEQ,
+		GTE,
+		GT
 	}
 }
