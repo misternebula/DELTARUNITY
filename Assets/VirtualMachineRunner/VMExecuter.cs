@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -10,30 +11,38 @@ namespace Assets.VirtualMachineRunner
 	/// </summary>
 	public class VMScriptExecutionContext
 	{
-		// some names are kept short when accessed often
 		public NewGamemakerObject Self;
+		public ObjectDefinition ObjectDefinition;
 		public readonly Stack<object> Stack = new();
 		public readonly Dictionary<string, object> Locals = new();
 		public object ReturnValue = null;
+		public EventType EventType;
+		public int EventIndex;
 	}
 
 	public static class VMExecuter
 	{
-		public static Stack<NewGamemakerObject> EnvironmentStack = new(); // maybe see if we can make this a local variable at some point
+		public static Stack<VMScriptExecutionContext> EnvironmentStack = new();
 
-		public static object ExecuteScript(VMScript script, NewGamemakerObject obj)
+		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0)
 		{
 			Debug.Log($"Executing script {script.name} ...");
 
-			var ctx = new VMScriptExecutionContext();
-			ctx.Self = obj;
+			var ctx = new VMScriptExecutionContext
+			{
+				Self = obj,
+				ObjectDefinition = objectDefinition,
+				EventType = eventType,
+				EventIndex = eventIndex
+			};
+
 			foreach (var item in script.LocalVariables)
 			{
 				ctx.Locals.Add(item, null);
 			}
 
 			// Make the current object the current instance
-			EnvironmentStack.Push(obj);
+			EnvironmentStack.Push(ctx);
 
 			// Execute the first block, which will execute the next needed block, and so on.
 			var zeroBlock = script.Blocks[0];
@@ -440,7 +449,7 @@ namespace Assets.VirtualMachineRunner
 					if (ScriptResolver.Instance.NameToScript.TryGetValue(instruction.FunctionName, out var scriptName))
 					{
 						Debug.Log($"Calling script {instruction.FunctionName} with {instruction.FunctionArgumentCount} arguments");
-						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek()));
+						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition));
 						break;
 					}
 

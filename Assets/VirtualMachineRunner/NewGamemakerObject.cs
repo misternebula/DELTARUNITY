@@ -19,7 +19,7 @@ namespace Assets.VirtualMachineRunner
 	{
 		public ObjectDefinition Definition;
 
-		public string object_index => GetType().Name;
+		public string object_index => name;
 
 		[SerializeField]
 		[FormerlySerializedAs("sprite_index")]
@@ -328,7 +328,7 @@ namespace Assets.VirtualMachineRunner
 		private void OnDestroy()
 		{
 			DrawManager.Unregister(this);
-			VMExecuter.ExecuteScript(Definition.DestroyScript, this);
+			VMExecuter.ExecuteScript(Definition.DestroyScript, this, Definition, EventType.Destroy);
 
 			if (margins != Vector4.zero)
 			{
@@ -379,7 +379,7 @@ namespace Assets.VirtualMachineRunner
 
 					if (alarm[i] == 0)
 					{
-						VMExecuter.ExecuteScript(Definition.AlarmScript[i], this);
+						VMExecuter.ExecuteScript(Definition.AlarmScript[i], this, Definition, EventType.Alarm, i);
 
 						if (alarm[i] == 0)
 						{
@@ -446,7 +446,7 @@ namespace Assets.VirtualMachineRunner
 					_updateCounter = 0;
 					if (image_index + 1 == SpriteManager.SpriteManager.GetNumberOfFrames(sprite_index))
 					{
-						VMExecuter.ExecuteScript(Definition.OtherScript[OtherType.AnimationEnd], this);
+						VMExecuter.ExecuteScript(Definition.OtherScript[OtherType.AnimationEnd], this, Definition, EventType.Other, (int)OtherType.AnimationEnd);
 						image_index = 0;
 					}
 					else
@@ -464,11 +464,13 @@ namespace Assets.VirtualMachineRunner
 
 		public static void ExecuteScript(NewGamemakerObject obj, ObjectDefinition definition, EventType type, int otherData = 0)
 		{
+			Debug.Log($"Trying to execute {type} {otherData} on {obj.object_index} with definition {definition.name}");
+
 			void TryExecute(VMScript script)
 			{
 				if (script != null)
 				{
-					VMExecuter.ExecuteScript(script, obj);
+					VMExecuter.ExecuteScript(script, obj, definition, type, otherData);
 				}
 				else if (definition.parent != null)
 				{
@@ -484,7 +486,7 @@ namespace Assets.VirtualMachineRunner
 			{
 				if (dict.TryGetValue(index, out var script))
 				{
-					VMExecuter.ExecuteScript(script, obj);
+					VMExecuter.ExecuteScript(script, obj, definition, type, otherData);
 				}
 				else if (definition.parent != null)
 				{

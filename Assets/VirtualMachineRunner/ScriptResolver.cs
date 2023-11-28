@@ -19,7 +19,8 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_set_colour", draw_set_colour },
 			{ "array_length_1d", array_length_1d },
 			{ "@@NewGMLArray@@", newgmlarray },
-			{ "asset_get_index", asset_get_index }
+			{ "asset_get_index", asset_get_index },
+			{ "event_inherited", event_inherited }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -70,11 +71,22 @@ namespace Assets.VirtualMachineRunner
 			var name = (string)args.ArgumentArray[0];
 			return GameLoader.Instance.NameToIndex[name];
 		}
+
+		public static object event_inherited(Arguments args)
+		{
+			if (args.Context.ObjectDefinition.parent == null)
+			{
+				return null;
+			}
+
+			NewGamemakerObject.ExecuteScript(args.Context.Self, args.Context.ObjectDefinition.parent, args.Context.EventType, args.Context.EventIndex);
+			return null;
+		}
 	}
 
 	public class Arguments
 	{
-		public NewGamemakerObject Context;
+		public VMScriptExecutionContext Context;
 		public object[] ArgumentArray;
 	}
 }

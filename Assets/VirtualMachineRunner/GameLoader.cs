@@ -42,7 +42,7 @@ namespace Assets.VirtualMachineRunner
 
 			foreach (var script in GlobalScripts)
 			{
-				VMExecuter.ExecuteScript(script, null);
+				VMExecuter.ExecuteScript(script, null, null);
 			}
 
 			RoomManager.RoomManager.Instance.ChangeRoom(0);

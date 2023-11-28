@@ -2,6 +2,7 @@ namespace Assets.VirtualMachineRunner
 {
 	public enum EventType
 	{
+		None,
 		Create,
 		Destroy,
 		Alarm,

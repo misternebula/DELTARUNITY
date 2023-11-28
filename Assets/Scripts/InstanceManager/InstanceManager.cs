@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using EventType = Assets.VirtualMachineRunner.EventType;
 
 namespace Assets.Instances
 {
@@ -60,9 +61,10 @@ namespace Assets.Instances
 
 			instance.GetComponent<NewGamemakerObject>().instanceId = _highestInstanceId++;
 
-			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().Definition.PreCreateScript, instance.GetComponent<NewGamemakerObject>());
+			var obj = instance.GetComponent<NewGamemakerObject>();
+			VMExecuter.ExecuteScript(obj.Definition.PreCreateScript, obj, obj.Definition, EventType.PreCreate);
 
-			VMExecuter.ExecuteScript(instance.GetComponent<NewGamemakerObject>().Definition.CreateScript, instance.GetComponent<NewGamemakerObject>());
+			VMExecuter.ExecuteScript(obj.Definition.CreateScript, obj, obj.Definition, EventType.Create);
 			instance.GetComponent<NewGamemakerObject>()._createRan = true;
 
 			return instance;
