@@ -8,7 +8,7 @@ public class GMBackground : DrawWithDepth
 {
 	public bool Visible = true;
 	public bool Foreground;
-	public string sprite;
+	public int sprite;
 	public bool HTiled;
 	public bool VTiled;
 	public bool Stretch;
@@ -24,7 +24,7 @@ public class GMBackground : DrawWithDepth
 
 	public override void Draw()
 	{
-		if (string.IsNullOrEmpty(sprite))
+		if (sprite == -1)
 		{
 			return;
 		}

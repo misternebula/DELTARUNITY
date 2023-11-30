@@ -11,6 +11,7 @@ namespace Assets
 	[Serializable]
 	public class FontAsset
 	{
+		public int AssetIndex;
 		public string name;
 		public int size;
 
@@ -20,9 +21,9 @@ namespace Assets
 		public int sep;
 
 		/// <summary>
-		/// The sprite index for the font if it was created from a sprite, otherwise null
+		/// The sprite index for the font if it was created from a sprite, otherwise -1
 		/// </summary>
-		public string spriteIndex;
+		public int spriteIndex;
 
 		/// <summary>
 		/// null if the font was created from a sprite, otherwise the texture asset of the font

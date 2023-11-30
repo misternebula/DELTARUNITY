@@ -23,8 +23,8 @@ namespace Assets.VirtualMachineRunner
 
 		[SerializeField]
 		[FormerlySerializedAs("sprite_index")]
-		private string _sprite_index;
-		public string sprite_index
+		private int _sprite_index = -1;
+		public int sprite_index
 		{
 			get => _sprite_index;
 			set
@@ -36,7 +36,7 @@ namespace Assets.VirtualMachineRunner
 
 				_sprite_index = value;
 
-				if (string.IsNullOrEmpty(value))
+				if (value == -1)
 				{
 					return;
 				}
@@ -47,7 +47,7 @@ namespace Assets.VirtualMachineRunner
 				_cached_sprite_xoffset = sprite.Origin.x;
 				_cached_sprite_yoffset = sprite.Origin.y;
 
-				if (!string.IsNullOrEmpty(mask_id))
+				if (mask_id != -1)
 				{
 					return;
 				}
@@ -68,15 +68,15 @@ namespace Assets.VirtualMachineRunner
 
 		[SerializeField]
 		[FormerlySerializedAs("texture_mask_id")]
-		private string _mask_id;
-		public string mask_id
+		private int _mask_id = -1;
+		public int mask_id
 		{
 			get => _mask_id;
 			set
 			{
 				_mask_id = value;
 
-				if (string.IsNullOrEmpty(value))
+				if (value == -1)
 				{
 					sprite_index = sprite_index; // force the setter to run again
 					return;
@@ -118,7 +118,7 @@ namespace Assets.VirtualMachineRunner
 
 				_image_index = value;
 
-				if (!string.IsNullOrEmpty(mask_id))
+				if (mask_id != -1)
 				{
 					return;
 				}
@@ -282,13 +282,13 @@ namespace Assets.VirtualMachineRunner
 
 		private double _cached_sprite_xoffset;
 		public double sprite_xoffset
-			=> string.IsNullOrEmpty(sprite_index)
+			=> sprite_index == -1
 					? x
 					: _cached_sprite_xoffset;
 
 		private double _cached_sprite_yoffset;
 		public double sprite_yoffset
-			=> string.IsNullOrEmpty(sprite_index)
+			=> sprite_index == -1
 				? y
 				: _cached_sprite_yoffset;
 

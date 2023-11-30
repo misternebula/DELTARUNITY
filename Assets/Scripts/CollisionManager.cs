@@ -105,7 +105,7 @@ namespace Assets.CollisionManager
 
 		public static void RegisterCollider(NewGamemakerObject sprite, Vector4 margins)
 		{
-			var spriteAsset = string.IsNullOrEmpty(sprite.mask_id)
+			var spriteAsset = sprite.mask_id == -1
 				? SpriteManager.SpriteManager.GetSpriteAsset(sprite.sprite_index)
 				: SpriteManager.SpriteManager.GetSpriteAsset(sprite.mask_id);
 
@@ -114,7 +114,7 @@ namespace Assets.CollisionManager
 
 			if (spriteAsset == null)
 			{
-				Debug.LogError($"Couldn't find sprite for {(string.IsNullOrEmpty(sprite.mask_id) ? sprite.sprite_index : sprite.mask_id)}! (for obj {sprite.object_index})");
+				Debug.LogError($"Couldn't find sprite for {(sprite.mask_id == -1 ? sprite.sprite_index : sprite.mask_id)}! (for obj {sprite.object_index})");
 				return;
 			}
 

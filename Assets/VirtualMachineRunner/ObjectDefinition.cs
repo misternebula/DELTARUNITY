@@ -12,12 +12,12 @@ namespace Assets.VirtualMachineRunner
 	[CreateAssetMenu(fileName = "ObjectDefinition", menuName = "ScriptableObjects/Object Definition", order = 2)]
 	public class ObjectDefinition : ScriptableObject
 	{
-		public string sprite;
+		public int sprite;
 		public bool visible = true;
 		public bool solid;
 		public bool persistent;
 		public ObjectDefinition parent;
-		public string textureMaskId;
+		public int textureMaskId;
 
 		[Header("Events")]
 		public VMScript CreateScript;

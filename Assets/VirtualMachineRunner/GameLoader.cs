@@ -14,10 +14,6 @@ namespace Assets.VirtualMachineRunner
 
 		public List<VMScript> GlobalScripts = new();
 
-		public TextAsset AssetNames;
-
-		public Dictionary<string, int> NameToIndex = new();
-
 		public void Awake()
 		{
 			Instance = this;
@@ -25,21 +21,6 @@ namespace Assets.VirtualMachineRunner
 
 		public void Start()
 		{
-			var lines = AssetNames.text.Split(Environment.NewLine);
-			var headerLineNumber = 0;
-			for (int i = 0; i < lines.Length; i++)
-			{
-				var line = lines[i];
-				if (line.StartsWith("@@") && line.EndsWith("@@"))
-				{
-					headerLineNumber = i;
-					continue;
-				}
-
-				//Debug.Log($"line:{line} - {i - headerLineNumber - 1}");
-				NameToIndex.Add(line, i - headerLineNumber - 1);
-			}
-
 			foreach (var script in GlobalScripts)
 			{
 				VMExecuter.ExecuteScript(script, null, null);

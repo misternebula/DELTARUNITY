@@ -284,7 +284,7 @@ namespace Assets
 					var scale = new Vector3(textJob.scale.x, textJob.scale.y, 0);
 					GL.MultMatrix(Matrix4x4.TRS(Vector3.zero, rot, scale));
 
-					if (textJob.asset.texture == null && textJob.asset.spriteIndex != null)
+					if (textJob.asset.texture == null && textJob.asset.spriteIndex != -1)
 					{
 						var texture = SpriteManager.SpriteManager.GetSprite(textJob.asset.spriteIndex, character);
 
