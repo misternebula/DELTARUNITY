@@ -1,12 +1,15 @@
-﻿using Assets.Scripts.IniFiles;
+﻿using Assets.Scripts;
+using Assets.Scripts.IniFiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
+using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -26,7 +29,12 @@ namespace Assets.VirtualMachineRunner
 			{ "event_inherited", event_inherited },
 			{ "ini_open", ini_open },
 			{ "ini_read_string", ini_read_string },
-			{ "ini_close", ini_close }
+			{ "ini_close", ini_close },
+			{ "font_add_sprite_ext", font_add_sprite_ext },
+			{ "variable_global_exists", variable_global_exists },
+			{ "ds_map_create", ds_map_create },
+			{ "ds_map_destroy", ds_map_destroy },
+			{ "ds_map_add", ds_map_add }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -75,7 +83,7 @@ namespace Assets.VirtualMachineRunner
 		public static object asset_get_index(Arguments args)
 		{
 			var name = (string)args.ArgumentArray[0];
-			return GameLoader.Instance.NameToIndex[name];
+			return AssetIndexManager.Instance.GetIndex(name);
 		}
 
 		public static object event_inherited(Arguments args)
@@ -188,6 +196,90 @@ namespace Assets.VirtualMachineRunner
 			_iniFile = null;
 
 			return text;
+		}
+
+		public static object font_add_sprite_ext(Arguments args)
+		{
+			Debug.Log($"{args.ArgumentArray[0]}, {args.ArgumentArray[1]}, {args.ArgumentArray[2]}, {args.ArgumentArray[3]}");
+
+			var spriteAssetIndex = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var string_map = VMExecuter.Convert<string>(args.ArgumentArray[1]);
+			var prop = VMExecuter.Convert<bool>(args.ArgumentArray[2]);
+			var sep = VMExecuter.Convert<int>(args.ArgumentArray[3]);
+
+			var spriteAsset = SpriteManager.SpriteManager.GetSpriteAsset(spriteAssetIndex);
+
+			var index = AssetIndexManager.Instance.Register(AssetType.fonts, $"fnt_{spriteAsset.name}");
+
+			var newFont = new FontAsset
+			{
+				AssetIndex = index,
+				name = $"fnt_{spriteAsset.name}",
+				spriteIndex = spriteAssetIndex,
+				sep = sep
+			};
+
+			for (var i = 0; i < string_map.Length; i++)
+			{
+				var fontAssetEntry = new Glyph
+				{
+					characterIndex = string_map[i]
+				};
+
+				newFont.entries.Add(fontAssetEntry);
+			}
+
+			TextManager.TextManager.instance.FontAssets.Add(newFont);
+
+			return newFont.AssetIndex;
+		}
+
+		public static object variable_global_exists(Arguments args)
+		{
+			var name = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+			return VariableResolver.GlobalVariableExists(name);
+		}
+
+		private static Dictionary<int, Dictionary<object, object>> _dsMapDict = new();
+
+		public static object ds_map_create(Arguments args)
+		{
+			var highestIndex = -1;
+			if (_dsMapDict.Count > 0)
+			{
+				highestIndex = _dsMapDict.Keys.Max();
+			}
+
+			_dsMapDict.Add(highestIndex + 1, new Dictionary<object, object>());
+			return highestIndex + 1;
+		}
+
+		public static object ds_map_destroy(Arguments args)
+		{
+			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			_dsMapDict.Remove(index);
+			return null;
+		}
+
+		public static object ds_map_add(Arguments args)
+		{
+			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var key = args.ArgumentArray[1];
+			var value = args.ArgumentArray[2];
+
+			if (!_dsMapDict.ContainsKey(id))
+			{
+				return false;
+			}
+
+			var dict = _dsMapDict[id];
+			if (dict.ContainsKey(key))
+			{
+				return false;
+			}
+
+			dict.Add(key, value);
+			return true;
 		}
 	}
 

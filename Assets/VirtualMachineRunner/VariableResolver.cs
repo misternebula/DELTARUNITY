@@ -35,5 +35,10 @@ namespace Assets.VirtualMachineRunner
 		{
 			return _globalVariables[name];
 		}
+
+		public static bool GlobalVariableExists(string name)
+		{
+			return _globalVariables.ContainsKey(name);
+		}
 	}
 }

@@ -97,7 +97,17 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		public static T Convert<T>(object obj) => (T)Convert(obj, Activator.CreateInstance(typeof(T), null).GetType());
+		public static T Convert<T>(object obj)
+		{
+			if (typeof(T) != typeof(object))
+			{
+				return (T)Convert(obj, typeof(T));
+			}
+			else
+			{
+				return (T)Convert(obj, Activator.CreateInstance(typeof(T), null).GetType());
+			}
+		}
 
 		// TODO nebula: double check this matches gamemaker, idk
 		public static object Convert(object obj, Type type)
@@ -197,9 +207,31 @@ namespace Assets.VirtualMachineRunner
 		{
 			switch (instruction.Opcode)
 			{
+				case VMOpcode.NOT:
+					switch (instruction.TypeOne)
+					{
+						case VMType.b:
+							var value = Convert<bool>(ctx.Stack.Pop());
+							ctx.Stack.Push(!value);
+							break;
+						default:
+							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
+							break;
+					}
+					break;
 				case VMOpcode.ADD:
 					// TODO: use typeOne when popping and typeTwo when pushing. can we have Convert just use VMType directly?
-					ctx.Stack.Push(Convert<double>(ctx.Stack.Pop()) + Convert<double>(ctx.Stack.Pop()));
+
+					var valTwo = ctx.Stack.Pop();
+					var valOne = ctx.Stack.Pop();
+
+					if (valOne is string || valTwo is string)
+					{
+						ctx.Stack.Push(Convert<string>(valOne) + Convert<string>(valTwo));
+						break;
+					}
+
+					ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
 					break;
 				case VMOpcode.B:
 				{
@@ -208,6 +240,7 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
+					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
@@ -224,6 +257,7 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
+					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
@@ -240,42 +274,75 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
+					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
 				case VMOpcode.CMP:
-					var secondNumber = Convert<double>(ctx.Stack.Pop());
-					var firstNumber = Convert<double>(ctx.Stack.Pop());
-					switch (instruction.Comparison)
+
+					var second = ctx.Stack.Pop();
+					var first = ctx.Stack.Pop();
+
+					//Debug.Log($"CMP {first} {second} {instruction.Comparison}");
+
+					if (second is bool or int or double && first is bool or int or double)
 					{
-						case VMComparison.LT:
-							ctx.Stack.Push(firstNumber < secondNumber);
-							break;
-						case VMComparison.LTE:
-							ctx.Stack.Push(firstNumber <= secondNumber);
-							break;
-						case VMComparison.EQ:
-							ctx.Stack.Push(firstNumber == secondNumber);
-							break;
-						case VMComparison.NEQ:
-							ctx.Stack.Push(firstNumber != secondNumber);
-							break;
-						case VMComparison.GTE:
-							ctx.Stack.Push(firstNumber >= secondNumber);
-							break;
-						case VMComparison.GT:
-							ctx.Stack.Push(firstNumber > secondNumber);
-							break;
-						case VMComparison.None:
-						default:
-							throw new ArgumentOutOfRangeException();
+						//Debug.Log($" - is numeric");
+						var firstNumber = Convert<double>(first);
+						var secondNumber = Convert<double>(second);
+						switch (instruction.Comparison)
+						{
+							case VMComparison.LT:
+								ctx.Stack.Push(firstNumber < secondNumber);
+								break;
+							case VMComparison.LTE:
+								ctx.Stack.Push(firstNumber <= secondNumber);
+								break;
+							case VMComparison.EQ:
+								ctx.Stack.Push(firstNumber == secondNumber);
+								break;
+							case VMComparison.NEQ:
+								ctx.Stack.Push(firstNumber != secondNumber);
+								break;
+							case VMComparison.GTE:
+								ctx.Stack.Push(firstNumber >= secondNumber);
+								break;
+							case VMComparison.GT:
+								ctx.Stack.Push(firstNumber > secondNumber);
+								break;
+							case VMComparison.None:
+							default:
+								throw new ArgumentOutOfRangeException();
+						}
 					}
+					else
+					{
+						//Debug.Log($" - isnt numeric");
+						if (instruction.Comparison == VMComparison.EQ)
+						{
+							//Debug.Log($"    - EQ : {first == second}");
+							ctx.Stack.Push(first == second);
+						}
+						else if (instruction.Comparison == VMComparison.NEQ)
+						{
+							//Debug.Log($"    - NEQ : {first != second}");
+							ctx.Stack.Push(first != second);
+						}
+						else
+						{
+							// ??? no idea if this is what GM does
+							ctx.Stack.Push(false);
+						}
+					}
+
+					
 					break;
 				case VMOpcode.PUSHGLB:
 				case VMOpcode.PUSHLOC:
 				case VMOpcode.PUSHBLTN:
 				case VMOpcode.PUSH:
 				{
+					
 					switch (instruction.TypeOne)
 					{
 						case VMType.i:
@@ -283,8 +350,8 @@ namespace Assets.VirtualMachineRunner
 							ctx.Stack.Push(instruction.IntData);
 							break;
 						case VMType.v:
-							//Debug.Log($"Pushing variable {instruction.StringData}");
-							var variableName = instruction.StringData;
+								//Debug.Log($"Pushing variable {instruction.StringData}");
+								var variableName = instruction.StringData;
 							var indexingArray = variableName.StartsWith("[array]");
 							if (indexingArray)
 							{
@@ -301,7 +368,7 @@ namespace Assets.VirtualMachineRunner
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
 									ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
-									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], arrayIndex)}");
+									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], index)}");
 								}
 								else
 								{
@@ -315,7 +382,7 @@ namespace Assets.VirtualMachineRunner
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
 									ctx.Stack.Push(((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]);
-									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[arrayIndex]}");
+									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
 								}
 								else
 								{
@@ -438,7 +505,7 @@ namespace Assets.VirtualMachineRunner
 
 						for (var i = 0; i < instruction.FunctionArgumentCount; i++)
 						{
-							arguments.ArgumentArray[instruction.FunctionArgumentCount - 1 - i] = ctx.Stack.Pop();
+							arguments.ArgumentArray[i] = ctx.Stack.Pop();
 						}
 
 						ctx.Stack.Push(builtInFunction(arguments));
@@ -465,7 +532,6 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.OR:
 				case VMOpcode.XOR:
 				case VMOpcode.NEG:
-				case VMOpcode.NOT:
 				case VMOpcode.SHL:
 				case VMOpcode.SHR:
 				case VMOpcode.DUP:
