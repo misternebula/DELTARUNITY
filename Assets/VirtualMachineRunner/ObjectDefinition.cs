@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
 {
+	/// <summary>
+	/// "template" for an object. analagous to a class
+	/// </summary>
 	[CreateAssetMenu(fileName = "ObjectDefinition", menuName = "ScriptableObjects/Object Definition", order = 2)]
 	public class ObjectDefinition : ScriptableObject
 	{
@@ -16,6 +19,9 @@ namespace Assets.VirtualMachineRunner
 		public bool visible = true;
 		public bool solid;
 		public bool persistent;
+		/// <summary>
+		/// analogous to a superclass
+		/// </summary>
 		public ObjectDefinition parent;
 		public int textureMaskId;
 

@@ -1,5 +1,8 @@
 namespace Assets.VirtualMachineRunner
 {
+	/// <summary>
+	/// result of the execution of an instruction
+	/// </summary>
 	public enum ExecutionResult
 	{
 		Success,

@@ -15,6 +15,9 @@ using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
+	/// <summary>
+	/// instance of an ObjectDefinition
+	/// </summary>
 	public class NewGamemakerObject : DrawWithDepth
 	{
 		public Dictionary<string, object> SelfVariables = new();
