@@ -380,12 +380,12 @@ namespace Assets.VirtualMachineRunner
 								if (indexingArray)
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]);
+									ctx.Stack.Push(((Dictionary<int, object>)EnvironmentStack.Peek().Locals[variableName[6..]])[index]);
 									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
 								}
 								else
 								{
-									ctx.Stack.Push(ctx.Locals[variableName[6..]]);
+									ctx.Stack.Push(EnvironmentStack.Peek().Locals[variableName[6..]]);
 									//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
 								}
 							}
@@ -394,11 +394,11 @@ namespace Assets.VirtualMachineRunner
 								if (indexingArray)
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index]);
+									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(EnvironmentStack.Peek(), variableName[5..]))[index]);
 								}
 								else
 								{
-									ctx.Stack.Push(VariableResolver.GetSelfVariable(ctx, variableName[5..]));
+									ctx.Stack.Push(VariableResolver.GetSelfVariable(EnvironmentStack.Peek(), variableName[5..]));
 								}
 							}
 							else
