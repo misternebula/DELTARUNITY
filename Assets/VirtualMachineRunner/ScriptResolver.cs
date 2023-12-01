@@ -34,7 +34,10 @@ namespace Assets.VirtualMachineRunner
 			{ "variable_global_exists", variable_global_exists },
 			{ "ds_map_create", ds_map_create },
 			{ "ds_map_destroy", ds_map_destroy },
-			{ "ds_map_add", ds_map_add }
+			{ "ds_map_add", ds_map_add },
+			{ "show_debug_message", show_debug_message },
+			{ "file_text_open_read", file_text_open_read },
+			{ "file_text_close", file_text_close }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -281,11 +284,76 @@ namespace Assets.VirtualMachineRunner
 			dict.Add(key, value);
 			return true;
 		}
+
+		public static object show_debug_message(Arguments args)
+		{
+			Debug.Log(args.ArgumentArray[0].ToString());
+			return null;
+		}
+
+		private static readonly Dictionary<int, FileHandle> _fileHandles = new(32);
+
+		public static object file_text_open_read(Arguments args)
+		{
+			var fname = (string)args.ArgumentArray[0];
+
+			var filepath = Path.Combine(Application.persistentDataPath, fname);
+			var fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+
+			if (_fileHandles.Count == 32)
+			{
+				return -1;
+			}
+
+			var highestIndex = -1;
+			if (_fileHandles.Count > 0)
+			{
+				highestIndex = _fileHandles.Keys.Max();
+			}
+
+			var handle = new FileHandle
+			{
+				Reader = new StreamReader(fileStream)
+			};
+
+			_fileHandles.Add(highestIndex + 1, handle);
+			return highestIndex + 1;
+		}
+
+		public static object file_text_close(Arguments args)
+		{
+			var index = (int)args.ArgumentArray[0];
+
+			if (_fileHandles.ContainsKey(index))
+			{
+				if (_fileHandles[index].Reader != null)
+				{
+					_fileHandles[index].Reader.Close();
+					_fileHandles[index].Reader.Dispose();
+				}
+
+				if (_fileHandles[index].Writer != null)
+				{
+					_fileHandles[index].Writer.Close();
+					_fileHandles[index].Writer.Dispose();
+				}
+
+				_fileHandles.Remove(index);
+			}
+
+			return null;
+		}
 	}
 
 	public class Arguments
 	{
 		public VMScriptExecutionContext Context;
 		public object[] ArgumentArray;
+	}
+
+	public class FileHandle
+	{
+		public StreamReader Reader;
+		public StreamWriter Writer;
 	}
 }

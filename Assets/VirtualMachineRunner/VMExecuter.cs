@@ -24,7 +24,7 @@ namespace Assets.VirtualMachineRunner
 	{
 		public static Stack<VMScriptExecutionContext> EnvironmentStack = new();
 
-		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0)
+		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
 			Debug.Log($"Executing script {script.name} ...");
 
@@ -39,6 +39,11 @@ namespace Assets.VirtualMachineRunner
 			foreach (var item in script.LocalVariables)
 			{
 				ctx.Locals.Add(item, null);
+			}
+
+			if (arguments != null)
+			{
+				ctx.Locals["arguments"] = arguments.ArgumentArray;
 			}
 
 			// Make the current object the current instance
@@ -240,7 +245,6 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
@@ -257,7 +261,6 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
@@ -274,7 +277,6 @@ namespace Assets.VirtualMachineRunner
 						return true;
 					}
 
-					//Debug.Log($"JUMP TO {instruction.IntData}");
 					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
 					break;
 				}
@@ -283,11 +285,8 @@ namespace Assets.VirtualMachineRunner
 					var second = ctx.Stack.Pop();
 					var first = ctx.Stack.Pop();
 
-					//Debug.Log($"CMP {first} {second} {instruction.Comparison}");
-
 					if (second is bool or int or double && first is bool or int or double)
 					{
-						//Debug.Log($" - is numeric");
 						var firstNumber = Convert<double>(first);
 						var secondNumber = Convert<double>(second);
 						switch (instruction.Comparison)
@@ -388,6 +387,18 @@ namespace Assets.VirtualMachineRunner
 								{
 									ctx.Stack.Push(ctx.Locals[variableName[6..]]);
 									//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
+								}
+							}
+							else if (isSelf)
+							{
+								if (indexingArray)
+								{
+									var index = Convert<int>(ctx.Stack.Pop());
+									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index]);
+								}
+								else
+								{
+									ctx.Stack.Push(VariableResolver.GetSelfVariable(ctx, variableName[5..]));
 								}
 							}
 							else
@@ -495,28 +506,26 @@ namespace Assets.VirtualMachineRunner
 					ctx.Stack.Push(instruction.IntData);
 					break;
 				case VMOpcode.CALL:
+					var arguments = new Arguments
+					{
+						Context = EnvironmentStack.Peek(),
+						ArgumentArray = new object[instruction.FunctionArgumentCount]
+					};
+
+					for (var i = 0; i < instruction.FunctionArgumentCount; i++)
+					{
+						arguments.ArgumentArray[i] = ctx.Stack.Pop();
+					}
+
 					if (ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out var builtInFunction))
 					{
-						var arguments = new Arguments
-						{
-							Context = EnvironmentStack.Peek(),
-							ArgumentArray = new object[instruction.FunctionArgumentCount]
-						};
-
-						for (var i = 0; i < instruction.FunctionArgumentCount; i++)
-						{
-							arguments.ArgumentArray[i] = ctx.Stack.Pop();
-						}
-
 						ctx.Stack.Push(builtInFunction(arguments));
-
 						break;
 					}
 
 					if (ScriptResolver.Instance.NameToScript.TryGetValue(instruction.FunctionName, out var scriptName))
 					{
-						Debug.Log($"Calling script {instruction.FunctionName} with {instruction.FunctionArgumentCount} arguments");
-						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition));
+						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition, arguments: arguments));
 						break;
 					}
 

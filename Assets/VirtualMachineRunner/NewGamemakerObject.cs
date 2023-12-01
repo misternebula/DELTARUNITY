@@ -17,6 +17,8 @@ namespace Assets.VirtualMachineRunner
 {
 	public class NewGamemakerObject : DrawWithDepth
 	{
+		public Dictionary<string, object> SelfVariables = new();
+
 		public ObjectDefinition Definition;
 
 		public string object_index => name;

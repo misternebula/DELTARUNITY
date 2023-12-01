@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,59 @@ namespace Assets.VirtualMachineRunner
 		public static bool GlobalVariableExists(string name)
 		{
 			return _globalVariables.ContainsKey(name);
+		}
+
+
+		public static Dictionary<string, (Func<NewGamemakerObject, object> getter, Action<NewGamemakerObject, object> setter)> BuiltInVariables = new()
+		{
+			{ "working_directory", (get_working_directory, null) }
+		};
+
+		public static object get_working_directory(NewGamemakerObject instance)
+		{
+			return Application.persistentDataPath + Path.DirectorySeparatorChar;
+		}
+
+		public static object GetSelfVariable(VMScriptExecutionContext ctx, string name)
+		{
+			if (name.StartsWith("argument"))
+			{
+				var withoutArgument = name.Substring("argument".Length);
+				if (int.TryParse(withoutArgument, out var index))
+				{
+					return ((object[])ctx.Locals["arguments"])[index];
+				}
+			}
+
+			if (BuiltInVariables.ContainsKey(name))
+			{
+				return BuiltInVariables[name].getter(ctx.Self);
+			}
+
+			if (ctx.Self.SelfVariables.TryGetValue(name, out var variable))
+			{
+				return variable;
+			}
+
+			Debug.LogError($"Couldn't find variable {name}");
+			return null;
+		}
+
+		public static void SetSelfVariable(VMScriptExecutionContext ctx, string name, object value)
+		{
+			if (BuiltInVariables.ContainsKey(name))
+			{
+				BuiltInVariables[name].setter(ctx.Self, value);
+				return;
+			}
+
+			if (ctx.Self.SelfVariables.ContainsKey(name))
+			{
+				ctx.Self.SelfVariables[name] = value;
+				return;
+			}
+
+			ctx.Self.SelfVariables.Add(name, value);
 		}
 	}
 }
