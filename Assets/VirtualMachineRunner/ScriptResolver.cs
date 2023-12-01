@@ -7,6 +7,8 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
 using Object = System.Object;
@@ -40,7 +42,8 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_close", file_text_close },
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
-			{ "file_text_readln", file_text_readln }
+			{ "file_text_readln", file_text_readln },
+			{ "json_decode", json_decode }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -206,8 +209,6 @@ namespace Assets.VirtualMachineRunner
 
 		public static object font_add_sprite_ext(Arguments args)
 		{
-			Debug.Log($"{args.ArgumentArray[0]}, {args.ArgumentArray[1]}, {args.ArgumentArray[2]}, {args.ArgumentArray[3]}");
-
 			var spriteAssetIndex = VMExecuter.Convert<int>(args.ArgumentArray[0]);
 			var string_map = VMExecuter.Convert<string>(args.ArgumentArray[1]);
 			var prop = VMExecuter.Convert<bool>(args.ArgumentArray[2]);
@@ -372,6 +373,27 @@ namespace Assets.VirtualMachineRunner
 			var fileid = (int)args.ArgumentArray[0];
 			var reader = _fileHandles[fileid].Reader;
 			return reader.ReadLine();
+		}
+
+		public static object json_decode(Arguments args)
+		{
+			var _string = (string)args.ArgumentArray[0];
+			var jObject = JObject.Parse(_string);
+
+			var dsMap = (int)ds_map_create(null);
+			if (jObject.Children().Count() == 1 && jObject.Type != JTokenType.Array)
+			{
+				ds_map_add(new Arguments() { Context = args.Context, ArgumentArray = new object[] { dsMap, "default", jObject.Children()[0] } });
+			}
+			else if (jObject.Type == JTokenType.Array)
+			{
+
+			}
+			else
+			{
+
+			}
+			return dsMap;
 		}
 	}
 
