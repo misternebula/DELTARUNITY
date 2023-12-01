@@ -154,7 +154,6 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		// TODO nebula: double check this matches gamemaker, idk
 		public static object Convert(object obj, Type type)
 		{
 			if (type == typeof(object))
@@ -247,7 +246,7 @@ namespace Assets.VirtualMachineRunner
 			return default;
 		}
 
-		// returns true when jumping or when error. maybe should use exceptions instead? since Convert can throw
+		// BUG: throws sometimes instead of returning ExecutionResult.Failure
 		public static (ExecutionResult result, object data) ExecuteInstruction(VMScript script, VMScriptInstruction instruction, VMScriptExecutionContext ctx)
 		{
 			switch (instruction.Opcode)
@@ -265,12 +264,11 @@ namespace Assets.VirtualMachineRunner
 					}
 					break;
 				case VMOpcode.ADD:
-					// TODO: use typeOne when popping and typeTwo when pushing. can we have Convert just use VMType directly?
-
 					var valTwo = ctx.Stack.Pop();
 					var valOne = ctx.Stack.Pop();
 
-					if (valOne is string || valTwo is string)
+					// strings need to concat
+					if (instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s)
 					{
 						var stringOne = Convert<string>(valOne);
 						var stringTwo = Convert<string>(valTwo);
@@ -278,6 +276,7 @@ namespace Assets.VirtualMachineRunner
 						break;
 					}
 
+					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
 					ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
 					break;
 				case VMOpcode.B:

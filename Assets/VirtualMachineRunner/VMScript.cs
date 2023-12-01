@@ -28,6 +28,7 @@ namespace Assets.VirtualMachineRunner
 		public VMType TypeOne = VMType.None;
 		public VMType TypeTwo = VMType.None;
 
+		// we could just store StringData and then parse it in opcodes, but this works too 
 		public int IntData;
 		public double DoubleData;
 		public string StringData;
