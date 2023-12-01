@@ -43,7 +43,8 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
-			{ "json_decode", json_decode }
+			{ "json_decode", json_decode },
+			{ "ds_map_size", ds_map_size }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -394,6 +395,12 @@ namespace Assets.VirtualMachineRunner
 
 			}
 			return dsMap;
+		}
+
+		public static object ds_map_size(Arguments args)
+		{
+			var id = (int)args.ArgumentArray[0];
+			return _dsMapDict[id].Count;
 		}
 	}
 
