@@ -12,30 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
   m_Name: gml_GlobalScript_0
   m_EditorClassIdentifier: 
-  Blocks:
-  - ID: 0
-    Instructions:
-    - Raw: call.i __init_d3d(argc=0)
-      Opcode: 30
-      TypeOne: 1
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: __init_d3d
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: popz.v
-      Opcode: 19
-      TypeOne: 2
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
+  Name: cript_0
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+  Instructions:
+  - Raw: call.i __init_d3d(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: __init_d3d
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

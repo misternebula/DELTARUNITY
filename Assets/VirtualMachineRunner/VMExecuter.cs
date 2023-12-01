@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
 using UnityEngine;
 using Object = System.Object;
 
@@ -50,8 +52,46 @@ namespace Assets.VirtualMachineRunner
 			EnvironmentStack.Push(ctx);
 
 			// Execute the first block, which will execute the next needed block, and so on.
-			var zeroBlock = script.Blocks[0];
-			ExecuteBlock(script, zeroBlock, ctx);
+			/*var zeroBlock = script.Blocks[0];
+			ExecuteBlock(script, zeroBlock, ctx);*/
+
+			// Setup variables to start execution at label [0]
+			var instructionIndex = script.Labels[0]; // this *should* always be 0, but idk.
+
+			while (true)
+			{
+				var (executionResult, data) = ExecuteInstruction(script, script.Instructions[instructionIndex], ctx);
+
+				if (executionResult == ExecutionResult.Success)
+				{
+					if (instructionIndex == script.Instructions.Count - 1)
+					{
+						// script finished!
+						break;
+					}
+
+					instructionIndex++;
+					continue;
+				}
+
+				if (executionResult == ExecutionResult.JumpedToEnd)
+				{
+					break;
+				}
+
+				if (executionResult == ExecutionResult.JumpedToLabel)
+				{
+					var label = (int)data;
+					instructionIndex = script.Labels[label];
+					continue;
+				}
+
+				if (executionResult == ExecutionResult.ReturnedValue)
+				{
+					ctx.ReturnValue = data;
+					break;
+				}
+			}
 
 			// Current object has finished executing, remove from stack
 			EnvironmentStack.Pop();
@@ -59,7 +99,7 @@ namespace Assets.VirtualMachineRunner
 			return ctx.ReturnValue;
 		}
 
-		public static void ExecuteBlock(VMScript script, VMScriptBlock block, VMScriptExecutionContext ctx)
+		/*public static void ExecuteBlock(VMScript script, VMScriptBlock block, VMScriptExecutionContext ctx)
 		{
 			foreach (var instruction in block.Instructions)
 			{
@@ -81,7 +121,7 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return;
-		}
+		}*/
 
 		private static Type GetType(VMType type)
 		{
@@ -208,7 +248,7 @@ namespace Assets.VirtualMachineRunner
 		}
 
 		// returns true when jumping or when error. maybe should use exceptions instead? since Convert can throw
-		public static bool ExecuteInstruction(VMScript script, VMScriptInstruction instruction, VMScriptExecutionContext ctx)
+		public static (ExecutionResult result, object data) ExecuteInstruction(VMScript script, VMScriptInstruction instruction, VMScriptExecutionContext ctx)
 		{
 			switch (instruction.Opcode)
 			{
@@ -232,7 +272,9 @@ namespace Assets.VirtualMachineRunner
 
 					if (valOne is string || valTwo is string)
 					{
-						ctx.Stack.Push(Convert<string>(valOne) + Convert<string>(valTwo));
+						var stringOne = Convert<string>(valOne);
+						var stringTwo = Convert<string>(valTwo);
+						ctx.Stack.Push(stringOne + stringTwo);
 						break;
 					}
 
@@ -242,11 +284,10 @@ namespace Assets.VirtualMachineRunner
 				{
 					if (instruction.JumpToEnd)
 					{
-						return true;
+						return (ExecutionResult.JumpedToEnd, null);
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
-					break;
+					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				}
 				case VMOpcode.BT:
 				{
@@ -258,11 +299,10 @@ namespace Assets.VirtualMachineRunner
 
 					if (instruction.JumpToEnd)
 					{
-						return true;
+						return (ExecutionResult.JumpedToEnd, null);
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
-					break;
+					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				}
 				case VMOpcode.BF:
 				{
@@ -274,11 +314,10 @@ namespace Assets.VirtualMachineRunner
 
 					if (instruction.JumpToEnd)
 					{
-						return true;
+						return (ExecutionResult.JumpedToEnd, null);
 					}
 
-					ExecuteBlock(script, script.Blocks[instruction.IntData], ctx);
-					break;
+					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				}
 				case VMOpcode.CMP:
 
@@ -493,8 +532,7 @@ namespace Assets.VirtualMachineRunner
 					break;
 				}
 				case VMOpcode.RET:
-					ctx.ReturnValue = ctx.Stack.Pop();
-					return true;
+					return (ExecutionResult.ReturnedValue, ctx.Stack.Pop());
 				case VMOpcode.CONV:
 					var toType = GetType(instruction.TypeTwo);
 					ctx.Stack.Push(Convert(ctx.Stack.Pop(), toType));
@@ -531,7 +569,7 @@ namespace Assets.VirtualMachineRunner
 
 					Debug.LogError($"Can't resolve script {instruction.FunctionName} !");
 					Debug.Break();
-					return true;
+					return (ExecutionResult.Failed, null);
 				case VMOpcode.MUL:
 				case VMOpcode.DIV:
 				case VMOpcode.REM:
@@ -552,10 +590,10 @@ namespace Assets.VirtualMachineRunner
 				default:
 					Debug.LogError($"Unknown opcode {instruction.Opcode}");
 					Debug.Break();
-					return true;
+					return (ExecutionResult.Failed, null);
 			}
 
-			return false;
+			return (ExecutionResult.Success, null);
 		}
 	}
 }

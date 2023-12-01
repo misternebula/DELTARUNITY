@@ -56,12 +56,7 @@ namespace Assets.Editor
 						break;
 					}
 
-					var newBlock = new VMScriptBlock
-					{
-						ID = int.Parse(id)
-					};
-
-					asset.Blocks.Add(newBlock);
+					asset.Labels.Add(int.Parse(id), asset.Instructions.Count);
 				}
 				else
 				{
@@ -200,7 +195,7 @@ namespace Assets.Editor
 							throw new ArgumentOutOfRangeException();
 					}
 
-					asset.Blocks.Last().Instructions.Add(instruction);
+					asset.Instructions.Add(instruction);
 				}
 			}
 

@@ -15,30 +15,32 @@ MonoBehaviour:
   Name: obj_initializer2_PreCreate_0
   LocalVariables:
   - arguments
-  Blocks:
-  - ID: 0
-    Instructions:
-    - Raw: call.i event_inherited(argc=0)
-      Opcode: 30
-      TypeOne: 1
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: event_inherited
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: popz.v
-      Opcode: 19
-      TypeOne: 2
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+  Instructions:
+  - Raw: call.i event_inherited(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: event_inherited
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

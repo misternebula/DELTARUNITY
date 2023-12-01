@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -13,13 +14,8 @@ namespace Assets.VirtualMachineRunner
 	{
 		public string Name;
 		public List<string> LocalVariables;
-		public List<VMScriptBlock> Blocks = new();
-	}
-
-	[Serializable]
-	public class VMScriptBlock
-	{
-		public int ID;
+		[SerializedDictionary("Label", "Instruction Index")]
+		public SerializedDictionary<int, int> Labels = new();
 		public List<VMScriptInstruction> Instructions = new();
 	}
 

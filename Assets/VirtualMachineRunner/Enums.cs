@@ -1,5 +1,14 @@
 namespace Assets.VirtualMachineRunner
 {
+	public enum ExecutionResult
+	{
+		Success,
+		Failed,
+		ReturnedValue,
+		JumpedToLabel,
+		JumpedToEnd
+	}
+
 	public enum EventType
 	{
 		None,

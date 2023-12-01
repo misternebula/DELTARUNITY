@@ -15,126 +15,128 @@ MonoBehaviour:
   Name: __init_global
   LocalVariables:
   - arguments
-  Blocks:
-  - ID: 0
-    Instructions:
-    - Raw: pushi.e 0
-      Opcode: 29
-      TypeOne: 5
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: conv.i.v
-      Opcode: 0
-      TypeOne: 1
-      TypeTwo: 2
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: pushi.e 1
-      Opcode: 29
-      TypeOne: 5
-      TypeTwo: 0
-      IntData: 1
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: conv.i.v
-      Opcode: 0
-      TypeOne: 1
-      TypeTwo: 2
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: call.i layer_force_draw_depth(argc=2)
-      Opcode: 30
-      TypeOne: 1
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: layer_force_draw_depth
-      FunctionArgumentCount: 2
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: popz.v
-      Opcode: 19
-      TypeOne: 2
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: pushi.e 0
-      Opcode: 29
-      TypeOne: 5
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: conv.i.v
-      Opcode: 0
-      TypeOne: 1
-      TypeTwo: 2
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: call.i draw_set_colour(argc=1)
-      Opcode: 30
-      TypeOne: 1
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: draw_set_colour
-      FunctionArgumentCount: 1
-      JumpToEnd: 0
-      Comparison: 0
-    - Raw: popz.v
-      Opcode: 19
-      TypeOne: 2
-      TypeTwo: 0
-      IntData: 0
-      DoubleData: 0
-      StringData: 
-      BoolData: 0
-      FunctionName: 
-      FunctionArgumentCount: 0
-      JumpToEnd: 0
-      Comparison: 0
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+  Instructions:
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i layer_force_draw_depth(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: layer_force_draw_depth
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i draw_set_colour(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: draw_set_colour
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
