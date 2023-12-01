@@ -466,7 +466,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static void ExecuteScript(NewGamemakerObject obj, ObjectDefinition definition, EventType type, int otherData = 0)
 		{
-			Debug.Log($"Trying to execute {type} {otherData} on {obj.object_index} with definition {definition.name}");
+			//Debug.Log($"Trying to execute {type} {otherData} on {obj.object_index} with definition {definition.name}");
 
 			void TryExecute(VMScript script)
 			{

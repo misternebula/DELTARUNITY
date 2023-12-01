@@ -37,7 +37,10 @@ namespace Assets.VirtualMachineRunner
 			{ "ds_map_add", ds_map_add },
 			{ "show_debug_message", show_debug_message },
 			{ "file_text_open_read", file_text_open_read },
-			{ "file_text_close", file_text_close }
+			{ "file_text_close", file_text_close },
+			{ "file_text_eof", file_text_eof },
+			{ "file_exists", file_exists },
+			{ "file_text_readln", file_text_readln }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -298,6 +301,12 @@ namespace Assets.VirtualMachineRunner
 			var fname = (string)args.ArgumentArray[0];
 
 			var filepath = Path.Combine(Application.persistentDataPath, fname);
+
+			if (!File.Exists(filepath))
+			{
+				return -1;
+			}
+
 			var fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
 
 			if (_fileHandles.Count == 32)
@@ -342,6 +351,27 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return null;
+		}
+
+		public static object file_text_eof(Arguments args)
+		{
+			var fileid = (int)args.ArgumentArray[0];
+			var reader = _fileHandles[fileid].Reader;
+			return reader.EndOfStream;
+		}
+
+		public static object file_exists(Arguments args)
+		{
+			var fname = (string)args.ArgumentArray[0];
+			var filepath = Path.Combine(Application.persistentDataPath, fname);
+			return File.Exists(filepath);
+		}
+
+		public static object file_text_readln(Arguments args)
+		{
+			var fileid = (int)args.ArgumentArray[0];
+			var reader = _fileHandles[fileid].Reader;
+			return reader.ReadLine();
 		}
 	}
 
