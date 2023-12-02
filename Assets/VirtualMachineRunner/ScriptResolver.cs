@@ -1,17 +1,11 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.IniFiles;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using UnityEngine;
-using static UnityEditorInternal.ReorderableList;
-using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -37,6 +31,9 @@ namespace Assets.VirtualMachineRunner
 			{ "ds_map_create", ds_map_create },
 			{ "ds_map_destroy", ds_map_destroy },
 			{ "ds_map_add", ds_map_add },
+			{ "ds_list_create", ds_list_create },
+			{ "ds_list_destroy", ds_list_destroy },
+			{ "ds_list_add", ds_list_add },
 			{ "show_debug_message", show_debug_message },
 			{ "file_text_open_read", file_text_open_read },
 			{ "file_text_close", file_text_close },
@@ -119,13 +116,13 @@ namespace Assets.VirtualMachineRunner
 
 			var filepath = Path.Combine(Application.persistentDataPath, name);
 
-			if (!System.IO.File.Exists(filepath))
+			if (!File.Exists(filepath))
 			{
 				_iniFile = new IniFile { Name = name };
 				return null;
 			}
 
-			var lines = System.IO.File.ReadAllLines(filepath);
+			var lines = File.ReadAllLines(filepath);
 
 			KeyValuePair<string, string> ParseKeyValue(string line)
 			{
@@ -185,7 +182,7 @@ namespace Assets.VirtualMachineRunner
 		public static object ini_close(Arguments args)
 		{
 			var filepath = Path.Combine(Application.persistentDataPath, _iniFile.Name);
-			System.IO.File.Delete(filepath);
+			File.Delete(filepath);
 			var fileStream = new FileStream(filepath, FileMode.Append, FileAccess.Write);
 			var streamWriter = new StreamWriter(fileStream);
 
@@ -289,6 +286,10 @@ namespace Assets.VirtualMachineRunner
 			return true;
 		}
 
+		public static object ds_list_create(Arguments args) => throw new NotImplementedException();
+		public static object ds_list_destroy(Arguments args) => throw new NotImplementedException();
+		public static object ds_list_add(Arguments args) => throw new NotImplementedException();
+
 		public static object show_debug_message(Arguments args)
 		{
 			Debug.Log(args.ArgumentArray[0].ToString());
@@ -377,23 +378,62 @@ namespace Assets.VirtualMachineRunner
 
 		public static object json_decode(Arguments args)
 		{
-			var _string = (string)args.ArgumentArray[0];
-			var jObject = JObject.Parse(_string);
-
-			var dsMap = (int)ds_map_create(null);
-			if (jObject.Children().Count() == 1 && jObject.Type != JTokenType.Array)
+			// is recursive weeeeeeeeeeee
+			static object Parse(JToken jToken)
 			{
-				ds_map_add(new Arguments() { Context = args.Context, ArgumentArray = new object[] { dsMap, "default", jObject.Children()[0] } });
+				switch (jToken)
+				{
+					case JValue jValue:
+						return jValue.Value;
+					case JArray jArray:
+					{
+						var dsList = (int)ds_list_create(null);
+						foreach (var item in jArray)
+						{
+							// TODO: make and call the proper function for maps and lists
+							ds_list_add(new Arguments { ArgumentArray = new object[] { dsList, Parse(item) } });
+						}
+						return dsList;
+					}
+					case JObject jObject:
+					{
+						var dsMap = (int)ds_list_create(null);
+						foreach (var (name, value) in jObject)
+						{
+							// TODO: make and call the proper function for maps and lists
+							ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, name, Parse(value) } });
+						}
+						return dsMap;
+					}
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
 			}
-			else if (jObject.Type == JTokenType.Array)
-			{
 
-			}
-			else
-			{
+			var @string = (string)args.ArgumentArray[0];
+			var jToken = JToken.Parse(@string);
 
+			switch (jToken)
+			{
+				case JValue jValue:
+				{
+					var dsMap = (int)ds_map_create(null);
+					ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, "default", Parse(jValue) } });
+					return dsMap;
+				}
+				case JArray jArray:
+				{
+					var dsMap = (int)ds_map_create(null);
+					ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, "default", Parse(jArray) } });
+					return dsMap;
+				}
+				case JObject jObject:
+				{
+					return Parse(jObject);
+				}
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
-			return dsMap;
 		}
 	}
 

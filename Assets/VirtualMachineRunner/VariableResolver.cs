@@ -55,6 +55,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object GetSelfVariable(VMScriptExecutionContext ctx, string name)
 		{
+			// argumentn is a self even though arguments is a local
 			if (name.StartsWith("argument"))
 			{
 				var withoutArgument = name.Substring("argument".Length);
@@ -64,6 +65,7 @@ namespace Assets.VirtualMachineRunner
 				}
 			}
 
+			// global builtins are also self for some reason
 			if (BuiltInVariables.ContainsKey(name))
 			{
 				return BuiltInVariables[name].getter(ctx.Self);
