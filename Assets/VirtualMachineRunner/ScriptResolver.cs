@@ -481,7 +481,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object _string(Arguments args)
 		{
-			var value_or_format = args.ArgumentArray[0];
+			var valueOrFormat = args.ArgumentArray[0];
 			var values = new object[] { };
 			if (args.ArgumentArray.Length > 1)
 			{
@@ -491,9 +491,9 @@ namespace Assets.VirtualMachineRunner
 			if (args.ArgumentArray.Length > 1)
 			{
 				// format
-				// doing this like im in c lol
-				var format = (string)value_or_format;
+				var format = (string)valueOrFormat;
 
+				// doing this like im in c lol
 				var result = new StringBuilder();
 				var bracesString = new StringBuilder();
 
@@ -537,10 +537,11 @@ namespace Assets.VirtualMachineRunner
 			{
 				// value
 
-				if (value_or_format.GetType().IsArray)
+				if (valueOrFormat.GetType().IsArray)
 				{
 					// is any of this right? not sure.
-					var enumerable = value_or_format as IEnumerable<object>;
+					// could potentially do (Array)valueOrFormat here? have to test
+					var enumerable = valueOrFormat as IEnumerable<object>;
 					var index = 0;
 					var result = new StringBuilder("[");
 					foreach (var element in enumerable)
@@ -558,18 +559,18 @@ namespace Assets.VirtualMachineRunner
 					result.Append("]");
 					return result.ToString();
 				}
-				else if (value_or_format is bool)
+				else if (valueOrFormat is bool)
 				{
-					return VMExecuter.Convert<string>(value_or_format);
+					return VMExecuter.Convert<string>(valueOrFormat);
 				}
-				else if (value_or_format is string)
+				else if (valueOrFormat is string)
 				{
-					return value_or_format;
+					return valueOrFormat;
 				}
 				else
 				{
 					// real
-					var num = VMExecuter.Convert<double>(value_or_format);
+					var num = VMExecuter.Convert<double>(valueOrFormat);
 					var afterTwoDigits = num % 0.01f;
 					var truncated = num - afterTwoDigits;
 
