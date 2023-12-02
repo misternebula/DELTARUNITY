@@ -490,14 +490,21 @@ namespace Assets.VirtualMachineRunner
 			if (args.ArgumentArray.Length > 1)
 			{
 				// format
-				// TODO : implement
-				throw new NotImplementedException();
+				var format = VMExecuter.Convert<string>(value_or_format);
+				for (var i = 0; i < values.Length; i++)
+				{
+					var value = values[i];
+					var valueString = (string)_string(new Arguments { ArgumentArray = new object[] { value } });
+					format = format.Replace($"{i}", valueString);
+				}
+
+				return format;
 			}
 			else
 			{
 				// value
 
-				if (value_or_format.GetType().IsArray) 
+				if (value_or_format.GetType().IsArray)
 				{
 					// is any of this right? not sure.
 					var enumerable = value_or_format as IEnumerable<object>;
@@ -546,7 +553,6 @@ namespace Assets.VirtualMachineRunner
 			if (!_dsMapDict.ContainsKey(id))
 			{
 				return null;
-				
 			}
 
 			var dict = _dsMapDict[id];
