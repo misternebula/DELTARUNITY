@@ -583,6 +583,10 @@ namespace Assets.VirtualMachineRunner
 					var assetId = Convert<int>(ctx.Stack.Pop());
 					var instances = Array.Empty<NewGamemakerObject>(); // TODO get instances with asset id
 
+					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
+					// SUPER HACKY. there HAS to be a better way of doing this
+					EnvironmentStack.Push(null);
+					
 					if (instances.Length == 0)
 					{
 						if (instruction.JumpToEnd)
@@ -592,10 +596,6 @@ namespace Assets.VirtualMachineRunner
 
 						return (ExecutionResult.JumpedToLabel, instruction.IntData);
 					}
-
-					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
-					// SUPER HACKY. there HAS to be a better way of doing this
-					EnvironmentStack.Push(null);
 
 					foreach (var instance in instances)
 					{
