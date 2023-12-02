@@ -18,6 +18,7 @@ namespace Assets.VirtualMachineRunner
 		public object ReturnValue = null;
 		public EventType EventType;
 		public int EventIndex;
+		public bool IsPushEnvMarker;
 	}
 
 	public static class VMExecuter
@@ -585,6 +586,10 @@ namespace Assets.VirtualMachineRunner
 						return (ExecutionResult.JumpedToLabel, instruction.IntData);
 					}
 
+					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
+					// SUPER HACKY. there HAS to be a better way of doing this
+					EnvironmentStack.Push(null);
+
 					foreach (var instance in instances)
 					{
 						var newCtx = new VMScriptExecutionContext
@@ -603,7 +608,7 @@ namespace Assets.VirtualMachineRunner
 					// if so, jump to instruction.IntData
 					// if not, continue
 
-					var instancesLeftOnStack = true; // TODO maybe mark ctx as pushed by pushenv?
+					var instancesLeftOnStack = EnvironmentStack.Pop() != null;
 
 					if (instancesLeftOnStack)
 					{
