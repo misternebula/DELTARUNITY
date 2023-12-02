@@ -255,7 +255,7 @@ namespace Assets.VirtualMachineRunner
 				highestIndex = _dsMapDict.Keys.Max();
 			}
 
-			_dsMapDict.Add(highestIndex + 1, new Dictionary<object, object>());
+			_dsMapDict.Add(highestIndex + 1, new());
 			return highestIndex + 1;
 		}
 
@@ -293,9 +293,41 @@ namespace Assets.VirtualMachineRunner
 			return _dsMapDict[id].Count;
 		}
 
-		public static object ds_list_create(Arguments args) => throw new NotImplementedException();
-		public static object ds_list_destroy(Arguments args) => throw new NotImplementedException();
-		public static object ds_list_add(Arguments args) => throw new NotImplementedException();
+		private static Dictionary<int, List<object>> _dsListDict = new();
+
+		public static object ds_list_create(Arguments args)
+		{
+			var highestIndex = -1;
+			if (_dsListDict.Count > 0)
+			{
+				highestIndex = _dsListDict.Keys.Max();
+			}
+
+			_dsListDict.Add(highestIndex + 1, new());
+			return highestIndex + 1;
+		}
+
+		public static object ds_list_destroy(Arguments args)
+		{
+			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			_dsListDict.Remove(index);
+			return null;
+		}
+
+		public static object ds_list_add(Arguments args)
+		{
+			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var value = args.ArgumentArray[2];
+
+			if (!_dsListDict.ContainsKey(id))
+			{
+				return null;
+			}
+
+			var list = _dsListDict[id];
+			list.Add(value);
+			return null;
+		}
 
 		public static object show_debug_message(Arguments args)
 		{
