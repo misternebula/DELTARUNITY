@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -372,14 +368,13 @@ namespace Assets.VirtualMachineRunner
 						}
 					}
 
-					
+
 					break;
 				case VMOpcode.PUSHGLB:
 				case VMOpcode.PUSHLOC:
 				case VMOpcode.PUSHBLTN:
 				case VMOpcode.PUSH:
 				{
-					
 					switch (instruction.TypeOne)
 					{
 						case VMType.i:
@@ -387,8 +382,8 @@ namespace Assets.VirtualMachineRunner
 							ctx.Stack.Push(instruction.IntData);
 							break;
 						case VMType.v:
-								//Debug.Log($"Pushing variable {instruction.StringData}");
-								var variableName = instruction.StringData;
+							//Debug.Log($"Pushing variable {instruction.StringData}");
+							var variableName = instruction.StringData;
 							var indexingArray = variableName.StartsWith("[array]");
 							if (indexingArray)
 							{
@@ -569,6 +564,54 @@ namespace Assets.VirtualMachineRunner
 					Debug.LogError($"Can't resolve script {instruction.FunctionName} !");
 					Debug.Break();
 					return (ExecutionResult.Failed, null);
+				case VMOpcode.PUSHENV:
+					// find all instances of id on stack
+					// if found, push all to environment stack
+					// if none, jump to instruction.IntData
+					
+					var instanceId = Convert<int>(ctx.Stack.Pop());
+					var instances = Array.Empty<NewGamemakerObject>(); // TODO from instance id
+
+					if (instances.Length == 0)
+					{
+						if (instruction.JumpToEnd)
+						{
+							return (ExecutionResult.JumpedToEnd, null);
+						}
+
+						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					}
+					
+					foreach (var instance in instances)
+					{
+						var newCtx = new VMScriptExecutionContext
+						{
+							Self = instance,
+							ObjectDefinition = instance.Definition,
+							EventType = ctx.EventType,
+							EventIndex = ctx.EventIndex
+						};
+
+						EnvironmentStack.Push(newCtx);
+					}
+					break;
+				case VMOpcode.POPENV:
+					// see if there is instances left on stack
+					// if so, jump to instruction.IntData
+					// if not, continue
+
+					var instancesLeftOnStack = true; // TODO maybe mark ctx as pushed by pushenv?
+
+					if (instancesLeftOnStack)
+					{
+						if (instruction.JumpToEnd)
+						{
+							return (ExecutionResult.JumpedToEnd, null);
+						}
+
+						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					}
+					break;
 				case VMOpcode.MUL:
 				case VMOpcode.DIV:
 				case VMOpcode.REM:
@@ -582,8 +625,6 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.SHR:
 				case VMOpcode.DUP:
 				case VMOpcode.EXIT:
-				case VMOpcode.PUSHENV:
-				case VMOpcode.POPENV:
 				case VMOpcode.CALLV:
 				case VMOpcode.BREAK:
 				default:
