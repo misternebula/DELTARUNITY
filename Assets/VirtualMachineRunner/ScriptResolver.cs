@@ -436,7 +436,7 @@ namespace Assets.VirtualMachineRunner
 					}
 					case JObject jObject:
 					{
-						var dsMap = (int)ds_list_create(null);
+						var dsMap = (int)ds_map_create(null);
 						foreach (var (name, value) in jObject)
 						{
 							// TODO: make and call the proper function for maps and lists
