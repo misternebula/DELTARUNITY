@@ -31,6 +31,7 @@ namespace Assets.VirtualMachineRunner
 			{ "ds_map_create", ds_map_create },
 			{ "ds_map_destroy", ds_map_destroy },
 			{ "ds_map_add", ds_map_add },
+			{ "ds_map_size", ds_map_size },
 			{ "ds_list_create", ds_list_create },
 			{ "ds_list_destroy", ds_list_destroy },
 			{ "ds_list_add", ds_list_add },
@@ -41,7 +42,6 @@ namespace Assets.VirtualMachineRunner
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
 			{ "json_decode", json_decode },
-			{ "ds_map_size", ds_map_size }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -287,6 +287,12 @@ namespace Assets.VirtualMachineRunner
 			return true;
 		}
 
+		public static object ds_map_size(Arguments args)
+		{
+			var id = (int)args.ArgumentArray[0];
+			return _dsMapDict[id].Count;
+		}
+
 		public static object ds_list_create(Arguments args) => throw new NotImplementedException();
 		public static object ds_list_destroy(Arguments args) => throw new NotImplementedException();
 		public static object ds_list_add(Arguments args) => throw new NotImplementedException();
@@ -435,12 +441,6 @@ namespace Assets.VirtualMachineRunner
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
-		}
-
-		public static object ds_map_size(Arguments args)
-		{
-			var id = (int)args.ArgumentArray[0];
-			return _dsMapDict[id].Count;
 		}
 	}
 
