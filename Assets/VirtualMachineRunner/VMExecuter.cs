@@ -1,7 +1,5 @@
-﻿using Assets.Instances;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -582,11 +580,10 @@ namespace Assets.VirtualMachineRunner
 					// if found, push all to environment stack
 					// if none, jump to instruction.IntData
 
-					var instanceId = Convert<int>(ctx.Stack.Pop());
-					var instances = InstanceManager.Instance.instances.Where(x => x.instanceId == instanceId).ToList();
-					// is there a better way to do ^^^^?
+					var assetId = Convert<int>(ctx.Stack.Pop());
+					var instances = Array.Empty<NewGamemakerObject>(); // TODO get instances with asset id
 
-					if (instances.Count == 0)
+					if (instances.Length == 0)
 					{
 						if (instruction.JumpToEnd)
 						{
@@ -618,8 +615,9 @@ namespace Assets.VirtualMachineRunner
 					// if so, jump to instruction.IntData
 					// if not, continue
 
-					var instancesLeftOnStack = EnvironmentStack.Pop() != null;
+					EnvironmentStack.Pop(); // go to next instance
 
+					var instancesLeftOnStack = EnvironmentStack.Peek() != null;
 					if (instancesLeftOnStack)
 					{
 						if (instruction.JumpToEnd)
@@ -629,6 +627,8 @@ namespace Assets.VirtualMachineRunner
 
 						return (ExecutionResult.JumpedToLabel, instruction.IntData);
 					}
+
+					EnvironmentStack.Pop(); // remove the null
 					break;
 				case VMOpcode.MUL:
 				case VMOpcode.DIV:
