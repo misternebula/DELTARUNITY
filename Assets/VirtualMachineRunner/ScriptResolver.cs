@@ -2,6 +2,7 @@
 using Assets.Scripts.IniFiles;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -42,6 +43,8 @@ namespace Assets.VirtualMachineRunner
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
 			{ "json_decode", json_decode },
+			{ "string", _string },
+			{ "ds_map_find_value", ds_map_find_value }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -473,6 +476,86 @@ namespace Assets.VirtualMachineRunner
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+		}
+
+		public static object _string(Arguments args)
+		{
+			var value_or_format = args.ArgumentArray[0];
+			var values = new object[] { };
+			if (args.ArgumentArray.Length > 1)
+			{
+				values = args.ArgumentArray[1..];
+			}
+
+			if (args.ArgumentArray.Length > 1)
+			{
+				// format
+				// TODO : implement
+				throw new NotImplementedException();
+			}
+			else
+			{
+				// value
+
+				if (value_or_format.GetType().IsArray) 
+				{
+					// is any of this right? not sure.
+					var enumerable = value_or_format as IEnumerable<object>;
+					var index = 0;
+					var result = "[";
+					foreach (var element in enumerable)
+					{
+						result += VMExecuter.Convert<string>(element);
+						if (index < enumerable.Count() - 1)
+						{
+							result += ", ";
+						}
+						index++;
+					}
+
+					result += "]";
+					return result;
+				}
+				else if (value_or_format is bool)
+				{
+					return VMExecuter.Convert<string>(value_or_format);
+				}
+				else if (value_or_format is string)
+				{
+					return value_or_format;
+				}
+				else
+				{
+					// real
+					var num = VMExecuter.Convert<double>(value_or_format);
+					var afterTwoDigits = num % 0.01f;
+					var truncated = num - afterTwoDigits;
+
+					return (truncated % 1) == 0
+						? truncated.ToString()
+						: Math.Round(truncated, 2).ToString();
+				}
+			}
+		}
+
+		public static object ds_map_find_value(Arguments args)
+		{
+			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var key = args.ArgumentArray[1];
+
+			if (!_dsMapDict.ContainsKey(id))
+			{
+				return null;
+				
+			}
+
+			var dict = _dsMapDict[id];
+			if (!dict.ContainsKey(key))
+			{
+				return null;
+			}
+
+			return dict[key];
 		}
 	}
 

@@ -26,8 +26,6 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
-			Debug.Log($"Executing script {script.name} ...");
-
 			var ctx = new VMScriptExecutionContext
 			{
 				Self = obj,
@@ -59,6 +57,13 @@ namespace Assets.VirtualMachineRunner
 			while (true)
 			{
 				var (executionResult, data) = ExecuteInstruction(script, script.Instructions[instructionIndex], ctx);
+
+				if (executionResult == ExecutionResult.Failed)
+				{
+					Debug.LogError($"Execution of {script.Instructions[instructionIndex].Raw} failed.");
+					Debug.Break();
+					break;
+				}
 
 				if (executionResult == ExecutionResult.Success)
 				{
@@ -265,8 +270,11 @@ namespace Assets.VirtualMachineRunner
 					var valTwo = ctx.Stack.Pop();
 					var valOne = ctx.Stack.Pop();
 
+					var hasString = instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s;
+					var variableIsString = (instruction.TypeOne == VMType.v && valOne is string) || (instruction.TypeTwo == VMType.v && valTwo is string);
+
 					// strings need to concat
-					if (instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s)
+					if (hasString || variableIsString)
 					{
 						var stringOne = Convert<string>(valOne);
 						var stringTwo = Convert<string>(valTwo);
