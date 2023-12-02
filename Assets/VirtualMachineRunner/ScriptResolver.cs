@@ -512,7 +512,9 @@ namespace Assets.VirtualMachineRunner
 					var result = "[";
 					foreach (var element in enumerable)
 					{
-						result += VMExecuter.Convert<string>(element);
+						var elementString = (string)_string(new Arguments { ArgumentArray = new object[] { element } });
+
+						result += elementString;
 						if (index < enumerable.Count() - 1)
 						{
 							result += ", ";
