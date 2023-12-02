@@ -576,10 +576,6 @@ namespace Assets.VirtualMachineRunner
 					Debug.Break();
 					return (ExecutionResult.Failed, null);
 				case VMOpcode.PUSHENV:
-					// find all instances of id on stack
-					// if found, push all to environment stack
-					// if none, jump to instruction.IntData
-
 					var assetId = Convert<int>(ctx.Stack.Pop());
 					var instances = Array.Empty<NewGamemakerObject>(); // TODO get instances with asset id
 
@@ -587,6 +583,7 @@ namespace Assets.VirtualMachineRunner
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
 					
+					// dont run anything is no instances
 					if (instances.Length == 0)
 					{
 						if (instruction.JumpToEnd)
@@ -611,25 +608,29 @@ namespace Assets.VirtualMachineRunner
 					}
 					break;
 				case VMOpcode.POPENV:
-					// see if there is instances left on stack
-					// if so, jump to instruction.IntData
-					// if not, continue
+					var currentInstance = EnvironmentStack.Pop();
+					var nextInstance = EnvironmentStack.Peek();
 
-					EnvironmentStack.Pop(); // go to next instance
-
-					var instancesLeftOnStack = EnvironmentStack.Peek() != null;
-					if (instancesLeftOnStack)
+					// no instances pushed
+					if (currentInstance == null)
 					{
-						if (instruction.JumpToEnd)
-						{
-							return (ExecutionResult.JumpedToEnd, null);
-						}
-
-						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+						break;
 					}
 
-					EnvironmentStack.Pop(); // remove the null
-					break;
+					// no instances left
+					if (nextInstance == null)
+					{
+						EnvironmentStack.Pop();
+						break;
+					}
+
+					// run block with next instance
+					if (instruction.JumpToEnd)
+					{
+						return (ExecutionResult.JumpedToEnd, null);
+					}
+
+					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				case VMOpcode.MUL:
 				case VMOpcode.DIV:
 				case VMOpcode.REM:
