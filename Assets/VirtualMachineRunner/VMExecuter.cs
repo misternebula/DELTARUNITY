@@ -18,7 +18,6 @@ namespace Assets.VirtualMachineRunner
 		public object ReturnValue = null;
 		public EventType EventType;
 		public int EventIndex;
-		public bool IsPushEnvMarker;
 	}
 
 	public static class VMExecuter
