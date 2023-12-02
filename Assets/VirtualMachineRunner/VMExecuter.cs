@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assets.Instances;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -568,11 +570,12 @@ namespace Assets.VirtualMachineRunner
 					// find all instances of id on stack
 					// if found, push all to environment stack
 					// if none, jump to instruction.IntData
-					
-					var instanceId = Convert<int>(ctx.Stack.Pop());
-					var instances = Array.Empty<NewGamemakerObject>(); // TODO from instance id
 
-					if (instances.Length == 0)
+					var instanceId = Convert<int>(ctx.Stack.Pop());
+					var instances = InstanceManager.Instance.instances.Where(x => x.instanceId == instanceId).ToList();
+					// is there a better way to do ^^^^?
+
+					if (instances.Count == 0)
 					{
 						if (instruction.JumpToEnd)
 						{
@@ -581,7 +584,7 @@ namespace Assets.VirtualMachineRunner
 
 						return (ExecutionResult.JumpedToLabel, instruction.IntData);
 					}
-					
+
 					foreach (var instance in instances)
 					{
 						var newCtx = new VMScriptExecutionContext
