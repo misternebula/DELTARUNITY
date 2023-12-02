@@ -495,7 +495,7 @@ namespace Assets.VirtualMachineRunner
 				{
 					var value = values[i];
 					var valueString = (string)_string(new Arguments { ArgumentArray = new object[] { value } });
-					format = format.Replace($"{i}", valueString);
+					format = format.Replace($"{{{i}}}", valueString);
 				}
 
 				return format;
