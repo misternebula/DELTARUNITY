@@ -76,6 +76,9 @@ namespace Assets.Editor
 
 					switch (enumOperation)
 					{
+						case VMOpcode.CHKINDEX:
+							// no data
+							break;
 						case VMOpcode.CONV:
 							// no data
 							break;

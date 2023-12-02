@@ -254,6 +254,9 @@ namespace Assets.VirtualMachineRunner
 		{
 			switch (instruction.Opcode)
 			{
+				case VMOpcode.CHKINDEX:
+					// don't really know what this does.
+					break;
 				case VMOpcode.NOT:
 					switch (instruction.TypeOne)
 					{

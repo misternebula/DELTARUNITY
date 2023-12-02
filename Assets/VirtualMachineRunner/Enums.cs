@@ -149,7 +149,8 @@ namespace Assets.VirtualMachineRunner
 		PUSHI,
 		CALL,
 		CALLV,
-		BREAK
+		BREAK,
+		CHKINDEX
 	}
 
 	public enum VMType
