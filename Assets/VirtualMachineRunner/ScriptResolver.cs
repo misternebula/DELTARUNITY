@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -490,15 +491,47 @@ namespace Assets.VirtualMachineRunner
 			if (args.ArgumentArray.Length > 1)
 			{
 				// format
-				var format = VMExecuter.Convert<string>(value_or_format);
-				for (var i = 0; i < values.Length; i++)
+				// doing this like im in c lol
+				var format = (string)value_or_format;
+
+				var result = new StringBuilder();
+				var bracesString = new StringBuilder();
+
+				var inBraces = false;
+				foreach (var formatChar in format)
 				{
-					var value = values[i];
-					var valueString = (string)_string(new Arguments { ArgumentArray = new object[] { value } });
-					format = format.Replace($"{i}", valueString);
+					if (!inBraces)
+					{
+						if (formatChar == '{')
+						{
+							inBraces = true;
+						}
+						else
+						{
+							result.Append(formatChar);
+						}
+					}
+					else
+					{
+						if (formatChar == '}')
+						{
+							inBraces = false;
+							var bracesNumber = int.Parse(bracesString.ToString());
+							bracesString.Clear();
+							result.Append(values[bracesNumber]);
+						}
+						else
+						{
+							bracesString.Append(formatChar);
+						}
+					}
+				}
+				if (inBraces)
+				{
+					result.Append(bracesString);
 				}
 
-				return format;
+				return result.ToString();
 			}
 			else
 			{
@@ -509,21 +542,21 @@ namespace Assets.VirtualMachineRunner
 					// is any of this right? not sure.
 					var enumerable = value_or_format as IEnumerable<object>;
 					var index = 0;
-					var result = "[";
+					var result = new StringBuilder("[");
 					foreach (var element in enumerable)
 					{
 						var elementString = (string)_string(new Arguments { ArgumentArray = new object[] { element } });
 
-						result += elementString;
+						result.Append(elementString);
 						if (index < enumerable.Count() - 1)
 						{
-							result += ", ";
+							result.Append(", ");
 						}
 						index++;
 					}
 
-					result += "]";
-					return result;
+					result.Append("]");
+					return result.ToString();
 				}
 				else if (value_or_format is bool)
 				{
