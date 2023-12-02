@@ -529,6 +529,22 @@ namespace Assets.VirtualMachineRunner
 							ctx.Locals[variableName[6..]] = value;
 						}
 					}
+					else if (isSelf)
+					{
+						if (indexingArray)
+						{
+							var index = Convert<int>(ctx.Stack.Pop());
+							var unknown = ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+							var value = ctx.Stack.Pop();
+
+							((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index] = value;
+						}
+						else
+						{
+							var value = ctx.Stack.Pop();
+							VariableResolver.SetSelfVariable(ctx, variableName[5..], value);
+						}
+					}
 					else
 					{
 						Debug.LogError($"Don't know how to pop to variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
