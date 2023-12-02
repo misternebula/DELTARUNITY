@@ -317,7 +317,7 @@ namespace Assets.VirtualMachineRunner
 		public static object ds_list_add(Arguments args)
 		{
 			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var values = args.ArgumentArray[2..];
+			var values = args.ArgumentArray[1..];
 
 			if (!_dsListDict.ContainsKey(id))
 			{
