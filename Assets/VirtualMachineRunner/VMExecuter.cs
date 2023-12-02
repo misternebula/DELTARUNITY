@@ -252,6 +252,13 @@ namespace Assets.VirtualMachineRunner
 		{
 			switch (instruction.Opcode)
 			{
+				case VMOpcode.MUL:
+					// multiplication is commutative so this shouldnt matter, but eh. consistency.
+					var numTwo = Convert<double>(ctx.Stack.Pop());
+					var numOne = Convert<double>(ctx.Stack.Pop());
+
+					ctx.Stack.Push(numOne * numOne);
+					break;
 				case VMOpcode.CHKINDEX:
 					// don't really know what this does.
 					break;
@@ -647,7 +654,6 @@ namespace Assets.VirtualMachineRunner
 					}
 
 					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				case VMOpcode.MUL:
 				case VMOpcode.DIV:
 				case VMOpcode.REM:
 				case VMOpcode.MOD:
