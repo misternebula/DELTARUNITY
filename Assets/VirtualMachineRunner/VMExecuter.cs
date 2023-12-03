@@ -624,6 +624,7 @@ namespace Assets.VirtualMachineRunner
 
 					foreach (var instance in instances)
 					{
+						// TODO: copy over locals and MAYBE data stack???? also how does return work??
 						var newCtx = new VMScriptExecutionContext
 						{
 							Self = instance,
