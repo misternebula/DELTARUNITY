@@ -11,9 +11,9 @@ namespace Assets.VirtualMachineRunner
 	{
 		public NewGamemakerObject Self;
 		public ObjectDefinition ObjectDefinition;
-		public readonly Stack<object> Stack = new();
-		public readonly Dictionary<string, object> Locals = new();
-		public object ReturnValue = null;
+		public Stack<object> Stack;
+		public Dictionary<string, object> Locals;
+		public object ReturnValue;
 		public EventType EventType;
 		public int EventIndex;
 	}
@@ -33,6 +33,9 @@ namespace Assets.VirtualMachineRunner
 				{
 					Self = obj,
 					ObjectDefinition = objectDefinition,
+					Stack = new(),
+					Locals = new(),
+					ReturnValue = null,
 					EventType = eventType,
 					EventIndex = eventIndex
 				};
@@ -41,7 +44,6 @@ namespace Assets.VirtualMachineRunner
 				{
 					newCtx.Locals.Add(item, null);
 				}
-
 				if (arguments != null)
 				{
 					newCtx.Locals["arguments"] = arguments.ArgumentArray;
@@ -635,17 +637,12 @@ namespace Assets.VirtualMachineRunner
 						{
 							Self = instance,
 							ObjectDefinition = instance.Definition,
+							Stack = new(Ctx.Stack),
+							Locals = new(Ctx.Locals),
+							ReturnValue = Ctx.ReturnValue,
 							EventType = Ctx.EventType,
-							EventIndex = Ctx.EventIndex
+							EventIndex = Ctx.EventIndex,
 						};
-						foreach (var obj in Ctx.Stack)
-						{
-							newCtx.Stack.Push(obj);
-						}
-						foreach (var (key, value) in Ctx.Locals)
-						{
-							newCtx.Locals.Add(key, value);
-						}
 
 						EnvironmentStack.Push(newCtx);
 					}
