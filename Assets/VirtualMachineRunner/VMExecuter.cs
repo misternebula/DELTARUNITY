@@ -202,7 +202,7 @@ namespace Assets.VirtualMachineRunner
 			{
 				if (type == typeof(bool))
 				{
-					return i == 1;
+					return i > 0;
 				}
 
 				if (type == typeof(double))
@@ -261,47 +261,6 @@ namespace Assets.VirtualMachineRunner
 		{
 			switch (instruction.Opcode)
 			{
-				case VMOpcode.MUL:
-					// multiplication is commutative so this shouldnt matter, but eh. consistency.
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
-
-					Ctx.Stack.Push(numOne * numOne);
-					break;
-				case VMOpcode.CHKINDEX:
-					// don't really know what this does.
-					break;
-				case VMOpcode.NOT:
-					switch (instruction.TypeOne)
-					{
-						case VMType.b:
-							var value = Convert<bool>(Ctx.Stack.Pop());
-							Ctx.Stack.Push(!value);
-							break;
-						default:
-							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
-							break;
-					}
-					break;
-				case VMOpcode.ADD:
-					var valTwo = Ctx.Stack.Pop();
-					var valOne = Ctx.Stack.Pop();
-
-					var hasString = instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s;
-					var variableIsString = (instruction.TypeOne == VMType.v && valOne is string) || (instruction.TypeTwo == VMType.v && valTwo is string);
-
-					// strings need to concat
-					if (hasString || variableIsString)
-					{
-						var stringOne = Convert<string>(valOne);
-						var stringTwo = Convert<string>(valTwo);
-						Ctx.Stack.Push(stringOne + stringTwo);
-						break;
-					}
-
-					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
-					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
-					break;
 				case VMOpcode.B:
 				{
 					if (instruction.JumpToEnd)
@@ -671,17 +630,133 @@ namespace Assets.VirtualMachineRunner
 					}
 
 					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				case VMOpcode.DIV:
-				case VMOpcode.REM:
-				case VMOpcode.MOD:
-				case VMOpcode.SUB:
-				case VMOpcode.AND:
-				case VMOpcode.OR:
-				case VMOpcode.XOR:
-				case VMOpcode.NEG:
-				case VMOpcode.SHL:
-				case VMOpcode.SHR:
+				case VMOpcode.CHKINDEX:
+					// don't really know what this does.
+					// possibly does bounds check and error throw? used before setting array index
+					break;
 				case VMOpcode.DUP:
+				{
+					var unknown = instruction.IntData; // TODO: what is this?
+					Ctx.Stack.Push(Ctx.Stack.Peek());
+					break;
+				}
+				case VMOpcode.ADD:
+					var valTwo = Ctx.Stack.Pop();
+					var valOne = Ctx.Stack.Pop();
+
+					var hasString = instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s;
+					var variableIsString = (instruction.TypeOne == VMType.v && valOne is string) || (instruction.TypeTwo == VMType.v && valTwo is string);
+
+					// strings need to concat
+					if (hasString || variableIsString)
+					{
+						var stringOne = Convert<string>(valOne);
+						var stringTwo = Convert<string>(valTwo);
+						Ctx.Stack.Push(stringOne + stringTwo);
+						break;
+					}
+
+					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
+					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
+					break;
+				case VMOpcode.MUL:
+				{
+					// multiplication is commutative so this shouldnt matter, but eh. consistency.
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne * numTwo);
+					break;
+				}
+				case VMOpcode.DIV:
+				{
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne / numTwo);
+					break;
+				}
+				case VMOpcode.REM:
+				{
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne % numTwo);
+					break;
+				}
+				case VMOpcode.MOD:
+				{
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne % numTwo);
+					break;
+				}
+				case VMOpcode.SUB:
+				{
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne - numTwo);
+					break;
+				}
+				case VMOpcode.NOT:
+					switch (instruction.TypeOne)
+					{
+						case VMType.b:
+							Ctx.Stack.Push(!Convert<bool>(Ctx.Stack.Pop()));
+							break;
+						default:
+							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
+							break;
+					}
+					break;
+				case VMOpcode.AND:
+				{
+					// should other binary types handle ops?
+					var intTwo = Convert<int>(Ctx.Stack.Pop());
+					var intOne = Convert<int>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(intOne & intTwo);
+					break;
+				}
+				case VMOpcode.OR:
+				{
+					var intTwo = Convert<int>(Ctx.Stack.Pop());
+					var intOne = Convert<int>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(intOne | intTwo);
+					break;
+				}
+				case VMOpcode.XOR:
+				{
+					var intTwo = Convert<int>(Ctx.Stack.Pop());
+					var intOne = Convert<int>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(intOne ^ intTwo);
+					break;
+				}
+				case VMOpcode.NEG:
+					Ctx.Stack.Push(~Convert<int>(Ctx.Stack.Pop()));
+					break;
+				case VMOpcode.SHL:
+				{
+					// is this the right order?
+					var intTwo = Convert<int>(Ctx.Stack.Pop());
+					var intOne = Convert<int>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(intOne << intTwo);
+					break;
+				}
+				case VMOpcode.SHR:
+				{
+					// is this the right order?
+					var intTwo = Convert<int>(Ctx.Stack.Pop());
+					var intOne = Convert<int>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(intOne >> intTwo);
+					break;
+				}
 				case VMOpcode.EXIT:
 				case VMOpcode.CALLV:
 				case VMOpcode.BREAK:
