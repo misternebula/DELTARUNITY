@@ -630,10 +630,6 @@ namespace Assets.VirtualMachineRunner
 					}
 
 					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				case VMOpcode.CHKINDEX:
-					// don't really know what this does.
-					// possibly does bounds check and error throw? used before setting array index
-					break;
 				case VMOpcode.DUP:
 				{
 					var unknown = instruction.IntData; // TODO: what is this?
@@ -659,6 +655,14 @@ namespace Assets.VirtualMachineRunner
 					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
 					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
 					break;
+				case VMOpcode.SUB:
+				{
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
+
+					Ctx.Stack.Push(numOne - numTwo);
+					break;
+				}
 				case VMOpcode.MUL:
 				{
 					// multiplication is commutative so this shouldnt matter, but eh. consistency.
@@ -692,25 +696,6 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(numOne % numTwo);
 					break;
 				}
-				case VMOpcode.SUB:
-				{
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
-
-					Ctx.Stack.Push(numOne - numTwo);
-					break;
-				}
-				case VMOpcode.NOT:
-					switch (instruction.TypeOne)
-					{
-						case VMType.b:
-							Ctx.Stack.Push(!Convert<bool>(Ctx.Stack.Pop()));
-							break;
-						default:
-							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
-							break;
-					}
-					break;
 				case VMOpcode.AND:
 				{
 					// should other binary types handle ops?
@@ -736,6 +721,17 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(intOne ^ intTwo);
 					break;
 				}
+				case VMOpcode.NOT:
+					switch (instruction.TypeOne)
+					{
+						case VMType.b:
+							Ctx.Stack.Push(!Convert<bool>(Ctx.Stack.Pop()));
+							break;
+						default:
+							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
+							break;
+					}
+					break;
 				case VMOpcode.NEG:
 					Ctx.Stack.Push(~Convert<int>(Ctx.Stack.Pop()));
 					break;
@@ -757,6 +753,10 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(intOne >> intTwo);
 					break;
 				}
+				case VMOpcode.CHKINDEX:
+					// don't really know what this does.
+					// possibly does bounds check and error throw? used before setting array index
+					break;
 				case VMOpcode.EXIT:
 				case VMOpcode.CALLV:
 				case VMOpcode.BREAK:
