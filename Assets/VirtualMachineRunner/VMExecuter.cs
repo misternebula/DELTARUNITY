@@ -758,11 +758,9 @@ namespace Assets.VirtualMachineRunner
 					// don't really know what this does.
 					// possibly does bounds check and error throw? used before setting array index
 					break;
-				case VMOpcode.EXIT:
-					Application.Quit();
-					break;
 				case VMOpcode.CALLV:
 				case VMOpcode.BREAK:
+				case VMOpcode.EXIT:
 				default:
 					Debug.LogError($"Unknown opcode {instruction.Opcode}");
 					Debug.Break();
