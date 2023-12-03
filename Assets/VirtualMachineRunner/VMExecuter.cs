@@ -687,6 +687,7 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(numOne % numTwo);
 					break;
 				}
+				// TODO: distinguish between above and below
 				case VMOpcode.MOD:
 				{
 					var numTwo = Convert<double>(Ctx.Stack.Pop());
