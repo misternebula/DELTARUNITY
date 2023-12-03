@@ -633,6 +633,10 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.DUP:
 				{
 					var unknown = instruction.IntData; // TODO: what is this?
+					if (unknown > 0)
+					{
+						throw new NotImplementedException();
+					}
 					Ctx.Stack.Push(Ctx.Stack.Peek());
 					break;
 				}
