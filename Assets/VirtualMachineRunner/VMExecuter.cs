@@ -103,9 +103,10 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			// Current object has finished executing, remove from stack
+			var returnValue = Ctx.ReturnValue;
 			EnvironmentStack.Pop();
 
-			return Ctx.ReturnValue;
+			return returnValue;
 		}
 
 		/*public static void ExecuteBlock(VMScript script, VMScriptBlock block, VMScriptExecutionContext ctx)
@@ -352,8 +353,6 @@ namespace Assets.VirtualMachineRunner
 							Ctx.Stack.Push(false);
 						}
 					}
-
-
 					break;
 				case VMOpcode.PUSHGLB:
 				case VMOpcode.PUSHLOC:
