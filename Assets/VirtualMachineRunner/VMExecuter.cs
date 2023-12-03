@@ -62,7 +62,6 @@ namespace Assets.VirtualMachineRunner
 
 			while (true)
 			{
-				// TODO: dont pass in ctx and just use EnvironmentStack.Peek for everything since PUSHENV/POPENV can change that
 				var (executionResult, data) = ExecuteInstruction(script.Instructions[instructionIndex]);
 
 				if (executionResult == ExecutionResult.Failed)
