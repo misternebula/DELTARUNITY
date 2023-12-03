@@ -15,15 +15,24 @@ namespace Assets.VirtualMachineRunner
 	[CreateAssetMenu(fileName = "ObjectDefinition", menuName = "ScriptableObjects/Object Definition", order = 2)]
 	public class ObjectDefinition : ScriptableObject
 	{
-		public int sprite;
+		public int AssetId;
+
+		public int sprite = -1;
 		public bool visible = true;
 		public bool solid;
 		public bool persistent;
 		/// <summary>
+		/// 
+		/// 
+		/// 
+		/// 
+		/// 
+		//
 		/// analogous to a superclass
 		/// </summary>
 		public ObjectDefinition parent;
-		public int textureMaskId;
+
+		public int textureMaskId = -1;
 
 		[Header("Events")]
 		public VMScript CreateScript;

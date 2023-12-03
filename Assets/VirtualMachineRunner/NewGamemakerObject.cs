@@ -24,7 +24,7 @@ namespace Assets.VirtualMachineRunner
 
 		public ObjectDefinition Definition;
 
-		public string object_index => name;
+		public int object_index => Definition.AssetId;
 
 		[SerializeField]
 		[FormerlySerializedAs("sprite_index")]
@@ -304,10 +304,13 @@ namespace Assets.VirtualMachineRunner
 
 		private void Awake()
 		{
-			sprite_index = Definition.sprite;
-			visible = Definition.visible;
-			persistent = Definition.persistent;
-			mask_id = Definition.textureMaskId;
+			if (Definition != null)
+			{
+				sprite_index = Definition.sprite;
+				visible = Definition.visible;
+				persistent = Definition.persistent;
+				mask_id = Definition.textureMaskId;
+			}
 
 			InstanceManager.Instance.RegisterInstance(this);
 			DrawManager.Register(this);

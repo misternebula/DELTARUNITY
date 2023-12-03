@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts;
 using UnityEditor;
 using UnityEngine;
 using EventType = Assets.VirtualMachineRunner.EventType;
+using Object = System.Object;
 
 namespace Assets.Instances
 {
@@ -18,7 +20,7 @@ namespace Assets.Instances
 		//public List<GameObject> Prefabs;
 		public InstanceDatabase Asset;
 
-		private Dictionary<string, GameObject> dict = new();
+		private Dictionary<int, ObjectDefinition> dict = new();
 
 		public List<NewGamemakerObject> instances = new List<NewGamemakerObject>();
 
@@ -27,47 +29,34 @@ namespace Assets.Instances
 		private void Awake()
 		{
 			Instance = this;
-			foreach (var item in Asset.Prefabs)
+			foreach (var item in Asset.ObjectDefinitions)
 			{
-				dict.Add(item.name, item);
+				dict.Add(item.AssetId, item);
 			}
 		}
 
-		public GameObject instance_create(double x, double y, string name)
+		public int instance_create_depth(double x, double y, int depth, int obj)
 		{
-			if (!dict.ContainsKey(name))
-			{
-				Debug.LogError("No object found called " + name);
-				Debug.Break();
-				return null;
-			}
+			var definition = dict[obj];
 
-			var instance = Instantiate(dict[name]);
-			instance.name = name;
+			var newGO = new GameObject(definition.name);
+			var newGM = newGO.AddComponent<NewGamemakerObject>();
+			newGM.Definition = definition;
 
-			var objID = Array.IndexOf(global.__objectNames, name);
+			newGM.x = x;
+			newGM.y = y;
+			newGM.depth = depth;
+			newGM.instanceId = _highestInstanceId++;
 
-			if (objID == -1)
-			{
-				Debug.LogError($"global.__objectNames does not contain \"{name}\"");
-				Debug.Break();
-				return null;
-			}
+			newGM.sprite_index = definition.sprite;
+			newGM.visible = definition.visible;
+			newGM.persistent = definition.persistent;
+			newGM.mask_id = definition.textureMaskId;
 
-			var layerDepth = global.__objectID2Depth[objID];
-
-			instance.GetComponent<NewGamemakerObject>().depth = layerDepth;
-			instance.transform.position = new Vector3((float)x, -(float)y, 0);
-
-			instance.GetComponent<NewGamemakerObject>().instanceId = _highestInstanceId++;
-
-			var obj = instance.GetComponent<NewGamemakerObject>();
-			VMExecuter.ExecuteScript(obj.Definition.PreCreateScript, obj, obj.Definition, EventType.PreCreate);
-
-			VMExecuter.ExecuteScript(obj.Definition.CreateScript, obj, obj.Definition, EventType.Create);
-			instance.GetComponent<NewGamemakerObject>()._createRan = true;
-
-			return instance;
+			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.PreCreate);
+			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.Create);
+			newGM._createRan = true;
+			return newGM.instanceId;
 		}
 
 		public void RegisterInstance(NewGamemakerObject obj)
@@ -79,10 +68,26 @@ namespace Assets.Instances
 			}
 		}
 
-		public int instance_number(string name)
+		public int instance_number(int obj)
 		{
 			instances.RemoveAll(x => x == null);
-			return instances.Count(x => x.object_index == name);
+			return instances.Count(x => HasAssetInParents(x.Definition, obj));
+		}
+
+		private bool HasAssetInParents(ObjectDefinition definition, int id)
+		{
+			var currentDefinition = definition;
+			while (currentDefinition != null)
+			{
+				if (currentDefinition.AssetId == id)
+				{
+					return true;
+				}
+
+				currentDefinition = currentDefinition.parent;
+			}
+
+			return false;
 		}
 
 		public void instance_destroy(NewGamemakerObject obj)
@@ -97,69 +102,33 @@ namespace Assets.Instances
 			instances.Remove(obj);
 		}
 
-		public bool instance_exists(string name)
+		public bool instance_exists_instanceid(int instanceId)
 		{
-			instances.RemoveAll(x => x == null);
-
-			var type = Type.GetType($"OBJECT_SCRIPTS.{name}");
-
-			if (type == null)
-			{
-				Debug.LogError($"Could not find type for OBJECT_SCRIPTS.{name}");
-			}
-
-			return instances.Any(x => x.object_index == name || x.GetType().IsSubclassOf(type));
+			return instances.Any(x => x.instanceId == instanceId);
 		}
 
-		/*private static void CreateSortingLayer(int depth)
+		public bool instance_exists_index(int assetIndex)
 		{
-			var layerName = $"Depth_{depth}";
-			var serializedObject = new SerializedObject(AssetDatabase.LoadMainAssetAtPath("ProjectSettings/TagManager.asset"));
-			var sortingLayers = serializedObject.FindProperty("m_SortingLayers");
-
-			for (int i = 0; i < sortingLayers.arraySize; i++)
-				if (sortingLayers.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue.Equals(layerName))
-					return;
-
-			Debug.Log($"Creating sorting layer for depth {depth}");
-
-			sortingLayers.arraySize++;
-			sortingLayers.InsertArrayElementAtIndex(sortingLayers.arraySize);
-			var newLayer = sortingLayers.GetArrayElementAtIndex(sortingLayers.arraySize - 1);
-			newLayer.FindPropertyRelative("name").stringValue = layerName;
-			newLayer.FindPropertyRelative("uniqueID").intValue = layerName.GetHashCode(); *//* some unique number *//*
-
-			var layerCount = sortingLayers.arraySize;
-			List<int> layerDepths = new();
-			for (int i = 0; i < layerCount; i++)
+			foreach (var instance in instances)
 			{
-				var layer = sortingLayers.GetArrayElementAtIndex(i);
-				var layername = layer.FindPropertyRelative("name").stringValue;
-
-				if (layername == "Default")
+				if (instance.Definition.AssetId == assetIndex)
 				{
-					continue;
+					return true;
 				}
 
-				layerDepths.Add(int.Parse(layername.Replace("Depth_", "")));
+				var currentDefinition = instance.Definition.parent;
+				while (currentDefinition != null)
+				{
+					if (currentDefinition.AssetId == assetIndex)
+					{
+						return true;
+					}
+
+					currentDefinition = currentDefinition.parent;
+				}
 			}
 
-			for (var i = 0; i < layerCount; i++)
-			{
-				if (i == layerCount - 1)
-				{
-					// already sorted correctly!
-					serializedObject.ApplyModifiedProperties();
-					return;
-				}
-
-				if (depth > layerDepths[i + 1])
-				{
-					sortingLayers.MoveArrayElement(layerCount - 1, i + 2);
-					serializedObject.ApplyModifiedPropertiesWithoutUndo();
-					return;
-				}
-			}
-		}*/
+			return false;
+		}
 	}
 }

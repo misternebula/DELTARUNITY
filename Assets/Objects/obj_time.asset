@@ -10,25 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_initializer2
+  m_Name: obj_time
   m_EditorClassIdentifier: 
-  AssetId: 324
-  sprite: -1
+  AssetId: 320
+  sprite: 804
   visible: 1
   solid: 0
-  persistent: 0
+  persistent: 1
   parent: {fileID: 0}
   textureMaskId: -1
-  CreateScript: {fileID: 11400000, guid: 02de510a6dadf374292acc8101cdd8ad, type: 2}
+  CreateScript: {fileID: 11400000, guid: 14e6ddf2c2b78c54dbb03c4d24e1c0ea, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
     _serializedList:
-    - Key: 0
-      Value: {fileID: 11400000, guid: 2f23e7d0010671e4d82e63bb6c0face9, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: a7d9e344e23d6cc4ca8960d05f145bed, type: 2}
   OtherScript:
     _serializedList: []
   DrawScript:
-    _serializedList: []
-  PreCreateScript: {fileID: 11400000, guid: 0e102635ca9703340b16085cc24d6746, type: 2}
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: cf19760e6a8247144a0cf9b395ae7e64, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: 3292f12118089b54cbd94f80b4cfc77c, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: 8090b6ea11b643c48b4fea181514219d, type: 2}

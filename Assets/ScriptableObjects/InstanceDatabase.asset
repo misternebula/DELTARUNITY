@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7057ca68bde8471469b502c7f0dd6034, type: 3}
   m_Name: InstanceDatabase
   m_EditorClassIdentifier: 
-  Prefabs: []
+  ObjectDefinitions:
+  - {fileID: 11400000, guid: e06f7768453fd2b43bc75789cf732fa2, type: 2}
+  - {fileID: 11400000, guid: c2812314a82cc014294376ad448d3a52, type: 2}

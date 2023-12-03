@@ -71,6 +71,11 @@ namespace Assets.Scripts
 			return NameToIndex.TryGetValue(name, out var index) ? index : -1;
 		}
 
+		public int GetHighestIndex(AssetType type)
+		{
+			return AssetList[type].Values.Max();
+		}
+
 		public int Register(AssetType type, string name)
 		{
 			if (!AssetList.ContainsKey(type))

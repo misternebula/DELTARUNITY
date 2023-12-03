@@ -14,7 +14,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static void SetGlobalArrayIndex(string name, int index, object value)
 		{
-			if (!_globalVariables.ContainsKey(name))
+			if (!_globalVariables.ContainsKey(name) || _globalVariables[name] is not Dictionary<int, object>)
 			{
 				_globalVariables[name] = new Dictionary<int, object>();
 			}

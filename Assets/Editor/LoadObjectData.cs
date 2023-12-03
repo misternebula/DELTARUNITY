@@ -55,7 +55,8 @@ public class LoadObjectData
 
 			var instanceDatabase = AssetDatabase.LoadAssetAtPath<InstanceDatabase>("Assets/ScriptableObjects/InstanceDatabase.asset");
 
-			var obj = instanceDatabase.Prefabs.FirstOrDefault(x => x.name == definition);
+			// TODO : redo this with ObjectDefinitions
+			/*var obj = instanceDatabase.Prefabs.FirstOrDefault(x => x.name == definition);
 
 			if (obj == null)
 			{
@@ -83,7 +84,7 @@ public class LoadObjectData
 				{
 					gmo.instanceId = int.Parse(instanceId);
 				}
-			}
+			}*/
 
 			i += 3;
 		}

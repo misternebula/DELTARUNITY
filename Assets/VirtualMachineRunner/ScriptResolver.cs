@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Assets.Instances;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -21,6 +22,7 @@ namespace Assets.VirtualMachineRunner
 		{
 			{ "layer_force_draw_depth", layer_force_draw_depth },
 			{ "draw_set_colour", draw_set_colour },
+			{ "draw_set_color", draw_set_colour }, // mfw
 			{ "array_length_1d", array_length_1d },
 			{ "@@NewGMLArray@@", newgmlarray },
 			{ "asset_get_index", asset_get_index },
@@ -45,7 +47,11 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_readln", file_text_readln },
 			{ "json_decode", json_decode },
 			{ "string", _string },
-			{ "ds_map_find_value", ds_map_find_value }
+			{ "ds_map_find_value", ds_map_find_value },
+			{ "audio_group_load", audio_group_load },
+			{ "instance_exists", instance_exists },
+			{ "instance_create_depth", instance_create_depth },
+			{ "instance_number", instance_number }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -598,6 +604,44 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return dict[key];
+		}
+
+		public static object audio_group_load(Arguments args)
+		{
+			// TODO : actually implement this properly? DELTARUNITY doesnt use audio groups or any GM storage files (yet?)
+			return true;
+		}
+
+		public static object instance_exists(Arguments args)
+		{
+			var obj = (int)args.ArgumentArray[0];
+
+			if (obj > AssetIndexManager.Instance.GetHighestIndex(AssetType.objects))
+			{
+				// instance id was passed
+				return InstanceManager.Instance.instance_exists_instanceid(obj);
+			}
+			else
+			{
+				// asset index was passed
+				return InstanceManager.Instance.instance_exists_index(obj);
+			}
+		}
+
+		public static object instance_create_depth(Arguments args)
+		{
+			var x = VMExecuter.Convert<double>(args.ArgumentArray[0]);
+			var y = VMExecuter.Convert<double>(args.ArgumentArray[1]);
+			var depth = VMExecuter.Convert<int>(args.ArgumentArray[2]);
+			var obj = VMExecuter.Convert<int>(args.ArgumentArray[3]);
+
+			return InstanceManager.Instance.instance_create_depth(x, y, depth, obj);
+		}
+
+		public static object instance_number(Arguments args)
+		{
+			var obj = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			return InstanceManager.Instance.instance_number(obj);
 		}
 	}
 

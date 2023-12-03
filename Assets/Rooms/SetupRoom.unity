@@ -324,7 +324,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: f964bd85a77197742b3626024dfa03c0, type: 2}
     - target: {fileID: 3008653541710871464, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
       propertyPath: Scripts.Array.size
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3008653541710871464, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
       propertyPath: Scripts.Array.data[0]
@@ -386,6 +386,22 @@ PrefabInstance:
       propertyPath: Scripts.Array.data[14]
       value: 
       objectReference: {fileID: 11400000, guid: 66422bd9d1f87ea498c96e9be630c541, type: 2}
+    - target: {fileID: 3008653541710871464, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
+      propertyPath: Scripts.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: a572d8793f69ff747b3b396f40e4d266, type: 2}
+    - target: {fileID: 3008653541710871464, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
+      propertyPath: Scripts.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: f5e8b1c7e905e6e41b0206307dbce12c, type: 2}
+    - target: {fileID: 3008653541710871464, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
+      propertyPath: Scripts.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: ef8031cce388c294c9b62ed12092bd9e, type: 2}
+    - target: {fileID: 4934286080839078920, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
+      propertyPath: _highestInstanceId
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 4934286080839078923, guid: f4bda46a06ea3d445a5cc84414526ceb, type: 3}
       propertyPath: m_Name
       value: Manager
