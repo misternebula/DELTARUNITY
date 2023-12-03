@@ -540,6 +540,7 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Pop();
 					break;
 				case VMOpcode.PUSHI:
+					// can this be merged into the other PUSH opcodes?
 					Ctx.Stack.Push(instruction.IntData);
 					break;
 				case VMOpcode.CALL:
