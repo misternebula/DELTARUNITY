@@ -54,6 +54,7 @@ namespace Assets.VirtualMachineRunner
 
 			while (true)
 			{
+				// TODO: dont pass in ctx and just use EnvironmentStack.Peek for everything since PUSHENV/POPENV can change that
 				var (executionResult, data) = ExecuteInstruction(script, script.Instructions[instructionIndex], ctx);
 
 				if (executionResult == ExecutionResult.Failed)
@@ -400,6 +401,8 @@ namespace Assets.VirtualMachineRunner
 							ctx.Stack.Push(instruction.IntData);
 							break;
 						case VMType.v:
+							// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
+							
 							//Debug.Log($"Pushing variable {instruction.StringData}");
 							var variableName = instruction.StringData;
 							var indexingArray = variableName.StartsWith("[array]");
@@ -431,12 +434,12 @@ namespace Assets.VirtualMachineRunner
 								if (indexingArray)
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)EnvironmentStack.Peek().Locals[variableName[6..]])[index]);
+									ctx.Stack.Push(((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]);
 									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
 								}
 								else
 								{
-									ctx.Stack.Push(EnvironmentStack.Peek().Locals[variableName[6..]]);
+									ctx.Stack.Push(ctx.Locals[variableName[6..]]);
 									//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
 								}
 							}
@@ -445,11 +448,11 @@ namespace Assets.VirtualMachineRunner
 								if (indexingArray)
 								{
 									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(EnvironmentStack.Peek(), variableName[5..]))[index]);
+									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index]);
 								}
 								else
 								{
-									ctx.Stack.Push(VariableResolver.GetSelfVariable(EnvironmentStack.Peek(), variableName[5..]));
+									ctx.Stack.Push(VariableResolver.GetSelfVariable(ctx, variableName[5..]));
 								}
 							}
 							else
@@ -486,6 +489,8 @@ namespace Assets.VirtualMachineRunner
 				}
 				case VMOpcode.POP:
 				{
+					// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
+					
 					var variableName = instruction.StringData;
 					var indexingArray = variableName.StartsWith("[array]");
 					if (indexingArray)
@@ -606,7 +611,7 @@ namespace Assets.VirtualMachineRunner
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
 					
-					// dont run anything is no instances
+					// dont run anything if no instances
 					if (instances.Length == 0)
 					{
 						if (instruction.JumpToEnd)
