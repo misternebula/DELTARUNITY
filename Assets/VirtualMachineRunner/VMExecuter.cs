@@ -696,6 +696,9 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(numOne % numTwo);
 					break;
 				}
+				case VMOpcode.NEG:
+					Ctx.Stack.Push(-Convert<double>(Ctx.Stack.Pop()));
+					break;
 				case VMOpcode.AND:
 				{
 					// should other binary types handle ops?
@@ -731,9 +734,6 @@ namespace Assets.VirtualMachineRunner
 							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
 							break;
 					}
-					break;
-				case VMOpcode.NEG:
-					Ctx.Stack.Push(~Convert<int>(Ctx.Stack.Pop()));
 					break;
 				case VMOpcode.SHL:
 				{
