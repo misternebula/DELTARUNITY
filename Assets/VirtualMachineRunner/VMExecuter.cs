@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.VirtualMachineRunner
 {
 	/// <summary>
-	/// context required for each instance of script execution
+	/// contains data about each script execution and also environment
 	/// </summary>
 	public class VMScriptExecutionContext
 	{
@@ -21,6 +21,10 @@ namespace Assets.VirtualMachineRunner
 	public static class VMExecuter
 	{
 		public static Stack<VMScriptExecutionContext> EnvironmentStack = new();
+		/// <summary>
+		/// gets the top level environment / execution context
+		/// </summary>
+		public static VMScriptExecutionContext Ctx => EnvironmentStack.Peek();
 
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
@@ -55,7 +59,7 @@ namespace Assets.VirtualMachineRunner
 			while (true)
 			{
 				// TODO: dont pass in ctx and just use EnvironmentStack.Peek for everything since PUSHENV/POPENV can change that
-				var (executionResult, data) = ExecuteInstruction(script, script.Instructions[instructionIndex], ctx);
+				var (executionResult, data) = ExecuteInstruction(script.Instructions[instructionIndex]);
 
 				if (executionResult == ExecutionResult.Failed)
 				{
@@ -249,16 +253,16 @@ namespace Assets.VirtualMachineRunner
 		}
 
 		// BUG: throws sometimes instead of returning ExecutionResult.Failure
-		public static (ExecutionResult result, object data) ExecuteInstruction(VMScript script, VMScriptInstruction instruction, VMScriptExecutionContext ctx)
+		public static (ExecutionResult result, object data) ExecuteInstruction(VMScriptInstruction instruction)
 		{
 			switch (instruction.Opcode)
 			{
 				case VMOpcode.MUL:
 					// multiplication is commutative so this shouldnt matter, but eh. consistency.
-					var numTwo = Convert<double>(ctx.Stack.Pop());
-					var numOne = Convert<double>(ctx.Stack.Pop());
+					var numTwo = Convert<double>(Ctx.Stack.Pop());
+					var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					ctx.Stack.Push(numOne * numOne);
+					Ctx.Stack.Push(numOne * numOne);
 					break;
 				case VMOpcode.CHKINDEX:
 					// don't really know what this does.
@@ -267,8 +271,8 @@ namespace Assets.VirtualMachineRunner
 					switch (instruction.TypeOne)
 					{
 						case VMType.b:
-							var value = Convert<bool>(ctx.Stack.Pop());
-							ctx.Stack.Push(!value);
+							var value = Convert<bool>(Ctx.Stack.Pop());
+							Ctx.Stack.Push(!value);
 							break;
 						default:
 							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
@@ -276,8 +280,8 @@ namespace Assets.VirtualMachineRunner
 					}
 					break;
 				case VMOpcode.ADD:
-					var valTwo = ctx.Stack.Pop();
-					var valOne = ctx.Stack.Pop();
+					var valTwo = Ctx.Stack.Pop();
+					var valOne = Ctx.Stack.Pop();
 
 					var hasString = instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s;
 					var variableIsString = (instruction.TypeOne == VMType.v && valOne is string) || (instruction.TypeTwo == VMType.v && valTwo is string);
@@ -287,12 +291,12 @@ namespace Assets.VirtualMachineRunner
 					{
 						var stringOne = Convert<string>(valOne);
 						var stringTwo = Convert<string>(valTwo);
-						ctx.Stack.Push(stringOne + stringTwo);
+						Ctx.Stack.Push(stringOne + stringTwo);
 						break;
 					}
 
 					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
-					ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
+					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
 					break;
 				case VMOpcode.B:
 				{
@@ -305,7 +309,7 @@ namespace Assets.VirtualMachineRunner
 				}
 				case VMOpcode.BT:
 				{
-					var boolValue = Convert<bool>(ctx.Stack.Pop());
+					var boolValue = Convert<bool>(Ctx.Stack.Pop());
 					if (!boolValue)
 					{
 						break;
@@ -320,7 +324,7 @@ namespace Assets.VirtualMachineRunner
 				}
 				case VMOpcode.BF:
 				{
-					var boolValue = Convert<bool>(ctx.Stack.Pop());
+					var boolValue = Convert<bool>(Ctx.Stack.Pop());
 					if (boolValue)
 					{
 						break;
@@ -335,8 +339,8 @@ namespace Assets.VirtualMachineRunner
 				}
 				case VMOpcode.CMP:
 
-					var second = ctx.Stack.Pop();
-					var first = ctx.Stack.Pop();
+					var second = Ctx.Stack.Pop();
+					var first = Ctx.Stack.Pop();
 
 					if (second is bool or int or double && first is bool or int or double)
 					{
@@ -345,22 +349,22 @@ namespace Assets.VirtualMachineRunner
 						switch (instruction.Comparison)
 						{
 							case VMComparison.LT:
-								ctx.Stack.Push(firstNumber < secondNumber);
+								Ctx.Stack.Push(firstNumber < secondNumber);
 								break;
 							case VMComparison.LTE:
-								ctx.Stack.Push(firstNumber <= secondNumber);
+								Ctx.Stack.Push(firstNumber <= secondNumber);
 								break;
 							case VMComparison.EQ:
-								ctx.Stack.Push(firstNumber == secondNumber);
+								Ctx.Stack.Push(firstNumber == secondNumber);
 								break;
 							case VMComparison.NEQ:
-								ctx.Stack.Push(firstNumber != secondNumber);
+								Ctx.Stack.Push(firstNumber != secondNumber);
 								break;
 							case VMComparison.GTE:
-								ctx.Stack.Push(firstNumber >= secondNumber);
+								Ctx.Stack.Push(firstNumber >= secondNumber);
 								break;
 							case VMComparison.GT:
-								ctx.Stack.Push(firstNumber > secondNumber);
+								Ctx.Stack.Push(firstNumber > secondNumber);
 								break;
 							case VMComparison.None:
 							default:
@@ -373,17 +377,17 @@ namespace Assets.VirtualMachineRunner
 						if (instruction.Comparison == VMComparison.EQ)
 						{
 							//Debug.Log($"    - EQ : {first == second}");
-							ctx.Stack.Push(first == second);
+							Ctx.Stack.Push(first == second);
 						}
 						else if (instruction.Comparison == VMComparison.NEQ)
 						{
 							//Debug.Log($"    - NEQ : {first != second}");
-							ctx.Stack.Push(first != second);
+							Ctx.Stack.Push(first != second);
 						}
 						else
 						{
 							// ??? no idea if this is what GM does
-							ctx.Stack.Push(false);
+							Ctx.Stack.Push(false);
 						}
 					}
 
@@ -398,11 +402,11 @@ namespace Assets.VirtualMachineRunner
 					{
 						case VMType.i:
 							//Debug.Log($"Pushing {instruction.IntData}");
-							ctx.Stack.Push(instruction.IntData);
+							Ctx.Stack.Push(instruction.IntData);
 							break;
 						case VMType.v:
 							// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
-							
+
 							//Debug.Log($"Pushing variable {instruction.StringData}");
 							var variableName = instruction.StringData;
 							var indexingArray = variableName.StartsWith("[array]");
@@ -419,13 +423,13 @@ namespace Assets.VirtualMachineRunner
 							{
 								if (indexingArray)
 								{
-									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
+									var index = Convert<int>(Ctx.Stack.Pop());
+									Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
 									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], index)}");
 								}
 								else
 								{
-									ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName[7..]));
+									Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName[7..]));
 									//Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName[7..])}");
 								}
 							}
@@ -433,13 +437,13 @@ namespace Assets.VirtualMachineRunner
 							{
 								if (indexingArray)
 								{
-									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]);
+									var index = Convert<int>(Ctx.Stack.Pop());
+									Ctx.Stack.Push(((Dictionary<int, object>)Ctx.Locals[variableName[6..]])[index]);
 									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
 								}
 								else
 								{
-									ctx.Stack.Push(ctx.Locals[variableName[6..]]);
+									Ctx.Stack.Push(Ctx.Locals[variableName[6..]]);
 									//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
 								}
 							}
@@ -447,12 +451,12 @@ namespace Assets.VirtualMachineRunner
 							{
 								if (indexingArray)
 								{
-									var index = Convert<int>(ctx.Stack.Pop());
-									ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index]);
+									var index = Convert<int>(Ctx.Stack.Pop());
+									Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName[5..]))[index]);
 								}
 								else
 								{
-									ctx.Stack.Push(VariableResolver.GetSelfVariable(ctx, variableName[5..]));
+									Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx, variableName[5..]));
 								}
 							}
 							else
@@ -462,23 +466,23 @@ namespace Assets.VirtualMachineRunner
 							break;
 						case VMType.b:
 							//Debug.Log($"Pushing {instruction.BoolData}");
-							ctx.Stack.Push(instruction.BoolData);
+							Ctx.Stack.Push(instruction.BoolData);
 							break;
 						case VMType.d:
 							//Debug.Log($"Pushing {instruction.DoubleData}");
-							ctx.Stack.Push(instruction.DoubleData);
+							Ctx.Stack.Push(instruction.DoubleData);
 							break;
 						case VMType.e:
 							// i think this is just an int always???
 							//Debug.Log($"Pushing {instruction.IntData}");
-							ctx.Stack.Push(instruction.IntData);
+							Ctx.Stack.Push(instruction.IntData);
 							break;
 						case VMType.s:
 							var indexOfLast = instruction.StringData.LastIndexOf('@');
 							var stringValue = instruction.StringData.Substring(0, indexOfLast);
 							stringValue = stringValue[1..^1];
 							//Debug.Log($"Pushing {stringValue}");
-							ctx.Stack.Push(stringValue);
+							Ctx.Stack.Push(stringValue);
 							break;
 						case VMType.None:
 						default:
@@ -490,7 +494,7 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.POP:
 				{
 					// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
-					
+
 					var variableName = instruction.StringData;
 					var indexingArray = variableName.StartsWith("[array]");
 					if (indexingArray)
@@ -505,15 +509,15 @@ namespace Assets.VirtualMachineRunner
 					{
 						if (indexingArray)
 						{
-							var index = Convert<int>(ctx.Stack.Pop());
-							var unknown = ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = ctx.Stack.Pop();
+							var index = Convert<int>(Ctx.Stack.Pop());
+							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+							var value = Ctx.Stack.Pop();
 							//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
 							VariableResolver.SetGlobalArrayIndex(variableName[7..], index, value);
 						}
 						else
 						{
-							var value = ctx.Stack.Pop();
+							var value = Ctx.Stack.Pop();
 							//Debug.Log($"Set global {variableName[7..]} to {value}");
 							VariableResolver.SetGlobalVariable(variableName[7..], value);
 						}
@@ -522,39 +526,39 @@ namespace Assets.VirtualMachineRunner
 					{
 						if (indexingArray)
 						{
-							var index = Convert<int>(ctx.Stack.Pop());
-							var unknown = ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = ctx.Stack.Pop();
+							var index = Convert<int>(Ctx.Stack.Pop());
+							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+							var value = Ctx.Stack.Pop();
 
-							if (ctx.Locals[variableName[6..]] == null)
+							if (Ctx.Locals[variableName[6..]] == null)
 							{
-								ctx.Locals[variableName[6..]] = new Dictionary<int, object>();
+								Ctx.Locals[variableName[6..]] = new Dictionary<int, object>();
 							}
 
 							//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
-							((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index] = value;
+							((Dictionary<int, object>)Ctx.Locals[variableName[6..]])[index] = value;
 						}
 						else
 						{
-							var value = ctx.Stack.Pop();
+							var value = Ctx.Stack.Pop();
 							//Debug.Log($"Set {variableName[6..]} to {value}");
-							ctx.Locals[variableName[6..]] = value;
+							Ctx.Locals[variableName[6..]] = value;
 						}
 					}
 					else if (isSelf)
 					{
 						if (indexingArray)
 						{
-							var index = Convert<int>(ctx.Stack.Pop());
-							var unknown = ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = ctx.Stack.Pop();
+							var index = Convert<int>(Ctx.Stack.Pop());
+							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+							var value = Ctx.Stack.Pop();
 
-							((Dictionary<int, object>)VariableResolver.GetSelfVariable(ctx, variableName[5..]))[index] = value;
+							((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName[5..]))[index] = value;
 						}
 						else
 						{
-							var value = ctx.Stack.Pop();
-							VariableResolver.SetSelfVariable(ctx, variableName[5..], value);
+							var value = Ctx.Stack.Pop();
+							VariableResolver.SetSelfVariable(Ctx, variableName[5..], value);
 						}
 					}
 					else
@@ -565,16 +569,16 @@ namespace Assets.VirtualMachineRunner
 					break;
 				}
 				case VMOpcode.RET:
-					return (ExecutionResult.ReturnedValue, ctx.Stack.Pop());
+					return (ExecutionResult.ReturnedValue, Ctx.Stack.Pop());
 				case VMOpcode.CONV:
 					var toType = GetType(instruction.TypeTwo);
-					ctx.Stack.Push(Convert(ctx.Stack.Pop(), toType));
+					Ctx.Stack.Push(Convert(Ctx.Stack.Pop(), toType));
 					break;
 				case VMOpcode.POPZ:
-					ctx.Stack.Pop();
+					Ctx.Stack.Pop();
 					break;
 				case VMOpcode.PUSHI:
-					ctx.Stack.Push(instruction.IntData);
+					Ctx.Stack.Push(instruction.IntData);
 					break;
 				case VMOpcode.CALL:
 					var arguments = new Arguments
@@ -585,18 +589,18 @@ namespace Assets.VirtualMachineRunner
 
 					for (var i = 0; i < instruction.FunctionArgumentCount; i++)
 					{
-						arguments.ArgumentArray[i] = ctx.Stack.Pop();
+						arguments.ArgumentArray[i] = Ctx.Stack.Pop();
 					}
 
 					if (ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out var builtInFunction))
 					{
-						ctx.Stack.Push(builtInFunction(arguments));
+						Ctx.Stack.Push(builtInFunction(arguments));
 						break;
 					}
 
 					if (ScriptResolver.Instance.NameToScript.TryGetValue(instruction.FunctionName, out var scriptName))
 					{
-						ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition, arguments: arguments));
+						Ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition, arguments: arguments));
 						break;
 					}
 
@@ -604,13 +608,13 @@ namespace Assets.VirtualMachineRunner
 					Debug.Break();
 					return (ExecutionResult.Failed, null);
 				case VMOpcode.PUSHENV:
-					var assetId = Convert<int>(ctx.Stack.Pop());
+					var assetId = Convert<int>(Ctx.Stack.Pop());
 					var instances = Array.Empty<NewGamemakerObject>(); // TODO get instances with asset id
 
 					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
-					
+
 					// dont run anything if no instances
 					if (instances.Length == 0)
 					{
@@ -629,8 +633,8 @@ namespace Assets.VirtualMachineRunner
 						{
 							Self = instance,
 							ObjectDefinition = instance.Definition,
-							EventType = ctx.EventType,
-							EventIndex = ctx.EventIndex
+							EventType = Ctx.EventType,
+							EventIndex = Ctx.EventIndex
 						};
 
 						EnvironmentStack.Push(newCtx);
