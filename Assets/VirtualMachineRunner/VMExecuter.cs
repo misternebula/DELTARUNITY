@@ -28,26 +28,28 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
-			var ctx = new VMScriptExecutionContext
 			{
-				Self = obj,
-				ObjectDefinition = objectDefinition,
-				EventType = eventType,
-				EventIndex = eventIndex
-			};
+				var newCtx = new VMScriptExecutionContext
+				{
+					Self = obj,
+					ObjectDefinition = objectDefinition,
+					EventType = eventType,
+					EventIndex = eventIndex
+				};
 
-			foreach (var item in script.LocalVariables)
-			{
-				ctx.Locals.Add(item, null);
+				foreach (var item in script.LocalVariables)
+				{
+					newCtx.Locals.Add(item, null);
+				}
+
+				if (arguments != null)
+				{
+					newCtx.Locals["arguments"] = arguments.ArgumentArray;
+				}
+
+				// Make the current object the current instance
+				EnvironmentStack.Push(newCtx);
 			}
-
-			if (arguments != null)
-			{
-				ctx.Locals["arguments"] = arguments.ArgumentArray;
-			}
-
-			// Make the current object the current instance
-			EnvironmentStack.Push(ctx);
 
 			// Execute the first block, which will execute the next needed block, and so on.
 			/*var zeroBlock = script.Blocks[0];
@@ -94,7 +96,7 @@ namespace Assets.VirtualMachineRunner
 
 				if (executionResult == ExecutionResult.ReturnedValue)
 				{
-					ctx.ReturnValue = data;
+					Ctx.ReturnValue = data;
 					break;
 				}
 			}
@@ -102,7 +104,7 @@ namespace Assets.VirtualMachineRunner
 			// Current object has finished executing, remove from stack
 			EnvironmentStack.Pop();
 
-			return ctx.ReturnValue;
+			return Ctx.ReturnValue;
 		}
 
 		/*public static void ExecuteBlock(VMScript script, VMScriptBlock block, VMScriptExecutionContext ctx)
@@ -628,7 +630,7 @@ namespace Assets.VirtualMachineRunner
 
 					foreach (var instance in instances)
 					{
-						// TODO: copy over locals and MAYBE data stack???? also how does return work??
+						// TODO: how does return work??
 						var newCtx = new VMScriptExecutionContext
 						{
 							Self = instance,
@@ -636,6 +638,14 @@ namespace Assets.VirtualMachineRunner
 							EventType = Ctx.EventType,
 							EventIndex = Ctx.EventIndex
 						};
+						foreach (var obj in Ctx.Stack)
+						{
+							newCtx.Stack.Push(obj);
+						}
+						foreach (var (key, value) in Ctx.Locals)
+						{
+							newCtx.Locals.Add(key, value);
+						}
 
 						EnvironmentStack.Push(newCtx);
 					}
