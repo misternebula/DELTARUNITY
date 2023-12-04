@@ -392,7 +392,7 @@ namespace Assets.VirtualMachineRunner
 								var isGlobal = variableName.StartsWith("global.");
 								var isLocal = variableName.StartsWith("local.");
 								var isSelf = variableName.StartsWith("self.");
-								
+
 								if (isGlobal)
 								{
 									variableName = variableName[7..];
@@ -443,6 +443,12 @@ namespace Assets.VirtualMachineRunner
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index]);
+									}
+									else if (stackTop)
+									{
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+										var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+										VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName);
 									}
 									else
 									{
@@ -564,8 +570,8 @@ namespace Assets.VirtualMachineRunner
 								var index = Convert<int>(Ctx.Stack.Pop());
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
-								
-								// TODO: create dictionary if exists
+
+								// TODO: create dictionary if not exists
 								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index] = value;
 							}
 							else if (stackTop)
