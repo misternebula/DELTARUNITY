@@ -383,6 +383,11 @@ namespace Assets.VirtualMachineRunner
 								{
 									variableName = variableName[7..]; // skip [array]
 								}
+								var stackTop = variableName.StartsWith("[stacktop]");
+								if (stackTop)
+								{
+									variableName = variableName[10..]; // skip [stacktop]
+								}
 
 								var isGlobal = variableName.StartsWith("global.");
 								var isLocal = variableName.StartsWith("local.");
@@ -406,7 +411,7 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 										Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName, index));
 										//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName, index)}");
 									}
@@ -421,7 +426,7 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 										Ctx.Stack.Push(((Dictionary<int, object>)Ctx.Locals[variableName])[index]);
 										//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
 									}
@@ -436,7 +441,7 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName))[index]);
 									}
 									else
@@ -514,10 +519,8 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								// TODO : arrays act the same as [stacktop]
-
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 								//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
 								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
@@ -533,10 +536,8 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								// TODO : arrays act the same as [stacktop]
-
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 
 								if (Ctx.Locals[variableName] == null)
@@ -561,14 +562,14 @@ namespace Assets.VirtualMachineRunner
 								// TODO : arrays act the same as [stacktop]
 
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 
 								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName))[index] = value;
 							}
 							else if (stackTop)
 							{
-								var instanceId = Convert<int>(Ctx.Stack.Pop());
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 								instance.SelfVariables[variableName] = value;
