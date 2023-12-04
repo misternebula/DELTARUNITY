@@ -365,6 +365,7 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.PUSHGLB:
 				case VMOpcode.PUSHLOC:
 				case VMOpcode.PUSHBLTN:
+				case VMOpcode.PUSHI:
 				case VMOpcode.PUSH:
 					{
 						switch (instruction.TypeOne)
@@ -617,10 +618,6 @@ namespace Assets.VirtualMachineRunner
 					break;
 				case VMOpcode.POPZ:
 					Ctx.Stack.Pop();
-					break;
-				case VMOpcode.PUSHI:
-					// can this be merged into the other PUSH opcodes?
-					Ctx.Stack.Push(instruction.IntData);
 					break;
 				case VMOpcode.CALL:
 					var arguments = new Arguments
