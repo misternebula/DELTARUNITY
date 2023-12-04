@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Instances;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -269,44 +270,44 @@ namespace Assets.VirtualMachineRunner
 			switch (instruction.Opcode)
 			{
 				case VMOpcode.B:
-				{
-					if (instruction.JumpToEnd)
 					{
-						return (ExecutionResult.JumpedToEnd, null);
-					}
+						if (instruction.JumpToEnd)
+						{
+							return (ExecutionResult.JumpedToEnd, null);
+						}
 
-					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				}
+						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					}
 				case VMOpcode.BT:
-				{
-					var boolValue = Convert<bool>(Ctx.Stack.Pop());
-					if (!boolValue)
 					{
-						break;
-					}
+						var boolValue = Convert<bool>(Ctx.Stack.Pop());
+						if (!boolValue)
+						{
+							break;
+						}
 
-					if (instruction.JumpToEnd)
-					{
-						return (ExecutionResult.JumpedToEnd, null);
-					}
+						if (instruction.JumpToEnd)
+						{
+							return (ExecutionResult.JumpedToEnd, null);
+						}
 
-					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				}
+						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					}
 				case VMOpcode.BF:
-				{
-					var boolValue = Convert<bool>(Ctx.Stack.Pop());
-					if (boolValue)
 					{
-						break;
-					}
+						var boolValue = Convert<bool>(Ctx.Stack.Pop());
+						if (boolValue)
+						{
+							break;
+						}
 
-					if (instruction.JumpToEnd)
-					{
-						return (ExecutionResult.JumpedToEnd, null);
-					}
+						if (instruction.JumpToEnd)
+						{
+							return (ExecutionResult.JumpedToEnd, null);
+						}
 
-					return (ExecutionResult.JumpedToLabel, instruction.IntData);
-				}
+						return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					}
 				case VMOpcode.CMP:
 
 					var second = Ctx.Stack.Pop();
@@ -365,177 +366,210 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.PUSHLOC:
 				case VMOpcode.PUSHBLTN:
 				case VMOpcode.PUSH:
-				{
-					switch (instruction.TypeOne)
 					{
-						case VMType.i:
-							//Debug.Log($"Pushing {instruction.IntData}");
-							Ctx.Stack.Push(instruction.IntData);
-							break;
-						case VMType.v:
-							// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
+						switch (instruction.TypeOne)
+						{
+							case VMType.i:
+								//Debug.Log($"Pushing {instruction.IntData}");
+								Ctx.Stack.Push(instruction.IntData);
+								break;
+							case VMType.v:
+								// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
 
-							//Debug.Log($"Pushing variable {instruction.StringData}");
-							var variableName = instruction.StringData;
-							var indexingArray = variableName.StartsWith("[array]");
+								//Debug.Log($"Pushing variable {instruction.StringData}");
+								var variableName = instruction.StringData;
+								var indexingArray = variableName.StartsWith("[array]");
+								if (indexingArray)
+								{
+									variableName = variableName[7..]; // skip [array]
+								}
+
+								var isGlobal = variableName.StartsWith("global.");
+								var isLocal = variableName.StartsWith("local.");
+								var isSelf = variableName.StartsWith("self.");
+
+								if (isGlobal)
+								{
+									if (indexingArray)
+									{
+										var index = Convert<int>(Ctx.Stack.Pop());
+										Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
+										//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], index)}");
+									}
+									else
+									{
+										Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName[7..]));
+										//Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName[7..])}");
+									}
+								}
+								else if (isLocal)
+								{
+									if (indexingArray)
+									{
+										var index = Convert<int>(Ctx.Stack.Pop());
+										Ctx.Stack.Push(((Dictionary<int, object>)Ctx.Locals[variableName[6..]])[index]);
+										//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
+									}
+									else
+									{
+										Ctx.Stack.Push(Ctx.Locals[variableName[6..]]);
+										//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
+									}
+								}
+								else if (isSelf)
+								{
+									if (indexingArray)
+									{
+										var index = Convert<int>(Ctx.Stack.Pop());
+										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName[5..]))[index]);
+									}
+									else
+									{
+										Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx, variableName[5..]));
+									}
+								}
+								else
+								{
+									Debug.LogError($"Don't know how to push variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
+								}
+								break;
+							case VMType.b:
+								//Debug.Log($"Pushing {instruction.BoolData}");
+								Ctx.Stack.Push(instruction.BoolData);
+								break;
+							case VMType.d:
+								//Debug.Log($"Pushing {instruction.DoubleData}");
+								Ctx.Stack.Push(instruction.DoubleData);
+								break;
+							case VMType.e:
+								// i think this is just an int always???
+								//Debug.Log($"Pushing {instruction.IntData}");
+								Ctx.Stack.Push(instruction.IntData);
+								break;
+							case VMType.s:
+								var indexOfLast = instruction.StringData.LastIndexOf('@');
+								var stringValue = instruction.StringData.Substring(0, indexOfLast);
+								stringValue = stringValue[1..^1];
+								//Debug.Log($"Pushing {stringValue}");
+								Ctx.Stack.Push(stringValue);
+								break;
+							case VMType.None:
+							default:
+								throw new ArgumentOutOfRangeException();
+						}
+
+						break;
+					}
+				case VMOpcode.POP:
+					{
+						// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
+						// TODO: is self the only thing to use [stacktop]?
+
+						var variableName = instruction.StringData;
+						var indexingArray = variableName.StartsWith("[array]");
+						if (indexingArray)
+						{
+							variableName = variableName[7..]; // skip [array]
+						}
+						var stackTop = variableName.StartsWith("[stacktop]");
+						if (stackTop)
+						{
+							variableName = variableName[10..]; // skip [stacktop]
+						}
+
+						var isGlobal = variableName.StartsWith("global.");
+						var isLocal = variableName.StartsWith("local.");
+						var isSelf = variableName.StartsWith("self.");
+
+						if (isGlobal)
+						{
+							variableName = variableName[7..];
+						}
+						else if (isLocal)
+						{
+							variableName = variableName[6..];
+						}
+						else if (isSelf)
+						{
+							variableName = variableName[5..];
+						}
+
+						if (isGlobal)
+						{
 							if (indexingArray)
 							{
-								variableName = variableName[7..]; // skip [array]
-							}
+								// TODO : arrays act the same as [stacktop]
 
-							var isGlobal = variableName.StartsWith("global.");
-							var isLocal = variableName.StartsWith("local.");
-							var isSelf = variableName.StartsWith("self.");
-
-							if (isGlobal)
-							{
-								if (indexingArray)
-								{
-									var index = Convert<int>(Ctx.Stack.Pop());
-									Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName[7..], index));
-									//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName[7..], index)}");
-								}
-								else
-								{
-									Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName[7..]));
-									//Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName[7..])}");
-								}
-							}
-							else if (isLocal)
-							{
-								if (indexingArray)
-								{
-									var index = Convert<int>(Ctx.Stack.Pop());
-									Ctx.Stack.Push(((Dictionary<int, object>)Ctx.Locals[variableName[6..]])[index]);
-									//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName[6..]])[index]}");
-								}
-								else
-								{
-									Ctx.Stack.Push(Ctx.Locals[variableName[6..]]);
-									//Debug.Log($" - {ctx.Locals[variableName[6..]]}");
-								}
-							}
-							else if (isSelf)
-							{
-								if (indexingArray)
-								{
-									var index = Convert<int>(Ctx.Stack.Pop());
-									Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName[5..]))[index]);
-								}
-								else
-								{
-									Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx, variableName[5..]));
-								}
+								var index = Convert<int>(Ctx.Stack.Pop());
+								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var value = Ctx.Stack.Pop();
+								//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
+								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
 							}
 							else
 							{
-								Debug.LogError($"Don't know how to push variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
+								var value = Ctx.Stack.Pop();
+								//Debug.Log($"Set global {variableName[7..]} to {value}");
+								VariableResolver.SetGlobalVariable(variableName, value);
 							}
-							break;
-						case VMType.b:
-							//Debug.Log($"Pushing {instruction.BoolData}");
-							Ctx.Stack.Push(instruction.BoolData);
-							break;
-						case VMType.d:
-							//Debug.Log($"Pushing {instruction.DoubleData}");
-							Ctx.Stack.Push(instruction.DoubleData);
-							break;
-						case VMType.e:
-							// i think this is just an int always???
-							//Debug.Log($"Pushing {instruction.IntData}");
-							Ctx.Stack.Push(instruction.IntData);
-							break;
-						case VMType.s:
-							var indexOfLast = instruction.StringData.LastIndexOf('@');
-							var stringValue = instruction.StringData.Substring(0, indexOfLast);
-							stringValue = stringValue[1..^1];
-							//Debug.Log($"Pushing {stringValue}");
-							Ctx.Stack.Push(stringValue);
-							break;
-						case VMType.None:
-						default:
-							throw new ArgumentOutOfRangeException();
-					}
-
-					break;
-				}
-				case VMOpcode.POP:
-				{
-					// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
-
-					var variableName = instruction.StringData;
-					var indexingArray = variableName.StartsWith("[array]");
-					if (indexingArray)
-					{
-						variableName = variableName[7..]; // skip [array]
-					}
-
-					var isGlobal = variableName.StartsWith("global.");
-					var isLocal = variableName.StartsWith("local.");
-					var isSelf = variableName.StartsWith("self.");
-					if (isGlobal)
-					{
-						if (indexingArray)
-						{
-							var index = Convert<int>(Ctx.Stack.Pop());
-							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = Ctx.Stack.Pop();
-							//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
-							VariableResolver.SetGlobalArrayIndex(variableName[7..], index, value);
 						}
-						else
+						else if (isLocal)
 						{
-							var value = Ctx.Stack.Pop();
-							//Debug.Log($"Set global {variableName[7..]} to {value}");
-							VariableResolver.SetGlobalVariable(variableName[7..], value);
-						}
-					}
-					else if (isLocal)
-					{
-						if (indexingArray)
-						{
-							var index = Convert<int>(Ctx.Stack.Pop());
-							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = Ctx.Stack.Pop();
-
-							if (Ctx.Locals[variableName[6..]] == null)
+							if (indexingArray)
 							{
-								Ctx.Locals[variableName[6..]] = new Dictionary<int, object>();
+								// TODO : arrays act the same as [stacktop]
+
+								var index = Convert<int>(Ctx.Stack.Pop());
+								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var value = Ctx.Stack.Pop();
+
+								if (Ctx.Locals[variableName] == null)
+								{
+									Ctx.Locals[variableName] = new Dictionary<int, object>();
+								}
+
+								//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
+								((Dictionary<int, object>)Ctx.Locals[variableName])[index] = value;
 							}
+							else
+							{
+								var value = Ctx.Stack.Pop();
+								//Debug.Log($"Set {variableName[6..]} to {value}");
+								Ctx.Locals[variableName] = value;
+							}
+						}
+						else if (isSelf)
+						{
+							if (indexingArray)
+							{
+								// TODO : arrays act the same as [stacktop]
 
-							//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
-							((Dictionary<int, object>)Ctx.Locals[variableName[6..]])[index] = value;
+								var index = Convert<int>(Ctx.Stack.Pop());
+								var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
+								var value = Ctx.Stack.Pop();
+
+								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName))[index] = value;
+							}
+							else if (stackTop)
+							{
+								var instanceId = Convert<int>(Ctx.Stack.Pop());
+								var value = Ctx.Stack.Pop();
+								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+								instance.SelfVariables[variableName] = value;
+							}
+							else
+							{
+								var value = Ctx.Stack.Pop();
+								VariableResolver.SetSelfVariable(Ctx, variableName, value);
+							}
 						}
 						else
 						{
-							var value = Ctx.Stack.Pop();
-							//Debug.Log($"Set {variableName[6..]} to {value}");
-							Ctx.Locals[variableName[6..]] = value;
+							Debug.LogError($"Don't know how to pop to variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
 						}
-					}
-					else if (isSelf)
-					{
-						if (indexingArray)
-						{
-							var index = Convert<int>(Ctx.Stack.Pop());
-							var unknown = Ctx.Stack.Pop(); // -5 means global, -1 means self, -2 means other. no idea why
-							var value = Ctx.Stack.Pop();
 
-							((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName[5..]))[index] = value;
-						}
-						else
-						{
-							var value = Ctx.Stack.Pop();
-							VariableResolver.SetSelfVariable(Ctx, variableName[5..], value);
-						}
+						break;
 					}
-					else
-					{
-						Debug.LogError($"Don't know how to pop to variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
-					}
-
-					break;
-				}
 				case VMOpcode.RET:
 					return (ExecutionResult.ReturnedValue, Ctx.Stack.Pop());
 				case VMOpcode.CONV:
@@ -637,15 +671,15 @@ namespace Assets.VirtualMachineRunner
 
 					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				case VMOpcode.DUP:
-				{
-					var unknown = instruction.IntData; // TODO: what is this?
-					if (unknown > 0)
 					{
-						throw new NotImplementedException();
+						var unknown = instruction.IntData; // TODO: what is this?
+						if (unknown > 0)
+						{
+							throw new NotImplementedException();
+						}
+						Ctx.Stack.Push(Ctx.Stack.Peek());
+						break;
 					}
-					Ctx.Stack.Push(Ctx.Stack.Peek());
-					break;
-				}
 				case VMOpcode.ADD:
 					var valTwo = Ctx.Stack.Pop();
 					var valOne = Ctx.Stack.Pop();
@@ -666,38 +700,38 @@ namespace Assets.VirtualMachineRunner
 					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
 					break;
 				case VMOpcode.SUB:
-				{
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
+					{
+						var numTwo = Convert<double>(Ctx.Stack.Pop());
+						var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(numOne - numTwo);
-					break;
-				}
+						Ctx.Stack.Push(numOne - numTwo);
+						break;
+					}
 				case VMOpcode.MUL:
-				{
-					// multiplication is commutative so this shouldnt matter, but eh. consistency.
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
+					{
+						// multiplication is commutative so this shouldnt matter, but eh. consistency.
+						var numTwo = Convert<double>(Ctx.Stack.Pop());
+						var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(numOne * numTwo);
-					break;
-				}
+						Ctx.Stack.Push(numOne * numTwo);
+						break;
+					}
 				case VMOpcode.DIV:
-				{
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
+					{
+						var numTwo = Convert<double>(Ctx.Stack.Pop());
+						var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(numOne / numTwo);
-					break;
-				}
+						Ctx.Stack.Push(numOne / numTwo);
+						break;
+					}
 				case VMOpcode.REM:
-				{
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
+					{
+						var numTwo = Convert<double>(Ctx.Stack.Pop());
+						var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(numOne % numTwo);
-					break;
-				}
+						Ctx.Stack.Push(numOne % numTwo);
+						break;
+					}
 				// TODO: distinguish between above and below
 				// Remainder and Modulus have the same value for positive values.
 				// % in C# is NOT modulo - it's remainder.
@@ -712,41 +746,41 @@ namespace Assets.VirtualMachineRunner
 				// 10 MOD -3 = -2
 				// -10 MOD -3 = -1
 				case VMOpcode.MOD:
-				{
-					var numTwo = Convert<double>(Ctx.Stack.Pop());
-					var numOne = Convert<double>(Ctx.Stack.Pop());
+					{
+						var numTwo = Convert<double>(Ctx.Stack.Pop());
+						var numOne = Convert<double>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(numOne % numTwo);
-					break;
-				}
+						Ctx.Stack.Push(numOne % numTwo);
+						break;
+					}
 				case VMOpcode.NEG:
 					Ctx.Stack.Push(-Convert<double>(Ctx.Stack.Pop()));
 					break;
 				case VMOpcode.AND:
-				{
-					// should other binary types handle ops?
-					var intTwo = Convert<int>(Ctx.Stack.Pop());
-					var intOne = Convert<int>(Ctx.Stack.Pop());
+					{
+						// should other binary types handle ops?
+						var intTwo = Convert<int>(Ctx.Stack.Pop());
+						var intOne = Convert<int>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(intOne & intTwo);
-					break;
-				}
+						Ctx.Stack.Push(intOne & intTwo);
+						break;
+					}
 				case VMOpcode.OR:
-				{
-					var intTwo = Convert<int>(Ctx.Stack.Pop());
-					var intOne = Convert<int>(Ctx.Stack.Pop());
+					{
+						var intTwo = Convert<int>(Ctx.Stack.Pop());
+						var intOne = Convert<int>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(intOne | intTwo);
-					break;
-				}
+						Ctx.Stack.Push(intOne | intTwo);
+						break;
+					}
 				case VMOpcode.XOR:
-				{
-					var intTwo = Convert<int>(Ctx.Stack.Pop());
-					var intOne = Convert<int>(Ctx.Stack.Pop());
+					{
+						var intTwo = Convert<int>(Ctx.Stack.Pop());
+						var intOne = Convert<int>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(intOne ^ intTwo);
-					break;
-				}
+						Ctx.Stack.Push(intOne ^ intTwo);
+						break;
+					}
 				case VMOpcode.NOT:
 					switch (instruction.TypeOne)
 					{
@@ -759,23 +793,23 @@ namespace Assets.VirtualMachineRunner
 					}
 					break;
 				case VMOpcode.SHL:
-				{
-					// is this the right order?
-					var intTwo = Convert<int>(Ctx.Stack.Pop());
-					var intOne = Convert<int>(Ctx.Stack.Pop());
+					{
+						// is this the right order?
+						var intTwo = Convert<int>(Ctx.Stack.Pop());
+						var intOne = Convert<int>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(intOne << intTwo);
-					break;
-				}
+						Ctx.Stack.Push(intOne << intTwo);
+						break;
+					}
 				case VMOpcode.SHR:
-				{
-					// is this the right order?
-					var intTwo = Convert<int>(Ctx.Stack.Pop());
-					var intOne = Convert<int>(Ctx.Stack.Pop());
+					{
+						// is this the right order?
+						var intTwo = Convert<int>(Ctx.Stack.Pop());
+						var intOne = Convert<int>(Ctx.Stack.Pop());
 
-					Ctx.Stack.Push(intOne >> intTwo);
-					break;
-				}
+						Ctx.Stack.Push(intOne >> intTwo);
+						break;
+					}
 				case VMOpcode.CHKINDEX:
 					// don't really know what this does.
 					// possibly does bounds check and error throw? used before setting array index

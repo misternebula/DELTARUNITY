@@ -94,6 +94,7 @@ namespace Assets.VirtualMachineRunner
 				return;
 			}
 
+			Debug.LogWarning($"Couldn't find variable {name}");
 			ctx.Self.SelfVariables.Add(name, value);
 		}
 	}

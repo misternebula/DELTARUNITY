@@ -336,7 +336,7 @@ namespace Assets.VirtualMachineRunner
 		private void OnDestroy()
 		{
 			DrawManager.Unregister(this);
-			VMExecuter.ExecuteScript(Definition.DestroyScript, this, Definition, EventType.Destroy);
+			ExecuteScript(this, Definition, EventType.Destroy);
 
 			if (margins != Vector4.zero)
 			{
@@ -387,7 +387,7 @@ namespace Assets.VirtualMachineRunner
 
 					if (alarm[i] == 0)
 					{
-						VMExecuter.ExecuteScript(Definition.AlarmScript[i], this, Definition, EventType.Alarm, i);
+						ExecuteScript(this, Definition, EventType.Alarm, i);
 
 						if (alarm[i] == 0)
 						{
@@ -454,7 +454,7 @@ namespace Assets.VirtualMachineRunner
 					_updateCounter = 0;
 					if (image_index + 1 == SpriteManager.SpriteManager.GetNumberOfFrames(sprite_index))
 					{
-						VMExecuter.ExecuteScript(Definition.OtherScript[OtherType.AnimationEnd], this, Definition, EventType.Other, (int)OtherType.AnimationEnd);
+						ExecuteScript(this, Definition, EventType.Other, (int)OtherType.AnimationEnd);
 						image_index = 0;
 					}
 					else

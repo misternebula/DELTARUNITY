@@ -46,8 +46,7 @@ namespace Assets.Instances
 			newGM.x = x;
 			newGM.y = y;
 			newGM.depth = depth;
-			newGM.instanceId = _highestInstanceId++;
-
+			newGM.instanceId = ++_highestInstanceId;
 			newGM.sprite_index = definition.sprite;
 			newGM.visible = definition.visible;
 			newGM.persistent = definition.persistent;
@@ -100,6 +99,17 @@ namespace Assets.Instances
 			}
 
 			instances.Remove(obj);
+		}
+
+		public NewGamemakerObject FindByInstanceId(int instanceId)
+		{
+			if (instances.Count(x => x.instanceId == instanceId) > 1)
+			{
+				Debug.LogError($"Found more than one object instance with id of {instanceId}.");
+				return null;
+			}
+
+			return instances.SingleOrDefault(x => x.instanceId == instanceId);
 		}
 
 		public bool instance_exists_instanceid(int instanceId)

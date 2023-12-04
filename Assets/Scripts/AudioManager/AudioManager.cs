@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts;
 using UnityEngine;
 
 namespace Assets.AudioManager
@@ -30,6 +31,12 @@ namespace Assets.AudioManager
 			{
 				_audioClips[item.name] = item;
 			}
+		}
+
+		public int RegisterAudioClip(AudioClip clip)
+		{
+			_audioClips.Add(clip.name, clip);
+			return AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
 		}
 
 		private void Update()

@@ -11,6 +11,7 @@ using Assets.Instances;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -66,7 +67,10 @@ namespace Assets.VirtualMachineRunner
 			{ "gamepad_button_check", gamepad_button_check},
 			{ "gamepad_axis_value", gamepad_axis_value},
 			{ "room_goto", room_goto },
-			{ "audio_create_stream", audio_create_stream }
+			{ "audio_create_stream", audio_create_stream },
+			{ "merge_colour", merge_colour},
+			{ "merge_color", merge_colour},
+			{ "window_center", window_center }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -1377,7 +1381,50 @@ namespace Assets.VirtualMachineRunner
 		public static object audio_create_stream(Arguments args)
 		{
 			var filename = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+			var path = Path.Combine(Application.persistentDataPath, filename);
 
+			var sample_data = File.ReadAllBytes(path);
+			var sample_name = Path.GetFileNameWithoutExtension(filename);
+
+			AudioClip audioClip;
+			using (var vorbis = new NVorbis.VorbisReader(new MemoryStream(sample_data, false)))
+			{
+				var _audioBuffer = new float[vorbis.TotalSamples];
+				var read = vorbis.ReadSamples(_audioBuffer, 0, (int)vorbis.TotalSamples);
+				audioClip = AudioClip.Create(sample_name, (int)(vorbis.TotalSamples / vorbis.Channels), vorbis.Channels, vorbis.SampleRate, false);
+				audioClip.SetData(_audioBuffer, 0);
+			}
+
+			return AudioManager.AudioManager.Instance.RegisterAudioClip(audioClip);
+		}
+
+		public static object merge_colour(Arguments args)
+		{
+			var col1 = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var col2 = VMExecuter.Convert<int>(args.ArgumentArray[1]);
+			var amount = VMExecuter.Convert<double>(args.ArgumentArray[2]);
+
+			/*
+			 * GameMaker stores colors in 3 bytes - BGR
+			 * RED		: 255		: 00 00 FF
+			 * ORANGE	: 4235519	: 40 A0 FF
+			 * Alpha (or "blend") is not stored in colors.
+			 */
+
+			var oneBytes = BitConverter.GetBytes(col1);
+			var twoBytes = BitConverter.GetBytes(col2);
+			amount = Math.Clamp(amount, 0, 1);
+			var mr = oneBytes[0] + (twoBytes[0] - oneBytes[0]) * amount;
+			var mg = oneBytes[1] + (twoBytes[1] - oneBytes[1]) * amount;
+			var mb = oneBytes[2] + (twoBytes[2] - oneBytes[2]) * amount;
+
+			return BitConverter.ToInt32(new[] { (byte)mr, (byte)mg, (byte)mb, (byte)255 }, 0);
+		}
+
+		public static object window_center(Arguments args)
+		{
+			// TODO : implement using winuser.h SetWindowPos
+			return null;
 		}
 	}
 
