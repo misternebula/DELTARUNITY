@@ -375,6 +375,7 @@ namespace Assets.VirtualMachineRunner
 								break;
 							case VMType.v:
 								// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
+								// TODO: is self the only thing to use [stacktop]?
 
 								//Debug.Log($"Pushing variable {instruction.StringData}");
 								var variableName = instruction.StringData;
@@ -442,7 +443,15 @@ namespace Assets.VirtualMachineRunner
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
-										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index]);
+										if (instanceId is -5 or -7 or -1 or -2)
+										{
+											Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index]);
+										}
+										else
+										{
+											var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+											Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName))[index]);
+										}
 									}
 									else if (stackTop)
 									{
@@ -565,14 +574,20 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								// TODO : arrays act the same as [stacktop]
-
 								var index = Convert<int>(Ctx.Stack.Pop());
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
-
-								// TODO: create dictionary if not exists
-								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index] = value;
+								if (instanceId is -5 or -7 or -1 or -2)
+								{
+									// TODO: create dictionary if not exists
+									((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index] = value;
+								}
+								else
+								{
+									var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+									// TODO: create dictionary if not exists
+									((Dictionary<int, object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName))[index] = value;
+								}
 							}
 							else if (stackTop)
 							{
