@@ -537,13 +537,13 @@ namespace Assets.VirtualMachineRunner
 								var index = Convert<int>(Ctx.Stack.Pop());
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
-								//Debug.Log($"Set global {variableName[7..]} index {index} to {value}");
+								//Debug.Log($"Set global {variableName} index {index} to {value}");
 								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
 							}
 							else
 							{
 								var value = Ctx.Stack.Pop();
-								//Debug.Log($"Set global {variableName[7..]} to {value}");
+								//Debug.Log($"Set global {variableName} to {value}");
 								VariableResolver.SetGlobalVariable(variableName, value);
 							}
 						}
@@ -560,13 +560,13 @@ namespace Assets.VirtualMachineRunner
 									Ctx.Locals[variableName] = new Dictionary<int, object>();
 								}
 
-								//Debug.Log($"Set {variableName[6..]} index {index} to {value}");
+								//Debug.Log($"Set {variableName} index {index} to {value}");
 								((Dictionary<int, object>)Ctx.Locals[variableName])[index] = value;
 							}
 							else
 							{
 								var value = Ctx.Stack.Pop();
-								//Debug.Log($"Set {variableName[6..]} to {value}");
+								//Debug.Log($"Set {variableName} to {value}");
 								Ctx.Locals[variableName] = value;
 							}
 						}
