@@ -28,6 +28,13 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
+			if (script == null)
+			{
+				Debug.LogError($"Tried to run a null script! eventType:{eventType} eventIndex:{eventIndex}");
+				Debug.Break();
+				return null;
+			}
+
 			{
 				var newCtx = new VMScriptExecutionContext
 				{

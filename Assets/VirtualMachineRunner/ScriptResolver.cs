@@ -63,7 +63,10 @@ namespace Assets.VirtualMachineRunner
 			{ "keyboard_check", keyboard_check},
 			{ "keyboard_check_pressed", keyboard_check_pressed},
 			{ "audio_group_is_loaded", audio_group_is_loaded },
-			{ "gamepad_button_check", gamepad_button_check}
+			{ "gamepad_button_check", gamepad_button_check},
+			{ "gamepad_axis_value", gamepad_axis_value},
+			{ "room_goto", room_goto },
+			{ "audio_create_stream", audio_create_stream }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -1356,6 +1359,25 @@ namespace Assets.VirtualMachineRunner
 		{
 			// TODO : implement?
 			return false;
+		}
+
+		public static object gamepad_axis_value(Arguments args)
+		{
+			// TODO : implement?
+			return 0;
+		}
+
+		public static object room_goto(Arguments args)
+		{
+			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			RoomManager.RoomManager.Instance.ChangeRoom(index);
+			return null;
+		}
+
+		public static object audio_create_stream(Arguments args)
+		{
+			var filename = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+
 		}
 	}
 

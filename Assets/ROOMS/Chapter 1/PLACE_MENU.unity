@@ -155,6 +155,7 @@ MonoBehaviour:
   Size: {x: 640, y: 480}
   ViewSize: {x: 320, y: 240}
   ObjectToFollow: {fileID: 0}
+  Persistent: 0
 --- !u!4 &281215267
 Transform:
   m_ObjectHideFlags: 0
@@ -195,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799476528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 342.4041, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -211,18 +212,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 799476528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf07bc964b1a5846bc597938088c692, type: 3}
+  m_Script: {fileID: 11500000, guid: 2de6579bf7f503f4396d23ab195b6ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instanceId: 0
+  instanceId: 103483
   depth: 0
-  sprite_index: 
-  image_index: 0
+  Definition: {fileID: 11400000, guid: 7bf83fe29ed49a846894b309f400dd82, type: 2}
+  _sprite_index: -1
+  _mask_id: -1
+  _image_index: 0
   image_speed: 1
   image_blend: 16777215
   image_alpha: 1
   persistent: 0
   gravity: 0
+  gravity_direction: 270
   visible: 1
   xstart: 0
   ystart: 0
@@ -232,44 +236,6 @@ MonoBehaviour:
   path_speed: 0
   drawOffset: 0
   alarm: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-  _xsndinstance: {fileID: 0}
-  smallface: {fileID: 0}
-  DV: {fileID: 0}
-  GM: {fileID: 0}
-  LOCK: 000000
-  loop1: {fileID: 0}
-  loop2: {fileID: 0}
-  battleheart: {fileID: 0}
-  panner: {fileID: 0}
-  fade: {fileID: 0}
-  fade2: {fileID: 0}
-  pf: {fileID: 0}
-  doorb: {fileID: 0}
-  alphys_facing: {fileID: 0}
-  pape:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pape_sfx: {fileID: 0}
 --- !u!1 &1604694644
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +265,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98927e21b65ca60419bf54ddf9c2c292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LayerId: 0
   Depth: 0
+  X: 0
+  Y: 0
+  HSpeed: 0
+  VSpeed: 0
+  Visible: 1
 --- !u!4 &1604694646
 Transform:
   m_ObjectHideFlags: 0

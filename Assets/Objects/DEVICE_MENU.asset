@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: DEVICE_MENU
+  m_EditorClassIdentifier: 
+  AssetId: 313
+  sprite: -1
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: c9b14a0b6f9e99f48a82158ea4714cfa, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 192242bf168224c45a6277017e5b0ac1, type: 2}
+  OtherScript:
+    _serializedList:
+    - Key: 15
+      Value: {fileID: 11400000, guid: d99a463a5bd2515448d02d5cc6f12ab6, type: 2}
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 0b54937900379694c9605f6926e2d06f, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: bac12c8e08b7c4a47bf5543281b2ec42, type: 2}
