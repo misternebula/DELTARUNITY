@@ -53,7 +53,7 @@ namespace Assets.VirtualMachineRunner
 			return Application.persistentDataPath + Path.DirectorySeparatorChar;
 		}
 
-		public static object GetSelfVariable(VMScriptExecutionContext ctx, string name)
+		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
 			// argumentn is a self even though arguments is a local
 			if (name.StartsWith("argument"))
@@ -61,17 +61,17 @@ namespace Assets.VirtualMachineRunner
 				var withoutArgument = name.Substring("argument".Length);
 				if (int.TryParse(withoutArgument, out var index))
 				{
-					return ((object[])ctx.Locals["arguments"])[index];
+					return ((object[])locals["arguments"])[index];
 				}
 			}
 
 			// global builtins are also self for some reason
 			if (BuiltInVariables.ContainsKey(name))
 			{
-				return BuiltInVariables[name].getter(ctx.Self);
+				return BuiltInVariables[name].getter(self);
 			}
 
-			if (ctx.Self.SelfVariables.TryGetValue(name, out var variable))
+			if (self.SelfVariables.TryGetValue(name, out var variable))
 			{
 				return variable;
 			}
@@ -80,22 +80,22 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
-		public static void SetSelfVariable(VMScriptExecutionContext ctx, string name, object value)
+		public static void SetSelfVariable(NewGamemakerObject self, string name, object value)
 		{
 			if (BuiltInVariables.ContainsKey(name))
 			{
-				BuiltInVariables[name].setter(ctx.Self, value);
+				BuiltInVariables[name].setter(self, value);
 				return;
 			}
 
-			if (ctx.Self.SelfVariables.ContainsKey(name))
+			if (self.SelfVariables.ContainsKey(name))
 			{
-				ctx.Self.SelfVariables[name] = value;
+				self.SelfVariables[name] = value;
 				return;
 			}
 
 			Debug.LogWarning($"Couldn't find variable {name}");
-			ctx.Self.SelfVariables.Add(name, value);
+			self.SelfVariables.Add(name, value);
 		}
 	}
 }

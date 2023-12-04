@@ -442,11 +442,11 @@ namespace Assets.VirtualMachineRunner
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
-										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName))[index]);
+										Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index]);
 									}
 									else
 									{
-										Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx, variableName));
+										Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName));
 									}
 								}
 								else
@@ -540,7 +540,7 @@ namespace Assets.VirtualMachineRunner
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 
-								if (Ctx.Locals[variableName] == null)
+								if (Ctx.Locals[variableName] == null || Ctx.Locals[variableName] is not Dictionary<int, object>)
 								{
 									Ctx.Locals[variableName] = new Dictionary<int, object>();
 								}
@@ -564,20 +564,21 @@ namespace Assets.VirtualMachineRunner
 								var index = Convert<int>(Ctx.Stack.Pop());
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
-
-								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx, variableName))[index] = value;
+								
+								// TODO: create dictionary if exists
+								((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index] = value;
 							}
 							else if (stackTop)
 							{
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-								instance.SelfVariables[variableName] = value;
+								VariableResolver.SetSelfVariable(instance, variableName, value);
 							}
 							else
 							{
 								var value = Ctx.Stack.Pop();
-								VariableResolver.SetSelfVariable(Ctx, variableName, value);
+								VariableResolver.SetSelfVariable(Ctx.Self, variableName, value);
 							}
 						}
 						else
