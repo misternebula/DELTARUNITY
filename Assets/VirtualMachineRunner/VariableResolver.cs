@@ -45,8 +45,8 @@ namespace Assets.VirtualMachineRunner
 		public static void SetGlobalArrayIndex(string name, int index, object value)
 		{
 			ArraySet(index, value,
-				() => GetGlobalVariable(name), 
-				list => SetGlobalVariable(name, list), 
+				() => GetGlobalVariable(name),
+				list => SetGlobalVariable(name, list),
 				() => _globalVariables.ContainsKey(name));
 		}
 
@@ -75,7 +75,7 @@ namespace Assets.VirtualMachineRunner
 		public static Dictionary<string, (Func<NewGamemakerObject, object> getter, Action<NewGamemakerObject, object> setter)> BuiltInVariables = new()
 		{
 			{ "working_directory", (get_working_directory, null) },
-			{ "fps", (get_fps, null)}
+			{ "fps", (get_fps, null) }
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -106,13 +106,7 @@ namespace Assets.VirtualMachineRunner
 				return BuiltInVariables[name].getter(self);
 			}
 
-			if (self.SelfVariables.TryGetValue(name, out var variable))
-			{
-				return variable;
-			}
-
-			Debug.LogError($"Couldn't find variable {name}");
-			return null;
+			return self.SelfVariables[name];
 		}
 
 		public static void SetSelfVariable(NewGamemakerObject self, string name, object value)
