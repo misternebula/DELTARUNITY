@@ -32,11 +32,11 @@ namespace Assets.VirtualMachineRunner
 				list = (List<object>)get();
 			}
 
-			if (index > list.Count)
+			if (index >= list.Count)
 			{
 				list.AddRange(new object[index - list.Count + 1]);
 			}
-
+			
 			list[index] = value;
 		}
 
