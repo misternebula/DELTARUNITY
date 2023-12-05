@@ -9,6 +9,19 @@ using UnityEngine;
 
 namespace Assets.AudioManager
 {
+	public class AudioInstance
+	{
+		public int SoundInstanceId;
+		public AudioSource Source;
+	}
+
+	public class AudioAsset
+	{
+		public int AssetIndex;
+		public AudioClip Clip;
+		public double Gain;
+	}
+
 	internal class AudioManager : MonoBehaviour
 	{
 		public static AudioManager Instance { get; private set; }
@@ -18,8 +31,8 @@ namespace Assets.AudioManager
 
 		public AudioDatabase AudioDatabase;
 
-		private List<AudioSource> _audioSources = new();
-		private Dictionary<string, AudioClip> _audioClips = new();
+		private List<AudioInstance> _audioSources = new();
+		private Dictionary<int, AudioAsset> _audioClips = new();
 
 		private void Start()
 		{
@@ -29,31 +42,41 @@ namespace Assets.AudioManager
 
 			foreach (var item in AudioDatabase.SoundClips)
 			{
-				_audioClips[item.name] = item;
+				var index = AssetIndexManager.Instance.GetIndex(item.name);
+				var asset = new AudioAsset();
+				asset.Clip = item;
+				asset.AssetIndex = index;
+				asset.Gain = 1; // TODO : get initial volume and pitch from DATA.WIN
+				_audioClips[index] = asset;
 			}
 		}
 
 		public int RegisterAudioClip(AudioClip clip)
 		{
-			_audioClips.Add(clip.name, clip);
-			return AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
+			var index = AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
+			var asset = new AudioAsset();
+			asset.Clip = clip;
+			asset.AssetIndex = index;
+			asset.Gain = 1;
+			_audioClips.Add(index, asset);
+			return index;
 		}
 
 		private void Update()
 		{
-			var toRemove = new List<AudioSource>();
+			var toRemove = new List<AudioInstance>();
 			foreach (var item in _audioSources)
 			{
-				if (item == null)
+				if (item == null || item.Source == null)
 				{
 					toRemove.Add(item);
 					continue;
 				}
 
-				if (item.time >= item.clip.length)
+				if (item.Source.time >= item.Source.clip.length)
 				{
 					toRemove.Add(item);
-					Destroy(item.gameObject);
+					Destroy(item.Source.gameObject);
 				}
 			}
 
@@ -62,31 +85,47 @@ namespace Assets.AudioManager
 
 		public AudioSource[] GetAudioSources(string name)
 		{
-			return _audioSources.Where(x => x.clip.name == name).ToArray();
+			return _audioSources.Select(x => x.Source).Where(x => x.clip.name == name).ToArray();
 		}
 
-		public AudioSource PlaySound(string name, int priority, bool loop) => PlaySound(name, priority, loop, 1.0f, 0.0f, 1.0f);
-
-		public AudioSource PlaySound(string name, int priority, bool loop, float gain, float offset, float pitch)
+		public void SetAssetGain(int assetIndex, double gain)
 		{
+			_audioClips[assetIndex].Gain = gain;
+		}
+
+		public AudioAsset GetAudioAsset(int assetIndex)
+		{
+			return _audioClips[assetIndex];
+		}
+
+		private int _highestSoundInstanceId = 100000;
+
+		public int audio_play_sound(int index, int priority, bool loop, double gain, double offset, double pitch)
+		{
+			//var name = AssetIndexManager.Instance.GetName(AssetType.sounds, index);
+
 			if (_audioSources.Count == AudioChannelNum)
 			{
-				var oldSource = _audioSources.OrderBy(x => x.priority).First();
+				var oldSourceInstance = _audioSources.OrderBy(x => x.Source.priority).First();
+				var oldSource = oldSourceInstance.Source;
 
 				Debug.Log($"Went over audio source limit - re-using source playing {oldSource.clip.name}");
 
-				oldSource.clip = _audioClips[name];
+				oldSource.Stop();
+				oldSource.clip = _audioClips[index].Clip;
 				oldSource.loop = loop;
-				oldSource.volume = gain;
-				oldSource.time = offset;
-				oldSource.pitch = pitch;
+				oldSource.volume = (float)gain;
+				oldSource.time = (float)offset;
+				oldSource.pitch = (float)pitch;
 				oldSource.priority = priority;
 				oldSource.Play();
 
-				return oldSource;
+				oldSourceInstance.SoundInstanceId = ++_highestSoundInstanceId;
+
+				return oldSourceInstance.SoundInstanceId;
 			}
 
-			if (name == null || !_audioClips.ContainsKey(name))
+			if (index == -1 || !_audioClips.ContainsKey(index))
 			{
 				Debug.LogError($"AudioDatabase doesn't contain {name}!");
 				Debug.Break();
@@ -96,17 +135,23 @@ namespace Assets.AudioManager
 			newSource.name = name;
 			DontDestroyOnLoad(newSource);
 			var source = newSource.GetComponent<AudioSource>();
-			source.clip = _audioClips[name];
+			source.clip = _audioClips[index].Clip;
 			source.loop = loop;
-			source.volume = gain;
-			source.time = offset;
-			source.pitch = pitch;
+			source.volume = (float)gain;
+			source.time = (float)offset;
+			source.pitch = (float)pitch;
 			source.priority = priority;
 			source.Play();
 
-			_audioSources.Add(source);
+			var instance = new AudioInstance
+			{
+				SoundInstanceId = ++_highestSoundInstanceId,
+				Source = source
+			};
 
-			return source;
+			_audioSources.Add(instance);
+
+			return instance.SoundInstanceId;
 		}
 
 		public void ChangeGain(AudioSource source, double volume, double milliseconds)
@@ -130,38 +175,6 @@ namespace Assets.AudioManager
 				yield return null;
 			}
 			source.volume = (float)volume;
-		}
-
-		public void StopAllAudio()
-		{
-			foreach (var item in _audioSources)
-			{
-				item.Stop();
-				Destroy(item);
-			}
-		}
-
-		public void snd_free_all()
-		{
-			foreach (var item in _audioSources)
-			{
-				item.Stop();
-				Destroy(item);
-			}
-
-			_audioSources.Clear();
-		}
-
-		public void audio_stop_sound(string id)
-		{
-			foreach (var item in _audioSources)
-			{
-				if (item.clip.name == id)
-				{
-					item.Stop();
-					Destroy(item);
-				}
-			}
 		}
 	}
 }
