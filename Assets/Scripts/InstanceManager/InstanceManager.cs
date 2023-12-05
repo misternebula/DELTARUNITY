@@ -121,20 +121,14 @@ namespace Assets.Instances
 		{
 			foreach (var instance in instances)
 			{
-				if (instance.Definition.AssetId == assetIndex)
+				var definition = instance.Definition;
+				while (definition != null)
 				{
-					return true;
-				}
-
-				var currentDefinition = instance.Definition.parent;
-				while (currentDefinition != null)
-				{
-					if (currentDefinition.AssetId == assetIndex)
+					if (definition.AssetId == assetIndex)
 					{
 						return true;
 					}
-
-					currentDefinition = currentDefinition.parent;
+					definition = definition.parent;
 				}
 			}
 
@@ -146,22 +140,15 @@ namespace Assets.Instances
 			var result = new List<NewGamemakerObject>();
 			foreach (var instance in instances)
 			{
-				if (instance.Definition.AssetId == assetId)
+				var definition = instance.Definition;
+				while (definition != null)
 				{
-					result.Add(instance);
-					continue;
-				}
-
-				var currentDefinition = instance.Definition.parent;
-				while (currentDefinition != null)
-				{
-					if (currentDefinition.AssetId == assetId)
+					if (definition.AssetId == assetId)
 					{
 						result.Add(instance);
-						break;
+						break; // continue for loop
 					}
-
-					currentDefinition = currentDefinition.parent;
+					definition = definition.parent;
 				}
 			}
 			return result;
