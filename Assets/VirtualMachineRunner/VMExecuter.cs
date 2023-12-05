@@ -628,7 +628,7 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.CALL:
 					var arguments = new Arguments
 					{
-						Context = EnvironmentStack.Peek(),
+						Context = Ctx,
 						ArgumentArray = new object[instruction.FunctionArgumentCount]
 					};
 
@@ -645,7 +645,7 @@ namespace Assets.VirtualMachineRunner
 
 					if (ScriptResolver.Instance.NameToScript.TryGetValue(instruction.FunctionName, out var scriptName))
 					{
-						Ctx.Stack.Push(ExecuteScript(scriptName, EnvironmentStack.Peek().Self, EnvironmentStack.Peek().ObjectDefinition, arguments: arguments));
+						Ctx.Stack.Push(ExecuteScript(scriptName, Ctx.Self, Ctx.ObjectDefinition, arguments: arguments));
 						break;
 					}
 
@@ -690,7 +690,7 @@ namespace Assets.VirtualMachineRunner
 					break;
 				case VMOpcode.POPENV:
 					var currentInstance = EnvironmentStack.Pop();
-					var nextInstance = EnvironmentStack.Peek();
+					var nextInstance = Ctx;
 
 					// no instances pushed
 					if (currentInstance == null)
