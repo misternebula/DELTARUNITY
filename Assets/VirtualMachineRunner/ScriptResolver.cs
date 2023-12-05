@@ -1566,7 +1566,7 @@ namespace Assets.VirtualMachineRunner
 			draw(x1, y1, x2, y2);
 			return null;
 
-			void draw(double x1, double y1, double x2, double y2)
+			static void draw(double x1, double y1, double x2, double y2)
 			{
 				var width = (x2 - x1);
 				var height = (y2 - y1);
