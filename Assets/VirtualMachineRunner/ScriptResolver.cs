@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditorInternal.ReorderableList;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -25,12 +26,15 @@ namespace Assets.VirtualMachineRunner
 			{ "layer_force_draw_depth", layer_force_draw_depth },
 			{ "draw_set_colour", draw_set_colour },
 			{ "draw_set_color", draw_set_colour }, // mfw
+			{ "draw_set_alpha", draw_set_alpha },
+			{ "draw_set_font", draw_set_font },
 			{ "array_length_1d", array_length_1d },
 			{ "@@NewGMLArray@@", newgmlarray },
 			{ "asset_get_index", asset_get_index },
 			{ "event_inherited", event_inherited },
 			{ "ini_open", ini_open },
 			{ "ini_read_string", ini_read_string },
+			{ "ini_read_real", ini_read_real },
 			{ "ini_close", ini_close },
 			{ "font_add_sprite_ext", font_add_sprite_ext },
 			{ "variable_global_exists", variable_global_exists },
@@ -71,7 +75,10 @@ namespace Assets.VirtualMachineRunner
 			{ "merge_color", merge_colour },
 			{ "window_center", window_center },
 			{ "audio_play_sound", audio_play_sound },
-			{ "audio_sound_gain", audio_sound_gain }
+			{ "audio_sound_gain", audio_sound_gain },
+			{ "floor", floor },
+			{ "ceil", ceil },
+			{ "draw_rectangle", draw_rectangle }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -85,10 +92,12 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
+		private static T Conv<T>(object obj) => VMExecuter.Convert<T>(obj);
+
 		private static object layer_force_draw_depth(Arguments args)
 		{
-			var force = VMExecuter.Convert<bool>(args.Args[0]);
-			var depth = VMExecuter.Convert<int>(args.Args[1]);
+			var force = Conv<bool>(args.Args[0]);
+			var depth = Conv<int>(args.Args[1]);
 			//Debug.Log($"layer_force_draw_depth force:{force} depth:{depth}");
 
 			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
@@ -98,11 +107,25 @@ namespace Assets.VirtualMachineRunner
 
 		public static object draw_set_colour(Arguments args)
 		{
-			var color = VMExecuter.Convert<int>(args.Args[0]);
-			//Debug.Log($"draw_set_color color:{color}");
-
+			var color = Conv<int>(args.Args[0]);
 			SpriteManager.SpriteManager.DrawColor = color;
+			return null;
+		}
 
+		public static object draw_set_alpha(Arguments args)
+		{
+			var alpha = Conv<double>(args.Args[0]);
+			SpriteManager.SpriteManager.DrawAlpha = alpha;
+			return null;
+		}
+
+		public static object draw_set_font(Arguments args)
+		{
+			var font = Conv<int>(args.Args[0]);
+
+			var library = TextManager.TextManager.instance.FontAssets;
+			var fontAsset = library.FirstOrDefault(x => x.AssetIndex == font);
+			TextManager.TextManager.fontAsset = fontAsset;
 			return null;
 		}
 
@@ -210,6 +233,33 @@ namespace Assets.VirtualMachineRunner
 			return sectionClass.Dict[key];
 		}
 
+		public static object ini_read_real(Arguments args)
+		{
+			var section = (string)args.Args[0];
+			var key = (string)args.Args[1];
+			var value = Conv<double>(args.Args[2]);
+
+			var sectionClass = _iniFile.Sections.FirstOrDefault(x => x.Name == section);
+
+			if (sectionClass == null)
+			{
+				return value;
+			}
+
+			if (!sectionClass.Dict.ContainsKey(key))
+			{
+				return value;
+			}
+
+			if (!double.TryParse(sectionClass.Dict[key], out var _res))
+			{
+				// TODO : check what it does here. maybe it only parses up to an invalid character?
+				return value;
+			}
+
+			return _res;
+		}
+
 		public static object ini_close(Arguments args)
 		{
 			var filepath = Path.Combine(Application.persistentDataPath, _iniFile.Name);
@@ -237,10 +287,10 @@ namespace Assets.VirtualMachineRunner
 
 		public static object font_add_sprite_ext(Arguments args)
 		{
-			var spriteAssetIndex = VMExecuter.Convert<int>(args.Args[0]);
-			var string_map = VMExecuter.Convert<string>(args.Args[1]);
-			var prop = VMExecuter.Convert<bool>(args.Args[2]);
-			var sep = VMExecuter.Convert<int>(args.Args[3]);
+			var spriteAssetIndex = Conv<int>(args.Args[0]);
+			var string_map = Conv<string>(args.Args[1]);
+			var prop = Conv<bool>(args.Args[2]);
+			var sep = Conv<int>(args.Args[3]);
 
 			var spriteAsset = SpriteManager.SpriteManager.GetSpriteAsset(spriteAssetIndex);
 
@@ -271,7 +321,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object variable_global_exists(Arguments args)
 		{
-			var name = VMExecuter.Convert<string>(args.Args[0]);
+			var name = Conv<string>(args.Args[0]);
 			return VariableResolver.GlobalVariableExists(name);
 		}
 
@@ -291,14 +341,14 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_map_destroy(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.Args[0]);
+			var index = Conv<int>(args.Args[0]);
 			_dsMapDict.Remove(index);
 			return null;
 		}
 
 		public static object ds_map_add(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var id = Conv<int>(args.Args[0]);
 			var key = args.Args[1];
 			var value = args.Args[2];
 
@@ -339,14 +389,14 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_list_destroy(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.Args[0]);
+			var index = Conv<int>(args.Args[0]);
 			_dsListDict.Remove(index);
 			return null;
 		}
 
 		public static object ds_list_add(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var id = Conv<int>(args.Args[0]);
 			var values = args.Args[1..];
 
 			if (!_dsListDict.ContainsKey(id))
@@ -586,7 +636,7 @@ namespace Assets.VirtualMachineRunner
 				}
 				else if (valueOrFormat is bool)
 				{
-					return VMExecuter.Convert<string>(valueOrFormat);
+					return Conv<string>(valueOrFormat);
 				}
 				else if (valueOrFormat is string)
 				{
@@ -595,7 +645,7 @@ namespace Assets.VirtualMachineRunner
 				else
 				{
 					// real
-					var num = VMExecuter.Convert<double>(valueOrFormat);
+					var num = Conv<double>(valueOrFormat);
 					var afterTwoDigits = num % 0.01f;
 					var truncated = num - afterTwoDigits;
 
@@ -608,7 +658,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_map_find_value(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var id = Conv<int>(args.Args[0]);
 			var key = args.Args[1];
 
 			if (!_dsMapDict.ContainsKey(id))
@@ -649,17 +699,17 @@ namespace Assets.VirtualMachineRunner
 
 		public static object instance_create_depth(Arguments args)
 		{
-			var x = VMExecuter.Convert<double>(args.Args[0]);
-			var y = VMExecuter.Convert<double>(args.Args[1]);
-			var depth = VMExecuter.Convert<int>(args.Args[2]);
-			var obj = VMExecuter.Convert<int>(args.Args[3]);
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+			var depth = Conv<int>(args.Args[2]);
+			var obj = Conv<int>(args.Args[3]);
 
 			return InstanceManager.Instance.instance_create_depth(x, y, depth, obj);
 		}
 
 		public static object instance_number(Arguments args)
 		{
-			var obj = VMExecuter.Convert<int>(args.Args[0]);
+			var obj = Conv<int>(args.Args[0]);
 			return InstanceManager.Instance.instance_number(obj);
 		}
 
@@ -683,7 +733,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object window_set_caption(Arguments args)
 		{
-			var caption = VMExecuter.Convert<string>(args.Args[0]);
+			var caption = Conv<string>(args.Args[0]);
 
 #if !UNITY_EDITOR
 			var windowPtr = FindWindow(null, _caption);
@@ -703,16 +753,16 @@ namespace Assets.VirtualMachineRunner
 
 		public static object window_set_size(Arguments args)
 		{
-			var w = VMExecuter.Convert<int>(args.Args[0]);
-			var h = VMExecuter.Convert<int>(args.Args[1]);
+			var w = Conv<int>(args.Args[0]);
+			var h = Conv<int>(args.Args[1]);
 			// TODO : implement using winuser.h SetWindowPos
 			return null;
 		}
 
 		public static object window_set_position(Arguments args)
 		{
-			var x = VMExecuter.Convert<int>(args.Args[0]);
-			var y = VMExecuter.Convert<int>(args.Args[1]);
+			var x = Conv<int>(args.Args[0]);
+			var y = Conv<int>(args.Args[1]);
 			// TODO : implement using winuser.h SetWindowPos
 			return null;
 		}
@@ -725,7 +775,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object keyboard_check(Arguments args)
 		{
-			var key = VMExecuter.Convert<int>(args.Args[0]);
+			var key = Conv<int>(args.Args[0]);
 			var unityKey = Key.None;
 			switch (key)
 			{
@@ -1044,7 +1094,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object keyboard_check_pressed(Arguments args)
 		{
-			var key = VMExecuter.Convert<int>(args.Args[0]);
+			var key = Conv<int>(args.Args[0]);
 			var unityKey = Key.None;
 			switch (key)
 			{
@@ -1375,14 +1425,14 @@ namespace Assets.VirtualMachineRunner
 
 		public static object room_goto(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.Args[0]);
+			var index = Conv<int>(args.Args[0]);
 			RoomManager.RoomManager.Instance.ChangeRoom(index);
 			return null;
 		}
 
 		public static object audio_create_stream(Arguments args)
 		{
-			var filename = VMExecuter.Convert<string>(args.Args[0]);
+			var filename = Conv<string>(args.Args[0]);
 			var path = Path.Combine(Application.persistentDataPath, filename);
 
 			var sample_data = File.ReadAllBytes(path);
@@ -1402,9 +1452,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object merge_colour(Arguments args)
 		{
-			var col1 = VMExecuter.Convert<int>(args.Args[0]);
-			var col2 = VMExecuter.Convert<int>(args.Args[1]);
-			var amount = VMExecuter.Convert<double>(args.Args[2]);
+			var col1 = Conv<int>(args.Args[0]);
+			var col2 = Conv<int>(args.Args[1]);
+			var amount = Conv<double>(args.Args[2]);
 
 			/*
 			 * GameMaker stores colors in 3 bytes - BGR
@@ -1431,9 +1481,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object audio_play_sound(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.Args[0]);
-			var priority = VMExecuter.Convert<int>(args.Args[1]); // can this be a double?
-			var loop = VMExecuter.Convert<bool>(args.Args[2]);
+			var index = Conv<int>(args.Args[0]);
+			var priority = Conv<int>(args.Args[1]); // can this be a double?
+			var loop = Conv<bool>(args.Args[2]);
 			var asset = AudioManager.AudioManager.Instance.GetAudioAsset(index);
 			var gain = asset.Gain;
 			var offset = 0.0; // TODO
@@ -1441,22 +1491,22 @@ namespace Assets.VirtualMachineRunner
 			var listener_mask = 0; // TODO : work out what the hell this is for
 			if (args.Args.Length > 3)
 			{
-				gain = VMExecuter.Convert<double>(args.Args[3]);
+				gain = Conv<double>(args.Args[3]);
 			}
 
 			if (args.Args.Length > 4)
 			{
-				offset = VMExecuter.Convert<double>(args.Args[4]);
+				offset = Conv<double>(args.Args[4]);
 			}
 
 			if (args.Args.Length > 5)
 			{
-				pitch = VMExecuter.Convert<double>(args.Args[5]);
+				pitch = Conv<double>(args.Args[5]);
 			}
 
 			if (args.Args.Length > 6)
 			{
-				listener_mask = VMExecuter.Convert<int>(args.Args[6]);
+				listener_mask = Conv<int>(args.Args[6]);
 			}
 
 			return AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
@@ -1464,9 +1514,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object audio_sound_gain(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.Args[0]);
-			var volume = VMExecuter.Convert<double>(args.Args[1]);
-			var time = VMExecuter.Convert<double>(args.Args[2]);
+			var index = Conv<int>(args.Args[0]);
+			var volume = Conv<double>(args.Args[1]);
+			var time = Conv<double>(args.Args[2]);
 
 			if (index >= 100000)
 			{
@@ -1482,6 +1532,60 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return null;
+		}
+
+		public static object floor(Arguments args)
+		{
+			var n = Conv<double>(args.Args[0]);
+			return Math.Floor(n);
+		}
+
+		public static object ceil(Arguments args)
+		{
+			var n = Conv<double>(args.Args[0]);
+			return Math.Ceiling(n);
+		}
+
+		public static object draw_rectangle(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+			var outline = Conv<bool>(args.Args[4]);
+
+			if (outline)
+			{
+				draw(x1, y1, x2, y1 + 1);
+				draw(x2 - 1, y1 + 1, x2, y2);
+				draw(x1, y2 - 1, x2, y2);
+				draw(x1, y1, x1 + 1, y2);
+				return null;
+			}
+
+			draw(x1, y1, x2, y2);
+			return null;
+
+			void draw(double x1, double y1, double x2, double y2)
+			{
+				var width = (x2 - x1);
+				var height = (y2 - y1);
+
+				if (height < 0)
+				{
+					height = -height;
+					y1 -= height;
+				}
+
+				GamemakerCamera.RenderJobs.Add(new GMRectangleJob()
+				{
+					width = (float)width,
+					height = (float)height,
+					screenPos = new Vector2((float)x1, (float)y1),
+					blend = SpriteManager.SpriteManager.DrawColor.BGRToColor(),
+					alpha = SpriteManager.SpriteManager.DrawAlpha
+				});
+			}
 		}
 	}
 

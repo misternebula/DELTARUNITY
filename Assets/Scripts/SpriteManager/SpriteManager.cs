@@ -18,7 +18,7 @@ namespace Assets.SpriteManager
 		public Material TextColorMaterial;
 
 		public static int DrawColor = 16777215;
-		public static float DrawAlpha = 1;
+		public static double DrawAlpha = 1;
 		public static int FogColor = 0;
 		public static bool FogEnabled = false;
 
