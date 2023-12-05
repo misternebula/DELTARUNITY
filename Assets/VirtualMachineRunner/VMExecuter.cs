@@ -55,7 +55,7 @@ namespace Assets.VirtualMachineRunner
 				}
 				if (arguments != null)
 				{
-					newCtx.Locals["arguments"] = arguments.ArgumentArray;
+					newCtx.Locals["arguments"] = arguments.Args;
 				}
 
 				// Make the current object the current instance
@@ -628,13 +628,13 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.CALL:
 					var arguments = new Arguments
 					{
-						Context = Ctx,
-						ArgumentArray = new object[instruction.FunctionArgumentCount]
+						Ctx = Ctx,
+						Args = new object[instruction.FunctionArgumentCount]
 					};
 
 					for (var i = 0; i < instruction.FunctionArgumentCount; i++)
 					{
-						arguments.ArgumentArray[i] = Ctx.Stack.Pop();
+						arguments.Args[i] = Ctx.Stack.Pop();
 					}
 
 					if (ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out var builtInFunction))

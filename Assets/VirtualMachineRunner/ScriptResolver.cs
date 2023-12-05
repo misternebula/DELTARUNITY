@@ -87,8 +87,8 @@ namespace Assets.VirtualMachineRunner
 
 		private static object layer_force_draw_depth(Arguments args)
 		{
-			var force = VMExecuter.Convert<bool>(args.ArgumentArray[0]);
-			var depth = VMExecuter.Convert<int>(args.ArgumentArray[1]);
+			var force = VMExecuter.Convert<bool>(args.Args[0]);
+			var depth = VMExecuter.Convert<int>(args.Args[1]);
 			//Debug.Log($"layer_force_draw_depth force:{force} depth:{depth}");
 
 			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
@@ -98,7 +98,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object draw_set_colour(Arguments args)
 		{
-			var color = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var color = VMExecuter.Convert<int>(args.Args[0]);
 			//Debug.Log($"draw_set_color color:{color}");
 
 			SpriteManager.SpriteManager.DrawColor = color;
@@ -108,7 +108,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object array_length_1d(Arguments args)
 		{
-			var array = (List<object>)args.ArgumentArray[0];
+			var array = (List<object>)args.Args[0];
 			return array.Count;
 		}
 
@@ -119,18 +119,18 @@ namespace Assets.VirtualMachineRunner
 
 		public static object asset_get_index(Arguments args)
 		{
-			var name = (string)args.ArgumentArray[0];
+			var name = (string)args.Args[0];
 			return AssetIndexManager.Instance.GetIndex(name);
 		}
 
 		public static object event_inherited(Arguments args)
 		{
-			if (args.Context.ObjectDefinition.parent == null)
+			if (args.Ctx.ObjectDefinition.parent == null)
 			{
 				return null;
 			}
 
-			NewGamemakerObject.ExecuteScript(args.Context.Self, args.Context.ObjectDefinition.parent, args.Context.EventType, args.Context.EventIndex);
+			NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition.parent, args.Ctx.EventType, args.Ctx.EventIndex);
 			return null;
 		}
 
@@ -138,7 +138,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ini_open(Arguments args)
 		{
-			var name = (string)args.ArgumentArray[0];
+			var name = (string)args.Args[0];
 
 			if (_iniFile != null)
 			{
@@ -191,9 +191,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ini_read_string(Arguments args)
 		{
-			var section = (string)args.ArgumentArray[0];
-			var key = (string)args.ArgumentArray[1];
-			var value = (string)args.ArgumentArray[2];
+			var section = (string)args.Args[0];
+			var key = (string)args.Args[1];
+			var value = (string)args.Args[2];
 
 			var sectionClass = _iniFile.Sections.FirstOrDefault(x => x.Name == section);
 
@@ -237,10 +237,10 @@ namespace Assets.VirtualMachineRunner
 
 		public static object font_add_sprite_ext(Arguments args)
 		{
-			var spriteAssetIndex = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var string_map = VMExecuter.Convert<string>(args.ArgumentArray[1]);
-			var prop = VMExecuter.Convert<bool>(args.ArgumentArray[2]);
-			var sep = VMExecuter.Convert<int>(args.ArgumentArray[3]);
+			var spriteAssetIndex = VMExecuter.Convert<int>(args.Args[0]);
+			var string_map = VMExecuter.Convert<string>(args.Args[1]);
+			var prop = VMExecuter.Convert<bool>(args.Args[2]);
+			var sep = VMExecuter.Convert<int>(args.Args[3]);
 
 			var spriteAsset = SpriteManager.SpriteManager.GetSpriteAsset(spriteAssetIndex);
 
@@ -271,7 +271,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object variable_global_exists(Arguments args)
 		{
-			var name = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+			var name = VMExecuter.Convert<string>(args.Args[0]);
 			return VariableResolver.GlobalVariableExists(name);
 		}
 
@@ -291,16 +291,16 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_map_destroy(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var index = VMExecuter.Convert<int>(args.Args[0]);
 			_dsMapDict.Remove(index);
 			return null;
 		}
 
 		public static object ds_map_add(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var key = args.ArgumentArray[1];
-			var value = args.ArgumentArray[2];
+			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var key = args.Args[1];
+			var value = args.Args[2];
 
 			if (!_dsMapDict.ContainsKey(id))
 			{
@@ -319,7 +319,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_map_size(Arguments args)
 		{
-			var id = (int)args.ArgumentArray[0];
+			var id = (int)args.Args[0];
 			return _dsMapDict[id].Count;
 		}
 
@@ -339,15 +339,15 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_list_destroy(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var index = VMExecuter.Convert<int>(args.Args[0]);
 			_dsListDict.Remove(index);
 			return null;
 		}
 
 		public static object ds_list_add(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var values = args.ArgumentArray[1..];
+			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var values = args.Args[1..];
 
 			if (!_dsListDict.ContainsKey(id))
 			{
@@ -361,7 +361,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object show_debug_message(Arguments args)
 		{
-			Debug.Log(args.ArgumentArray[0].ToString());
+			Debug.Log(args.Args[0].ToString());
 			return null;
 		}
 
@@ -369,7 +369,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object file_text_open_read(Arguments args)
 		{
-			var fname = (string)args.ArgumentArray[0];
+			var fname = (string)args.Args[0];
 
 			var filepath = Path.Combine(Application.persistentDataPath, fname);
 
@@ -402,7 +402,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object file_text_close(Arguments args)
 		{
-			var index = (int)args.ArgumentArray[0];
+			var index = (int)args.Args[0];
 
 			if (_fileHandles.ContainsKey(index))
 			{
@@ -426,21 +426,21 @@ namespace Assets.VirtualMachineRunner
 
 		public static object file_text_eof(Arguments args)
 		{
-			var fileid = (int)args.ArgumentArray[0];
+			var fileid = (int)args.Args[0];
 			var reader = _fileHandles[fileid].Reader;
 			return reader.EndOfStream;
 		}
 
 		public static object file_exists(Arguments args)
 		{
-			var fname = (string)args.ArgumentArray[0];
+			var fname = (string)args.Args[0];
 			var filepath = Path.Combine(Application.persistentDataPath, fname);
 			return File.Exists(filepath);
 		}
 
 		public static object file_text_readln(Arguments args)
 		{
-			var fileid = (int)args.ArgumentArray[0];
+			var fileid = (int)args.Args[0];
 			var reader = _fileHandles[fileid].Reader;
 			return reader.ReadLine();
 		}
@@ -460,7 +460,7 @@ namespace Assets.VirtualMachineRunner
 							foreach (var item in jArray)
 							{
 								// TODO: make and call the proper function for maps and lists
-								ds_list_add(new Arguments { ArgumentArray = new object[] { dsList, Parse(item) } });
+								ds_list_add(new Arguments { Args = new object[] { dsList, Parse(item) } });
 							}
 							return dsList;
 						}
@@ -470,7 +470,7 @@ namespace Assets.VirtualMachineRunner
 							foreach (var (name, value) in jObject)
 							{
 								// TODO: make and call the proper function for maps and lists
-								ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, name, Parse(value) } });
+								ds_map_add(new Arguments { Args = new object[] { dsMap, name, Parse(value) } });
 							}
 							return dsMap;
 						}
@@ -479,7 +479,7 @@ namespace Assets.VirtualMachineRunner
 				}
 			}
 
-			var @string = (string)args.ArgumentArray[0];
+			var @string = (string)args.Args[0];
 			var jToken = JToken.Parse(@string);
 
 			switch (jToken)
@@ -487,13 +487,13 @@ namespace Assets.VirtualMachineRunner
 				case JValue jValue:
 					{
 						var dsMap = (int)ds_map_create(null);
-						ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, "default", Parse(jValue) } });
+						ds_map_add(new Arguments { Args = new object[] { dsMap, "default", Parse(jValue) } });
 						return dsMap;
 					}
 				case JArray jArray:
 					{
 						var dsMap = (int)ds_map_create(null);
-						ds_map_add(new Arguments { ArgumentArray = new object[] { dsMap, "default", Parse(jArray) } });
+						ds_map_add(new Arguments { Args = new object[] { dsMap, "default", Parse(jArray) } });
 						return dsMap;
 					}
 				case JObject jObject:
@@ -507,14 +507,14 @@ namespace Assets.VirtualMachineRunner
 
 		public static object _string(Arguments args)
 		{
-			var valueOrFormat = args.ArgumentArray[0];
+			var valueOrFormat = args.Args[0];
 			var values = new object[] { };
-			if (args.ArgumentArray.Length > 1)
+			if (args.Args.Length > 1)
 			{
-				values = args.ArgumentArray[1..];
+				values = args.Args[1..];
 			}
 
-			if (args.ArgumentArray.Length > 1)
+			if (args.Args.Length > 1)
 			{
 				// format
 				var format = (string)valueOrFormat;
@@ -571,7 +571,7 @@ namespace Assets.VirtualMachineRunner
 					var result = new StringBuilder("[");
 					foreach (var item in list)
 					{
-						var elementString = (string)_string(new Arguments { ArgumentArray = new object[] { item } });
+						var elementString = (string)_string(new Arguments { Args = new object[] { item } });
 
 						result.Append(elementString);
 						if (index < list.Count - 1)
@@ -608,8 +608,8 @@ namespace Assets.VirtualMachineRunner
 
 		public static object ds_map_find_value(Arguments args)
 		{
-			var id = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var key = args.ArgumentArray[1];
+			var id = VMExecuter.Convert<int>(args.Args[0]);
+			var key = args.Args[1];
 
 			if (!_dsMapDict.ContainsKey(id))
 			{
@@ -633,7 +633,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object instance_exists(Arguments args)
 		{
-			var obj = (int)args.ArgumentArray[0];
+			var obj = (int)args.Args[0];
 
 			if (obj > AssetIndexManager.Instance.GetHighestIndex(AssetType.objects))
 			{
@@ -649,17 +649,17 @@ namespace Assets.VirtualMachineRunner
 
 		public static object instance_create_depth(Arguments args)
 		{
-			var x = VMExecuter.Convert<double>(args.ArgumentArray[0]);
-			var y = VMExecuter.Convert<double>(args.ArgumentArray[1]);
-			var depth = VMExecuter.Convert<int>(args.ArgumentArray[2]);
-			var obj = VMExecuter.Convert<int>(args.ArgumentArray[3]);
+			var x = VMExecuter.Convert<double>(args.Args[0]);
+			var y = VMExecuter.Convert<double>(args.Args[1]);
+			var depth = VMExecuter.Convert<int>(args.Args[2]);
+			var obj = VMExecuter.Convert<int>(args.Args[3]);
 
 			return InstanceManager.Instance.instance_create_depth(x, y, depth, obj);
 		}
 
 		public static object instance_number(Arguments args)
 		{
-			var obj = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var obj = VMExecuter.Convert<int>(args.Args[0]);
 			return InstanceManager.Instance.instance_number(obj);
 		}
 
@@ -683,7 +683,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object window_set_caption(Arguments args)
 		{
-			var caption = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+			var caption = VMExecuter.Convert<string>(args.Args[0]);
 
 #if !UNITY_EDITOR
 			var windowPtr = FindWindow(null, _caption);
@@ -703,16 +703,16 @@ namespace Assets.VirtualMachineRunner
 
 		public static object window_set_size(Arguments args)
 		{
-			var w = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var h = VMExecuter.Convert<int>(args.ArgumentArray[1]);
+			var w = VMExecuter.Convert<int>(args.Args[0]);
+			var h = VMExecuter.Convert<int>(args.Args[1]);
 			// TODO : implement using winuser.h SetWindowPos
 			return null;
 		}
 
 		public static object window_set_position(Arguments args)
 		{
-			var x = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var y = VMExecuter.Convert<int>(args.ArgumentArray[1]);
+			var x = VMExecuter.Convert<int>(args.Args[0]);
+			var y = VMExecuter.Convert<int>(args.Args[1]);
 			// TODO : implement using winuser.h SetWindowPos
 			return null;
 		}
@@ -725,7 +725,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object keyboard_check(Arguments args)
 		{
-			var key = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var key = VMExecuter.Convert<int>(args.Args[0]);
 			var unityKey = Key.None;
 			switch (key)
 			{
@@ -1044,7 +1044,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object keyboard_check_pressed(Arguments args)
 		{
-			var key = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var key = VMExecuter.Convert<int>(args.Args[0]);
 			var unityKey = Key.None;
 			switch (key)
 			{
@@ -1375,14 +1375,14 @@ namespace Assets.VirtualMachineRunner
 
 		public static object room_goto(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var index = VMExecuter.Convert<int>(args.Args[0]);
 			RoomManager.RoomManager.Instance.ChangeRoom(index);
 			return null;
 		}
 
 		public static object audio_create_stream(Arguments args)
 		{
-			var filename = VMExecuter.Convert<string>(args.ArgumentArray[0]);
+			var filename = VMExecuter.Convert<string>(args.Args[0]);
 			var path = Path.Combine(Application.persistentDataPath, filename);
 
 			var sample_data = File.ReadAllBytes(path);
@@ -1402,9 +1402,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object merge_colour(Arguments args)
 		{
-			var col1 = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var col2 = VMExecuter.Convert<int>(args.ArgumentArray[1]);
-			var amount = VMExecuter.Convert<double>(args.ArgumentArray[2]);
+			var col1 = VMExecuter.Convert<int>(args.Args[0]);
+			var col2 = VMExecuter.Convert<int>(args.Args[1]);
+			var amount = VMExecuter.Convert<double>(args.Args[2]);
 
 			/*
 			 * GameMaker stores colors in 3 bytes - BGR
@@ -1431,32 +1431,32 @@ namespace Assets.VirtualMachineRunner
 
 		public static object audio_play_sound(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var priority = VMExecuter.Convert<int>(args.ArgumentArray[1]); // can this be a double?
-			var loop = VMExecuter.Convert<bool>(args.ArgumentArray[2]);
+			var index = VMExecuter.Convert<int>(args.Args[0]);
+			var priority = VMExecuter.Convert<int>(args.Args[1]); // can this be a double?
+			var loop = VMExecuter.Convert<bool>(args.Args[2]);
 			var asset = AudioManager.AudioManager.Instance.GetAudioAsset(index);
 			var gain = asset.Gain;
 			var offset = 0.0; // TODO
 			var pitch = 1.0; // TODO
 			var listener_mask = 0; // TODO : work out what the hell this is for
-			if (args.ArgumentArray.Length > 3)
+			if (args.Args.Length > 3)
 			{
-				gain = VMExecuter.Convert<double>(args.ArgumentArray[3]);
+				gain = VMExecuter.Convert<double>(args.Args[3]);
 			}
 
-			if (args.ArgumentArray.Length > 4)
+			if (args.Args.Length > 4)
 			{
-				offset = VMExecuter.Convert<double>(args.ArgumentArray[4]);
+				offset = VMExecuter.Convert<double>(args.Args[4]);
 			}
 
-			if (args.ArgumentArray.Length > 5)
+			if (args.Args.Length > 5)
 			{
-				pitch = VMExecuter.Convert<double>(args.ArgumentArray[5]);
+				pitch = VMExecuter.Convert<double>(args.Args[5]);
 			}
 
-			if (args.ArgumentArray.Length > 6)
+			if (args.Args.Length > 6)
 			{
-				listener_mask = VMExecuter.Convert<int>(args.ArgumentArray[6]);
+				listener_mask = VMExecuter.Convert<int>(args.Args[6]);
 			}
 
 			return AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
@@ -1464,9 +1464,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object audio_sound_gain(Arguments args)
 		{
-			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
-			var volume = VMExecuter.Convert<double>(args.ArgumentArray[1]);
-			var time = VMExecuter.Convert<double>(args.ArgumentArray[2]);
+			var index = VMExecuter.Convert<int>(args.Args[0]);
+			var volume = VMExecuter.Convert<double>(args.Args[1]);
+			var time = VMExecuter.Convert<double>(args.Args[2]);
 
 			if (index >= 100000)
 			{
@@ -1487,8 +1487,8 @@ namespace Assets.VirtualMachineRunner
 
 	public class Arguments
 	{
-		public VMScriptExecutionContext Context;
-		public object[] ArgumentArray;
+		public VMScriptExecutionContext Ctx;
+		public object[] Args;
 	}
 
 	public class FileHandle
