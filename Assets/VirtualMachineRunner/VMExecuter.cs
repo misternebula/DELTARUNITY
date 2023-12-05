@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Instances;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -653,14 +654,14 @@ namespace Assets.VirtualMachineRunner
 					return (ExecutionResult.Failed, null);
 				case VMOpcode.PUSHENV:
 					var assetId = Convert<int>(Ctx.Stack.Pop());
-					var instances = Array.Empty<NewGamemakerObject>(); // TODO get instances with asset id
+					var instances = InstanceManager.Instance.FindByAssetId(assetId);
 
 					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
 
 					// dont run anything if no instances
-					if (instances.Length == 0)
+					if (instances.Count == 0)
 					{
 						if (instruction.JumpToEnd)
 						{

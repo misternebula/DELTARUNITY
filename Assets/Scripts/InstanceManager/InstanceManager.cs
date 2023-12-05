@@ -140,5 +140,31 @@ namespace Assets.Instances
 
 			return false;
 		}
+
+		public List<NewGamemakerObject> FindByAssetId(int assetId)
+		{
+			var result = new List<NewGamemakerObject>();
+			foreach (var instance in instances)
+			{
+				if (instance.Definition.AssetId == assetId)
+				{
+					result.Add(instance);
+					continue;
+				}
+
+				var currentDefinition = instance.Definition.parent;
+				while (currentDefinition != null)
+				{
+					if (currentDefinition.AssetId == assetId)
+					{
+						result.Add(instance);
+						break;
+					}
+
+					currentDefinition = currentDefinition.parent;
+				}
+			}
+			return result;
+		}
 	}
 }
