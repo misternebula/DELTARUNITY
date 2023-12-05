@@ -45,12 +45,18 @@ namespace Assets.VirtualMachineRunner
 
 		public static Dictionary<string, (Func<NewGamemakerObject, object> getter, Action<NewGamemakerObject, object> setter)> BuiltInVariables = new()
 		{
-			{ "working_directory", (get_working_directory, null) }
+			{ "working_directory", (get_working_directory, null) },
+			{ "fps", (get_fps, null)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
 		{
 			return Application.persistentDataPath + Path.DirectorySeparatorChar;
+		}
+
+		public static object get_fps(NewGamemakerObject instance)
+		{
+			return 30; // TODO : different games have this as a different value
 		}
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)

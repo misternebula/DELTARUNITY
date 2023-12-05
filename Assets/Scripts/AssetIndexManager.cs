@@ -66,6 +66,11 @@ namespace Assets.Scripts
 			}
 		}
 
+		public string GetName(AssetType type, int index)
+		{
+			return AssetList[type].First(x => x.Value == index).Key;
+		}
+
 		public int GetIndex(string name)
 		{
 			return NameToIndex.TryGetValue(name, out var index) ? index : -1;

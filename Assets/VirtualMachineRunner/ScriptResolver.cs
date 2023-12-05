@@ -70,7 +70,9 @@ namespace Assets.VirtualMachineRunner
 			{ "audio_create_stream", audio_create_stream },
 			{ "merge_colour", merge_colour},
 			{ "merge_color", merge_colour},
-			{ "window_center", window_center }
+			{ "window_center", window_center },
+			{ "audio_play_sound", audio_play_sound },
+			{ "audio_sound_gain", audio_sound_gain }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -1424,6 +1426,61 @@ namespace Assets.VirtualMachineRunner
 		public static object window_center(Arguments args)
 		{
 			// TODO : implement using winuser.h SetWindowPos
+			return null;
+		}
+
+		public static object audio_play_sound(Arguments args)
+		{
+			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var priority = VMExecuter.Convert<int>(args.ArgumentArray[1]); // can this be a double?
+			var loop = VMExecuter.Convert<bool>(args.ArgumentArray[2]);
+			var asset = AudioManager.AudioManager.Instance.GetAudioAsset(index);
+			var gain = asset.Gain;
+			var offset = 0.0; // TODO
+			var pitch = 1.0; // TODO
+			var listener_mask = 0; // TODO : work out what the hell this is for
+			if (args.ArgumentArray.Length > 3)
+			{
+				gain = VMExecuter.Convert<double>(args.ArgumentArray[3]);
+			}
+
+			if (args.ArgumentArray.Length > 4)
+			{
+				offset = VMExecuter.Convert<double>(args.ArgumentArray[4]);
+			}
+
+			if (args.ArgumentArray.Length > 5)
+			{
+				pitch = VMExecuter.Convert<double>(args.ArgumentArray[5]);
+			}
+
+			if (args.ArgumentArray.Length > 6)
+			{
+				listener_mask = VMExecuter.Convert<int>(args.ArgumentArray[6]);
+			}
+
+			return AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
+		}
+
+		public static object audio_sound_gain(Arguments args)
+		{
+			var index = VMExecuter.Convert<int>(args.ArgumentArray[0]);
+			var volume = VMExecuter.Convert<double>(args.ArgumentArray[1]);
+			var time = VMExecuter.Convert<double>(args.ArgumentArray[2]);
+
+			if (index >= 100000)
+			{
+				// instance id
+				// TODO : lerp on instance
+			}
+			else
+			{
+				// sound asset index
+				AudioManager.AudioManager.Instance.SetAssetGain(index, volume);
+
+				// TODO : lerp on all existing instances
+			}
+
 			return null;
 		}
 	}
