@@ -1,17 +1,16 @@
-﻿using Assets.Scripts;
+﻿using Assets.Instances;
+using Assets.Scripts;
 using Assets.Scripts.IniFiles;
 using Newtonsoft.Json.Linq;
+using NVorbis;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using Assets.Instances;
-using UnityEngine;
 using System.Runtime.InteropServices;
+using System.Text;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Networking;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -57,19 +56,19 @@ namespace Assets.VirtualMachineRunner
 			{ "instance_number", instance_number },
 			{ "display_get_height", display_get_height },
 			{ "display_get_width", display_get_width },
-			{ "window_set_caption", window_set_caption},
-			{ "window_get_caption", window_get_caption},
-			{ "window_set_position", window_set_position},
-			{ "window_set_size", window_set_size},
-			{ "keyboard_check", keyboard_check},
-			{ "keyboard_check_pressed", keyboard_check_pressed},
+			{ "window_set_caption", window_set_caption },
+			{ "window_get_caption", window_get_caption },
+			{ "window_set_position", window_set_position },
+			{ "window_set_size", window_set_size },
+			{ "keyboard_check", keyboard_check },
+			{ "keyboard_check_pressed", keyboard_check_pressed },
 			{ "audio_group_is_loaded", audio_group_is_loaded },
-			{ "gamepad_button_check", gamepad_button_check},
-			{ "gamepad_axis_value", gamepad_axis_value},
+			{ "gamepad_button_check", gamepad_button_check },
+			{ "gamepad_axis_value", gamepad_axis_value },
 			{ "room_goto", room_goto },
 			{ "audio_create_stream", audio_create_stream },
-			{ "merge_colour", merge_colour},
-			{ "merge_color", merge_colour},
+			{ "merge_colour", merge_colour },
+			{ "merge_color", merge_colour },
 			{ "window_center", window_center },
 			{ "audio_play_sound", audio_play_sound },
 			{ "audio_sound_gain", audio_sound_gain }
@@ -675,11 +674,13 @@ namespace Assets.VirtualMachineRunner
 		}
 
 		[DllImport("user32.dll", EntryPoint = "SetWindowText")]
-		public static extern bool SetWindowText(System.IntPtr hwnd, System.String lpString);
+		public static extern bool SetWindowText(IntPtr hwnd, String lpString);
+
 		[DllImport("user32.dll", EntryPoint = "FindWindow")]
-		public static extern System.IntPtr FindWindow(System.String className, System.String windowName);
+		public static extern IntPtr FindWindow(String className, String windowName);
 
 		private static string _caption = "DELTARUNITY";
+
 		public static object window_set_caption(Arguments args)
 		{
 			var caption = VMExecuter.Convert<string>(args.ArgumentArray[0]);
@@ -1388,7 +1389,7 @@ namespace Assets.VirtualMachineRunner
 			var sample_name = Path.GetFileNameWithoutExtension(filename);
 
 			AudioClip audioClip;
-			using (var vorbis = new NVorbis.VorbisReader(new MemoryStream(sample_data, false)))
+			using (var vorbis = new VorbisReader(new MemoryStream(sample_data, false)))
 			{
 				var _audioBuffer = new float[vorbis.TotalSamples];
 				var read = vorbis.ReadSamples(_audioBuffer, 0, (int)vorbis.TotalSamples);
@@ -1484,7 +1485,7 @@ namespace Assets.VirtualMachineRunner
 		}
 	}
 
-public class Arguments
+	public class Arguments
 	{
 		public VMScriptExecutionContext Context;
 		public object[] ArgumentArray;
