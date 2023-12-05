@@ -429,7 +429,8 @@ namespace Assets.VirtualMachineRunner
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
-										Ctx.Stack.Push(((Dictionary<int, object>)Ctx.Locals[variableName])[index]);
+										Ctx.Stack.Push(VariableResolver.ArrayGet(index,
+											() => (List<object>)Ctx.Locals[variableName]));
 										//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
 									}
 									else
@@ -446,12 +447,14 @@ namespace Assets.VirtualMachineRunner
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 										if (instanceId is -5 or -7 or -1 or -2)
 										{
-											Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index]);
+											Ctx.Stack.Push(VariableResolver.ArrayGet(index,
+												() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
 										}
 										else
 										{
 											var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-											Ctx.Stack.Push(((Dictionary<int, object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName))[index]);
+											Ctx.Stack.Push(VariableResolver.ArrayGet(index,
+												() => (List<object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName)));
 										}
 									}
 									else if (stackTop)
@@ -556,13 +559,11 @@ namespace Assets.VirtualMachineRunner
 								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
 								var value = Ctx.Stack.Pop();
 
-								if (Ctx.Locals[variableName] == null || Ctx.Locals[variableName] is not Dictionary<int, object>)
-								{
-									Ctx.Locals[variableName] = new Dictionary<int, object>();
-								}
-
 								//Debug.Log($"Set {variableName} index {index} to {value}");
-								((Dictionary<int, object>)Ctx.Locals[variableName])[index] = value;
+								VariableResolver.ArraySet(index, value,
+									() => Ctx.Locals[variableName],
+									list => Ctx.Locals[variableName] = list, 
+									() => Ctx.Locals.ContainsKey(variableName));
 							}
 							else
 							{
@@ -580,14 +581,18 @@ namespace Assets.VirtualMachineRunner
 								var value = Ctx.Stack.Pop();
 								if (instanceId is -5 or -7 or -1 or -2)
 								{
-									// TODO: create dictionary if not exists
-									((Dictionary<int, object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName))[index] = value;
+									VariableResolver.ArraySet(index, value,
+										() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName), 
+										list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
+										() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
 								}
 								else
 								{
 									var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-									// TODO: create dictionary if not exists
-									((Dictionary<int, object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName))[index] = value;
+									VariableResolver.ArraySet(index, value,
+										() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName), 
+										list => VariableResolver.SetSelfVariable(instance, variableName, list),
+										() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
 								}
 							}
 							else if (stackTop)

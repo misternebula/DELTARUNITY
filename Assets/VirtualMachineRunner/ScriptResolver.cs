@@ -107,13 +107,13 @@ namespace Assets.VirtualMachineRunner
 
 		public static object array_length_1d(Arguments args)
 		{
-			var array = (Dictionary<int, object>)args.ArgumentArray[0];
+			var array = (List<object>)args.ArgumentArray[0];
 			return array.Count;
 		}
 
 		public static object newgmlarray(Arguments args)
 		{
-			return new Dictionary<int, object>();
+			return new List<object>();
 		}
 
 		public static object asset_get_index(Arguments args)
@@ -562,19 +562,18 @@ namespace Assets.VirtualMachineRunner
 			{
 				// value
 
-				if (valueOrFormat.GetType().IsArray)
+				if (valueOrFormat is List<object> list)
 				{
+					// array
 					// is any of this right? not sure.
-					// could potentially do (Array)valueOrFormat here? have to test
-					var enumerable = valueOrFormat as IEnumerable<object>;
 					var index = 0;
 					var result = new StringBuilder("[");
-					foreach (var element in enumerable)
+					foreach (var item in list)
 					{
-						var elementString = (string)_string(new Arguments { ArgumentArray = new object[] { element } });
+						var elementString = (string)_string(new Arguments { ArgumentArray = new object[] { item } });
 
 						result.Append(elementString);
-						if (index < enumerable.Count() - 1)
+						if (index < list.Count - 1)
 						{
 							result.Append(", ");
 						}

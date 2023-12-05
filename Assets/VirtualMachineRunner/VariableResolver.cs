@@ -10,21 +10,50 @@ namespace Assets.VirtualMachineRunner
 {
 	public static class VariableResolver
 	{
+		public static object ArrayGet(int index,
+			Func<List<object>> get)
+		{
+			return get()[index];
+		}
+
+		public static void ArraySet(int index, object value,
+			Func<object> get,
+			Action<List<object>> set,
+			Func<bool> contains)
+		{
+			List<object> list;
+			if (!contains() || get() is not List<object>)
+			{
+				list = new List<object>();
+				set(list);
+			}
+			else
+			{
+				list = (List<object>)get();
+			}
+
+			if (index > list.Count)
+			{
+				list.AddRange(new object[index - list.Count + 1]);
+			}
+
+			list[index] = value;
+		}
+
 		private static readonly Dictionary<string, object> _globalVariables = new();
 
 		public static void SetGlobalArrayIndex(string name, int index, object value)
 		{
-			if (!_globalVariables.ContainsKey(name) || _globalVariables[name] is not Dictionary<int, object>)
-			{
-				_globalVariables[name] = new Dictionary<int, object>();
-			}
-
-			((Dictionary<int, object>)_globalVariables[name])[index] = value;
+			ArraySet(index, value,
+				() => GetGlobalVariable(name), 
+				list => SetGlobalVariable(name, list), 
+				() => _globalVariables.ContainsKey(name));
 		}
 
 		public static object GetGlobalArrayIndex(string name, int index)
 		{
-			return ((Dictionary<int, object>)_globalVariables[name])[index];
+			return ArrayGet(index,
+				() => (List<object>)_globalVariables[name]);
 		}
 
 		public static void SetGlobalVariable(string name, object value)
@@ -82,20 +111,27 @@ namespace Assets.VirtualMachineRunner
 
 		public static void SetSelfVariable(NewGamemakerObject self, string name, object value)
 		{
+			// TODO: should this also set arguments????
+
 			if (BuiltInVariables.ContainsKey(name))
 			{
 				BuiltInVariables[name].setter(self, value);
 				return;
 			}
 
-			if (self.SelfVariables.ContainsKey(name))
+			self.SelfVariables[name] = value;
+		}
+
+		public static bool ContainsSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
+		{
+			if (name.StartsWith("argument"))
 			{
-				self.SelfVariables[name] = value;
-				return;
+				return locals.ContainsKey("arguments");
+				// TODO: should this check for index (eg argument3 if less than 3 arguments)????
+				// should this even be checked at all?? idk
 			}
 
-			Debug.LogWarning($"Couldn't find variable {name}");
-			self.SelfVariables.Add(name, value);
+			return BuiltInVariables.ContainsKey(name) || self.SelfVariables.ContainsKey(name);
 		}
 	}
 }
