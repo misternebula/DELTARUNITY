@@ -175,9 +175,20 @@ namespace Assets.VirtualMachineRunner
 
 		public static object Convert(object obj, Type type)
 		{
+
 			if (type == typeof(object))
 			{
 				return obj;
+			}
+
+			if (obj is null && type == typeof(bool))
+			{
+				return false;
+			}
+
+			if (obj is null && (type == typeof(int) || type == typeof(double)))
+			{
+				return 0;
 			}
 
 			if (obj.GetType() == type)
