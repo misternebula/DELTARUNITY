@@ -109,7 +109,14 @@ namespace Assets.Instances
 				return null;
 			}
 
-			return instances.SingleOrDefault(x => x.instanceId == instanceId);
+			var instance = instances.SingleOrDefault(x => x.instanceId == instanceId);
+
+			if (instance == null)
+			{
+				Debug.LogError($"Couldn't find instance for instanceId {instanceId}");
+			}
+
+			return instance;
 		}
 
 		public bool instance_exists_instanceid(int instanceId)
