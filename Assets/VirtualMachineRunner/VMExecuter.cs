@@ -62,10 +62,6 @@ namespace Assets.VirtualMachineRunner
 				EnvironmentStack.Push(newCtx);
 			}
 
-			// Execute the first block, which will execute the next needed block, and so on.
-			/*var zeroBlock = script.Blocks[0];
-			ExecuteBlock(script, zeroBlock, ctx);*/
-
 			// Setup variables to start execution at label [0]
 			var instructionIndex = script.Labels[0]; // this *should* always be 0, but idk.
 
@@ -117,30 +113,6 @@ namespace Assets.VirtualMachineRunner
 
 			return returnValue;
 		}
-
-		/*public static void ExecuteBlock(VMScript script, VMScriptBlock block, VMScriptExecutionContext ctx)
-		{
-			foreach (var instruction in block.Instructions)
-			{
-				var hasJumped = ExecuteInstruction(script, instruction, ctx);
-
-				if (hasJumped)
-				{
-					// ExecuteBlock was called by the instruction, so dont try finding the next one.
-					return;
-				}
-			}
-
-			// We didn't jump to a different block, so find the next one!
-			var nextId = block.ID + 1;
-			var nextBlock = script.Blocks.SingleOrDefault(x => x.ID == nextId);
-			if (nextBlock != default)
-			{
-				ExecuteBlock(script, nextBlock, ctx);
-			}
-
-			return;
-		}*/
 
 		private static Type GetType(VMType type)
 		{
