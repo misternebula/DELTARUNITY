@@ -40,7 +40,9 @@ namespace Assets.VirtualMachineRunner
 			{ "event_inherited", event_inherited },
 			{ "ini_open", ini_open },
 			{ "ini_read_string", ini_read_string },
+			{ "ini_write_string", ini_write_string },
 			{ "ini_read_real", ini_read_real },
+			{ "ini_write_real", ini_write_real },
 			{ "ini_close", ini_close },
 			{ "font_add_sprite_ext", font_add_sprite_ext },
 			{ "variable_global_exists", variable_global_exists },
@@ -57,6 +59,8 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
+			{ "file_delete", file_delete },
+			{ "file_copy", file_copy },
 			{ "json_decode", json_decode },
 			{ "string", _string },
 			{ "ds_map_find_value", ds_map_find_value },
@@ -89,7 +93,8 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
 			{ "draw_sprite", draw_sprite },
-			{ "gamepad_is_connected", gamepad_is_connected }
+			{ "gamepad_is_connected", gamepad_is_connected },
+			{ "event_user", event_user }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -263,6 +268,25 @@ namespace Assets.VirtualMachineRunner
 			return sectionClass.Dict[key];
 		}
 
+		public static object ini_write_string(Arguments args)
+		{
+			var section = (string)args.Args[0];
+			var key = (string)args.Args[1];
+			var value = (string)args.Args[2];
+
+			var sectionClass = _iniFile.Sections.FirstOrDefault(x => x.Name == section);
+
+			if (sectionClass == null)
+			{
+				sectionClass = new IniSection(section);
+				_iniFile.Sections.Add(sectionClass);
+			}
+
+			sectionClass.Dict[key] = value;
+
+			return null;
+		}
+
 		public static object ini_read_real(Arguments args)
 		{
 			var section = (string)args.Args[0];
@@ -288,6 +312,25 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return _res;
+		}
+
+		public static object ini_write_real(Arguments args)
+		{
+			var section = (string)args.Args[0];
+			var key = (string)args.Args[1];
+			var value = Conv<double>(args.Args[2]);
+
+			var sectionClass = _iniFile.Sections.FirstOrDefault(x => x.Name == section);
+
+			if (sectionClass == null)
+			{
+				sectionClass = new IniSection(section);
+				_iniFile.Sections.Add(sectionClass);
+			}
+
+			sectionClass.Dict[key] = value.ToString();
+
+			return null;
 		}
 
 		public static object ini_close(Arguments args)
@@ -523,6 +566,32 @@ namespace Assets.VirtualMachineRunner
 			var fileid = (int)args.Args[0];
 			var reader = _fileHandles[fileid].Reader;
 			return reader.ReadLine();
+		}
+
+		public static object file_delete(Arguments args)
+		{
+			var fname = (string)args.Args[0];
+			var filepath = Path.Combine(Application.persistentDataPath, fname);
+			File.Delete(filepath);
+			return true; // TODO : this should return false if this fails.
+		}
+
+		public static object file_copy(Arguments args)
+		{
+			var fname = (string)args.Args[0];
+			var newname = (string)args.Args[1];
+
+			fname = Path.Combine(Application.persistentDataPath, fname);
+			newname = Path.Combine(Application.persistentDataPath, newname);
+
+			if (File.Exists(newname))
+			{
+				throw new Exception("File already exists.");
+			}
+
+			File.Copy(fname, newname);
+
+			return null;
 		}
 
 		public static object json_decode(Arguments args)
@@ -1660,6 +1729,13 @@ namespace Assets.VirtualMachineRunner
 		{
 			var device = Conv<int>(args.Args[0]);
 			return false; // TODO : implement
+		}
+
+		public static object event_user(Arguments args)
+		{
+			var numb = Conv<int>(args.Args[0]);
+			NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.Other, (int)(OtherType.User0 + numb));
+			return null;
 		}
 	}
 
