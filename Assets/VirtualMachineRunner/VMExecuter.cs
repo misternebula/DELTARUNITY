@@ -424,7 +424,7 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName, index));
 										//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName, index)}");
 									}
@@ -439,7 +439,7 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 											() => (List<object>)Ctx.Locals[variableName]));
 										//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
@@ -455,8 +455,8 @@ namespace Assets.VirtualMachineRunner
 									if (indexingArray)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
-										if (instanceId is -5 or -7 or -1 or -2)
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+										if (instanceId == -1)
 										{
 											Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 												() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
@@ -470,7 +470,7 @@ namespace Assets.VirtualMachineRunner
 									}
 									else if (stackTop)
 									{
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 										VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName);
 									}
@@ -550,7 +550,7 @@ namespace Assets.VirtualMachineRunner
 							if (indexingArray)
 							{
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 								var value = Ctx.Stack.Pop();
 								//Debug.Log($"Set global {variableName} index {index} to {value}");
 								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
@@ -567,7 +567,7 @@ namespace Assets.VirtualMachineRunner
 							if (indexingArray)
 							{
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 								var value = Ctx.Stack.Pop();
 
 								//Debug.Log($"Set {variableName} index {index} to {value}");
@@ -588,9 +588,9 @@ namespace Assets.VirtualMachineRunner
 							if (indexingArray)
 							{
 								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 								var value = Ctx.Stack.Pop();
-								if (instanceId is -5 or -7 or -1 or -2)
+								if (instanceId == -1)
 								{
 									VariableResolver.ArraySet(index, value,
 										() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
@@ -608,7 +608,7 @@ namespace Assets.VirtualMachineRunner
 							}
 							else if (stackTop)
 							{
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, -1 = self, -2 = other
+								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 								var value = Ctx.Stack.Pop();
 								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 								VariableResolver.SetSelfVariable(instance, variableName, value);
