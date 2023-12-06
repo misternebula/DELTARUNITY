@@ -122,7 +122,8 @@ namespace Assets.Editor
 							instruction.StringData = variableName;
 							break;
 						case VMOpcode.DUP:
-							// ???
+							var indexBack = line.Substring(opcode.Length + 1);
+							instruction.IntData = int.Parse(indexBack);
 							break;
 						case VMOpcode.RET:
 							// ???
