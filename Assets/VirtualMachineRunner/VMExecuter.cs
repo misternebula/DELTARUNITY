@@ -549,9 +549,29 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								var value = Ctx.Stack.Pop();
+								int index = 0;
+								int instanceId = 0;
+								object value = null;
+
+								if (instruction.TypeOne != VMType.i && instruction.TypeOne != VMType.v)
+								{
+									// uhhhhhhhh
+									return (ExecutionResult.Failed, $"POP : not i.X or v.X - {instruction.Raw}");
+								}
+
+								if (instruction.TypeOne == VMType.i)
+								{
+									value = Ctx.Stack.Pop();
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+								}
+								else
+								{
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+									value = Ctx.Stack.Pop();
+								}
+
 								//Debug.Log($"Set global {variableName} index {index} to {value}");
 								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
 							}
@@ -566,9 +586,22 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								var value = Ctx.Stack.Pop();
+								int index = 0;
+								int instanceId = 0;
+								object value = null;
+
+								if (instruction.TypeOne == VMType.i)
+								{
+									value = Ctx.Stack.Pop();
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+								}
+								else
+								{
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+									value = Ctx.Stack.Pop();
+								}
 
 								//Debug.Log($"Set {variableName} index {index} to {value}");
 								VariableResolver.ArraySet(index, value,
@@ -587,9 +620,23 @@ namespace Assets.VirtualMachineRunner
 						{
 							if (indexingArray)
 							{
-								var index = Convert<int>(Ctx.Stack.Pop());
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								var value = Ctx.Stack.Pop();
+								int index = 0;
+								int instanceId = 0;
+								object value = null;
+
+								if (instruction.TypeOne == VMType.i)
+								{
+									value = Ctx.Stack.Pop();
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+								}
+								else
+								{
+									index = Convert<int>(Ctx.Stack.Pop());
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+									value = Ctx.Stack.Pop();
+								}
+
 								if (instanceId == -1)
 								{
 									VariableResolver.ArraySet(index, value,
@@ -722,12 +769,13 @@ namespace Assets.VirtualMachineRunner
 					return (ExecutionResult.JumpedToLabel, instruction.IntData);
 				case VMOpcode.DUP:
 					{
-						var unknown = instruction.IntData; // TODO: what is this?
-						if (unknown > 0)
+						var indexBack = instruction.IntData;
+
+						for (var i = 0; i <= indexBack; i++)
 						{
-							throw new NotImplementedException();
+							Ctx.Stack.Push(Ctx.Stack.Skip(indexBack).First());
 						}
-						Ctx.Stack.Push(Ctx.Stack.Peek());
+
 						break;
 					}
 				case VMOpcode.ADD:
