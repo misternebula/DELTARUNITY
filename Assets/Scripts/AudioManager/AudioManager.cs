@@ -127,12 +127,12 @@ namespace Assets.AudioManager
 
 			if (index == -1 || !_audioClips.ContainsKey(index))
 			{
-				Debug.LogError($"AudioDatabase doesn't contain {name}!");
+				Debug.LogError($"AudioDatabase doesn't contain {index}!");
 				Debug.Break();
 			}
 
 			var newSource = Instantiate(AudioSourcePrefab);
-			newSource.name = name;
+			newSource.name = _audioClips[index].Clip.name;
 			DontDestroyOnLoad(newSource);
 			var source = newSource.GetComponent<AudioSource>();
 			source.clip = _audioClips[index].Clip;
