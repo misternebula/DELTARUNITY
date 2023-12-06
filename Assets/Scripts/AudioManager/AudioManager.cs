@@ -54,12 +54,28 @@ namespace Assets.AudioManager
 		public int RegisterAudioClip(AudioClip clip)
 		{
 			var index = AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
-			var asset = new AudioAsset();
-			asset.Clip = clip;
-			asset.AssetIndex = index;
-			asset.Gain = 1;
+			var asset = new AudioAsset
+			{
+				Clip = clip,
+				AssetIndex = index,
+				Gain = 1
+			};
 			_audioClips.Add(index, asset);
 			return index;
+		}
+
+		public void UnregisterAudio(int index)
+		{
+			if (!_audioClips.ContainsKey(index))
+			{
+				Debug.Log($"- couldnt find audio asset {index}");
+				return;
+			}
+
+			var asset = _audioClips[index];
+			asset.Clip.UnloadAudioData(); // no idea if this is needed, probably does nothing?
+			_audioClips.Remove(index);
+			AssetIndexManager.Instance.Unregister(AssetType.sounds, asset.Clip.name);
 		}
 
 		private void Update()

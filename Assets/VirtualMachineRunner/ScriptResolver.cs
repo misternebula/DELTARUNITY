@@ -68,6 +68,7 @@ namespace Assets.VirtualMachineRunner
 			{ "instance_exists", instance_exists },
 			{ "instance_create_depth", instance_create_depth },
 			{ "instance_number", instance_number },
+			{ "instance_destroy", instance_destroy },
 			{ "display_get_height", display_get_height },
 			{ "display_get_width", display_get_width },
 			{ "window_set_caption", window_set_caption },
@@ -81,6 +82,7 @@ namespace Assets.VirtualMachineRunner
 			{ "gamepad_axis_value", gamepad_axis_value },
 			{ "room_goto", room_goto },
 			{ "audio_create_stream", audio_create_stream },
+			{ "audio_destroy_stream", audio_destroy_stream },
 			{ "merge_colour", merge_colour },
 			{ "merge_color", merge_colour },
 			{ "window_center", window_center },
@@ -810,6 +812,58 @@ namespace Assets.VirtualMachineRunner
 		{
 			var obj = Conv<int>(args.Args[0]);
 			return InstanceManager.Instance.instance_number(obj);
+		}
+
+		public static object instance_destroy(Arguments args)
+		{
+			if (args.Args.Length == 0)
+			{
+				InstanceManager.Instance.instance_destroy(args.Ctx.Self);
+				NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.Destroy);
+				NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.CleanUp);
+				return null;
+			}
+
+			var id = Conv<int>(args.Args[0]);
+			var execute_event_flag = true;
+
+			if (args.Args.Length == 2)
+			{
+				execute_event_flag = Conv<bool>(args.Args[1]);
+			}
+				
+			if (id < 100000)
+			{
+				// asset index
+				var instances = InstanceManager.Instance.FindByAssetId(id);
+
+				foreach (var instance in instances)
+				{
+					InstanceManager.Instance.instance_destroy(instance);
+
+					if (execute_event_flag)
+					{
+						NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.Destroy);
+					}
+
+					NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.CleanUp);
+				}
+			}
+			else
+			{
+				// instance id
+				var instance = InstanceManager.Instance.FindByInstanceId(id);
+				InstanceManager.Instance.instance_destroy(instance);
+
+				if (execute_event_flag)
+				{
+					NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.Destroy);
+				}
+
+				NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.CleanUp);
+			}
+
+			return null;
 		}
 
 		public static object display_get_width(Arguments args)
@@ -1547,6 +1601,14 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return AudioManager.AudioManager.Instance.RegisterAudioClip(audioClip);
+		}
+
+		// docs say this is passed the file path, but in DR its passed the asset index of the stream... no idea
+		public static object audio_destroy_stream(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+			AudioManager.AudioManager.Instance.UnregisterAudio(index);
+			return null;
 		}
 
 		public static object merge_colour(Arguments args)

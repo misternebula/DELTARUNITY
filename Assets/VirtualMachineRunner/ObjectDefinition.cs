@@ -55,8 +55,11 @@ namespace Assets.VirtualMachineRunner
 		public SerializedDictionary<DrawType, VMScript> DrawScript = new();
 
 		//keypress
+		//keyrelease
 		//trigger
-		//cleanup
+
+		public VMScript CleanUpScript;
+
 		//gesture
 
 		public VMScript PreCreateScript;

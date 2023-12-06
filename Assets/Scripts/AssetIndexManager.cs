@@ -92,5 +92,20 @@ namespace Assets.Scripts
 			AssetList[type].Add(name, highestIndex + 1);
 			return highestIndex + 1;
 		}
+
+		public void Unregister(AssetType type, string name)
+		{
+			if (!AssetList.ContainsKey(type))
+			{
+				return;
+			}
+
+			if (!AssetList[type].ContainsKey(name))
+			{
+				return;
+			}
+
+			AssetList[type].Remove(name);
+		}
 	}
 }

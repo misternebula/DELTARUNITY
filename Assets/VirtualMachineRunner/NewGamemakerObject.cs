@@ -336,7 +336,8 @@ namespace Assets.VirtualMachineRunner
 		private void OnDestroy()
 		{
 			DrawManager.Unregister(this);
-			ExecuteScript(this, Definition, EventType.Destroy);
+
+			// TODO : work out how to call Destroy and CleanUp when the room/game ends
 
 			if (margins != Vector4.zero)
 			{
@@ -520,19 +521,28 @@ namespace Assets.VirtualMachineRunner
 				case EventType.Step:
 					TryExecuteDict(definition.StepScript, (StepType)otherData);
 					break;
+				// collision
+				// keyboard
+				// mouse
 				case EventType.Other:
 					TryExecuteDict(definition.OtherScript, (OtherType)otherData);
 					break;
 				case EventType.Draw:
 					TryExecuteDict(definition.DrawScript, (DrawType)otherData);
 					break;
+				// keypress
+				// keyrelease
+				// trigger
+				case EventType.CleanUp:
+					TryExecute(definition.CleanUpScript);
+					break;
+				// gesture
 				case EventType.PreCreate:
 					TryExecute(definition.PreCreateScript);
 					break;
 				case EventType.KeyPress:
 				case EventType.KeyRelease:
 				case EventType.Trigger:
-				case EventType.CleanUp:
 				case EventType.Gesture:
 				case EventType.Collision:
 				case EventType.Keyboard:

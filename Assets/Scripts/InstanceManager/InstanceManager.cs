@@ -93,7 +93,7 @@ namespace Assets.Instances
 		{
 			if (obj != null)
 			{
-				obj.visible = false;
+				//obj.visible = false;
 				DrawManager.Unregister(obj);
 				Destroy(obj.gameObject);
 			}
