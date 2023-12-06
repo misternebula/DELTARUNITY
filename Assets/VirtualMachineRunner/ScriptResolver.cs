@@ -9,9 +9,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Assets.TextManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditorInternal.ReorderableList;
+using System.Reflection;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -26,8 +28,12 @@ namespace Assets.VirtualMachineRunner
 			{ "layer_force_draw_depth", layer_force_draw_depth },
 			{ "draw_set_colour", draw_set_colour },
 			{ "draw_set_color", draw_set_colour }, // mfw
+			{ "draw_get_colour", draw_get_colour },
+			{ "draw_get_color", draw_get_colour },
 			{ "draw_set_alpha", draw_set_alpha },
 			{ "draw_set_font", draw_set_font },
+			{ "draw_set_halign", draw_set_halign },
+			{ "draw_set_valign", draw_set_valign },
 			{ "array_length_1d", array_length_1d },
 			{ "@@NewGMLArray@@", newgmlarray },
 			{ "asset_get_index", asset_get_index },
@@ -78,7 +84,12 @@ namespace Assets.VirtualMachineRunner
 			{ "audio_sound_gain", audio_sound_gain },
 			{ "floor", floor },
 			{ "ceil", ceil },
-			{ "draw_rectangle", draw_rectangle }
+			{ "abs", abs },
+			{ "string_hash_to_newline", string_hash_to_newline },
+			{ "draw_rectangle", draw_rectangle },
+			{ "draw_text", draw_text },
+			{ "draw_sprite", draw_sprite },
+			{ "gamepad_is_connected", gamepad_is_connected }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -112,6 +123,11 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
+		public static object draw_get_colour(Arguments args)
+		{
+			return SpriteManager.SpriteManager.DrawColor;
+		}
+
 		public static object draw_set_alpha(Arguments args)
 		{
 			var alpha = Conv<double>(args.Args[0]);
@@ -126,6 +142,20 @@ namespace Assets.VirtualMachineRunner
 			var library = TextManager.TextManager.instance.FontAssets;
 			var fontAsset = library.FirstOrDefault(x => x.AssetIndex == font);
 			TextManager.TextManager.fontAsset = fontAsset;
+			return null;
+		}
+
+		public static object draw_set_halign(Arguments args)
+		{
+			var halign = Conv<int>(args.Args[0]);
+			TextManager.TextManager.halign = (HAlign)halign;
+			return null;
+		}
+
+		public static object draw_set_valign(Arguments args)
+		{
+			var valign = Conv<int>(args.Args[0]);
+			TextManager.TextManager.valign = (VAlign)valign;
 			return null;
 		}
 
@@ -411,7 +441,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object show_debug_message(Arguments args)
 		{
-			Debug.Log(args.Args[0].ToString());
+			//Debug.Log(args.Args[0].ToString());
 			return null;
 		}
 
@@ -1546,6 +1576,24 @@ namespace Assets.VirtualMachineRunner
 			return Math.Ceiling(n);
 		}
 
+		public static object abs(Arguments args)
+		{
+			var val = Conv<double>(args.Args[0]);
+			return Math.Abs(val);
+		}
+
+		public static object string_hash_to_newline(Arguments args)
+		{
+			var text = Conv<string>(args.Args[0]);
+
+			if (string.IsNullOrEmpty(text))
+			{
+				return text;
+			}
+
+			return text.Replace("#", Environment.NewLine);
+		}
+
 		public static object draw_rectangle(Arguments args)
 		{
 			var x1 = Conv<double>(args.Args[0]);
@@ -1586,6 +1634,32 @@ namespace Assets.VirtualMachineRunner
 					alpha = SpriteManager.SpriteManager.DrawAlpha
 				});
 			}
+		}
+
+		public static object draw_text(Arguments args)
+		{
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+			var str = Conv<string>(args.Args[2]);
+			TextManager.TextManager.DrawText(x, y, str);
+			return null;
+		}
+
+		public static object draw_sprite(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var x = Conv<double>(args.Args[2]);
+			var y = Conv<double>(args.Args[3]);
+
+			SpriteManager.SpriteManager.DrawSprite(sprite, subimg, x, y);
+			return null;
+		}
+
+		public static object gamepad_is_connected(Arguments args)
+		{
+			var device = Conv<int>(args.Args[0]);
+			return false; // TODO : implement
 		}
 	}
 
