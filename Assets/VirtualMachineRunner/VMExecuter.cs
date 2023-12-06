@@ -75,7 +75,7 @@ namespace Assets.VirtualMachineRunner
 
 				if (executionResult == ExecutionResult.Failed)
 				{
-					Debug.LogError($"Execution of {script.Instructions[instructionIndex].Raw} failed.");
+					Debug.LogError($"Execution of {script.Instructions[instructionIndex].Raw} failed: {data}");
 					Debug.Break();
 					break;
 				}
@@ -175,7 +175,6 @@ namespace Assets.VirtualMachineRunner
 
 		public static object Convert(object obj, Type type)
 		{
-
 			if (type == typeof(object))
 			{
 				return obj;
@@ -574,7 +573,7 @@ namespace Assets.VirtualMachineRunner
 								//Debug.Log($"Set {variableName} index {index} to {value}");
 								VariableResolver.ArraySet(index, value,
 									() => Ctx.Locals[variableName],
-									list => Ctx.Locals[variableName] = list, 
+									list => Ctx.Locals[variableName] = list,
 									() => Ctx.Locals.ContainsKey(variableName));
 							}
 							else
@@ -594,7 +593,7 @@ namespace Assets.VirtualMachineRunner
 								if (instanceId is -5 or -7 or -1 or -2)
 								{
 									VariableResolver.ArraySet(index, value,
-										() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName), 
+										() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
 										list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
 										() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
 								}
@@ -602,7 +601,7 @@ namespace Assets.VirtualMachineRunner
 								{
 									var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 									VariableResolver.ArraySet(index, value,
-										() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName), 
+										() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName),
 										list => VariableResolver.SetSelfVariable(instance, variableName, list),
 										() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
 								}
@@ -660,9 +659,7 @@ namespace Assets.VirtualMachineRunner
 						break;
 					}
 
-					Debug.LogError($"Can't resolve script {instruction.FunctionName} !");
-					Debug.Break();
-					return (ExecutionResult.Failed, null);
+					return (ExecutionResult.Failed, $"Can't resolve script {instruction.FunctionName} !");
 				case VMOpcode.PUSHENV:
 					var assetId = Convert<int>(Ctx.Stack.Pop());
 					var instances = InstanceManager.Instance.FindByAssetId(assetId);
@@ -871,9 +868,7 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.BREAK:
 				case VMOpcode.EXIT:
 				default:
-					Debug.LogError($"Unknown opcode {instruction.Opcode}");
-					Debug.Break();
-					return (ExecutionResult.Failed, null);
+					return (ExecutionResult.Failed, $"Unknown opcode {instruction.Opcode}");
 			}
 
 			return (ExecutionResult.Success, null);
