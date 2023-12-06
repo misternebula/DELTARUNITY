@@ -683,6 +683,8 @@ namespace Assets.VirtualMachineRunner
 					var assetId = Convert<int>(Ctx.Stack.Pop());
 					var instances = InstanceManager.Instance.FindByAssetId(assetId);
 
+					var currentContext = Ctx;
+
 					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
@@ -705,11 +707,11 @@ namespace Assets.VirtualMachineRunner
 						{
 							Self = instance,
 							ObjectDefinition = instance.Definition,
-							Stack = new(Ctx.Stack),
-							Locals = new(Ctx.Locals),
-							ReturnValue = Ctx.ReturnValue,
-							EventType = Ctx.EventType,
-							EventIndex = Ctx.EventIndex,
+							Stack = new(currentContext.Stack),
+							Locals = new(currentContext.Locals),
+							ReturnValue = currentContext.ReturnValue,
+							EventType = currentContext.EventType,
+							EventIndex = currentContext.EventIndex,
 						};
 
 						EnvironmentStack.Push(newCtx);
