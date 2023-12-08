@@ -82,7 +82,7 @@ namespace Assets.VirtualMachineRunner
 			{ "room_height", (get_room_height, null)},
 			{ "image_index", (get_image_index, set_image_index)},
 			{ "sprite_index", (get_sprite_index, set_sprite_index)},
-			{ "alarm", (get_alarm, null)}
+			{ "alarm", (get_alarm, set_alarm)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -111,6 +111,11 @@ namespace Assets.VirtualMachineRunner
 		public static void set_sprite_index(NewGamemakerObject instance, object value) => instance.sprite_index = VMExecuter.Convert<int>(value);
 
 		public static object get_alarm(NewGamemakerObject instance) => instance.alarm;
+
+		public static void set_alarm(NewGamemakerObject instance, object value)
+		{
+			instance.alarm = (List<object>)value;
+		}
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{

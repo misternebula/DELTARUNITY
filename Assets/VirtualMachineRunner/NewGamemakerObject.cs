@@ -300,7 +300,7 @@ namespace Assets.VirtualMachineRunner
 		private int _updateCounter;
 
 		internal bool _createRan;
-		public int[] alarm = Enumerable.Repeat(-1, 12).ToArray();
+		public List<object> alarm = Enumerable.Repeat((object)-1, 12).ToList();
 
 		private void Awake()
 		{
@@ -380,17 +380,17 @@ namespace Assets.VirtualMachineRunner
 				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIEnd);
 			}
 
-			for (var i = 0; i < alarm.Length; i++)
+			for (var i = 0; i < alarm.Count; i++)
 			{
-				if (alarm[i] != -1)
+				if ((int)alarm[i] != -1)
 				{
-					alarm[i]--;
+					alarm[i] = (int)alarm[i] - 1;
 
-					if (alarm[i] == 0)
+					if ((int)alarm[i] == 0)
 					{
 						ExecuteScript(this, Definition, EventType.Alarm, i);
 
-						if (alarm[i] == 0)
+						if ((int)alarm[i] == 0)
 						{
 							alarm[i] = -1;
 						}
