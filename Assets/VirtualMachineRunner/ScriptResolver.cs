@@ -59,6 +59,8 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
+			{ "file_text_read_string", file_text_read_string },
+			{ "file_text_read_real", file_text_read_real },
 			{ "file_delete", file_delete },
 			{ "file_copy", file_copy },
 			{ "json_decode", json_decode },
@@ -91,12 +93,16 @@ namespace Assets.VirtualMachineRunner
 			{ "floor", floor },
 			{ "ceil", ceil },
 			{ "abs", abs },
+			{ "sin", sin },
+			{ "cos", cos },
 			{ "string_hash_to_newline", string_hash_to_newline },
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
 			{ "draw_sprite", draw_sprite },
 			{ "gamepad_is_connected", gamepad_is_connected },
-			{ "event_user", event_user }
+			{ "event_user", event_user },
+			{ "string_length", string_length },
+			{ "string_char_at", string_char_at }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -486,7 +492,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object show_debug_message(Arguments args)
 		{
-			//Debug.Log(args.Args[0].ToString());
+			Debug.Log(args.Args[0].ToString());
 			return null;
 		}
 
@@ -568,6 +574,35 @@ namespace Assets.VirtualMachineRunner
 			var fileid = (int)args.Args[0];
 			var reader = _fileHandles[fileid].Reader;
 			return reader.ReadLine();
+		}
+
+		public static object file_text_read_string(Arguments args)
+		{
+			var fileid = (int)args.Args[0];
+			var reader = _fileHandles[fileid].Reader;
+
+			var result = "";
+			while (reader.Peek() != 0x0D && reader.Peek() >= 0)
+			{
+				result += (char)reader.Read();
+			}
+
+			return result;
+		}
+
+		public static object file_text_read_real(Arguments args)
+		{
+			var fileid = (int)args.Args[0];
+			var reader = _fileHandles[fileid].Reader;
+
+			var result = "";
+			while (reader.Peek() != 0x0D && reader.Peek() >= 0)
+			{
+				result += (char)reader.Read();
+			}
+
+			Debug.Log($"Trying to parse {result}");
+			return double.Parse(result);
 		}
 
 		public static object file_delete(Arguments args)
@@ -1713,6 +1748,18 @@ namespace Assets.VirtualMachineRunner
 			return Math.Abs(val);
 		}
 
+		public static object sin(Arguments args)
+		{
+			var val = Conv<double>(args.Args[0]);
+			return Math.Sin(val);
+		}
+
+		public static object cos(Arguments args)
+		{
+			var val = Conv<double>(args.Args[0]);
+			return Math.Cos(val);
+		}
+
 		public static object string_hash_to_newline(Arguments args)
 		{
 			var text = Conv<string>(args.Args[0]);
@@ -1798,6 +1845,37 @@ namespace Assets.VirtualMachineRunner
 			var numb = Conv<int>(args.Args[0]);
 			NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.Other, (int)(OtherType.User0 + numb));
 			return null;
+		}
+
+		public static object string_length(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+
+			if (string.IsNullOrEmpty(str))
+			{
+				return 0;
+			}
+
+			return str.Length;
+		}
+
+		public static object string_char_at(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			var index = Conv<int>(args.Args[1]);
+
+			if (string.IsNullOrEmpty(str) || index > str.Length)
+			{
+				return "";
+			}
+
+			if (index <= 0)
+			{
+				return str[0].ToString();
+			}
+
+			// guh index starts at one? goofy gamemaker
+			return str[index - 1].ToString();
 		}
 	}
 
