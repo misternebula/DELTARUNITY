@@ -164,30 +164,9 @@ namespace Assets.SpriteManager
 			return Sprite.Create(texture, rect, pivot, 1);
 		}
 
-		/*private static Texture2D SpritePart(string name, int index, int left, int top, int width, int height)
-		{
-			var baseSprite = GetSprite(name, index);
-			var destTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-
-			width = Math.Min(width, baseSprite.width);
-			height = Math.Min(height, baseSprite.height);
-
-			var readPixels = baseSprite.GetPixels(left, baseSprite.height - top - height, width, height);
-			destTexture.SetPixels(0, 0, width, height, readPixels);
-			destTexture.filterMode = FilterMode.Point;
-			destTexture.Apply();
-
-			return destTexture;
-		}*/
-
 		public static void DrawSpritePart(int name, int index, int left, int top, int width, int height, double x, double y)
 		{
 			DrawSpritePartExt(name, index, left, top, width, height, x, y, 1, 1, 16777215, 1);
-		}
-
-		public static void DrawSpritePartExt(string name, double index, int left, int top, int width, int height, double x, double y, double xscale, double yscale, int blend, double alpha)
-		{
-			DrawSpritePartExt(AssetIndexManager.Instance.GetIndex(name), index, left, top, width, height, x, y, xscale, yscale, blend, alpha);
 		}
 
 		public static void DrawSpritePartExt(int name, double index, int left, int top, int width, int height, double x, double y, double xscale, double yscale, int blend, double alpha) 

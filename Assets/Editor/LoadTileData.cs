@@ -54,7 +54,8 @@ public class LoadTileData
 
 			newTile.transform.localPosition = position;
 			var gmTile = newTile.AddComponent<GMTile>();
-			gmTile.Definition = definition;
+			// TODO : do this with asset indexes
+			//gmTile.Definition = definition;
 			gmTile.Source = source;
 			gmTile.instanceId = int.Parse(instanceId);
 			gmTile.OnValidate();

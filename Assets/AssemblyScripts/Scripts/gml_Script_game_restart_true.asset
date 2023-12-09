@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
-  m_Name: gml_GlobalScript_0
+  m_Name: gml_Script_game_restart_true
   m_EditorClassIdentifier: 
-  Name: GlobalScript_0
+  Name: game_restart_true
   LocalVariables:
   - arguments
   Labels:
@@ -20,7 +20,7 @@ MonoBehaviour:
     - Key: 0
       Value: 0
   Instructions:
-  - Raw: call.i __init_d3d(argc=0)
+  - Raw: call.i snd_free_all(argc=0)
     Opcode: 30
     TypeOne: 1
     TypeTwo: 0
@@ -28,7 +28,31 @@ MonoBehaviour:
     DoubleData: 0
     StringData: 
     BoolData: 0
-    FunctionName: __init_d3d
+    FunctionName: snd_free_all
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i game_restart(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: game_restart
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0

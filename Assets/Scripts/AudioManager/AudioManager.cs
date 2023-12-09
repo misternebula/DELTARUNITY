@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts;
+using UnityEditor.Search;
 using UnityEngine;
 
 namespace Assets.AudioManager
@@ -20,6 +21,7 @@ namespace Assets.AudioManager
 		public int AssetIndex;
 		public AudioClip Clip;
 		public double Gain;
+		public double Pitch;
 	}
 
 	internal class AudioManager : MonoBehaviour
@@ -47,6 +49,7 @@ namespace Assets.AudioManager
 				asset.Clip = item;
 				asset.AssetIndex = index;
 				asset.Gain = 1; // TODO : get initial volume and pitch from DATA.WIN
+				asset.Pitch = 1;
 				_audioClips[index] = asset;
 			}
 		}
@@ -58,7 +61,8 @@ namespace Assets.AudioManager
 			{
 				Clip = clip,
 				AssetIndex = index,
-				Gain = 1
+				Gain = 1,
+				Pitch = 1
 			};
 			_audioClips.Add(index, asset);
 			return index;
@@ -107,6 +111,11 @@ namespace Assets.AudioManager
 		public void SetAssetGain(int assetIndex, double gain)
 		{
 			_audioClips[assetIndex].Gain = gain;
+		}
+
+		public void SetAssetPitch(int assetIndex, double pitch)
+		{
+			_audioClips[assetIndex].Pitch = pitch;
 		}
 
 		public AudioAsset GetAudioAsset(int assetIndex)

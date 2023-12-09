@@ -82,7 +82,11 @@ namespace Assets.VirtualMachineRunner
 			{ "room_height", (get_room_height, null)},
 			{ "image_index", (get_image_index, set_image_index)},
 			{ "sprite_index", (get_sprite_index, set_sprite_index)},
-			{ "alarm", (get_alarm, set_alarm)}
+			{ "sprite_height", (get_sprite_height, null)},
+			{ "sprite_width", (get_sprite_width, null)},
+			{ "xstart", (get_xstart, set_xstart)},
+			{ "ystart", (get_ystart, set_ystart)},
+			{ "object_index", (get_object_index, null)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -110,12 +114,15 @@ namespace Assets.VirtualMachineRunner
 		public static object get_sprite_index(NewGamemakerObject instance) => instance.sprite_index;
 		public static void set_sprite_index(NewGamemakerObject instance, object value) => instance.sprite_index = VMExecuter.Convert<int>(value);
 
-		public static object get_alarm(NewGamemakerObject instance) => instance.alarm;
+		public static object get_sprite_width(NewGamemakerObject instance) => instance.sprite_width;
+		public static object get_sprite_height(NewGamemakerObject instance) => instance.sprite_height;
 
-		public static void set_alarm(NewGamemakerObject instance, object value)
-		{
-			instance.alarm = (List<object>)value;
-		}
+		public static object get_xstart(NewGamemakerObject instance) => instance.xstart;
+		public static void set_xstart(NewGamemakerObject instance, object value) => instance.xstart = VMExecuter.Convert<double>(value);
+		public static object get_ystart(NewGamemakerObject instance) => instance.ystart;
+		public static void set_ystart(NewGamemakerObject instance, object value) => instance.ystart = VMExecuter.Convert<double>(value);
+
+		public static object get_object_index(NewGamemakerObject instance) => instance.object_index;
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{

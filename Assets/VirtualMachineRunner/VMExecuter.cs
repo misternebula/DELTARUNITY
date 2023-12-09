@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Instances;
 using System.Linq;
 using UnityEngine;
+using System.Reflection;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -64,14 +65,49 @@ namespace Assets.VirtualMachineRunner
 
 			// Setup variables to start execution at label [0]
 			var instructionIndex = script.Labels[0]; // this *should* always be 0, but idk.
+			var lastJumpedLabel = 0; // just for debugging
 
 			while (true)
 			{
-				var (executionResult, data) = ExecuteInstruction(script.Instructions[instructionIndex]);
+				ExecutionResult executionResult;
+				object data;
+
+				/*if (script.Name == "DEVICE_CONTACT_Step_0" && lastJumpedLabel == 31)
+				{
+					Debug.Log($"Executing {script.Instructions[instructionIndex].Raw}");
+				}*/
+
+				try
+				{
+					(executionResult, data) = ExecuteInstruction(script.Instructions[instructionIndex]);
+				}
+				catch (Exception e)
+				{
+					executionResult = ExecutionResult.Failed;
+					data = e;
+				}
+
+				/*if (script.Name == "DEVICE_CONTACT_Step_0" && lastJumpedLabel == 31 && executionResult != ExecutionResult.Failed)
+				{
+					if (Ctx.Stack.Count > 0)
+					{
+						var stack = "";
+						foreach (var item in Ctx.Stack)
+						{
+							stack += $"{item}, ";
+						}
+
+						Debug.Log($" - Stack is now: {stack}");
+					}
+					else
+					{
+						Debug.Log($" - Nothing on stack.");
+					}
+				}*/
 
 				if (executionResult == ExecutionResult.Failed)
 				{
-					Debug.LogError($"Execution of {script.Instructions[instructionIndex].Raw} failed: {data}");
+					Debug.LogError($"Execution of instruction {script.Instructions[instructionIndex].Raw} (Index: {instructionIndex}, Last jumped label: {lastJumpedLabel}) in script {script.Name} failed : {data}");
 					Debug.Break();
 					break;
 				}
@@ -97,6 +133,7 @@ namespace Assets.VirtualMachineRunner
 				{
 					var label = (int)data;
 					instructionIndex = script.Labels[label];
+					lastJumpedLabel = label;
 					continue;
 				}
 
@@ -296,6 +333,9 @@ namespace Assets.VirtualMachineRunner
 					var second = Ctx.Stack.Pop();
 					var first = Ctx.Stack.Pop();
 
+					first ??= 0;
+					second ??= 0;
+
 					if (second is bool or int or double && first is bool or int or double)
 					{
 						var firstNumber = Convert<double>(first);
@@ -330,13 +370,13 @@ namespace Assets.VirtualMachineRunner
 						//Debug.Log($" - isnt numeric");
 						if (instruction.Comparison == VMComparison.EQ)
 						{
-							//Debug.Log($"    - EQ : {first == second}");
-							Ctx.Stack.Push(first == second);
+							//Debug.Log($"{first} {second} - EQ : {first.Equals(second)}");
+							Ctx.Stack.Push(first.Equals(second));
 						}
 						else if (instruction.Comparison == VMComparison.NEQ)
 						{
-							//Debug.Log($"    - NEQ : {first != second}");
-							Ctx.Stack.Push(first != second);
+							//Debug.Log($"{first} {second} - NEQ : {!first.Equals(second)}");
+							Ctx.Stack.Push(!first.Equals(second));
 						}
 						else
 						{
@@ -430,21 +470,37 @@ namespace Assets.VirtualMachineRunner
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										if (instanceId == -1)
 										{
-											Ctx.Stack.Push(VariableResolver.ArrayGet(index,
-												() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
+											if (variableName == "alarm")
+											{
+												Ctx.Stack.Push(Ctx.Self.alarm[index]);
+											}
+											else
+											{
+												Ctx.Stack.Push(VariableResolver.ArrayGet(index,
+													() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
+												//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
+											}
 										}
 										else
 										{
 											var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-											Ctx.Stack.Push(VariableResolver.ArrayGet(index,
-												() => (List<object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName)));
+
+											if (variableName == "alarm")
+											{
+												Ctx.Stack.Push(instance.alarm[index]);
+											}
+											else
+											{
+												Ctx.Stack.Push(VariableResolver.ArrayGet(index,
+													() => (List<object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName)));
+											}
 										}
 									}
 									else if (stackTop)
 									{
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-										VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName);
+										Ctx.Stack.Push(VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName));
 									}
 									else
 									{
@@ -470,11 +526,8 @@ namespace Assets.VirtualMachineRunner
 								Ctx.Stack.Push(instruction.IntData);
 								break;
 							case VMType.s:
-								var indexOfLast = instruction.StringData.LastIndexOf('@');
-								var stringValue = instruction.StringData.Substring(0, indexOfLast);
-								stringValue = stringValue[1..^1];
-								//Debug.Log($"Pushing {stringValue}");
-								Ctx.Stack.Push(stringValue);
+								//Debug.Log($"Pushing {instruction.StringData}");
+								Ctx.Stack.Push(instruction.StringData);
 								break;
 							case VMType.None:
 							default:
@@ -611,24 +664,51 @@ namespace Assets.VirtualMachineRunner
 
 								if (instanceId == -1)
 								{
-									VariableResolver.ArraySet(index, value,
-										() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
-										list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
-										() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
+									if (variableName == "alarm")
+									{
+										Ctx.Self.alarm[index] = Convert<int>(value);
+									}
+									else
+									{
+										VariableResolver.ArraySet(index, value,
+											() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
+											list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
+											() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
+									}
 								}
 								else
 								{
 									var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-									VariableResolver.ArraySet(index, value,
-										() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName),
-										list => VariableResolver.SetSelfVariable(instance, variableName, list),
-										() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
+
+									if (variableName == "alarm")
+									{
+										instance.alarm[index] = Convert<int>(value);
+									}
+									else
+									{
+										VariableResolver.ArraySet(index, value,
+											() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName),
+											list => VariableResolver.SetSelfVariable(instance, variableName, list),
+											() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
+									}
 								}
 							}
 							else if (stackTop)
 							{
-								var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								var value = Ctx.Stack.Pop();
+								int instanceId = 0;
+								object value = null;
+
+								if (instruction.TypeOne == VMType.i)
+								{
+									value = Ctx.Stack.Pop();
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+								}
+								else
+								{
+									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+									value = Ctx.Stack.Pop();
+								}
+
 								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 								VariableResolver.SetSelfVariable(instance, variableName, value);
 							}

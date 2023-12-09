@@ -14,6 +14,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditorInternal.ReorderableList;
 using System.Reflection;
+using System.Drawing.Drawing2D;
+using System.Drawing;
+using UnityEngine.UIElements;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -90,6 +93,7 @@ namespace Assets.VirtualMachineRunner
 			{ "window_center", window_center },
 			{ "audio_play_sound", audio_play_sound },
 			{ "audio_sound_gain", audio_sound_gain },
+			{ "audio_sound_pitch", audio_sound_pitch},
 			{ "floor", floor },
 			{ "ceil", ceil },
 			{ "abs", abs },
@@ -99,10 +103,12 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
 			{ "draw_sprite", draw_sprite },
+			{ "draw_sprite_part_ext", draw_sprite_part_ext },
+			{ "draw_sprite_part", draw_sprite_part },
 			{ "gamepad_is_connected", gamepad_is_connected },
 			{ "event_user", event_user },
 			{ "string_length", string_length },
-			{ "string_char_at", string_char_at }
+			{ "string_char_at", string_char_at },
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -1683,7 +1689,7 @@ namespace Assets.VirtualMachineRunner
 			var asset = AudioManager.AudioManager.Instance.GetAudioAsset(index);
 			var gain = asset.Gain;
 			var offset = 0.0; // TODO
-			var pitch = 1.0; // TODO
+			var pitch = asset.Pitch;
 			var listener_mask = 0; // TODO : work out what the hell this is for
 			if (args.Args.Length > 3)
 			{
@@ -1725,6 +1731,28 @@ namespace Assets.VirtualMachineRunner
 				AudioManager.AudioManager.Instance.SetAssetGain(index, volume);
 
 				// TODO : lerp on all existing instances
+			}
+
+			return null;
+		}
+
+		public static object audio_sound_pitch(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+			var pitch = Conv<double>(args.Args[1]);
+
+			if (index >= 100000)
+			{
+				// instance id
+
+				// TODO : set pitch on instance
+			}
+			else
+			{
+				// sound asset index
+				AudioManager.AudioManager.Instance.SetAssetPitch(index, pitch);
+
+				// TODO : set pitch on existing instances
 			}
 
 			return null;
@@ -1834,6 +1862,41 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
+		public static object draw_sprite_part_ext(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var left = Conv<int>(args.Args[2]);
+			var top = Conv<int>(args.Args[3]);
+			var width = Conv<int>(args.Args[4]);
+			var height = Conv<int>(args.Args[5]);
+			var x = Conv<double>(args.Args[6]);
+			var y = Conv<double>(args.Args[7]);
+			var xscale = Conv<double>(args.Args[8]);
+			var yscale = Conv<double>(args.Args[9]);
+			var colour = Conv<int>(args.Args[10]);
+			var alpha = Conv<double>(args.Args[11]);
+
+			SpriteManager.SpriteManager.DrawSpritePartExt(sprite, subimg, left, top, width, height, x, y, xscale, yscale, colour, alpha);
+
+			return null;
+		}
+
+		public static object draw_sprite_part(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var left = Conv<int>(args.Args[2]);
+			var top = Conv<int>(args.Args[3]);
+			var width = Conv<int>(args.Args[4]);
+			var height = Conv<int>(args.Args[5]);
+			var x = Conv<double>(args.Args[6]);
+			var y = Conv<double>(args.Args[7]);
+
+			SpriteManager.SpriteManager.DrawSpritePart(sprite, subimg, left, top, width, height, x, y);
+
+			return null;
+		}
 		public static object gamepad_is_connected(Arguments args)
 		{
 			var device = Conv<int>(args.Args[0]);
