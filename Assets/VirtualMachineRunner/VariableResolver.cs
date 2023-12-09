@@ -86,7 +86,8 @@ namespace Assets.VirtualMachineRunner
 			{ "sprite_width", (get_sprite_width, null)},
 			{ "xstart", (get_xstart, set_xstart)},
 			{ "ystart", (get_ystart, set_ystart)},
-			{ "object_index", (get_object_index, null)}
+			{ "object_index", (get_object_index, null)},
+			{ "image_blend", (get_image_blend, set_image_blend)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -123,6 +124,9 @@ namespace Assets.VirtualMachineRunner
 		public static void set_ystart(NewGamemakerObject instance, object value) => instance.ystart = VMExecuter.Convert<double>(value);
 
 		public static object get_object_index(NewGamemakerObject instance) => instance.object_index;
+
+		public static object get_image_blend(NewGamemakerObject instance) => instance.image_blend;
+		public static void set_image_blend(NewGamemakerObject instance, object value) => instance.image_blend = VMExecuter.Convert<int>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{

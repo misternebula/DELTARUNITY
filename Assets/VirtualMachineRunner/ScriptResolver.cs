@@ -103,6 +103,7 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
 			{ "draw_sprite", draw_sprite },
+			{ "draw_sprite_ext", draw_sprite_ext },
 			{ "draw_sprite_part_ext", draw_sprite_part_ext },
 			{ "draw_sprite_part", draw_sprite_part },
 			{ "gamepad_is_connected", gamepad_is_connected },
@@ -1859,6 +1860,22 @@ namespace Assets.VirtualMachineRunner
 			var y = Conv<double>(args.Args[3]);
 
 			SpriteManager.SpriteManager.DrawSprite(sprite, subimg, x, y);
+			return null;
+		}
+
+		public static object draw_sprite_ext(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var x = Conv<double>(args.Args[2]);
+			var y = Conv<double>(args.Args[3]);
+			var xscale = Conv<double>(args.Args[4]);
+			var yscale = Conv<double>(args.Args[5]);
+			var rot = Conv<double>(args.Args[6]);
+			var colour = Conv<int>(args.Args[7]);
+			var alpha = Conv<double>(args.Args[8]);
+
+			SpriteManager.SpriteManager.DrawSpriteExt(sprite, subimg, x, y, xscale, yscale, rot, colour, alpha);
 			return null;
 		}
 
