@@ -789,28 +789,50 @@ namespace Assets.VirtualMachineRunner
 
 					return (ExecutionResult.Failed, $"Can't resolve script {instruction.FunctionName} !");
 				case VMOpcode.PUSHENV:
-					var assetId = Convert<int>(Ctx.Stack.Pop());
-					var instances = InstanceManager.Instance.FindByAssetId(assetId);
-
+					var id = Convert<int>(Ctx.Stack.Pop());
 					var currentContext = Ctx;
 
 					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
 
-					// dont run anything if no instances
-					if (instances.Count == 0)
+					if (id < 100000)
 					{
-						if (instruction.JumpToEnd)
+						// asset id
+						var instances = InstanceManager.Instance.FindByAssetId(id);
+
+						// dont run anything if no instances
+						if (instances.Count == 0)
 						{
-							return (ExecutionResult.JumpedToEnd, null);
+							if (instruction.JumpToEnd)
+							{
+								return (ExecutionResult.JumpedToEnd, null);
+							}
+
+							return (ExecutionResult.JumpedToLabel, instruction.IntData);
 						}
 
-						return (ExecutionResult.JumpedToLabel, instruction.IntData);
-					}
+						foreach (var instance in instances)
+						{
+							// TODO: how does return work??
+							var newCtx = new VMScriptExecutionContext
+							{
+								Self = instance,
+								ObjectDefinition = instance.Definition,
+								Stack = new(currentContext.Stack),
+								Locals = new(currentContext.Locals),
+								ReturnValue = currentContext.ReturnValue,
+								EventType = currentContext.EventType,
+								EventIndex = currentContext.EventIndex,
+							};
 
-					foreach (var instance in instances)
+							EnvironmentStack.Push(newCtx);
+						}
+					}
+					else
 					{
+						var instance = InstanceManager.Instance.FindByInstanceId(id);
+
 						// TODO: how does return work??
 						var newCtx = new VMScriptExecutionContext
 						{
