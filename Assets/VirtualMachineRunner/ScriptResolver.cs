@@ -95,6 +95,10 @@ namespace Assets.VirtualMachineRunner
 			{ "abs", abs },
 			{ "sin", sin },
 			{ "cos", cos },
+			{ "random", random },
+			{ "random_range", random_range },
+			{ "irandom", irandom },
+			{ "irandom_range", irandom_range },
 			{ "string_hash_to_newline", string_hash_to_newline },
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
@@ -1801,6 +1805,41 @@ namespace Assets.VirtualMachineRunner
 		{
 			var val = Conv<double>(args.Args[0]);
 			return Math.Cos(val);
+		}
+
+		public static object random(Arguments args)
+		{
+			var upper = Conv<double>(args.Args[0]);
+
+			return UnityEngine.Random.Range(0f, (float)upper);
+		}
+
+		public static object random_range(Arguments args)
+		{
+			var n1 = Conv<double>(args.Args[0]);
+			var n2 = Conv<double>(args.Args[1]);
+
+			return UnityEngine.Random.Range((float)n1, (float)n2);
+		}
+
+		private static int realToInt(double value)
+		{
+			return value < 0 ? Mathf.CeilToInt((float)value) : Mathf.FloorToInt((float)value);
+		}
+
+		public static object irandom(Arguments args)
+		{
+			var n = realToInt(Conv<double>(args.Args[0]));
+
+			return UnityEngine.Random.Range(0, n + 1);
+		}
+
+		public static object irandom_range(Arguments args)
+		{
+			var n1 = realToInt(Conv<double>(args.Args[0]));
+			var n2 = realToInt(Conv<double>(args.Args[1]));
+
+			return UnityEngine.Random.Range(n1, n2 + 1);
 		}
 
 		public static object string_hash_to_newline(Arguments args)
