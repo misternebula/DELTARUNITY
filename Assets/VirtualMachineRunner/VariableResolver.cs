@@ -87,7 +87,8 @@ namespace Assets.VirtualMachineRunner
 			{ "xstart", (get_xstart, set_xstart)},
 			{ "ystart", (get_ystart, set_ystart)},
 			{ "object_index", (get_object_index, null)},
-			{ "image_blend", (get_image_blend, set_image_blend)}
+			{ "image_blend", (get_image_blend, set_image_blend)},
+			{ "depth", (get_depth, set_depth)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -127,6 +128,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object get_image_blend(NewGamemakerObject instance) => instance.image_blend;
 		public static void set_image_blend(NewGamemakerObject instance, object value) => instance.image_blend = VMExecuter.Convert<int>(value);
+
+		public static object get_depth(NewGamemakerObject instance) => instance.depth;
+		public static void set_depth(NewGamemakerObject instance, object value) => instance.depth = VMExecuter.Convert<double>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
