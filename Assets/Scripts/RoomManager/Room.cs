@@ -42,7 +42,9 @@ namespace Assets.RoomManager
 			var camera = GamemakerCamera.Instance;
 			camera.GetComponent<Camera>().orthographicSize = ViewSize.y / 2;
 
-			var rt = new RenderTexture((int)ViewSize.x, (int)ViewSize.y, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			//var rt = new RenderTexture((int)ViewSize.x, (int)ViewSize.y, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			var rt = new RenderTexture(640, 480, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			// TODO : render resolution is apparently done by starting room size, not room view size? im confused
 			rt.filterMode = FilterMode.Point;
 
 			camera.GetComponent<Camera>().targetTexture = rt;
