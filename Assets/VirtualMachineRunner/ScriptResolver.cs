@@ -102,6 +102,7 @@ namespace Assets.VirtualMachineRunner
 			{ "string_hash_to_newline", string_hash_to_newline },
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
+			{ "draw_text_transformed", draw_text_transformed },
 			{ "draw_sprite", draw_sprite },
 			{ "draw_sprite_ext", draw_sprite_ext },
 			{ "draw_sprite_part_ext", draw_sprite_part_ext },
@@ -1902,6 +1903,18 @@ namespace Assets.VirtualMachineRunner
 			var y = Conv<double>(args.Args[1]);
 			var str = Conv<string>(args.Args[2]);
 			TextManager.TextManager.DrawText(x, y, str);
+			return null;
+		}
+
+		public static object draw_text_transformed(Arguments args)
+		{
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+			var str = Conv<string>(args.Args[2]);
+			var xscale = Conv<double>(args.Args[3]);
+			var yscale = Conv<double>(args.Args[4]);
+			var angle = Conv<double>(args.Args[5]);
+			TextManager.TextManager.DrawTextTransformed(x, y, str, xscale, yscale, angle);
 			return null;
 		}
 

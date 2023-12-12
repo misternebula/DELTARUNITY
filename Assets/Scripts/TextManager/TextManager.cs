@@ -147,7 +147,7 @@ namespace Assets.TextManager
 			});
 		}
 
-		public static void DrawTextTransformed(double x, double y, string text, double xscale, double yscale, float angle)
+		public static void DrawTextTransformed(double x, double y, string text, double xscale, double yscale, double angle)
 		{
 			GamemakerCamera.RenderJobs.Add(new GMTextJob()
 			{
@@ -158,7 +158,7 @@ namespace Assets.TextManager
 				halign = halign,
 				valign = valign,
 				scale = new Vector2((float)xscale, (float)yscale),
-				angle = angle,
+				angle = (float)angle,
 				asset = fontAsset,
 				// gamemaker is weird
 				// "A value of -1 for the line separation argument will default to a separation based on the height of the "M" character in the chosen font."
