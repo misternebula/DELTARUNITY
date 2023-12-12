@@ -16,6 +16,7 @@ using static UnityEditorInternal.ReorderableList;
 using System.Reflection;
 using System.Drawing.Drawing2D;
 using System.Drawing;
+using Assets.RoomManager;
 using UnityEngine.UIElements;
 
 namespace Assets.VirtualMachineRunner
@@ -110,6 +111,15 @@ namespace Assets.VirtualMachineRunner
 			{ "event_user", event_user },
 			{ "string_length", string_length },
 			{ "string_char_at", string_char_at },
+			{ "string_width", string_width },
+			{ "string_copy", string_copy },
+			{ "string_inset", string_insert },
+			{ "string_delete", string_delete },
+			{ "view_get_camera", view_get_camera },
+			{ "camera_get_view_x", camera_get_view_x },
+			{ "camera_get_view_y", camera_get_view_y },
+			{ "camera_get_view_width", camera_get_view_width },
+			{ "camera_get_view_height", camera_get_view_height },
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -827,7 +837,6 @@ namespace Assets.VirtualMachineRunner
 		public static object instance_exists(Arguments args)
 		{
 			var obj = (int)args.Args[0];
-
 			if (obj > AssetIndexManager.Instance.GetHighestIndex(AssetType.objects))
 			{
 				// instance id was passed
@@ -1636,9 +1645,10 @@ namespace Assets.VirtualMachineRunner
 			AudioClip audioClip;
 			using (var vorbis = new VorbisReader(new MemoryStream(sample_data, false)))
 			{
-				var _audioBuffer = new float[vorbis.TotalSamples];
-				var read = vorbis.ReadSamples(_audioBuffer, 0, (int)vorbis.TotalSamples);
-				audioClip = AudioClip.Create(sample_name, (int)(vorbis.TotalSamples / vorbis.Channels), vorbis.Channels, vorbis.SampleRate, false);
+				// TotalSamples is actually the number of frames, not samples. (A frame is a set of samples at the same time)
+				var _audioBuffer = new float[vorbis.TotalSamples * vorbis.Channels];
+				vorbis.ReadSamples(_audioBuffer, 0, (int)vorbis.TotalSamples * vorbis.Channels);
+				audioClip = AudioClip.Create(sample_name, (int)vorbis.TotalSamples, vorbis.Channels, vorbis.SampleRate, false);
 				audioClip.SetData(_audioBuffer, 0);
 			}
 
@@ -1721,10 +1731,13 @@ namespace Assets.VirtualMachineRunner
 			var volume = Conv<double>(args.Args[1]);
 			var time = Conv<double>(args.Args[2]);
 
+			Debug.Log($"audio_sound_gain index:{index} volume:{volume} time:{time}");
+
 			if (index >= 100000)
 			{
 				// instance id
-				// TODO : lerp on instance
+				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(index);
+				AudioManager.AudioManager.Instance.ChangeGain(soundAsset.Source, volume, time);
 			}
 			else
 			{
@@ -1732,6 +1745,10 @@ namespace Assets.VirtualMachineRunner
 				AudioManager.AudioManager.Instance.SetAssetGain(index, volume);
 
 				// TODO : lerp on all existing instances
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(index))
+				{
+					AudioManager.AudioManager.Instance.ChangeGain(item.Source, volume, time);
+				}
 			}
 
 			return null;
@@ -1745,15 +1762,18 @@ namespace Assets.VirtualMachineRunner
 			if (index >= 100000)
 			{
 				// instance id
-
-				// TODO : set pitch on instance
+				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(index);
+				soundAsset.Source.pitch = (float)pitch;
 			}
 			else
 			{
 				// sound asset index
 				AudioManager.AudioManager.Instance.SetAssetPitch(index, pitch);
 
-				// TODO : set pitch on existing instances
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(index))
+				{
+					item.Source.pitch = (float)pitch;
+				}
 			}
 
 			return null;
@@ -1956,6 +1976,98 @@ namespace Assets.VirtualMachineRunner
 
 			// guh index starts at one? goofy gamemaker
 			return str[index - 1].ToString();
+		}
+
+		public static object string_width(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+
+			return TextManager.TextManager.StringWidth(str);
+		}
+
+		public static object string_copy(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			var index = Conv<int>(args.Args[1]);
+			var count = Conv<int>(args.Args[2]);
+
+			return str.Substring(index - 1, count);
+		}
+
+		public static object string_insert(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			var substr = Conv<string>(args.Args[1]);
+			var index = Conv<int>(args.Args[2]);
+
+			return str.Insert(index - 1, substr);
+		}
+
+		public static object string_delete(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			var index = Conv<int>(args.Args[1]);
+			var count = Conv<int>(args.Args[2]);
+
+			return str.Remove(index - 1, count);
+		}
+
+		public static object view_get_camera(Arguments args)
+		{
+			// TODO : ughhh implement multiple cameras
+			return 0;
+		}
+
+		public static object camera_get_view_x(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			return GamemakerCamera.Instance.x;
+		}
+
+		public static object camera_get_view_y(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			return -GamemakerCamera.Instance.y;
+		}
+
+		public static object camera_get_view_width(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			return Room.Instance.ViewSize.x;
+		}
+
+		public static object camera_get_view_height(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			return Room.Instance.ViewSize.y;
 		}
 	}
 
