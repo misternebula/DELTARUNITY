@@ -260,8 +260,15 @@ namespace Assets.VirtualMachineRunner
 					return b ? "1" : "0"; // GM represents bools as integers
 				}
 			}
-			else if (obj is double d)
+			else if (obj is double or float)
 			{
+				var d = System.Convert.ToDouble(obj);
+
+				if (type == typeof(double) || type == typeof(float))
+				{
+					return d;
+				}
+
 				if (type == typeof(bool))
 				{
 					return d > 0.5; // https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Variable_Functions/bool.htm
