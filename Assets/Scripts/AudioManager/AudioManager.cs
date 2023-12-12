@@ -12,6 +12,7 @@ namespace Assets.AudioManager
 {
 	public class AudioInstance
 	{
+		public AudioAsset Asset;
 		public int SoundInstanceId;
 		public AudioSource Source;
 	}
@@ -103,9 +104,14 @@ namespace Assets.AudioManager
 			_audioSources = _audioSources.Except(toRemove).ToList();
 		}
 
-		public AudioSource[] GetAudioSources(string name)
+		public AudioInstance GetAudioInstance(int instanceId)
 		{
-			return _audioSources.Select(x => x.Source).Where(x => x.clip.name == name).ToArray();
+			return _audioSources.FirstOrDefault(x => x.SoundInstanceId == instanceId);
+		}
+
+		public AudioInstance[] GetAudioInstances(int assetIndex)
+		{
+			return _audioSources.Where(x => x.Asset.AssetIndex == assetIndex).ToArray();
 		}
 
 		public void SetAssetGain(int assetIndex, double gain)
@@ -170,6 +176,7 @@ namespace Assets.AudioManager
 
 			var instance = new AudioInstance
 			{
+				Asset = _audioClips[index],
 				SoundInstanceId = ++_highestSoundInstanceId,
 				Source = source
 			};
