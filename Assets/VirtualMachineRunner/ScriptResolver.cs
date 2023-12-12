@@ -115,6 +115,7 @@ namespace Assets.VirtualMachineRunner
 			{ "string_copy", string_copy },
 			{ "string_inset", string_insert },
 			{ "string_delete", string_delete },
+			{ "string_replace_all", string_replace_all },
 			{ "view_get_camera", view_get_camera },
 			{ "camera_get_view_x", camera_get_view_x },
 			{ "camera_get_view_y", camera_get_view_y },
@@ -2010,6 +2011,15 @@ namespace Assets.VirtualMachineRunner
 			var count = Conv<int>(args.Args[2]);
 
 			return str.Remove(index - 1, count);
+		}
+
+		public static object string_replace_all(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			var substr = Conv<string>(args.Args[1]);
+			var newstr = Conv<string>(args.Args[2]);
+
+			return str.Replace(substr, newstr);
 		}
 
 		public static object view_get_camera(Arguments args)
