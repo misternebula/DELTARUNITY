@@ -134,13 +134,22 @@ namespace Assets.VirtualMachineRunner
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
-			// argumentn is a self even though arguments is a local
+			if (name == "argument_count")
+			{
+				return ((List<object>)locals["arguments"]).Count;
+			}
+
+			if (name == "argument")
+			{
+				return (List<object>)locals["arguments"];
+			}
+
 			if (name.StartsWith("argument"))
 			{
 				var withoutArgument = name.Substring("argument".Length);
 				if (int.TryParse(withoutArgument, out var index))
 				{
-					return ((object[])locals["arguments"])[index];
+					return ((List<object>)locals["arguments"])[index];
 				}
 			}
 

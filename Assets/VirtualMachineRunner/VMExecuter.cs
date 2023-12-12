@@ -56,7 +56,7 @@ namespace Assets.VirtualMachineRunner
 				}
 				if (arguments != null)
 				{
-					newCtx.Locals["arguments"] = arguments.Args;
+					newCtx.Locals["arguments"] = arguments.Args.ToList();
 				}
 
 				// Make the current object the current instance
