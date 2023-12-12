@@ -12,12 +12,7 @@ using System.Text;
 using Assets.TextManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditorInternal.ReorderableList;
-using System.Reflection;
-using System.Drawing.Drawing2D;
-using System.Drawing;
 using Assets.RoomManager;
-using UnityEngine.UIElements;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -1731,8 +1726,6 @@ namespace Assets.VirtualMachineRunner
 			var index = Conv<int>(args.Args[0]);
 			var volume = Conv<double>(args.Args[1]);
 			var time = Conv<double>(args.Args[2]);
-
-			Debug.Log($"audio_sound_gain index:{index} volume:{volume} time:{time}");
 
 			if (index >= 100000)
 			{
