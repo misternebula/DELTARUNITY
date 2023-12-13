@@ -342,8 +342,9 @@ namespace Assets.CollisionManager
 			return null;
 		}
 
-		public static T collision_rectangle<T>(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, bool precise, bool notme, NewGamemakerObject current)
-			where T : NewGamemakerObject
+		// TODO : make these not just duplicated functions
+
+		public static int collision_rectangle_assetid(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, int assetId, bool precise, bool notme, NewGamemakerObject current)
 		{
 			if (bottomRightX < topLeftX)
 			{
@@ -359,7 +360,118 @@ namespace Assets.CollisionManager
 
 			foreach (var checkBox in colliders)
 			{
-				if (checkBox.GMObject is not T)
+				if (checkBox.GMObject.Definition.AssetId != assetId)
+				{
+					var currentDefinition = checkBox.GMObject.Definition.parent;
+					var matches = false;
+					while (currentDefinition != null)
+					{
+						if (currentDefinition.AssetId == assetId)
+						{
+							matches = true;
+							break;
+						}
+
+						currentDefinition = currentDefinition.parent;
+					}
+
+					if (!matches)
+					{
+						continue;
+					}
+				}
+
+				if (notme && checkBox.GMObject == current)
+				{
+					continue;
+				}
+
+				var boxesOverlap = DoBoxesOverlap(topLeftX, -topLeftY, bottomRightX, -bottomRightY, checkBox);
+
+				if (!boxesOverlap)
+				{
+					//Debug.Log($"box at {topLeftX},{topLeftY} {bottomRightX},{bottomRightY} does not intersect with box of {checkBox.GMObject.object_index} ({checkBox.BBTopLeft} {checkBox.BBBottomRight})");
+					continue;
+				}
+
+				if (precise && checkBox.SepMasks == SepMasks.Precise)
+				{
+					var iTopLeftX = Mathf.Max((float)topLeftX, checkBox.BBTopLeft.x);
+					var iTopLeftY = Mathf.Min((float)-topLeftY, checkBox.BBTopLeft.y);
+					var iBottomRightX = Mathf.Min((float)bottomRightX, checkBox.BBBottomRight.x);
+					var iBottomRightY = Mathf.Max((float)-bottomRightY, checkBox.BBBottomRight.y);
+
+					var iWidth = Mathf.FloorToInt(Mathf.Abs(iTopLeftX - iBottomRightX));
+					var iHeight = Mathf.FloorToInt(Mathf.Abs(iTopLeftY - iBottomRightY));
+
+					for (var i = 0; i < iHeight; i++)
+					{
+						for (var j = 0; j < iWidth; j++)
+						{
+							if (topLeftX == iTopLeftX)
+							{
+								var deltaX = Mathf.RoundToInt(Mathf.Abs(iTopLeftX - checkBox.Position.x)) + j;
+								var deltaY = Mathf.RoundToInt(Mathf.Abs(iTopLeftY - checkBox.Position.y)) + i;
+								deltaX /= (int)checkBox.Scale.x;
+								deltaY /= (int)checkBox.Scale.y;
+								try
+								{
+									if (checkBox.CollisionMask[deltaY, deltaX])
+									{
+										return checkBox.GMObject.instanceId;
+									}
+								}
+								catch (IndexOutOfRangeException iex)
+								{
+									Debug.Break();
+								}
+							}
+							else
+							{
+								var yAdjust = Mathf.RoundToInt(Mathf.Abs(checkBox.Position.y - iTopLeftY));
+								yAdjust = Mathf.FloorToInt(yAdjust / checkBox.Scale.y);
+								try
+								{
+									if (checkBox.CollisionMask[yAdjust + i, Mathf.FloorToInt(j / checkBox.Scale.x)])
+									{
+										return checkBox.GMObject.instanceId;
+									}
+								}
+								catch (IndexOutOfRangeException iex)
+								{
+									Debug.Break();
+								}
+							}
+						}
+					}
+				}
+
+				if (boxesOverlap)
+				{
+					return checkBox.GMObject.instanceId;
+				}
+			}
+
+			return GMConstants.noone;
+		}
+
+		public static int collision_rectangle_instanceid(double topLeftX, double topLeftY, double bottomRightX, double bottomRightY, int instanceId, bool precise, bool notme, NewGamemakerObject current)
+		{
+			if (bottomRightX < topLeftX)
+			{
+				(bottomRightX, topLeftX) = (topLeftX, bottomRightX);
+			}
+
+			if (topLeftY > bottomRightY)
+			{
+				(bottomRightY, topLeftY) = (topLeftY, bottomRightY);
+			}
+
+			colliders.RemoveAll(x => x.GMObject == null);
+
+			foreach (var checkBox in colliders)
+			{
+				if (checkBox.GMObject.instanceId != instanceId)
 				{
 					continue;
 				}
@@ -401,7 +513,7 @@ namespace Assets.CollisionManager
 								{
 									if (checkBox.CollisionMask[deltaY, deltaX])
 									{
-										return (T)checkBox.GMObject;
+										return checkBox.GMObject.instanceId;
 									}
 								}
 								catch (IndexOutOfRangeException iex)
@@ -417,7 +529,7 @@ namespace Assets.CollisionManager
 								{
 									if (checkBox.CollisionMask[yAdjust + i, Mathf.FloorToInt(j / checkBox.Scale.x)])
 									{
-										return (T)checkBox.GMObject;
+										return checkBox.GMObject.instanceId;
 									}
 								}
 								catch (IndexOutOfRangeException iex)
@@ -431,11 +543,11 @@ namespace Assets.CollisionManager
 
 				if (boxesOverlap)
 				{
-					return (T)checkBox.GMObject;
+					return checkBox.GMObject.instanceId;
 				}
 			}
 
-			return null;
+			return GMConstants.noone;
 		}
 
 		public static NewGamemakerObject collision_line(float x1, float y1, float x2, float y2, string name, bool prec, bool notme)
