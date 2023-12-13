@@ -1,19 +1,62 @@
-﻿using Assets;
+﻿using System;
+using System.Collections.Generic;
+using Assets;
 using Assets.Instances;
 using Assets.SpriteManager;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Assets.Scripts;
 using Assets.VirtualMachineRunner;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class LoadObjectData
 {
+	static Dictionary<AssetType, Dictionary<string, int>> AssetList = null;
+	static Dictionary<string, int> NameToIndex = null;
+
+	static void GenerateDicts()
+	{
+		AssetList = new();
+		NameToIndex = new();
+
+		var textAsset = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/asset_names.txt");
+
+		var lines = textAsset.text.Split(Environment.NewLine);
+		var headerLineNumber = 0;
+		AssetType currentAssetType = 0;
+		for (int i = 0; i < lines.Length; i++)
+		{
+			var line = lines[i];
+			if (line.StartsWith("@@") && line.EndsWith("@@"))
+			{
+				headerLineNumber = i;
+				currentAssetType = Enum.Parse<AssetType>(line.Trim('@'));
+				continue;
+			}
+
+			NameToIndex.Add(line, i - headerLineNumber - 1);
+
+			if (!AssetList.ContainsKey(currentAssetType))
+			{
+				AssetList.Add(currentAssetType, new Dictionary<string, int>());
+			}
+
+			AssetList[currentAssetType].Add(line, i - headerLineNumber - 1);
+		}
+	}
+
 	[MenuItem("GameObject/Load object data")]
 	private static void LoadObjectdata()
 	{
+		if (AssetList == null)
+		{
+			GenerateDicts();
+		}
+
 		var file = EditorUtility.OpenFilePanel("Find object data", "", "txt");
 
 		var lines = File.ReadAllLines(file);
@@ -41,50 +84,34 @@ public class LoadObjectData
 			var position = new Vector3(int.Parse(positionLine[0]), -int.Parse(positionLine[1]), 0);
 			var scale = new Vector3(float.Parse(scaleLine[0]), float.Parse(scaleLine[1]), 0);
 
-			
-			/*
-			var gmTile = newTile.AddComponent<GMTile>();
-			gmTile.Definition = definition;
-			gmTile.instanceId = int.Parse(instanceId);
-			gmTile.OnValidate();
-			*/
-
-			// try to find object
-			//var instanceManager = Object.FindObjectOfType<InstanceManager>();
-			//var obj = instanceManager.Prefabs.FirstOrDefault(x => x.name == definition);
-
 			var instanceDatabase = AssetDatabase.LoadAssetAtPath<InstanceDatabase>("Assets/ScriptableObjects/InstanceDatabase.asset");
-
-			// TODO : redo this with ObjectDefinitions
-			/*var obj = instanceDatabase.Prefabs.FirstOrDefault(x => x.name == definition);
+			var obj = instanceDatabase.ObjectDefinitions.FirstOrDefault(x => x.name == definition);
 
 			if (obj == null)
 			{
-				var newTile = new GameObject(definition);
-				newTile.transform.parent = currentParent.transform;
-				newTile.transform.localPosition = position;
-				newTile.transform.localScale = scale;
+				var newDefinition = ScriptableObject.CreateInstance<ObjectDefinition>();
+				newDefinition.name = definition;
+				newDefinition.AssetId = AssetList[AssetType.objects][definition];
 
-				var localPath = $"Assets/OBJECTS/TEMP/{definition}.prefab";
+				AssetDatabase.CreateAsset(newDefinition, $"Assets/Objects/UNPOPULATED/{definition}.asset");
 
-				var prefab = PrefabUtility.SaveAsPrefabAssetAndConnect(newTile, localPath, InteractionMode.UserAction);
+				obj = newDefinition;
 
-				instanceDatabase.Prefabs.Add(prefab);
+				instanceDatabase.ObjectDefinitions.Add(newDefinition);
+
+				EditorUtility.SetDirty(instanceDatabase);
+				AssetDatabase.SaveAssets();
+				AssetDatabase.Refresh();
 			}
-			else
-			{
-				var newObj = (GameObject)PrefabUtility.InstantiatePrefab(obj);
-				newObj.transform.parent = currentParent.transform;
-				newObj.transform.localPosition = position;
-				newObj.transform.localScale = scale;
 
-				var gmo = newObj.GetComponent<NewGamemakerObject>();
+			var gameObject = new GameObject(definition);
+			gameObject.transform.parent = currentParent.transform;
+			gameObject.transform.localPosition = position;
+			gameObject.transform.localScale = scale;
 
-				if (gmo != null)
-				{
-					gmo.instanceId = int.Parse(instanceId);
-				}
-			}*/
+			var gmo = gameObject.AddComponent<NewGamemakerObject>();
+			gmo.Definition = obj;
+			gmo.instanceId = int.Parse(instanceId);
 
 			i += 3;
 		}

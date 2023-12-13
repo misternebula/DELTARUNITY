@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
-  m_Name: gml_Object_obj_initializer2_Step_0
+  m_Name: gml_Object_obj_dialoguer_Other_10
   m_EditorClassIdentifier: 
-  Name: obj_initializer2_Step_0
+  Name: obj_dialoguer_Other_10
   LocalVariables:
   - arguments
   Labels:
@@ -20,48 +20,240 @@ MonoBehaviour:
     - Key: 0
       Value: 0
     - Key: 1
-      Value: 5
+      Value: 32
     - Key: 2
-      Value: 14
-    - Key: 3
-      Value: 16
-    - Key: 4
-      Value: 21
-    - Key: 5
-      Value: 23
-    - Key: 6
-      Value: 28
-    - Key: 7
-      Value: 30
-    - Key: 8
-      Value: 35
-    - Key: 9
-      Value: 37
-    - Key: 10
-      Value: 42
-    - Key: 11
-      Value: 44
-    - Key: 12
-      Value: 49
-    - Key: 13
       Value: 51
-    - Key: 14
-      Value: 56
-    - Key: 15
+    - Key: 3
+      Value: 53
+    - Key: 4
+      Value: 54
+    - Key: 5
       Value: 58
-    - Key: 16
-      Value: 63
-    - Key: 17
-      Value: 65
-    - Key: 18
-      Value: 69
-    - Key: 19
-      Value: 71
-    - Key: 20
-      Value: 75
-    - Key: 21
+    - Key: 6
+      Value: 81
+    - Key: 7
+      Value: 83
+    - Key: 8
+      Value: 84
+    - Key: 9
       Value: 88
+    - Key: 10
+      Value: 92
+    - Key: 11
+      Value: 93
+    - Key: 12
+      Value: 94
+    - Key: 13
+      Value: 97
+    - Key: 14
+      Value: 103
+    - Key: 15
+      Value: 105
   Instructions:
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.active
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.active
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 19
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 19
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i __view_get(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: __view_get
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.xx
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.xx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 20
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 20
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
   - Raw: pushi.e 1
     Opcode: 29
     TypeOne: 5
@@ -86,7 +278,7 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: call.i audio_group_is_loaded(argc=1)
+  - Raw: call.i __view_get(argc=2)
     Opcode: 30
     TypeOne: 1
     TypeTwo: 0
@@ -94,53 +286,113 @@ MonoBehaviour:
     DoubleData: 0
     StringData: 
     BoolData: 0
-    FunctionName: audio_group_is_loaded
+    FunctionName: __view_get
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.yy
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.yy
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.xx
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.xx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i round(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: round
     FunctionArgumentCount: 1
     JumpToEnd: 0
     Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [end]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 1
-    Comparison: 0
-  - Raw: pushi.e 1
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 1
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.roomchoice
+  - Raw: pop.v.v self.xx
     Opcode: 15
     TypeOne: 2
-    TypeTwo: 1
+    TypeTwo: 2
     IntData: 0
     DoubleData: 0
-    StringData: self.roomchoice
+    StringData: self.xx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.yy
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.yy
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i round(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: round
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.yy
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.yy
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.side
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.side
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
@@ -158,33 +410,45 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
     IntData: 0
     DoubleData: 0
-    StringData: self.menu_go
+    StringData: 
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "filech1_0"@3503
-    Opcode: 25
-    TypeOne: 6
+    Comparison: 3
+  - Raw: bf [4]
+    Opcode: 22
+    TypeOne: 0
     TypeTwo: 0
-    IntData: 0
+    IntData: 4
     DoubleData: 0
-    StringData: filech1_0
+    StringData: 
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: conv.s.v
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
     Opcode: 0
-    TypeOne: 6
+    TypeOne: 1
     TypeTwo: 2
     IntData: 0
     DoubleData: 0
@@ -194,22 +458,46 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
+  - Raw: push.v self.yy
+    Opcode: 25
+    TypeOne: 2
     TypeTwo: 0
     IntData: 0
     DoubleData: 0
-    StringData: 
+    StringData: self.yy
     BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
+    FunctionName: 
+    FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
     TypeOne: 2
-    TypeTwo: 3
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
     IntData: 0
     DoubleData: 0
     StringData: 
@@ -218,8 +506,152 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: bf [3]
-    Opcode: 22
+  - Raw: sub.v.v
+    Opcode: 6
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.xx
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.xx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.writer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_facechoice(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_facechoice
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.writer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [3]
+    Opcode: 23
     TypeOne: 0
     TypeTwo: 0
     IntData: 3
@@ -242,73 +674,37 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i self.menu_go
+  - Raw: pop.v.i self.dialoguer
     Opcode: 15
     TypeOne: 2
     TypeTwo: 1
     IntData: 0
     DoubleData: 0
-    StringData: self.menu_go
+    StringData: self.dialoguer
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: push.s "filech1_1"@3505
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: filech1_1
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [5]
-    Opcode: 22
+  - Raw: popenv [2]
+    Opcode: 24
     TypeOne: 0
     TypeTwo: 0
-    IntData: 5
+    IntData: 2
     DoubleData: 0
     StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.side
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.side
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
@@ -326,33 +722,45 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
     IntData: 0
     DoubleData: 0
-    StringData: self.menu_go
+    StringData: 
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "filech1_2"@3507
-    Opcode: 25
-    TypeOne: 6
+    Comparison: 3
+  - Raw: bf [8]
+    Opcode: 22
+    TypeOne: 0
     TypeTwo: 0
-    IntData: 0
+    IntData: 8
     DoubleData: 0
-    StringData: filech1_2
+    StringData: 
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: conv.s.v
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
     Opcode: 0
-    TypeOne: 6
+    TypeOne: 1
     TypeTwo: 2
     IntData: 0
     DoubleData: 0
@@ -362,22 +770,46 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
+  - Raw: push.v self.yy
+    Opcode: 25
+    TypeOne: 2
     TypeTwo: 0
     IntData: 0
     DoubleData: 0
-    StringData: 
+    StringData: self.yy
     BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
+    FunctionName: 
+    FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
+  - Raw: pushi.e 150
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 150
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
     TypeOne: 2
-    TypeTwo: 3
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
     IntData: 0
     DoubleData: 0
     StringData: 
@@ -386,8 +818,200 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: bf [7]
-    Opcode: 22
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.xx
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.xx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.f
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.f
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.writer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.skippable
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.skippable
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.writer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [stacktop]self.skippable
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.skippable'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_facechoice(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_facechoice
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.writer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [7]
+    Opcode: 23
     TypeOne: 0
     TypeTwo: 0
     IntData: 7
@@ -410,35 +1034,23 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i self.menu_go
+  - Raw: pop.v.i self.dialoguer
     Opcode: 15
     TypeOne: 2
     TypeTwo: 1
     IntData: 0
     DoubleData: 0
-    StringData: self.menu_go
+    StringData: self.dialoguer
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: push.s "filech1_3"@9726
-    Opcode: 25
-    TypeOne: 6
+  - Raw: popenv [6]
+    Opcode: 24
+    TypeOne: 0
     TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: filech1_3
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
+    IntData: 6
     DoubleData: 0
     StringData: 
     BoolData: 0
@@ -446,7 +1058,19 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: call.i file_exists(argc=1)
+  - Raw: push.v self.writer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_exists(argc=1)
     Opcode: 30
     TypeOne: 1
     TypeTwo: 0
@@ -454,7 +1078,7 @@ MonoBehaviour:
     DoubleData: 0
     StringData: 
     BoolData: 0
-    FunctionName: file_exists
+    FunctionName: instance_exists
     FunctionArgumentCount: 1
     JumpToEnd: 0
     Comparison: 0
@@ -470,585 +1094,9 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: bf [9]
+  - Raw: bf [10]
     Opcode: 22
     TypeOne: 0
-    TypeTwo: 0
-    IntData: 9
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 1
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 1
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "dr.ini"@2744
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: dr.ini
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [11]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 11
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 1
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 1
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "filech1_3"@9726
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: filech1_3
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [13]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 13
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 2
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 2
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "filech1_4"@9727
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: filech1_4
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [15]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 15
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 2
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 2
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "filech1_5"@9728
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: filech1_5
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i file_exists(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: file_exists
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.v.b
-    Opcode: 0
-    TypeOne: 2
-    TypeTwo: 3
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: bf [17]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 17
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 2
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 2
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.menu_go
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.v self.menu_go
-    Opcode: 25
-    TypeOne: 2
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 1
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 1
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: cmp.i.v EQ
-    Opcode: 14
-    TypeOne: 1
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 3
-  - Raw: bf [19]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 19
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 139
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 139
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.roomchoice
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: self.roomchoice
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.v self.menu_go
-    Opcode: 25
-    TypeOne: 2
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: self.menu_go
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 2
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 2
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: cmp.i.v EQ
-    Opcode: 14
-    TypeOne: 1
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 3
-  - Raw: bf [21]
-    Opcode: 22
-    TypeOne: 0
-    TypeTwo: 0
-    IntData: 21
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: push.s "obj_initializer2_slash_Step_0_gml_22_0"@10054
-    Opcode: 25
-    TypeOne: 6
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: obj_initializer2_slash_Step_0_gml_22_0
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: conv.s.v
-    Opcode: 0
-    TypeOne: 6
-    TypeTwo: 2
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i scr_84_get_lang_string(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: scr_84_get_lang_string
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i scr_windowcaption(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: scr_windowcaption
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: popz.v
-    Opcode: 19
-    TypeOne: 2
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 1
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: 1
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e -5
-    Opcode: 29
-    TypeOne: 5
-    TypeTwo: 0
-    IntData: -5
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 10
-    Opcode: 29
-    TypeOne: 5
     TypeTwo: 0
     IntData: 10
     DoubleData: 0
@@ -1058,37 +1106,13 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i [array]global.tempflag
-    Opcode: 15
+  - Raw: pushglb.v global.fc
+    Opcode: 27
     TypeOne: 2
-    TypeTwo: 1
-    IntData: 0
-    DoubleData: 0
-    StringData: '[array]global.tempflag'
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pushi.e 132
-    Opcode: 29
-    TypeOne: 5
     TypeTwo: 0
-    IntData: 132
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: pop.v.i self.roomchoice
-    Opcode: 15
-    TypeOne: 2
-    TypeTwo: 1
     IntData: 0
     DoubleData: 0
-    StringData: self.roomchoice
+    StringData: global.fc
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
@@ -1106,47 +1130,191 @@ MonoBehaviour:
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: pop.v.i global.plot
+  - Raw: cmp.i.v NEQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 4
+  - Raw: b [11]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 11
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [end]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 1
+    Comparison: 0
+  - Raw: push.v self.writer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.writer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [15]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 15
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.dialoguer
     Opcode: 15
     TypeOne: 2
     TypeTwo: 1
     IntData: 0
     DoubleData: 0
-    StringData: global.plot
+    StringData: self.dialoguer
     BoolData: 0
     FunctionName: 
     FunctionArgumentCount: 0
     JumpToEnd: 0
     Comparison: 0
-  - Raw: push.v self.roomchoice
+  - Raw: push.v self.originalcharline
     Opcode: 25
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 2
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: 
-    FunctionArgumentCount: 0
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: call.i room_goto(argc=1)
-    Opcode: 30
-    TypeOne: 1
-    TypeTwo: 0
-    IntData: 0
-    DoubleData: 0
-    StringData: 
-    BoolData: 0
-    FunctionName: room_goto
-    FunctionArgumentCount: 1
-    JumpToEnd: 0
-    Comparison: 0
-  - Raw: popz.v
-    Opcode: 19
     TypeOne: 2
     TypeTwo: 0
     IntData: 0
+    DoubleData: 0
+    StringData: self.originalcharline
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 33
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 33
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [15]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 15
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 26
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 26
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.charline
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.charline
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [13]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 13
     DoubleData: 0
     StringData: 
     BoolData: 0
