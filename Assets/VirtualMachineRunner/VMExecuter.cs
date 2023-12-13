@@ -482,7 +482,7 @@ namespace Assets.VirtualMachineRunner
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-										if (instanceId == -1)
+										if (instanceId == GMConstants.self)
 										{
 											if (variableName == "alarm")
 											{
@@ -691,7 +691,7 @@ namespace Assets.VirtualMachineRunner
 									value = Ctx.Stack.Pop();
 								}
 
-								if (instanceId == -1)
+								if (instanceId == GMConstants.self)
 								{
 									if (variableName == "alarm")
 									{
