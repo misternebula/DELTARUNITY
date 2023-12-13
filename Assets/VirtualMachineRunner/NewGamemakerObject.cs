@@ -368,16 +368,26 @@ namespace Assets.VirtualMachineRunner
 
 		public sealed override void Draw()
 		{
+			_baseDraw = true;
+
+			void setDraw(bool didDrawEvent)
+			{
+				if (didDrawEvent)
+				{
+					_baseDraw = false;
+				}
+			}
+			
 			if (visible && gameObject.activeInHierarchy)
 			{
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PreDraw);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawBegin);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.Draw);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawEnd);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PostDraw);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIBegin);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUI);
-				ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIEnd);
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PreDraw));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawBegin));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.Draw));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawEnd));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PostDraw));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIBegin));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUI));
+				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIEnd));
 			}
 
 			for (var i = 0; i < alarm.Length; i++)
@@ -471,75 +481,74 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		public static void ExecuteScript(NewGamemakerObject obj, ObjectDefinition definition, EventType type, int otherData = 0)
+		public static bool ExecuteScript(NewGamemakerObject obj, ObjectDefinition definition, EventType type, int otherData = 0)
 		{
+			if (definition == null)
+			{
+				Debug.LogError($"Tried to execute event {type} {otherData} on null definition! obj:{obj}");
+				Debug.Break();
+				return false;
+			}
+
 			//Debug.Log($"Trying to execute {type} {otherData} on {obj.object_index} with definition {definition.name}");
 
-			void TryExecute(VMScript script)
+			bool TryExecute(VMScript script)
 			{
 				if (script != null)
 				{
 					VMExecuter.ExecuteScript(script, obj, definition, type, otherData);
+					return true;
 				}
 				else if (definition.parent != null)
 				{
-					ExecuteScript(obj, definition.parent, type, otherData);
+					return ExecuteScript(obj, definition.parent, type, otherData);
 				}
-				else
-				{
-					// event not found, and no parent to check
-				}
+
+				// event not found, and no parent to check
+				return false;
 			}
 
-			void TryExecuteDict<T>(Dictionary<T, VMScript> dict, T index)
+			bool TryExecuteDict<T>(Dictionary<T, VMScript> dict, T index)
 			{
 				if (dict.TryGetValue(index, out var script))
 				{
 					VMExecuter.ExecuteScript(script, obj, definition, type, otherData);
+					return true;
 				}
 				else if (definition.parent != null)
 				{
-					ExecuteScript(obj, definition.parent, type, otherData);
+					return ExecuteScript(obj, definition.parent, type, otherData);
 				}
-				else
-				{
-					// event not found, and no parent to check
-				}
+
+				// event not found, and no parent to check
+				return false;
 			}
 
 			switch (type)
 			{
 				case EventType.Create:
-					TryExecute(definition.CreateScript);
-					break;
+					return TryExecute(definition.CreateScript);
 				case EventType.Destroy:
-					TryExecute(definition.DestroyScript);
-					break;
+					return TryExecute(definition.DestroyScript);
 				case EventType.Alarm:
-					TryExecuteDict(definition.AlarmScript, otherData);
-					break;
+					return TryExecuteDict(definition.AlarmScript, otherData);
 				case EventType.Step:
-					TryExecuteDict(definition.StepScript, (StepType)otherData);
-					break;
+					return TryExecuteDict(definition.StepScript, (StepType)otherData);
 				// collision
 				// keyboard
 				// mouse
 				case EventType.Other:
-					TryExecuteDict(definition.OtherScript, (OtherType)otherData);
-					break;
+					return TryExecuteDict(definition.OtherScript, (OtherType)otherData);
 				case EventType.Draw:
-					TryExecuteDict(definition.DrawScript, (DrawType)otherData);
-					break;
+					return TryExecuteDict(definition.DrawScript, (DrawType)otherData);
 				// keypress
 				// keyrelease
 				// trigger
 				case EventType.CleanUp:
-					TryExecute(definition.CleanUpScript);
-					break;
+					return TryExecute(definition.CleanUpScript);
 				// gesture
 				case EventType.PreCreate:
-					TryExecute(definition.PreCreateScript);
-					break;
+					return TryExecute(definition.PreCreateScript);
 				case EventType.KeyPress:
 				case EventType.KeyRelease:
 				case EventType.Trigger:
@@ -547,8 +556,9 @@ namespace Assets.VirtualMachineRunner
 				case EventType.Collision:
 				case EventType.Keyboard:
 				case EventType.Mouse:
+				default:
 					Debug.LogError($"{type} not implemented!");
-					break;
+					return false;
 			}
 		}
 
