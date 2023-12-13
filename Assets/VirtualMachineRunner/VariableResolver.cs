@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.RoomManager;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -88,7 +89,21 @@ namespace Assets.VirtualMachineRunner
 			{ "ystart", (get_ystart, set_ystart)},
 			{ "object_index", (get_object_index, null)},
 			{ "image_blend", (get_image_blend, set_image_blend)},
-			{ "depth", (get_depth, set_depth)}
+			{ "depth", (get_depth, set_depth)},
+			{ "room", (get_room, set_room)},
+			{ "bbox_bottom", (get_bbox_bottom, null)},
+			{ "bbox_top", (get_bbox_top, null)},
+			{ "bbox_left", (get_bbox_left, null)},
+			{ "bbox_right", (get_bbox_right, null)},
+			{ "image_yscale", (get_image_yscale, set_image_yscale)},
+			{ "image_xscale", (get_image_xscale, set_image_xscale)},
+			{ "image_speed", (get_image_speed, set_image_speed)},
+			{ "visible", (get_visible, set_visible)},
+			{ "image_alpha", (get_image_alpha, set_image_alpha)},
+			{ "speed", (get_speed, set_speed)},
+			{ "hspeed", (get_hspeed, set_hspeed)},
+			{ "vspeed", (get_vspeed, set_vspeed)},
+			{ "direction", (get_direction, set_direction)},
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -131,6 +146,45 @@ namespace Assets.VirtualMachineRunner
 
 		public static object get_depth(NewGamemakerObject instance) => instance.depth;
 		public static void set_depth(NewGamemakerObject instance, object value) => instance.depth = VMExecuter.Convert<double>(value);
+
+		public static object get_room(NewGamemakerObject instance) => RoomManager.RoomManager.Instance.GetRoomIndex(Room.Instance.Name);
+
+		public static object get_bbox_bottom(NewGamemakerObject instance) => (instance.sprite_index == -1 && instance.mask_id == -1) ? instance.y : instance.bbox_bottom;
+		public static object get_bbox_top(NewGamemakerObject instance) => (instance.sprite_index == -1 && instance.mask_id == -1) ? instance.y : instance.bbox_top;
+		public static object get_bbox_left(NewGamemakerObject instance) => (instance.sprite_index == -1 && instance.mask_id == -1) ? instance.x : instance.bbox_left;
+		public static object get_bbox_right(NewGamemakerObject instance) => (instance.sprite_index == -1 && instance.mask_id == -1) ? instance.x : instance.bbox_right;
+
+		public static object get_image_yscale(NewGamemakerObject instance) => instance.image_yscale;
+		public static void set_image_yscale(NewGamemakerObject instance, object value) => instance.image_yscale = VMExecuter.Convert<double>(value);
+
+		public static object get_image_xscale(NewGamemakerObject instance) => instance.image_xscale;
+		public static void set_image_xscale(NewGamemakerObject instance, object value) => instance.image_xscale = VMExecuter.Convert<double>(value);
+
+		public static void set_room(NewGamemakerObject instance, object value)
+		{
+			RoomManager.RoomManager.Instance.ChangeRoom(VMExecuter.Convert<int>(value));
+		}
+
+		public static object get_image_speed(NewGamemakerObject instance) => instance.image_speed;
+		public static void set_image_speed(NewGamemakerObject instance, object value) => instance.image_speed = VMExecuter.Convert<double>(value);
+
+		public static object get_visible(NewGamemakerObject instance) => instance.visible;
+		public static void set_visible(NewGamemakerObject instance, object value) => instance.visible = VMExecuter.Convert<bool>(value);
+
+		public static object get_image_alpha(NewGamemakerObject instance) => instance.image_alpha;
+		public static void set_image_alpha(NewGamemakerObject instance, object value) => instance.image_alpha = VMExecuter.Convert<double>(value);
+
+		public static object get_speed(NewGamemakerObject instance) => instance.speed;
+		public static void set_speed(NewGamemakerObject instance, object value) => instance.speed = VMExecuter.Convert<double>(value);
+
+		public static object get_hspeed(NewGamemakerObject instance) => instance.hspeed;
+		public static void set_hspeed(NewGamemakerObject instance, object value) => instance.hspeed = VMExecuter.Convert<double>(value);
+
+		public static object get_vspeed(NewGamemakerObject instance) => instance.vspeed;
+		public static void set_vspeed(NewGamemakerObject instance, object value) => instance.vspeed = VMExecuter.Convert<double>(value);
+
+		public static object get_direction(NewGamemakerObject instance) => instance.direction;
+		public static void set_direction(NewGamemakerObject instance, object value) => instance.direction = VMExecuter.Convert<double>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
