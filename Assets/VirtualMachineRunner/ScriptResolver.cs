@@ -54,6 +54,7 @@ namespace Assets.VirtualMachineRunner
 			{ "ds_list_add", ds_list_add },
 			{ "show_debug_message", show_debug_message },
 			{ "file_text_open_read", file_text_open_read },
+			{ "file_text_open_write", file_text_open_write },
 			{ "file_text_close", file_text_close },
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
@@ -99,6 +100,7 @@ namespace Assets.VirtualMachineRunner
 			{ "random_range", random_range },
 			{ "irandom", irandom },
 			{ "irandom_range", irandom_range },
+			{ "round", round },
 			{ "string_hash_to_newline", string_hash_to_newline },
 			{ "draw_rectangle", draw_rectangle },
 			{ "draw_text", draw_text },
@@ -107,13 +109,14 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_sprite_ext", draw_sprite_ext },
 			{ "draw_sprite_part_ext", draw_sprite_part_ext },
 			{ "draw_sprite_part", draw_sprite_part },
+			{ "draw_self", draw_self },
 			{ "gamepad_is_connected", gamepad_is_connected },
 			{ "event_user", event_user },
 			{ "string_length", string_length },
 			{ "string_char_at", string_char_at },
 			{ "string_width", string_width },
 			{ "string_copy", string_copy },
-			{ "string_inset", string_insert },
+			{ "string_insert", string_insert },
 			{ "string_delete", string_delete },
 			{ "string_replace_all", string_replace_all },
 			{ "view_get_camera", view_get_camera },
@@ -121,6 +124,7 @@ namespace Assets.VirtualMachineRunner
 			{ "camera_get_view_y", camera_get_view_y },
 			{ "camera_get_view_width", camera_get_view_width },
 			{ "camera_get_view_height", camera_get_view_height },
+			{ "collision_rectangle", collision_rectangle }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -519,7 +523,6 @@ namespace Assets.VirtualMachineRunner
 		public static object file_text_open_read(Arguments args)
 		{
 			var fname = (string)args.Args[0];
-
 			var filepath = Path.Combine(Application.persistentDataPath, fname);
 
 			if (!File.Exists(filepath))
@@ -531,6 +534,7 @@ namespace Assets.VirtualMachineRunner
 
 			if (_fileHandles.Count == 32)
 			{
+				fileStream.Close();
 				return -1;
 			}
 
@@ -543,6 +547,39 @@ namespace Assets.VirtualMachineRunner
 			var handle = new FileHandle
 			{
 				Reader = new StreamReader(fileStream)
+			};
+
+			_fileHandles.Add(highestIndex + 1, handle);
+			return highestIndex + 1;
+		}
+
+		public static object file_text_open_write(Arguments args)
+		{
+			var fname = (string)args.Args[0];
+			var filepath = Path.Combine(Application.persistentDataPath, fname);
+
+			if (!File.Exists(filepath))
+			{
+				return -1;
+			}
+
+			var fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+
+			if (_fileHandles.Count == 32)
+			{
+				fileStream.Close();
+				return -1;
+			}
+
+			var highestIndex = -1;
+			if (_fileHandles.Count > 0)
+			{
+				highestIndex = _fileHandles.Keys.Max();
+			}
+
+			var handle = new FileHandle
+			{
+				Writer = new StreamWriter(fileStream)
 			};
 
 			_fileHandles.Add(highestIndex + 1, handle);
@@ -1843,6 +1880,12 @@ namespace Assets.VirtualMachineRunner
 			return UnityEngine.Random.Range(n1, n2 + 1);
 		}
 
+		public static object round(Arguments args)
+		{
+			var num = Conv<double>(args.Args[0]);
+			return Mathf.RoundToInt((float)num);
+		}
+
 		public static object string_hash_to_newline(Arguments args)
 		{
 			var text = Conv<string>(args.Args[0]);
@@ -1980,6 +2023,13 @@ namespace Assets.VirtualMachineRunner
 
 			return null;
 		}
+
+		public static object draw_self(Arguments args)
+		{
+			SpriteManager.SpriteManager.DrawSelf(args.Ctx.Self);
+			return null;
+		}
+
 		public static object gamepad_is_connected(Arguments args)
 		{
 			var device = Conv<int>(args.Args[0]);
@@ -2042,8 +2092,8 @@ namespace Assets.VirtualMachineRunner
 
 		public static object string_insert(Arguments args)
 		{
-			var str = Conv<string>(args.Args[0]);
-			var substr = Conv<string>(args.Args[1]);
+			var substr = Conv<string>(args.Args[0]);
+			var str = Conv<string>(args.Args[1]);
 			var index = Conv<int>(args.Args[2]);
 
 			return str.Insert(index - 1, substr);
@@ -2123,6 +2173,31 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return Room.Instance.ViewSize.y;
+		}
+
+		public static object collision_rectangle(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+			var obj = Conv<int>(args.Args[4]); // TODO : this can be an array, or "all" or "other"
+			var prec = Conv<bool>(args.Args[5]);
+			var notme = Conv<bool>(args.Args[6]);
+
+			if (obj < 0)
+			{
+				throw new NotImplementedException($"{obj} given to collision_rectangle!");
+			}
+
+			if (obj < 100000)
+			{
+				return CollisionManager.CollisionManager.collision_rectangle_assetid(x1, y1, x2, y2, obj, prec, notme, args.Ctx.Self);
+			}
+			else
+			{
+				return CollisionManager.CollisionManager.collision_rectangle_instanceid(x1, y1, x2, y2, obj, prec, notme, args.Ctx.Self);
+			}
 		}
 	}
 
