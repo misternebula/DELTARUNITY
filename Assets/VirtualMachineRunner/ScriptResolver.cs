@@ -59,8 +59,11 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_eof", file_text_eof },
 			{ "file_exists", file_exists },
 			{ "file_text_readln", file_text_readln },
+			{ "file_text_writeln", file_text_writeln },
 			{ "file_text_read_string", file_text_read_string },
+			{ "file_text_write_string", file_text_write_string },
 			{ "file_text_read_real", file_text_read_real },
+			{ "file_text_write_real", file_text_write_real },
 			{ "file_delete", file_delete },
 			{ "file_copy", file_copy },
 			{ "json_decode", json_decode },
@@ -124,7 +127,8 @@ namespace Assets.VirtualMachineRunner
 			{ "camera_get_view_y", camera_get_view_y },
 			{ "camera_get_view_width", camera_get_view_width },
 			{ "camera_get_view_height", camera_get_view_height },
-			{ "collision_rectangle", collision_rectangle }
+			{ "collision_rectangle", collision_rectangle },
+			{ "place_meeting", place_meeting }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -555,21 +559,16 @@ namespace Assets.VirtualMachineRunner
 
 		public static object file_text_open_write(Arguments args)
 		{
+			if (_fileHandles.Count == 32)
+			{
+				return -1;
+			}
+
 			var fname = (string)args.Args[0];
 			var filepath = Path.Combine(Application.persistentDataPath, fname);
 
-			if (!File.Exists(filepath))
-			{
-				return -1;
-			}
-
-			var fileStream = new FileStream(filepath, FileMode.Open, FileAccess.Read);
-
-			if (_fileHandles.Count == 32)
-			{
-				fileStream.Close();
-				return -1;
-			}
+			File.Delete(filepath);
+			var fileStream = new FileStream(filepath, FileMode.Create, FileAccess.Write);
 
 			var highestIndex = -1;
 			if (_fileHandles.Count > 0)
@@ -631,6 +630,14 @@ namespace Assets.VirtualMachineRunner
 			return reader.ReadLine();
 		}
 
+		public static object file_text_writeln(Arguments args)
+		{
+			var fileid = (int)args.Args[0];
+			var writer = _fileHandles[fileid].Writer;
+			writer.WriteLine();
+			return null;
+		}
+
 		public static object file_text_read_string(Arguments args)
 		{
 			var fileid = (int)args.Args[0];
@@ -643,6 +650,15 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return result;
+		}
+
+		public static object file_text_write_string(Arguments args)
+		{
+			var fileid = (int)args.Args[0];
+			var str = Conv<string>(args.Args[1]);
+			var writer = _fileHandles[fileid].Writer;
+			writer.Write(str);
+			return null;
 		}
 
 		public static object file_text_read_real(Arguments args)
@@ -658,6 +674,23 @@ namespace Assets.VirtualMachineRunner
 
 			Debug.Log($"Trying to parse {result}");
 			return double.Parse(result);
+		}
+
+		public static object file_text_write_real(Arguments args)
+		{
+			var fileid = (int)args.Args[0];
+			var val = args.Args[1];
+			var writer = _fileHandles[fileid].Writer;
+
+			if (val is not int or double or float)
+			{
+				// i have no fucking idea
+				writer.Write(0);
+				return null;
+			}
+
+			writer.Write(Conv<double>(val));
+			return null;
 		}
 
 		public static object file_delete(Arguments args)
@@ -2181,7 +2214,7 @@ namespace Assets.VirtualMachineRunner
 			var y1 = Conv<double>(args.Args[1]);
 			var x2 = Conv<double>(args.Args[2]);
 			var y2 = Conv<double>(args.Args[3]);
-			var obj = Conv<int>(args.Args[4]); // TODO : this can be an array, or "all" or "other"
+			var obj = Conv<int>(args.Args[4]); // TODO : this can be an array, or "all" or "other", or tile map stuff
 			var prec = Conv<bool>(args.Args[5]);
 			var notme = Conv<bool>(args.Args[6]);
 
@@ -2197,6 +2230,27 @@ namespace Assets.VirtualMachineRunner
 			else
 			{
 				return CollisionManager.CollisionManager.collision_rectangle_instanceid(x1, y1, x2, y2, obj, prec, notme, args.Ctx.Self);
+			}
+		}
+
+		public static object place_meeting(Arguments args)
+		{
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+			var obj = Conv<int>(args.Args[2]); // TODO : this can be an array, or "all" or "other", or tile map stuff
+
+			if (obj < 0)
+			{
+				throw new NotImplementedException($"{obj} given to collision_rectangle!");
+			}
+
+			if (obj < 100000)
+			{
+				return CollisionManager.CollisionManager.place_meeting_assetid(x, y, obj, args.Ctx.Self);
+			}
+			else
+			{
+				return CollisionManager.CollisionManager.place_meeting_instanceid(x, y, obj, args.Ctx.Self);
 			}
 		}
 	}

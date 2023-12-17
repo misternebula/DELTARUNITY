@@ -210,7 +210,7 @@ namespace Assets.CollisionManager
 			colliders = new();
 		}*/
 
-		public static NewGamemakerObject instance_place(double x, double y, NewGamemakerObject current, Type checkType)
+		public static NewGamemakerObject instance_place_assetid(double x, double y, int assetId, NewGamemakerObject current)
 		{
 			var marker = new ProfilerMarker("instance_place");
 			marker.Begin(current);
@@ -234,8 +234,154 @@ namespace Assets.CollisionManager
 					continue;
 				}
 
-				if ((!checkBox.GMObject.GetType().IsSubclassOf(checkType) && checkBox.GMObject.GetType() != checkType)
-					|| current == checkBox.GMObject)
+				if (checkBox.GMObject.Definition.AssetId != assetId)
+				{
+					var currentDefinition = checkBox.GMObject.Definition.parent;
+					var matches = false;
+					while (currentDefinition != null)
+					{
+						if (currentDefinition.AssetId == assetId)
+						{
+							matches = true;
+							break;
+						}
+
+						currentDefinition = currentDefinition.parent;
+					}
+
+					if (!matches)
+					{
+						continue;
+					}
+				}
+
+				// generate the collision mask if in editor
+				if (checkBox.CollisionMask == null || movedBox.CollisionMask == null)
+				{
+					var spriteIndex = checkBox.CollisionMask == null ? checkBox.GMObject.sprite_index : movedBox.GMObject.sprite_index;
+					throw new Exception($"collision mask not defined for {spriteIndex}");
+				}
+
+				if ((checkBox.SepMasks == SepMasks.Precise
+					&& movedBox.SepMasks == SepMasks.Precise)
+					|| (checkBox.SepMasks != movedBox.SepMasks))
+				{
+					// precise collisions
+
+					if (!DoBoxesOverlap(movedBox, checkBox))
+					{
+						// bounding boxes don't even overlap, don't bother testing precise collision
+						continue;
+					}
+
+					//var (currentRotatedMask, currentOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin.x, movedBox.Origin.y, movedBox.Scale.x, movedBox.Scale.y);
+					//var (checkRotatedMask, checkOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin.x, checkBox.Origin.y, checkBox.Scale.x, checkBox.Scale.y);
+
+					if (movedBox.CachedRotatedMask == null)
+					{
+						(movedBox.CachedRotatedMask, movedBox.CachedRotatedMaskOffset) = RotateMask(movedBox.CollisionMask, movedBox.GMObject.image_angle, movedBox.Origin.x, movedBox.Origin.y, movedBox.Scale.x, movedBox.Scale.y);
+					}
+
+					if (checkBox.CachedRotatedMask == null)
+					{
+						(checkBox.CachedRotatedMask, checkBox.CachedRotatedMaskOffset) = RotateMask(checkBox.CollisionMask, checkBox.GMObject.image_angle, checkBox.Origin.x, checkBox.Origin.y, checkBox.Scale.x, checkBox.Scale.y);
+					}
+
+					var currentRotatedMask = movedBox.CachedRotatedMask;
+					var currentOffset = movedBox.CachedRotatedMaskOffset;
+					var checkRotatedMask = checkBox.CachedRotatedMask;
+					var checkOffset = checkBox.CachedRotatedMaskOffset;
+
+					var currentMaskHeight = currentRotatedMask.GetLength(0);
+					var currentMaskLength = currentRotatedMask.GetLength(1);
+					var checkMaskHeight = checkRotatedMask.GetLength(0);
+					var checkMaskLength = checkRotatedMask.GetLength(1);
+
+					// iterate through every pixel in the current object's rotated mask
+					for (var row = 0; row < currentMaskHeight; row++)
+					{
+						for (var col = 0; col < currentMaskLength; col++)
+						{
+							// if it's false, dont even both checking the value of the other mask
+							if (currentRotatedMask[row, col] == false)
+							{
+								continue;
+							}
+
+							// Get the world space position of the center of this pixel (up = +y)
+							var currentPixelPos = new Vector2((int)movedBox.Position.x + currentOffset.x + col + 0.5f, (int)movedBox.Position.y + currentOffset.y - row - 0.5f);
+
+							// Get the world space position of the top-left of the other rotated mask (up = +y)
+							var checkMaskTopLeft = new Vector2Int((int)checkBox.Position.x + checkOffset.x, (int)checkBox.Position.y + checkOffset.y);
+
+							var placeInOtherMask = currentPixelPos - checkMaskTopLeft;
+
+							var snappedToGrid = new Vector2Int((int)Math.Floor(placeInOtherMask.x), (int)Math.Ceiling(-placeInOtherMask.y));
+
+							if (snappedToGrid.x < 0 || snappedToGrid.x >= checkMaskLength)
+							{
+								continue;
+							}
+
+							if (snappedToGrid.y < 0 || snappedToGrid.y >= checkMaskHeight)
+							{
+								continue;
+							}
+
+							if (checkRotatedMask[snappedToGrid.y, snappedToGrid.x])
+							{
+								current.x = savedX;
+								current.y = savedY;
+								marker.End();
+								return checkBox.GMObject;
+							}
+						}
+					}
+				}
+				else
+				{
+					// bounding box collision
+					if (DoBoxesOverlap(movedBox, checkBox))
+					{
+						current.x = savedX;
+						current.y = savedY;
+						marker.End();
+						return checkBox.GMObject;
+					}
+				}
+			}
+
+			current.x = savedX;
+			current.y = savedY;
+			marker.End();
+			return null;
+		}
+
+		public static NewGamemakerObject instance_place_instanceid(double x, double y, int instanceId, NewGamemakerObject current)
+		{
+			var marker = new ProfilerMarker("instance_place");
+			marker.Begin(current);
+
+			// gamemaker floors the x/y coords
+			x = Math.Floor(x);
+			y = Math.Floor(y);
+
+			var savedX = current.x;
+			var savedY = current.y;
+			current.x = x;
+			current.y = y;
+
+			var movedBox = colliders.Single(b => b.GMObject == current);
+
+			foreach (var checkBox in colliders)
+			{
+				if (checkBox == null)
+				{
+					Debug.LogWarning($"Null collider in colliders!");
+					continue;
+				}
+
+				if (checkBox.GMObject.instanceId != instanceId)
 				{
 					continue;
 				}
@@ -548,6 +694,16 @@ namespace Assets.CollisionManager
 			}
 
 			return GMConstants.noone;
+		}
+
+		public static bool place_meeting_assetid(double x, double y, int assetId, NewGamemakerObject current)
+		{
+			return instance_place_assetid(x, y, assetId, current);
+		}
+
+		public static bool place_meeting_instanceid(double x, double y, int instanceId, NewGamemakerObject current)
+		{
+			return instance_place_instanceid(x, y, instanceId, current);
 		}
 
 		public static NewGamemakerObject collision_line(float x1, float y1, float x2, float y2, string name, bool prec, bool notme)
