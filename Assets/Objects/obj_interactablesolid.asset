@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_npc_room
+  m_Name: obj_interactablesolid
   m_EditorClassIdentifier: 
-  AssetId: 0
-  sprite: -1
-  visible: 1
+  AssetId: 81
+  sprite: 373
+  visible: 0
   solid: 0
   persistent: 0
-  parent: {fileID: 0}
+  parent: {fileID: 11400000, guid: 59c2fa3c64a952842adf7428d2ca3c76, type: 2}
   textureMaskId: -1
-  CreateScript: {fileID: 0}
+  CreateScript: {fileID: 11400000, guid: 94149fec2a296fe49ae168cc51968e21, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 2a11c4c09d61e814b9045ef24341e31c, type: 2}
   OtherScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: d3a07e0915e1daa46824daf868231f9e, type: 2}
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: e23e3f66702a83f42b8f9d95996f08e0, type: 2}
