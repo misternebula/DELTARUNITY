@@ -1,0 +1,1990 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
+  m_Name: gml_Object_obj_forestmaze_controller_Other_10
+  m_EditorClassIdentifier: 
+  Name: obj_forestmaze_controller_Other_10
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+    - Key: 1
+      Value: 4
+    - Key: 2
+      Value: 11
+    - Key: 3
+      Value: 13
+    - Key: 4
+      Value: 20
+    - Key: 5
+      Value: 22
+    - Key: 6
+      Value: 26
+    - Key: 7
+      Value: 30
+    - Key: 8
+      Value: 32
+    - Key: 9
+      Value: 36
+    - Key: 10
+      Value: 38
+    - Key: 11
+      Value: 42
+    - Key: 12
+      Value: 44
+    - Key: 13
+      Value: 50
+    - Key: 14
+      Value: 52
+    - Key: 15
+      Value: 56
+    - Key: 16
+      Value: 73
+    - Key: 17
+      Value: 77
+    - Key: 18
+      Value: 80
+    - Key: 19
+      Value: 86
+    - Key: 20
+      Value: 92
+    - Key: 21
+      Value: 98
+    - Key: 22
+      Value: 100
+    - Key: 23
+      Value: 101
+    - Key: 24
+      Value: 122
+    - Key: 25
+      Value: 126
+    - Key: 26
+      Value: 130
+    - Key: 27
+      Value: 134
+    - Key: 28
+      Value: 140
+    - Key: 29
+      Value: 150
+    - Key: 30
+      Value: 156
+  Instructions:
+  - Raw: pushbltn.v self.room
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 91
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 91
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [5]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushbltn.v self.room_width
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room_width
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.d
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: div.d.v
+    Opcode: 2
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.v.v LTE
+    Opcode: 14
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 2
+  - Raw: bf [3]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sidechoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushbltn.v self.room_width
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room_width
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.d
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: div.d.v
+    Opcode: 2
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.v.v GTE
+    Opcode: 14
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [5]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sidechoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushbltn.v self.room
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 94
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 94
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [12]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 12
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 100
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 100
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [8]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sidechoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 260
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 260
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [10]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sidechoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 420
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 420
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [12]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 12
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sidechoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 91
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 91
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushbltn.v self.room
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 94
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 94
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [14]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 14
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 94
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 94
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sidechoice
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sidechoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.proper_choice
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.proper_choice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.v.v EQ
+    Opcode: 14
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [23]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 23
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: dup.i 1
+    Opcode: 16
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.i.v
+    Opcode: 5
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.i.v [array]global.flag
+    Opcode: 15
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [19]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 19
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.plot
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 100
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 100
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: bf [18]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 18
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 93
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 93
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: b [19]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 19
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 94
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 94
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 9
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 9
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [22]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 22
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 96
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 96
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.plot
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 120
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 120
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: bf [22]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 22
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 120
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 120
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.plot
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: b [30]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.rem291
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rem291
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: dup.i 1
+    Opcode: 16
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.i.v
+    Opcode: 5
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.i.v [array]global.flag
+    Opcode: 15
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 293
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 293
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [25]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 25
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushbltn.v self.room
+    Opcode: 28
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.room
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 94
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 94
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [27]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 27
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [30]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 292
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 292
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 92
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 92
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rem291
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rem291
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [30]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 291
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 291
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]global.flag
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 95
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 95
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.roomchoice
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.roomchoice
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.roomchoice
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i room_goto(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: room_goto
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

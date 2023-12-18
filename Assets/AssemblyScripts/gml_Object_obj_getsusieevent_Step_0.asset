@@ -1,0 +1,7850 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
+  m_Name: gml_Object_obj_getsusieevent_Step_0
+  m_EditorClassIdentifier: 
+  Name: obj_getsusieevent_Step_0
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+    - Key: 1
+      Value: 4
+    - Key: 2
+      Value: 10
+    - Key: 3
+      Value: 14
+    - Key: 4
+      Value: 15
+    - Key: 5
+      Value: 16
+    - Key: 6
+      Value: 20
+    - Key: 7
+      Value: 24
+    - Key: 8
+      Value: 49
+    - Key: 9
+      Value: 53
+    - Key: 10
+      Value: 57
+    - Key: 11
+      Value: 58
+    - Key: 12
+      Value: 59
+    - Key: 13
+      Value: 80
+    - Key: 14
+      Value: 84
+    - Key: 15
+      Value: 240
+    - Key: 16
+      Value: 244
+    - Key: 17
+      Value: 248
+    - Key: 18
+      Value: 249
+    - Key: 19
+      Value: 250
+    - Key: 20
+      Value: 258
+    - Key: 21
+      Value: 262
+    - Key: 22
+      Value: 266
+    - Key: 23
+      Value: 274
+    - Key: 24
+      Value: 278
+    - Key: 25
+      Value: 283
+    - Key: 26
+      Value: 289
+    - Key: 27
+      Value: 301
+    - Key: 28
+      Value: 303
+    - Key: 29
+      Value: 310
+    - Key: 30
+      Value: 314
+    - Key: 31
+      Value: 344
+    - Key: 32
+      Value: 348
+    - Key: 33
+      Value: 383
+    - Key: 34
+      Value: 387
+    - Key: 35
+      Value: 395
+    - Key: 36
+      Value: 399
+    - Key: 37
+      Value: 403
+    - Key: 38
+      Value: 404
+    - Key: 39
+      Value: 405
+    - Key: 40
+      Value: 409
+    - Key: 41
+      Value: 413
+    - Key: 42
+      Value: 417
+    - Key: 43
+      Value: 418
+    - Key: 44
+      Value: 419
+    - Key: 45
+      Value: 441
+    - Key: 46
+      Value: 445
+    - Key: 47
+      Value: 449
+    - Key: 48
+      Value: 450
+    - Key: 49
+      Value: 451
+    - Key: 50
+      Value: 501
+    - Key: 51
+      Value: 505
+    - Key: 52
+      Value: 507
+    - Key: 53
+      Value: 511
+    - Key: 54
+      Value: 515
+    - Key: 55
+      Value: 516
+    - Key: 56
+      Value: 517
+    - Key: 57
+      Value: 533
+    - Key: 58
+      Value: 535
+    - Key: 59
+      Value: 539
+    - Key: 60
+      Value: 541
+    - Key: 61
+      Value: 546
+    - Key: 62
+      Value: 550
+    - Key: 63
+      Value: 554
+    - Key: 64
+      Value: 558
+    - Key: 65
+      Value: 559
+    - Key: 66
+      Value: 560
+    - Key: 67
+      Value: 592
+    - Key: 68
+      Value: 610
+    - Key: 69
+      Value: 620
+    - Key: 70
+      Value: 624
+    - Key: 71
+      Value: 628
+    - Key: 72
+      Value: 629
+    - Key: 73
+      Value: 630
+    - Key: 74
+      Value: 638
+  Instructions:
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [8]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 80
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 80
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.i.v
+    Opcode: 6
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.v.v GTE
+    Opcode: 14
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [3]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.interact
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [4]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [8]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.facing
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.facing
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 165
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 165
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [7]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.fun
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.fun
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 206
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 206
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [6]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.interact
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fc
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fc
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 9
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 9
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fe
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fe
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.typer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.typer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_16_0"@4975
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_16_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [10]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [11]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 11
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [13]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 13
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 187
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 187
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 162
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 162
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.y
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.y
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.i.v
+    Opcode: 6
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sprite_width
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_width
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.d
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: div.d.v
+    Opcode: 2
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]self.alarm
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.alarm'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [15]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 15
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fe
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fe
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_35_0"@4976
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_35_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_ralface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_ralface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_37_0"@4977
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_37_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_38_0"@4978
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_38_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_susface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_susface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_40_0"@4979
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_40_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_41_0"@4980
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_41_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 7
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_ralface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_ralface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_43_0"@4981
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_43_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_44_0"@4982
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_44_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 9
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 9
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_susface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_susface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_46_0"@4983
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_46_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 11
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 11
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 12
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 12
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_ralface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_ralface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_48_0"@4984
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_48_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 13
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 13
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_49_0"@4985
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_49_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 14
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 14
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_50_0"@4986
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_50_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 15
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 15
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_51_0"@4987
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_51_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 16
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 16
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 17
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 17
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_susface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_susface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_53_0"@4988
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_53_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 18
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 18
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_54_0"@4989
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_54_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 19
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 19
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 20
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 20
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_ralface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_ralface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_56_0"@4990
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_56_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 21
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 21
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 22
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 22
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_susface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_susface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_58_0"@4991
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_58_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 23
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 23
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.1
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.1
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.1
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.1
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.d.v EQ
+    Opcode: 14
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [17]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 17
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [18]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 18
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [20]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 20
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.walkcon
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.walkcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.vspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.vspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.2
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.2
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.image_speed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_speed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.2
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.2
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.2
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.2
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.d.v EQ
+    Opcode: 14
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [23]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 23
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.y
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.y
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 200
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 200
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [23]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 23
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 180
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 180
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.hspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.hspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.3
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.3
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.vspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.vspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.3
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.3
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.d.v EQ
+    Opcode: 14
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [29]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 29
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 165
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 165
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_exists(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_exists
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.b
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 3
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [29]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 29
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 165.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 165.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 60
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.i.v
+    Opcode: 6
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.v.v LTE
+    Opcode: 14
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 2
+  - Raw: bf [29]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 29
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 183
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 183
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.hspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.hspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.image_speed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_speed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.image_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.facing
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.facing
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 165
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 165
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [28]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 28
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 207
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 207
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [27]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 27
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 3.4
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 3.4
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]self.alarm
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.alarm'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 4.4
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 4.4
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.d.v EQ
+    Opcode: 14
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [31]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 31
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fe
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fe
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_105_0"@4992
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_105_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_ralface(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_ralface
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_107_0"@4993
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_107_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 7
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [33]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 33
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.currentsong
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i mus_play(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: mus_play
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.currentsong
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fc
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fc
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 51
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 51
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.typer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.typer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_118_0"@4994
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_118_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.d
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.d
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.d
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.d
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.skippable
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.skippable'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 340
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 340
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]self.alarm
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.alarm'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [35]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 35
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "fanfare.ogg"@4495
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: fanfare.ogg
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_init(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_init
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.currentsong
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 7
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [37]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 37
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [38]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 38
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [40]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 40
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_free_all(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_free_all
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 6
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 6
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 9
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 9
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [42]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 42
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [43]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 43
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [45]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 45
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.typer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.typer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fc
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fc
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fe
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fe
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_144_0"@4995
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_144_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [47]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 47
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [48]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 48
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [50]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 50
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.walkcon
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.walkcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.hspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.hspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.1
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.1
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.d self.image_speed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_speed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 180
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 180
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sprite_index
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.currentsong
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i mus_play(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: mus_play
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.currentsong
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.95
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.95
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.d.v
+    Opcode: 0
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.currentsong
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.currentsong'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_pitch(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_pitch
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fc
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fc
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 52
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 52
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.typer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.typer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_160_0"@4996
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_160_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.d
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.d
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.d
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.d
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.skippable
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.skippable'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 12
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 12
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 320
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 320
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 4
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 4
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [array]self.alarm
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.alarm'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.walkcon
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.walkcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [52]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 52
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_depth(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_depth
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.con
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 13
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 13
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [54]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 54
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [55]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 55
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [61]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 61
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_free_all(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_free_all
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_losechar(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_losechar
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_getchar(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_getchar
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_getchar(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_getchar
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.plot
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 37
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 37
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: bf [58]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 58
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 37
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 37
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.plot
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.facing
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.facing
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 165
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 165
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [60]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.fun
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.fun
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [59]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 59
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.interact
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 14
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 14
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.con
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.con
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rcon
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [64]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 64
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v 326.x
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 326.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 80
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 80
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [64]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 64
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.interact
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [65]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 65
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [69]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 69
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.interact
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 31
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 31
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.typer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.typer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fc
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fc
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.fe
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.fe
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_196_0"@4997
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_196_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_197_0"@4998
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_197_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_198_0"@4999
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_198_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 205
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 205
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [68]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 68
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_201_0"@5000
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_201_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_202_0"@5001
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_202_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.s "obj_getsusieevent_slash_Step_0_gml_203_0"@5002
+    Opcode: 25
+    TypeOne: 6
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: obj_getsusieevent_slash_Step_0_gml_203_0
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.s.v
+    Opcode: 0
+    TypeOne: 6
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_84_get_lang_string(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_84_get_lang_string
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]global.msg
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.msg'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.rcon
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rcon
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [71]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 71
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i d_ex(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: d_ex
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: b [72]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 72
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [end]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 1
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.rcon
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rcon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.interact
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.interact
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushglb.v global.plot
+    Opcode: 27
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 39
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 39
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: bf [end]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 1
+    Comparison: 0
+  - Raw: pushi.e 39
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 39
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i global.plot
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: global.plot
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

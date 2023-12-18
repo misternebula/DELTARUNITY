@@ -1,0 +1,826 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
+  m_Name: gml_Object_obj_thrashmachine_Step_0
+  m_EditorClassIdentifier: 
+  Name: obj_thrashmachine_Step_0
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+  Instructions:
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.value
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.value
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 223
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 223
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.i.v
+    Opcode: 1
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i make_color_hsv(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: make_color_hsv
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.dcolor
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.dcolor'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.value
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.value
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 224
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 224
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.i.v
+    Opcode: 1
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i make_color_hsv(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: make_color_hsv
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.dcolor
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.dcolor'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.value
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.value
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 225
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 225
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.i.v
+    Opcode: 1
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i make_color_hsv(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: make_color_hsv
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.dcolor
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.dcolor'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 220
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 220
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.part
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.part'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 221
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 221
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.part
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.part'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -5
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -5
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 222
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 222
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [array]global.flag
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]global.flag'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v [array]self.part
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[array]self.part'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.value
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.value
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.i 16777215
+    Opcode: 25
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 16777215
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i merge_color(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: merge_color
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.basecolor
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.basecolor
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

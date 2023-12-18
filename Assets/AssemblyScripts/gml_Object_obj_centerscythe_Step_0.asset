@@ -1,0 +1,3786 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
+  m_Name: gml_Object_obj_centerscythe_Step_0
+  m_EditorClassIdentifier: 
+  Name: obj_centerscythe_Step_0
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+    - Key: 1
+      Value: 4
+    - Key: 2
+      Value: 12
+    - Key: 3
+      Value: 18
+    - Key: 4
+      Value: 22
+    - Key: 5
+      Value: 26
+    - Key: 6
+      Value: 30
+    - Key: 7
+      Value: 34
+    - Key: 8
+      Value: 38
+    - Key: 9
+      Value: 42
+    - Key: 10
+      Value: 46
+    - Key: 11
+      Value: 58
+    - Key: 12
+      Value: 62
+    - Key: 13
+      Value: 66
+    - Key: 14
+      Value: 67
+    - Key: 15
+      Value: 68
+    - Key: 16
+      Value: 72
+    - Key: 17
+      Value: 76
+    - Key: 18
+      Value: 80
+    - Key: 19
+      Value: 81
+    - Key: 20
+      Value: 82
+    - Key: 21
+      Value: 86
+    - Key: 22
+      Value: 110
+    - Key: 23
+      Value: 119
+    - Key: 24
+      Value: 123
+    - Key: 25
+      Value: 124
+    - Key: 26
+      Value: 125
+    - Key: 27
+      Value: 131
+    - Key: 28
+      Value: 135
+    - Key: 29
+      Value: 139
+    - Key: 30
+      Value: 147
+    - Key: 31
+      Value: 196
+    - Key: 32
+      Value: 200
+    - Key: 33
+      Value: 204
+    - Key: 34
+      Value: 205
+    - Key: 35
+      Value: 206
+    - Key: 36
+      Value: 222
+    - Key: 37
+      Value: 226
+    - Key: 38
+      Value: 230
+    - Key: 39
+      Value: 231
+    - Key: 40
+      Value: 232
+    - Key: 41
+      Value: 236
+    - Key: 42
+      Value: 245
+    - Key: 43
+      Value: 249
+    - Key: 44
+      Value: 253
+    - Key: 45
+      Value: 254
+    - Key: 46
+      Value: 255
+    - Key: 47
+      Value: 258
+    - Key: 48
+      Value: 262
+    - Key: 49
+      Value: 263
+    - Key: 50
+      Value: 267
+    - Key: 51
+      Value: 270
+    - Key: 52
+      Value: 272
+    - Key: 53
+      Value: 277
+    - Key: 54
+      Value: 280
+    - Key: 55
+      Value: 282
+    - Key: 56
+      Value: 284
+    - Key: 57
+      Value: 292
+    - Key: 58
+      Value: 300
+  Instructions:
+  - Raw: push.v self.chasecon
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.chasecon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [3]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.image_alpha
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.04
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.04
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.d.v
+    Opcode: 5
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.image_alpha
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.image_alpha
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [3]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.image_alpha
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.chasecon
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.chasecon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.active
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.active
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.chasecon
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.chasecon
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [27]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 27
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.un
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.un
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [7]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rotspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 2
+  - Raw: bf [7]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 7
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rotspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.i.v
+    Opcode: 5
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.rotspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.un
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.un
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [10]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rotspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [10]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rotspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.i.v
+    Opcode: 6
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.rotspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sine
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sine
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sinespeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sinespeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.sine
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sine
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dir
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dir
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.dir
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dir
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.insanity
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.insanity
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [21]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 21
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 6
+  - Raw: bf [13]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 13
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: b [14]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 14
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [16]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 16
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.01
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.01
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.d.v
+    Opcode: 5
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.dirspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: bf [18]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 18
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 6
+  - Raw: b [19]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 19
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [21]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 21
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dirspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.01
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.01
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.d.v
+    Opcode: 6
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.dirspeed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dirspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sine
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sine
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 18
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 18
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.d
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 4
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: div.d.v
+    Opcode: 2
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i cos(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: cos
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.radius
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.radius
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.v
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.length
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.length
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.centerx
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.centerx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dir
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dir
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.length
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.length
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i lengthdir_x(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: lengthdir_x
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.v.v
+    Opcode: 6
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.x
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.x
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.centery
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.centery
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.dir
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.dir
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.length
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.length
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i lengthdir_y(argc=2)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: lengthdir_y
+    FunctionArgumentCount: 2
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.v.v
+    Opcode: 6
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.y
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.y
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.king
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.king
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [27]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 27
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.noisebuffer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.noisebuffer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.i.v
+    Opcode: 6
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.noisebuffer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.noisebuffer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.length
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.length
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i abs(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: abs
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 8
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 8
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 2
+  - Raw: bf [24]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 24
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.noisebuffer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.noisebuffer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: b [25]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 25
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [27]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 27
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 79
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 79
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_play(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_play
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.noisebuffer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.noisebuffer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.king
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.king
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [56]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 56
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.type
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.type
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [56]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 56
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.i.v
+    Opcode: 5
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.scythetimer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 60
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [31]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 31
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 20
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 20
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i snd_play(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: snd_play
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 193
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 193
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.centery
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.centery
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 60
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythesidex
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.centerx
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.centerx
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.radius
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.radius
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythesidex
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.v
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_create(argc=3)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_create
+    FunctionArgumentCount: 3
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.sbul
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.image_xscale
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_xscale'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 2
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 2
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.image_yscale
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_yscale'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.image_alpha
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_alpha'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 575
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 575
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.sprite_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.sprite_index'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 576
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 576
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.mask_index
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.mask_index'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 255
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 255
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.image_blend
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_blend'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i [stacktop]self.active
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.active'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i scr_bullet_inherit(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: scr_bullet_inherit
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 60
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [33]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 33
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 70
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 70
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: b [34]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 34
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [36]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 36
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: dup.i 0
+    Opcode: 16
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [stacktop]self.image_angle
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_angle'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 10
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 10
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythesidex
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.i.v [stacktop]self.image_angle
+    Opcode: 15
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_angle'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: dup.i 0
+    Opcode: 16
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [stacktop]self.image_alpha
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_alpha'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.1
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.1
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.d.v
+    Opcode: 5
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.i.v [stacktop]self.image_alpha
+    Opcode: 15
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.image_alpha'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 85
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 85
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [38]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 38
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 90
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 90
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: b [39]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 39
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [42]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 42
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_exists(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_exists
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.b
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 3
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [42]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 42
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: dup.i 0
+    Opcode: 16
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v [stacktop]self.hspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.hspeed'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythesidex
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: mul.v.i
+    Opcode: 1
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.v.v
+    Opcode: 6
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.i.v [stacktop]self.hspeed
+    Opcode: 15
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: '[stacktop]self.hspeed'
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 100
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 100
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [44]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 44
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 105
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 105
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v LT
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 1
+  - Raw: b [45]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 45
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.e 0
+    Opcode: 25
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: bf [49]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 49
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [48]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 48
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.image_alpha
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.d 0.2
+    Opcode: 25
+    TypeOne: 4
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0.2
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: sub.d.v
+    Opcode: 6
+    TypeOne: 4
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.image_alpha
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_alpha
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [47]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 47
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 105
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 105
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [56]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 56
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.sbul
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.sbul
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.v.i
+    Opcode: 0
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushenv [52]
+    Opcode: 23
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 52
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i instance_destroy(argc=0)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: instance_destroy
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popz.v
+    Opcode: 19
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: popenv [51]
+    Opcode: 24
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 51
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.scythesidex
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [54]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 54
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.scythesidex
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: b [55]
+    Opcode: 20
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 55
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e -1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: -1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.scythesidex
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythesidex
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 59
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 59
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.scythetimer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.scythetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.image_angle
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_angle
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.rotspeed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.rotspeed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.v.v
+    Opcode: 5
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.image_angle
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.image_angle
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.grazed
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v EQ
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 3
+  - Raw: bf [end]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 1
+    Comparison: 0
+  - Raw: push.v self.grazetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: add.i.v
+    Opcode: 5
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.grazetimer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: push.v self.grazetimer
+    Opcode: 25
+    TypeOne: 2
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 30
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 30
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: cmp.i.v GTE
+    Opcode: 14
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 5
+  - Raw: bf [end]
+    Opcode: 22
+    TypeOne: 0
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 1
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.grazed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.grazetimer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

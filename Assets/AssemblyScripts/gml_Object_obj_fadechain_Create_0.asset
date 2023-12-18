@@ -1,0 +1,286 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8317bf35168bef46b67c1fddfa9d534, type: 3}
+  m_Name: gml_Object_obj_fadechain_Create_0
+  m_EditorClassIdentifier: 
+  Name: obj_fadechain_Create_0
+  LocalVariables:
+  - arguments
+  Labels:
+    _serializedList:
+    - Key: 0
+      Value: 0
+  Instructions:
+  - Raw: pushi.e 1
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 1
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.active
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.active
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.timer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.timer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 360
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 360
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: conv.i.v
+    Opcode: 0
+    TypeOne: 1
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: call.i random(argc=1)
+    Opcode: 30
+    TypeOne: 1
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: random
+    FunctionArgumentCount: 1
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.v self.bdir
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 2
+    IntData: 0
+    DoubleData: 0
+    StringData: self.bdir
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 60
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 60
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.inv
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.inv
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.timepoints
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.timepoints
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 3
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 3
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.grazepoints
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazepoints
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.target
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.target
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 50
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 50
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.damage
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.damage
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.grazed
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazed
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pushi.e 0
+    Opcode: 29
+    TypeOne: 5
+    TypeTwo: 0
+    IntData: 0
+    DoubleData: 0
+    StringData: 
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0
+  - Raw: pop.v.i self.grazetimer
+    Opcode: 15
+    TypeOne: 2
+    TypeTwo: 1
+    IntData: 0
+    DoubleData: 0
+    StringData: self.grazetimer
+    BoolData: 0
+    FunctionName: 
+    FunctionArgumentCount: 0
+    JumpToEnd: 0
+    Comparison: 0

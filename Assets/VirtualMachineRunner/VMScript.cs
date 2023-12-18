@@ -33,6 +33,7 @@ namespace Assets.VirtualMachineRunner
 		public double DoubleData;
 		public string StringData;
 		public bool BoolData;
+		public long LongData;
 
 		public string FunctionName;
 		public int FunctionArgumentCount;

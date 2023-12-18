@@ -163,6 +163,8 @@ namespace Assets.VirtualMachineRunner
 					return typeof(bool);
 				case VMType.d:
 					return typeof(double);
+				case VMType.l:
+					return typeof(long);
 				case VMType.e:
 				case VMType.v:
 				default:
@@ -403,6 +405,9 @@ namespace Assets.VirtualMachineRunner
 							case VMType.i:
 								//Debug.Log($"Pushing {instruction.IntData}");
 								Ctx.Stack.Push(instruction.IntData);
+								break;
+							case VMType.l:
+								Ctx.Stack.Push(instruction.LongData);
 								break;
 							case VMType.v:
 								// TODO: [stacktop] and [array] should use data stack (array might not always tho?)

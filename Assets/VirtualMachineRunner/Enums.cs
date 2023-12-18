@@ -161,7 +161,8 @@ namespace Assets.VirtualMachineRunner
 		b,
 		d,
 		e,
-		s
+		s,
+		l
 	}
 
 	public enum VMComparison
