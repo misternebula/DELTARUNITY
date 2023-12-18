@@ -227,7 +227,6 @@ namespace Assets.VirtualMachineRunner
 		public float path_speed = 0;
 
 		public float drawOffset;
-		private bool _baseDraw;
 
 		public string room => RoomManager.Room.Instance.name;
 		public float room_height => Room.Instance.Size.y;
@@ -366,30 +365,8 @@ namespace Assets.VirtualMachineRunner
 			drawOffset = 0;
 		}
 
-		public sealed override void Draw()
+		public void UpdateAlarms()
 		{
-			_baseDraw = true;
-
-			void setDraw(bool didDrawEvent)
-			{
-				if (didDrawEvent)
-				{
-					_baseDraw = false;
-				}
-			}
-			
-			if (visible && gameObject.activeInHierarchy)
-			{
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PreDraw));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawBegin));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.Draw));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawEnd));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.PostDraw));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIBegin));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUI));
-				setDraw(ExecuteScript(this, Definition, EventType.Draw, (int)DrawType.DrawGUIEnd));
-			}
-
 			for (var i = 0; i < alarm.Length; i++)
 			{
 				if (alarm[i] != -1)
@@ -407,10 +384,10 @@ namespace Assets.VirtualMachineRunner
 					}
 				}
 			}
+		}
 
-			var shouldDraw = _baseDraw;
-			_baseDraw = false;
-
+		public sealed override void Draw()
+		{
 			if (friction != 0)
 			{
 				if (speed > 0)
@@ -473,11 +450,6 @@ namespace Assets.VirtualMachineRunner
 						image_index++;
 					}
 				}
-			}
-
-			if (shouldDraw)
-			{
-				SpriteManager.SpriteManager.DrawSelf(this);
 			}
 		}
 
@@ -560,16 +532,6 @@ namespace Assets.VirtualMachineRunner
 					Debug.LogError($"{type} not implemented!");
 					return false;
 			}
-		}
-
-		public void Step()
-		{
-			ExecuteScript(this, Definition, EventType.Step, (int)StepType.BeginStep);
-
-			// DO COLLISION STUFF
-
-			ExecuteScript(this, Definition, EventType.Step, (int)StepType.Step);
-			ExecuteScript(this, Definition, EventType.Step, (int)StepType.EndStep);
 		}
 
 		public double degtorad(double deg) => deg * (Math.PI / 180);
