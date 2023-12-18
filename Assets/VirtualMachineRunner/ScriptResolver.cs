@@ -86,6 +86,8 @@ namespace Assets.VirtualMachineRunner
 			{ "gamepad_button_check", gamepad_button_check },
 			{ "gamepad_axis_value", gamepad_axis_value },
 			{ "room_goto", room_goto },
+			{ "room_goto_next", room_goto_next },
+			{ "room_goto_previous", room_goto_previous },
 			{ "audio_create_stream", audio_create_stream },
 			{ "audio_destroy_stream", audio_destroy_stream },
 			{ "merge_colour", merge_colour },
@@ -1703,6 +1705,18 @@ namespace Assets.VirtualMachineRunner
 		{
 			var index = Conv<int>(args.Args[0]);
 			RoomManager.RoomManager.Instance.ChangeRoom(index);
+			return null;
+		}
+
+		public static object room_goto_next(Arguments args)
+		{
+			RoomManager.RoomManager.Instance.room_goto_next();
+			return null;
+		}
+
+		public static object room_goto_previous(Arguments args)
+		{
+			RoomManager.RoomManager.Instance.room_goto_previous();
 			return null;
 		}
 
