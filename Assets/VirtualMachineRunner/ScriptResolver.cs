@@ -128,7 +128,8 @@ namespace Assets.VirtualMachineRunner
 			{ "camera_get_view_width", camera_get_view_width },
 			{ "camera_get_view_height", camera_get_view_height },
 			{ "collision_rectangle", collision_rectangle },
-			{ "place_meeting", place_meeting }
+			{ "place_meeting", place_meeting },
+			{ "script_execute", script_execute }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -2252,6 +2253,16 @@ namespace Assets.VirtualMachineRunner
 			{
 				return CollisionManager.CollisionManager.place_meeting_instanceid(x, y, obj, args.Ctx.Self);
 			}
+		}
+
+		public static object script_execute(Arguments args)
+		{
+			var scriptAssetId = Conv<int>(args.Args[0]);
+			var scriptArgs = args.Args[1..];
+
+			var scriptName = AssetIndexManager.Instance.AssetList[AssetType.scripts].First(x => x.Value == scriptAssetId).Key;
+			var script = Instance.NameToScript[scriptName];
+			return VMExecuter.ExecuteScript(script, args.Ctx.Self, args.Ctx.ObjectDefinition, arguments: new Arguments() { Args = scriptArgs, Ctx = args.Ctx });
 		}
 	}
 

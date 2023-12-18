@@ -104,6 +104,7 @@ namespace Assets.VirtualMachineRunner
 			{ "hspeed", (get_hspeed, set_hspeed)},
 			{ "vspeed", (get_vspeed, set_vspeed)},
 			{ "direction", (get_direction, set_direction)},
+			{ "view_current", (get_view_current, null)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -185,6 +186,8 @@ namespace Assets.VirtualMachineRunner
 
 		public static object get_direction(NewGamemakerObject instance) => instance.direction;
 		public static void set_direction(NewGamemakerObject instance, object value) => instance.direction = VMExecuter.Convert<double>(value);
+
+		public static object get_view_current(NewGamemakerObject instance) => 0; // TODO : aghhhhh viewports aghhh
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
