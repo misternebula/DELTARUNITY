@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_doorB
+  m_Name: obj_doorC
   m_EditorClassIdentifier: 
-  AssetId: 93
-  sprite: -1
-  visible: 1
+  AssetId: 94
+  sprite: 378
+  visible: 0
   solid: 0
   persistent: 0
-  parent: {fileID: 0}
+  parent: {fileID: 11400000, guid: 526bb7a28ab117440bbfdb00d2c06190, type: 2}
   textureMaskId: -1
-  CreateScript: {fileID: 0}
+  CreateScript: {fileID: 11400000, guid: 489a62f00b0011d4382b6464e289b820, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 2
+      Value: {fileID: 11400000, guid: 5c38537810a9ba543a0258b0cd991c05, type: 2}
   StepScript:
     _serializedList: []
   OtherScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 19
+      Value: {fileID: 11400000, guid: 3e72bc27c6e8aa349a910b29111ea400, type: 2}
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 24edffcd4b54c2644a106649aeaa0bd4, type: 2}

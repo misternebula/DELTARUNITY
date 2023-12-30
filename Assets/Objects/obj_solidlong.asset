@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_markerD
+  m_Name: obj_solidlong
   m_EditorClassIdentifier: 
-  AssetId: 107
-  sprite: -1
-  visible: 1
+  AssetId: 337
+  sprite: 394
+  visible: 0
   solid: 0
   persistent: 0
-  parent: {fileID: 0}
+  parent: {fileID: 11400000, guid: 59c2fa3c64a952842adf7428d2ca3c76, type: 2}
   textureMaskId: -1
-  CreateScript: {fileID: 0}
+  CreateScript: {fileID: 11400000, guid: db6b4729d0224944aaae335df503bd68, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
@@ -30,4 +30,4 @@ MonoBehaviour:
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 6d1eb5f7c2d0f574f84b017a8bfeb24a, type: 2}

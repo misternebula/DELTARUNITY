@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: obj_markerA
   m_EditorClassIdentifier: 
   AssetId: 104
-  sprite: -1
-  visible: 1
+  sprite: 384
+  visible: 0
   solid: 0
   persistent: 0
   parent: {fileID: 0}
@@ -30,4 +30,4 @@ MonoBehaviour:
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 185b117a684c013469b4b0d6e318eee8, type: 2}

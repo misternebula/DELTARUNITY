@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_solidlong
+  m_Name: obj_markerD
   m_EditorClassIdentifier: 
-  AssetId: 337
-  sprite: -1
-  visible: 1
+  AssetId: 107
+  sprite: 387
+  visible: 0
   solid: 0
   persistent: 0
   parent: {fileID: 0}
@@ -30,4 +30,4 @@ MonoBehaviour:
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 1f048d2e9ad45654490ca080bdc4fd52, type: 2}
