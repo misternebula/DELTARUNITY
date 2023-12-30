@@ -943,9 +943,9 @@ namespace Assets.VirtualMachineRunner
 		{
 			if (args.Args.Length == 0)
 			{
-				InstanceManager.Instance.instance_destroy(args.Ctx.Self);
 				NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.Destroy);
 				NewGamemakerObject.ExecuteScript(args.Ctx.Self, args.Ctx.ObjectDefinition, EventType.CleanUp);
+				InstanceManager.Instance.instance_destroy(args.Ctx.Self);
 				return null;
 			}
 
@@ -964,21 +964,20 @@ namespace Assets.VirtualMachineRunner
 
 				foreach (var instance in instances)
 				{
-					InstanceManager.Instance.instance_destroy(instance);
-
 					if (execute_event_flag)
 					{
 						NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.Destroy);
 					}
 
 					NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.CleanUp);
+
+					InstanceManager.Instance.instance_destroy(instance);
 				}
 			}
 			else
 			{
 				// instance id
 				var instance = InstanceManager.Instance.FindByInstanceId(id);
-				InstanceManager.Instance.instance_destroy(instance);
 
 				if (execute_event_flag)
 				{
@@ -986,6 +985,8 @@ namespace Assets.VirtualMachineRunner
 				}
 
 				NewGamemakerObject.ExecuteScript(instance, instance.Definition, EventType.CleanUp);
+
+				InstanceManager.Instance.instance_destroy(instance);
 			}
 
 			return null;

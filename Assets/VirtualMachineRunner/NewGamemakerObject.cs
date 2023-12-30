@@ -336,8 +336,6 @@ namespace Assets.VirtualMachineRunner
 		{
 			DrawManager.Unregister(this);
 
-			// TODO : work out how to call Destroy and CleanUp when the room/game ends
-
 			if (margins != Vector4.zero)
 			{
 				CollisionManager.CollisionManager.UnregisterCollider(this);

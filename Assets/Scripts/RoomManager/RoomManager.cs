@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Instances;
+using Assets.VirtualMachineRunner;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,7 +54,34 @@ namespace Assets.RoomManager
 			if (Room.Instance != null && Room.Instance.Persistent)
 			{
 				// oh god we gotta save the current scene aaaaaaaa
+				throw new NotImplementedException();
 			}
+
+			// destroy events could destroy other objects, cant modify during iteration
+			var instanceList = new List<NewGamemakerObject>(InstanceManager.Instance.instances);
+
+			foreach (var instance in instanceList)
+			{
+				if (instance == null)
+				{
+					continue;
+				}
+
+				NewGamemakerObject.ExecuteScript(instance, instance.Definition, VirtualMachineRunner.EventType.Other, (int)OtherType.RoomEnd);
+				
+				if (instance.persistent)
+				{
+					continue;
+				}
+
+				NewGamemakerObject.ExecuteScript(instance, instance.Definition, VirtualMachineRunner.EventType.Destroy);
+				NewGamemakerObject.ExecuteScript(instance, instance.Definition, VirtualMachineRunner.EventType.CleanUp);
+
+				DrawManager.Unregister(instance);
+				Destroy(instance.gameObject);
+			}
+
+			InstanceManager.Instance.instances = InstanceManager.Instance.instances.Where(x => x != null && x.persistent).ToList();
 
 			SceneManager.LoadScene(roomName);
 		}
