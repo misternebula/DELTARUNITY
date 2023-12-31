@@ -240,14 +240,24 @@ namespace Assets.RoomManager
 			"room_battletest"
 		};
 
-		public string room_next(string numb)
+		public int room_next(int numb)
 		{
-			return _roomList[_roomList.IndexOf(numb) + 1];
+			if (_roomList.Count > numb + 1)
+			{
+				return numb + 1;
+			}
+
+			return -1;
 		}
 
-		public string room_previous(string numb)
+		public int room_previous(int numb)
 		{
-			return _roomList[_roomList.IndexOf(numb) - 1];
+			if (numb == 0)
+			{
+				return -1;
+			}
+
+			return numb - 1;
 		}
 
 		public void room_goto_next()

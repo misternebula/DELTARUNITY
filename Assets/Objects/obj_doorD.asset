@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_doorD
+  m_EditorClassIdentifier: 
+  AssetId: 96
+  sprite: 379
+  visible: 0
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: 526bb7a28ab117440bbfdb00d2c06190, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 7e175a928cb619540a2b9bd7e576fb84, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList:
+    - Key: 2
+      Value: {fileID: 11400000, guid: 3df8cb7aaf6203343b6b9ee7afa6f9e3, type: 2}
+  StepScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 19
+      Value: {fileID: 11400000, guid: 6a0f45bf2d40cd64b890de4c1a537dfe, type: 2}
+  DrawScript:
+    _serializedList: []
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 0b02cbe1fa827fc47a61f5dc4c42011a, type: 2}

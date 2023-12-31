@@ -88,6 +88,7 @@ namespace Assets.VirtualMachineRunner
 			{ "room_goto", room_goto },
 			{ "room_goto_next", room_goto_next },
 			{ "room_goto_previous", room_goto_previous },
+			{ "room_next", room_next },
 			{ "audio_create_stream", audio_create_stream },
 			{ "audio_destroy_stream", audio_destroy_stream },
 			{ "merge_colour", merge_colour },
@@ -1719,6 +1720,12 @@ namespace Assets.VirtualMachineRunner
 		{
 			RoomManager.RoomManager.Instance.room_goto_previous();
 			return null;
+		}
+
+		public static object room_next(Arguments args)
+		{
+			var numb = Conv<int>(args.Args[0]);
+			return RoomManager.RoomManager.Instance.room_next(numb);
 		}
 
 		public static object audio_create_stream(Arguments args)
