@@ -29,8 +29,8 @@ Opcodes can be one of the following :
 - DIV
 - REM
 - MOD
-- ADD
-- SUB
+- [ADD](#add)
+- [SUB](#sub)
 - AND
 - OR
 - XOR
@@ -42,10 +42,10 @@ Opcodes can be one of the following :
 - DUP
 - RET
 - EXIT
-- B, BT, BF
+- [B, BT, BF](#b-bt-bf)
 - PUSHENV
 - POPENV
-- CALL
+- [CALL](#call)
 - CALLV
 - BREAK
 - CHKINDEX
@@ -83,9 +83,29 @@ Usage : SUB.TYPE.TYPE
 
 Pops the top two items off the data stack, subtracts them, and pushes the result onto the stack. The item at the top of the stack is subtracted from the item below it.
 
+### B, BT, BF
+```
+Usage : B/BT/BF [label]
+```
 
+#### B
+Jumps execution flow to the given label.
 
+#### BT
+Pops the topmost value off the Data Stack, and jumps execution flow to the given label if the value equivalent to true.
 
+#### BF
+Pops the topmost value off the Data Stack, and jumps execution flow to the given label if the value equivalent to false.
 
+### CALL
+```
+Usage : CALL.i function_name(argc=argumentCount)
+```
+
+Calls the given function, with the given number of arguments. The function can either be a built in function (e.g. `instance_exists`), or a custom one (e.g. `scr_dogcheck`)
+
+`argumentCount` values are popped off the Data Stack and given to the function as arguments.
+
+If the function returns a value, that is pushed to the Data Stack. If the function does not return a value, `undefined` is pushed to the stack.
 
 
