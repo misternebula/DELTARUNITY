@@ -11,7 +11,7 @@ namespace Assets
 {
 	public class GMTile : DrawWithDepth
 	{
-		public string Definition;
+		public int Definition;
 		public Vector4 Source;
 		public double Alpha = 1;
 
@@ -21,7 +21,7 @@ namespace Assets
 		private int height => (int)Source.w;
 
 		private Texture2D _gizmoTexture;
-		private string _prevSprite;
+		private int _prevSprite;
 		private int _holdWidth;
 		private int _holdHeight;
 
@@ -60,7 +60,7 @@ namespace Assets
 		public void OnValidate()
 		{
 			var database = AssetDatabase.LoadAssetAtPath<CustomSpriteLibrary>("Assets/ScriptableObjects/SpriteDatabase.asset");
-			var spriteAsset = database.Sprites.FirstOrDefault(x => x.name == Definition);
+			var spriteAsset = database.Sprites.FirstOrDefault(x => x.AssetIndex == Definition);
 
 			if (spriteAsset == null)
 			{

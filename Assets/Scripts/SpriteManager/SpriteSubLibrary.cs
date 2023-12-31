@@ -12,6 +12,8 @@ namespace Assets.SpriteManager
 	[CreateAssetMenu(fileName = "SpriteSubLibrary", menuName = "ScriptableObjects/Sprite Sub-Database", order = 3)]
 	public class SpriteSubLibrary : ScriptableObject
 	{
+		public int AssetIndex;
+
 		public Vector4 Margins;
 		public BoundingBoxMode BoundingBoxMode;
 		public SepMasks SepMasks;

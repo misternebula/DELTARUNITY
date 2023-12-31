@@ -1,11 +1,15 @@
 ﻿using Assets.RoomManager;
+using Assets.VirtualMachineRunner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts;
 using UnityEditor;
 using UnityEngine;
+using EventType = Assets.VirtualMachineRunner.EventType;
+using Object = System.Object;
 
 namespace Assets.Instances
 {
@@ -16,59 +20,51 @@ namespace Assets.Instances
 		//public List<GameObject> Prefabs;
 		public InstanceDatabase Asset;
 
-		private Dictionary<string, GameObject> dict = new();
+		private Dictionary<int, ObjectDefinition> dict = new();
 
-		public List<GamemakerObject> instances = new List<GamemakerObject>();
+		public List<NewGamemakerObject> instances = new List<NewGamemakerObject>();
 
 		public int _highestInstanceId = 0;
 
 		private void Awake()
 		{
 			Instance = this;
-			foreach (var item in Asset.Prefabs)
+			foreach (var item in Asset.ObjectDefinitions)
 			{
-				dict.Add(item.name, item);
+				dict.Add(item.AssetId, item);
 			}
 		}
 
-		public GameObject instance_create(double x, double y, string name)
+		public int instance_create_depth(double x, double y, int depth, int obj)
 		{
-			if (!dict.ContainsKey(name))
-			{
-				Debug.LogError("No object found called " + name);
-				Debug.Break();
-				return null;
-			}
+			var definition = dict[obj];
 
-			var instance = Instantiate(dict[name]);
-			instance.name = name;
+			var newGO = new GameObject(definition.name);
+			var newGM = newGO.AddComponent<NewGamemakerObject>();
+			newGM.Definition = definition;
 
-			var objID = Array.IndexOf(global.__objectNames, name);
+			newGM.x = x;
+			newGM.y = y;
+			newGM.depth = depth;
+			newGM.instanceId = ++_highestInstanceId;
+			newGM.sprite_index = definition.sprite;
+			newGM.visible = definition.visible;
+			newGM.persistent = definition.persistent;
+			newGM.mask_id = definition.textureMaskId;
 
-			if (objID == -1)
-			{
-				Debug.LogError($"global.__objectNames does not contain \"{name}\"");
-				Debug.Break();
-				return null;
-			}
-
-			var layerDepth = global.__objectID2Depth[objID];
-
-			instance.GetComponent<GamemakerObject>().depth = layerDepth;
-			instance.transform.position = new Vector3((float)x, -(float)y, 0);
-
-			instance.GetComponent<GamemakerObject>().instanceId = _highestInstanceId++;
-
-			instance.GetComponent<GamemakerObject>().Precreate();
-
-			instance.GetComponent<GamemakerObject>().Create();
-			instance.GetComponent<GamemakerObject>()._createRan = true;
-
-			return instance;
+			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.PreCreate);
+			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.Create);
+			newGM._createRan = true;
+			return newGM.instanceId;
 		}
 
-		public void RegisterInstance(GamemakerObject obj)
+		public void RegisterInstance(NewGamemakerObject obj)
 		{
+			if (instances.Contains(obj))
+			{
+				return;
+			}
+
 			instances.Add(obj);
 			if (_highestInstanceId < obj.instanceId)
 			{
@@ -76,17 +72,33 @@ namespace Assets.Instances
 			}
 		}
 
-		public int instance_number(string name)
+		public int instance_number(int obj)
 		{
 			instances.RemoveAll(x => x == null);
-			return instances.Count(x => x.object_index == name);
+			return instances.Count(x => HasAssetInParents(x.Definition, obj));
 		}
 
-		public void instance_destroy(GamemakerObject obj)
+		private bool HasAssetInParents(ObjectDefinition definition, int id)
+		{
+			var currentDefinition = definition;
+			while (currentDefinition != null)
+			{
+				if (currentDefinition.AssetId == id)
+				{
+					return true;
+				}
+
+				currentDefinition = currentDefinition.parent;
+			}
+
+			return false;
+		}
+
+		public void instance_destroy(NewGamemakerObject obj)
 		{
 			if (obj != null)
 			{
-				obj.visible = false;
+				//obj.visible = false;
 				DrawManager.Unregister(obj);
 				Destroy(obj.gameObject);
 			}
@@ -94,69 +106,64 @@ namespace Assets.Instances
 			instances.Remove(obj);
 		}
 
-		public bool instance_exists(string name)
+		public NewGamemakerObject FindByInstanceId(int instanceId)
 		{
-			instances.RemoveAll(x => x == null);
-
-			var type = Type.GetType($"OBJECT_SCRIPTS.{name}");
-
-			if (type == null)
+			if (instances.Count(x => x.instanceId == instanceId) > 1)
 			{
-				Debug.LogError($"Could not find type for OBJECT_SCRIPTS.{name}");
+				Debug.LogError($"Found more than one object instance with id of {instanceId}.");
+				return null;
 			}
 
-			return instances.Any(x => x.object_index == name || x.GetType().IsSubclassOf(type));
+			var instance = instances.SingleOrDefault(x => x.instanceId == instanceId);
+
+			if (instance == null)
+			{
+				Debug.LogError($"Couldn't find instance for instanceId {instanceId}");
+			}
+
+			return instance;
 		}
 
-		/*private static void CreateSortingLayer(int depth)
+		public bool instance_exists_instanceid(int instanceId)
 		{
-			var layerName = $"Depth_{depth}";
-			var serializedObject = new SerializedObject(AssetDatabase.LoadMainAssetAtPath("ProjectSettings/TagManager.asset"));
-			var sortingLayers = serializedObject.FindProperty("m_SortingLayers");
+			return instances.Any(x => x.instanceId == instanceId);
+		}
 
-			for (int i = 0; i < sortingLayers.arraySize; i++)
-				if (sortingLayers.GetArrayElementAtIndex(i).FindPropertyRelative("name").stringValue.Equals(layerName))
-					return;
-
-			Debug.Log($"Creating sorting layer for depth {depth}");
-
-			sortingLayers.arraySize++;
-			sortingLayers.InsertArrayElementAtIndex(sortingLayers.arraySize);
-			var newLayer = sortingLayers.GetArrayElementAtIndex(sortingLayers.arraySize - 1);
-			newLayer.FindPropertyRelative("name").stringValue = layerName;
-			newLayer.FindPropertyRelative("uniqueID").intValue = layerName.GetHashCode(); *//* some unique number *//*
-
-			var layerCount = sortingLayers.arraySize;
-			List<int> layerDepths = new();
-			for (int i = 0; i < layerCount; i++)
+		public bool instance_exists_index(int assetIndex)
+		{
+			foreach (var instance in instances)
 			{
-				var layer = sortingLayers.GetArrayElementAtIndex(i);
-				var layername = layer.FindPropertyRelative("name").stringValue;
-
-				if (layername == "Default")
+				var definition = instance.Definition;
+				while (definition != null)
 				{
-					continue;
+					if (definition.AssetId == assetIndex)
+					{
+						return true;
+					}
+					definition = definition.parent;
 				}
-
-				layerDepths.Add(int.Parse(layername.Replace("Depth_", "")));
 			}
 
-			for (var i = 0; i < layerCount; i++)
-			{
-				if (i == layerCount - 1)
-				{
-					// already sorted correctly!
-					serializedObject.ApplyModifiedProperties();
-					return;
-				}
+			return false;
+		}
 
-				if (depth > layerDepths[i + 1])
+		public List<NewGamemakerObject> FindByAssetId(int assetId)
+		{
+			var result = new List<NewGamemakerObject>();
+			foreach (var instance in instances)
+			{
+				var definition = instance.Definition;
+				while (definition != null)
 				{
-					sortingLayers.MoveArrayElement(layerCount - 1, i + 2);
-					serializedObject.ApplyModifiedPropertiesWithoutUndo();
-					return;
+					if (definition.AssetId == assetId)
+					{
+						result.Add(instance);
+						break; // continue for loop
+					}
+					definition = definition.parent;
 				}
 			}
-		}*/
+			return result;
+		}
 	}
 }

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: FontLibrary
   m_EditorClassIdentifier: 
   fonts:
-  - name: fnt_main
+  - AssetIndex: 3
+    name: fnt_main
     size: 0
     sep: 0
-    spriteIndex: 
+    spriteIndex: 0
     texture: {fileID: 2800000, guid: 9c84e82f24830bd418c3b8834c00a6df, type: 3}
     entries:
     - characterIndex: 32
@@ -684,10 +685,11 @@ MonoBehaviour:
       h: 16
       shift: 8
       offset: 0
-  - name: fnt_mainbig
+  - AssetIndex: 2
+    name: fnt_mainbig
     size: 0
     sep: 0
-    spriteIndex: 
+    spriteIndex: 0
     texture: {fileID: 2800000, guid: 3ad8226bfbcbdd5418183809edd1a38f, type: 3}
     entries:
     - characterIndex: 32
@@ -1355,10 +1357,11 @@ MonoBehaviour:
       h: 32
       shift: 16
       offset: 0
-  - name: fnt_small
+  - AssetIndex: 4
+    name: fnt_small
     size: 0
     sep: 0
-    spriteIndex: 
+    spriteIndex: 0
     texture: {fileID: 2800000, guid: f5d40484c9b49cd4c92f1ec206270a6a, type: 3}
     entries:
     - characterIndex: 32
@@ -1970,10 +1973,11 @@ MonoBehaviour:
       h: 6
       shift: 4
       offset: 0
-  - name: fnt_dotumche
+  - AssetIndex: 1
+    name: fnt_dotumche
     size: 0
     sep: 0
-    spriteIndex: 
+    spriteIndex: 0
     texture: {fileID: 2800000, guid: e402488b19a2eb84080943403668eee9, type: 3}
     entries:
     - characterIndex: 32

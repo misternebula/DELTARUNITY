@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.VirtualMachineRunner;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using EventType = Assets.VirtualMachineRunner.EventType;
 
 namespace Assets.RoomManager
 {
@@ -17,21 +19,21 @@ namespace Assets.RoomManager
 		public string Name => gameObject.name;
 		public Vector2 Size;
 		public Vector2 ViewSize;
-		public GamemakerObject ObjectToFollow;
+		public NewGamemakerObject ObjectToFollow;
 		public bool Persistent;
 
 		public void Awake()
 		{
 			Instance = this;
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>())
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
 			{
-				item.Other_4();
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.Other, (int)OtherType.RoomStart);
 			}
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>().OrderBy(x => x.instanceId))
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
-				item.Precreate();
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.PreCreate);
 			}
 		}
 
@@ -40,7 +42,9 @@ namespace Assets.RoomManager
 			var camera = GamemakerCamera.Instance;
 			camera.GetComponent<Camera>().orthographicSize = ViewSize.y / 2;
 
-			var rt = new RenderTexture((int)ViewSize.x, (int)ViewSize.y, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			//var rt = new RenderTexture((int)ViewSize.x, (int)ViewSize.y, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			var rt = new RenderTexture(640, 480, GraphicsFormat.R16G16B16A16_UNorm, GraphicsFormat.None, 0);
+			// TODO : render resolution is apparently done by starting room size, not room view size? im confused
 			rt.filterMode = FilterMode.Point;
 
 			camera.GetComponent<Camera>().targetTexture = rt;
@@ -49,7 +53,7 @@ namespace Assets.RoomManager
 			camera.SetPosition(Vector2.zero);
 			camera.ObjectToFollow = ObjectToFollow;
 
-			foreach (var item in FindObjectsOfType<GamemakerObject>().OrderBy(x => x.instanceId))
+			foreach (var item in FindObjectsOfType<NewGamemakerObject>().OrderBy(x => x.instanceId))
 			{
 				if (item._createRan)
 				{
@@ -57,7 +61,7 @@ namespace Assets.RoomManager
 				}
 
 				item._createRan = true;
-				item.Create();
+				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.Create);
 			}
 		}
 

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_dialoguer
+  m_EditorClassIdentifier: 
+  AssetId: 5
+  sprite: -1
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 638cb8dea99fb3f4dbfbcf7a188063d4, type: 2}
+  DestroyScript: {fileID: 11400000, guid: aace30aaf2c9d4a4d95d9f95fd02ae6d, type: 2}
+  AlarmScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 7ef770ec730d3684fb4baed636126b46, type: 2}
+  StepScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: 751de3db35b0ccc489b632e50d9ad2b8, type: 2}
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: ed35221a58abd6f45805ad4fcb2b7135, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: faa8ebd48c298cc46bda447557f44410, type: 2}

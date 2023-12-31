@@ -1,9 +1,10 @@
 using Assets;
+using Assets.VirtualMachineRunner;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(GamemakerObject), true)]
+//[CustomEditor(typeof(NewGamemakerObject), true)]
 [CanEditMultipleObjects]
 public class GamemakerObjectEditor : UnityEditor.Editor
 {

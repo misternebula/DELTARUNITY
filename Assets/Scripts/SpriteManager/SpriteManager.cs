@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
+using Assets.VirtualMachineRunner;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,11 +18,11 @@ namespace Assets.SpriteManager
 		public Material TextColorMaterial;
 
 		public static int DrawColor = 16777215;
-		public static float DrawAlpha = 1;
+		public static double DrawAlpha = 1;
 		public static int FogColor = 0;
 		public static bool FogEnabled = false;
 
-		private static Dictionary<string, SpriteSubLibrary> _spriteDict = null;
+		private static Dictionary<int, SpriteSubLibrary> _spriteDict = null;
 		private static CustomSpriteLibrary _asset;
 
 		private void OnValidate()
@@ -35,27 +38,34 @@ namespace Assets.SpriteManager
 			_spriteDict = new();
 			foreach (var subLibrary in Asset.Sprites)
 			{
-				_spriteDict.Add(subLibrary.name, subLibrary);
+
+				_spriteDict.Add(subLibrary.AssetIndex, subLibrary);
 			}
+
 		}
 
 		public static void GenerateDictionary()
 		{
 			_asset = FindObjectOfType<SpriteManager>().Asset;
-			_spriteDict = new Dictionary<string, SpriteSubLibrary>();
+			_spriteDict = new Dictionary<int, SpriteSubLibrary>();
 			foreach (var subLibrary in _asset.Sprites)
 			{
-				_spriteDict.Add(subLibrary.name, subLibrary);
+				_spriteDict.Add(subLibrary.AssetIndex, subLibrary);
 			}
 		}
 
 		public static Texture2D GetSprite(string name, double index)
 		{
+			return GetSprite(AssetIndexManager.Instance.GetIndex(name), index);
+		}
+
+		public static Texture2D GetSprite(int name, double index)
+		{
 #if UNITY_EDITOR
 			if (!Application.isPlaying)
 			{
 				var spriteDatabase = AssetDatabase.LoadAssetAtPath<CustomSpriteLibrary>("Assets/ScriptableObjects/SpriteDatabase.asset");
-				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.name == name);
+				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.AssetIndex == name);
 
 				return sprite == null ? null : sprite.SubImages[Mathf.FloorToInt((float)index)];
 			}
@@ -65,18 +75,18 @@ namespace Assets.SpriteManager
 			return subimages[Mathf.FloorToInt((float)index)];
 		}
 
-		public static int GetNumberOfFrames(string name)
+		public static int GetNumberOfFrames(int name)
 		{
 			return _spriteDict[name].SubImages.Count;
 		}
 
-		public static Vector2Int GetSpriteOrigin(string name)
+		public static Vector2Int GetSpriteOrigin(int name)
 		{
 			if (!Application.isPlaying)
 			{
 #if UNITY_EDITOR
 				var spriteDatabase = AssetDatabase.LoadAssetAtPath<CustomSpriteLibrary>("Assets/ScriptableObjects/SpriteDatabase.asset");
-				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.name == name);
+				var sprite = spriteDatabase.Sprites.FirstOrDefault(x => x.AssetIndex == name);
 
 				return sprite == null ? Vector2Int.zero : sprite.Origin;
 #endif
@@ -85,9 +95,9 @@ namespace Assets.SpriteManager
 			return _spriteDict[name].Origin;
 		}
 
-		public static void DrawSelf(GamemakerObject obj)
+		public static void DrawSelf(NewGamemakerObject obj)
 		{
-			if (!obj.visible || string.IsNullOrEmpty(obj.sprite_index))
+			if (!obj.visible || obj.sprite_index == -1)
 			{
 				return;
 			}
@@ -95,10 +105,10 @@ namespace Assets.SpriteManager
 			DrawSpriteExt(obj.sprite_index, obj.image_index, obj.x, obj.y, obj.image_xscale, obj.image_yscale, obj.image_angle, obj.image_blend, obj.image_alpha);
 		}
 
-		public static void DrawSprite(string name, double index, double x, double y)
+		public static void DrawSprite(int name, double index, double x, double y)
 			=> DrawSpriteExt(name, index, x, y, 1, 1, 0, 16777215, 1);
 
-		public static void DrawSpriteExt(string name, double index, double x, double y, double xscale, double yscale, double rot, int blend, double alpha)
+		public static void DrawSpriteExt(int name, double index, double x, double y, double xscale, double yscale, double rot, int blend, double alpha)
 		{
 			var sprite = GetSprite(name, index);
 			var origin = GetSpriteOrigin(name);
@@ -154,28 +164,12 @@ namespace Assets.SpriteManager
 			return Sprite.Create(texture, rect, pivot, 1);
 		}
 
-		/*private static Texture2D SpritePart(string name, int index, int left, int top, int width, int height)
-		{
-			var baseSprite = GetSprite(name, index);
-			var destTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-
-			width = Math.Min(width, baseSprite.width);
-			height = Math.Min(height, baseSprite.height);
-
-			var readPixels = baseSprite.GetPixels(left, baseSprite.height - top - height, width, height);
-			destTexture.SetPixels(0, 0, width, height, readPixels);
-			destTexture.filterMode = FilterMode.Point;
-			destTexture.Apply();
-
-			return destTexture;
-		}*/
-
-		public static void DrawSpritePart(string name, int index, int left, int top, int width, int height, double x, double y)
+		public static void DrawSpritePart(int name, int index, int left, int top, int width, int height, double x, double y)
 		{
 			DrawSpritePartExt(name, index, left, top, width, height, x, y, 1, 1, 16777215, 1);
 		}
 
-		public static void DrawSpritePartExt(string name, double index, int left, int top, int width, int height, double x, double y, double xscale, double yscale, int blend, double alpha) 
+		public static void DrawSpritePartExt(int name, double index, int left, int top, int width, int height, double x, double y, double xscale, double yscale, int blend, double alpha) 
 		{
 			//var sprite = SpritePart(name, index, left, top, width, height);
 			var sprite = GetSprite(name, index);
@@ -195,19 +189,19 @@ namespace Assets.SpriteManager
 			});
 		}
 
-		public static SpriteSubLibrary GetSpriteAsset(string name)
+		public static SpriteSubLibrary GetSpriteAsset(int name)
 		{
-			if (string.IsNullOrEmpty(name))
+			if (name == -1)
 			{
 				return null;
 			}
 
 			if (_spriteDict == null)
 			{
-				_spriteDict = new Dictionary<string, SpriteSubLibrary>();
+				_spriteDict = new Dictionary<int, SpriteSubLibrary>();
 				foreach (var subLibrary in _asset.Sprites)
 				{
-					_spriteDict.Add(subLibrary.name, subLibrary);
+					_spriteDict.Add(subLibrary.AssetIndex, subLibrary);
 				}
 			}
 
@@ -220,7 +214,7 @@ namespace Assets.SpriteManager
 			return null;
 		}
 
-		public static void draw_sprite_stretched(string name, int index, double x, double y, double w, double h)
+		public static void draw_sprite_stretched(int name, int index, double x, double y, double w, double h)
 		{
 			var sprite = GetSprite(name, index);
 
