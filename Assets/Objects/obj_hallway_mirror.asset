@@ -13,21 +13,25 @@ MonoBehaviour:
   m_Name: obj_hallway_mirror
   m_EditorClassIdentifier: 
   AssetId: 26
-  sprite: -1
+  sprite: 857
   visible: 1
   solid: 0
   persistent: 0
   parent: {fileID: 0}
   textureMaskId: -1
-  CreateScript: {fileID: 0}
+  CreateScript: {fileID: 11400000, guid: 012af0649e09d7f43bb38138f76eafa9, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 2
+      Value: {fileID: 11400000, guid: 439ff398e8bf7114099ba80f8f3d4773, type: 2}
   OtherScript:
     _serializedList: []
   DrawScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 21cc2f3478c7bba42b1fb5d08ff02312, type: 2}
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: f144ed987d8b8254d98ed62ebb4f305c, type: 2}
