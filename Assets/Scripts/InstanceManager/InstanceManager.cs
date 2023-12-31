@@ -60,6 +60,11 @@ namespace Assets.Instances
 
 		public void RegisterInstance(NewGamemakerObject obj)
 		{
+			if (instances.Contains(obj))
+			{
+				return;
+			}
+
 			instances.Add(obj);
 			if (_highestInstanceId < obj.instanceId)
 			{

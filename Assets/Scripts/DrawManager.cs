@@ -17,7 +17,6 @@ namespace Assets
 		{
 			if (_drawObjects.Contains(obj))
 			{
-				Debug.LogError($"_gmObjects already contains {(obj as MonoBehaviour).name} ?");
 				return;
 			}
 
