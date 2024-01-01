@@ -17,19 +17,19 @@ namespace Assets
 		/// <summary>
 		/// The x position of the top left corner of the camera, in unity space.
 		/// </summary>
-		public int x
+		public double x
 		{
-			get => (int)transform.position.x - ((int)Room.Instance.ViewSize.x / 2);
-			set => SetPosition(new Vector2(value, y));
+			get => transform.position.x - (Room.Instance.ViewSize.x / 2.0);
+			set => SetPosition(new Vector2((float)value, (float)y));
 		}
 
 		/// <summary>
 		/// The y position of the top left corner of the camera, in unity space.
 		/// </summary>
-		public int y
+		public double y
 		{
-			get => (int)transform.position.y + ((int)Room.Instance.ViewSize.y / 2);
-			set => SetPosition(new Vector2(x, value));
+			get => transform.position.y + (Room.Instance.ViewSize.y / 2.0);
+			set => SetPosition(new Vector2((float)x, (float)value));
 		}
 
 		public NewGamemakerObject ObjectToFollow;

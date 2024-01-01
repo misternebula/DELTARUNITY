@@ -89,6 +89,7 @@ namespace Assets.VirtualMachineRunner
 			{ "room_goto_next", room_goto_next },
 			{ "room_goto_previous", room_goto_previous },
 			{ "room_next", room_next },
+			{ "room_previous", room_previous },
 			{ "audio_create_stream", audio_create_stream },
 			{ "audio_destroy_stream", audio_destroy_stream },
 			{ "merge_colour", merge_colour },
@@ -130,6 +131,9 @@ namespace Assets.VirtualMachineRunner
 			{ "camera_get_view_y", camera_get_view_y },
 			{ "camera_get_view_width", camera_get_view_width },
 			{ "camera_get_view_height", camera_get_view_height },
+			{ "camera_set_view_target", camera_set_view_target },
+			{ "camera_get_view_target", camera_get_view_target },
+			{ "camera_set_view_pos", camera_set_view_pos },
 			{ "collision_rectangle", collision_rectangle },
 			{ "place_meeting", place_meeting },
 			{ "script_execute", script_execute }
@@ -958,7 +962,7 @@ namespace Assets.VirtualMachineRunner
 				execute_event_flag = Conv<bool>(args.Args[1]);
 			}
 				
-			if (id < 100000)
+			if (id < GMConstants.FIRST_INSTANCE_ID)
 			{
 				// asset index
 				var instances = InstanceManager.Instance.FindByAssetId(id);
@@ -1706,6 +1710,7 @@ namespace Assets.VirtualMachineRunner
 		public static object room_goto(Arguments args)
 		{
 			var index = Conv<int>(args.Args[0]);
+			Debug.Log($"room_goto {index}");
 			RoomManager.RoomManager.Instance.ChangeRoom(index);
 			return null;
 		}
@@ -1726,6 +1731,12 @@ namespace Assets.VirtualMachineRunner
 		{
 			var numb = Conv<int>(args.Args[0]);
 			return RoomManager.RoomManager.Instance.room_next(numb);
+		}
+
+		public static object room_previous(Arguments args)
+		{
+			var numb = Conv<int>(args.Args[0]);
+			return RoomManager.RoomManager.Instance.room_previous(numb);
 		}
 
 		public static object audio_create_stream(Arguments args)
@@ -1825,7 +1836,7 @@ namespace Assets.VirtualMachineRunner
 			var volume = Conv<double>(args.Args[1]);
 			var time = Conv<double>(args.Args[2]);
 
-			if (index >= 100000)
+			if (index >= GMConstants.FIRST_INSTANCE_ID)
 			{
 				// instance id
 				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(index);
@@ -1851,7 +1862,7 @@ namespace Assets.VirtualMachineRunner
 			var index = Conv<int>(args.Args[0]);
 			var pitch = Conv<double>(args.Args[1]);
 
-			if (index >= 100000)
+			if (index >= GMConstants.FIRST_INSTANCE_ID)
 			{
 				// instance id
 				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(index);
@@ -2231,6 +2242,67 @@ namespace Assets.VirtualMachineRunner
 			return Room.Instance.ViewSize.y;
 		}
 
+		public static object camera_set_view_target(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			var id = Conv<int>(args.Args[1]);
+
+			NewGamemakerObject instance = null;
+
+			if (id < GMConstants.FIRST_INSTANCE_ID)
+			{
+				instance = InstanceManager.Instance.FindByAssetId(id).FirstOrDefault();
+			}
+			else
+			{
+				instance = InstanceManager.Instance.FindByInstanceId(id);
+			}
+
+			GamemakerCamera.Instance.ObjectToFollow = instance;
+
+			return null;
+		}
+
+		public static object camera_get_view_target(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			// TODO : this can apparently return either an instance id or object index????
+			return GamemakerCamera.Instance.ObjectToFollow == null ? -1 : GamemakerCamera.Instance.ObjectToFollow.instanceId;
+		}
+
+		public static object camera_set_view_pos(Arguments args)
+		{
+			var camera_id = Conv<int>(args.Args[0]);
+
+			if (camera_id > 0)
+			{
+				// TODO : ughhh implement multiple cameras
+				throw new NotImplementedException();
+			}
+
+			var x = Conv<double>(args.Args[1]);
+			var y = Conv<double>(args.Args[2]);
+
+			GamemakerCamera.Instance.x = x;
+			GamemakerCamera.Instance.y = -y;
+
+			return null;
+		}
+
 		public static object collision_rectangle(Arguments args)
 		{
 			var x1 = Conv<double>(args.Args[0]);
@@ -2246,7 +2318,7 @@ namespace Assets.VirtualMachineRunner
 				throw new NotImplementedException($"{obj} given to collision_rectangle!");
 			}
 
-			if (obj < 100000)
+			if (obj < GMConstants.FIRST_INSTANCE_ID)
 			{
 				return CollisionManager.CollisionManager.collision_rectangle_assetid(x1, y1, x2, y2, obj, prec, notme, args.Ctx.Self);
 			}
@@ -2267,7 +2339,7 @@ namespace Assets.VirtualMachineRunner
 				throw new NotImplementedException($"{obj} given to collision_rectangle!");
 			}
 
-			if (obj < 100000)
+			if (obj < GMConstants.FIRST_INSTANCE_ID)
 			{
 				return CollisionManager.CollisionManager.place_meeting_assetid(x, y, obj, args.Ctx.Self);
 			}

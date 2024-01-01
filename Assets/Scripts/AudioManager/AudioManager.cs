@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts;
+using Assets.VirtualMachineRunner;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -129,7 +130,7 @@ namespace Assets.AudioManager
 			return _audioClips[assetIndex];
 		}
 
-		private int _highestSoundInstanceId = 100000;
+		private int _highestSoundInstanceId = GMConstants.FIRST_INSTANCE_ID;
 
 		public int audio_play_sound(int index, int priority, bool loop, double gain, double offset, double pitch)
 		{

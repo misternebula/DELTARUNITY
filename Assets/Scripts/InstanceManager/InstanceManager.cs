@@ -108,6 +108,11 @@ namespace Assets.Instances
 
 		public NewGamemakerObject FindByInstanceId(int instanceId)
 		{
+			if (instanceId < GMConstants.FIRST_INSTANCE_ID)
+			{
+				throw new Exception($"Tried to find instance by asset id {instanceId}");
+			}
+
 			if (instances.Count(x => x.instanceId == instanceId) > 1)
 			{
 				Debug.LogError($"Found more than one object instance with id of {instanceId}.");
