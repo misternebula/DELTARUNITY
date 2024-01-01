@@ -10,24 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_markerX
+  m_Name: obj_town_event
   m_EditorClassIdentifier: 
-  AssetId: 116
-  sprite: 390
+  AssetId: 20
+  sprite: 374
   visible: 0
   solid: 0
   persistent: 0
   parent: {fileID: 0}
   textureMaskId: -1
-  CreateScript: {fileID: 0}
+  CreateScript: {fileID: 11400000, guid: d2b1e1569ece6a14b875e5febc346f8b, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 4
+      Value: {fileID: 11400000, guid: d1326d50190b3d349b36ce5bf6711c15, type: 2}
   StepScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 5de6078060a2dee40af83b82a58fc038, type: 2}
   OtherScript:
     _serializedList: []
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 11400000, guid: 51b68873ceab0034f85f95ae8555f920, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: ac18fc1b2c32bcc40891306870d64151, type: 2}
