@@ -517,8 +517,18 @@ namespace Assets.VirtualMachineRunner
 									}
 									else if (stackTop)
 									{
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-										var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+										var stackTopValue = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
+
+										NewGamemakerObject instance = null;
+										if (stackTopValue < GMConstants.FIRST_INSTANCE_ID)
+										{
+											instance = InstanceManager.Instance.FindByAssetId(stackTopValue).FirstOrDefault();
+										}
+										else
+										{
+											instance = InstanceManager.Instance.FindByInstanceId(stackTopValue);
+										}
+
 										Ctx.Stack.Push(VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName));
 									}
 									else
@@ -801,7 +811,7 @@ namespace Assets.VirtualMachineRunner
 					// SUPER HACKY. there HAS to be a better way of doing this
 					EnvironmentStack.Push(null);
 
-					if (id < 100000)
+					if (id < GMConstants.FIRST_INSTANCE_ID)
 					{
 						// asset id
 						var instances = InstanceManager.Instance.FindByAssetId(id);
