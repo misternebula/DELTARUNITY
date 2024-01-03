@@ -104,7 +104,11 @@ namespace Assets.VirtualMachineRunner
 			{ "hspeed", (get_hspeed, set_hspeed)},
 			{ "vspeed", (get_vspeed, set_vspeed)},
 			{ "direction", (get_direction, set_direction)},
-			{ "view_current", (get_view_current, null)}
+			{ "view_current", (get_view_current, null)},
+			{ "persistent", (get_persistent, set_persistent) },
+			{ "id", (get_id, null) },
+			{ "gravity", (get_gravity, set_gravity) },
+			{ "friction", (get_friction, set_friction) }
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -188,6 +192,17 @@ namespace Assets.VirtualMachineRunner
 		public static void set_direction(NewGamemakerObject instance, object value) => instance.direction = VMExecuter.Convert<double>(value);
 
 		public static object get_view_current(NewGamemakerObject instance) => 0; // TODO : aghhhhh viewports aghhh
+
+		public static object get_persistent(NewGamemakerObject instance) => instance.persistent;
+		public static void set_persistent(NewGamemakerObject instance, object value) => instance.persistent = VMExecuter.Convert<bool>(value);
+
+		public static object get_id(NewGamemakerObject instance) => instance.instanceId;
+
+		public static object get_gravity(NewGamemakerObject instance) => instance.gravity;
+		public static void set_gravity(NewGamemakerObject instance, object value) => instance.gravity = VMExecuter.Convert<double>(value);
+
+		public static object get_friction(NewGamemakerObject instance) => instance.friction;
+		public static void set_friction(NewGamemakerObject instance, object value) => instance.friction = VMExecuter.Convert<double>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{
