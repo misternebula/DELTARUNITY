@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_readable_room1
+  m_Name: obj_tem_school
   m_EditorClassIdentifier: 
-  AssetId: 80
-  sprite: 373
-  visible: 0
+  AssetId: 13
+  sprite: 143
+  visible: 1
   solid: 0
   persistent: 0
-  parent: {fileID: 11400000, guid: 63b76fc0241c78646a6a0cdc2b71d710, type: 2}
+  parent: {fileID: 11400000, guid: 2591be42f7b7cac43809a58af1cc4079, type: 2}
   textureMaskId: -1
-  CreateScript: {fileID: 11400000, guid: 3391ba473d5598442bc84b31a832073f, type: 2}
+  CreateScript: {fileID: 11400000, guid: 45fe83fcfee173541aeccdeb59485c53, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
     _serializedList:
     - Key: 0
-      Value: {fileID: 11400000, guid: 87ba7e71a8a85644991796b3b4d82abd, type: 2}
+      Value: {fileID: 11400000, guid: b2cc0153845666146950d121ff280d99, type: 2}
   OtherScript:
     _serializedList:
     - Key: 10
-      Value: {fileID: 11400000, guid: 8720afdce3eb0e74f9e98f275b309749, type: 2}
+      Value: {fileID: 11400000, guid: 0aec84612bfa0324e983b5ca230d4226, type: 2}
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 11400000, guid: 7991a79533d29764fa06bfeb7fbc7328, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: a12ce359e176aa44485c3c654cce3f73, type: 2}
