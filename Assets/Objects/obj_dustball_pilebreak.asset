@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_dustball_pilebreak
+  m_EditorClassIdentifier: 
+  AssetId: 150
+  sprite: 712
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 8924720cf1ab1e845966cd51c64b559c, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 89ba3fd5a32d7b84fac120448e6473b9, type: 2}
+  OtherScript:
+    _serializedList: []
+  DrawScript:
+    _serializedList: []
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: e32db0ac9e85ea6428c9c1a502d993df, type: 2}

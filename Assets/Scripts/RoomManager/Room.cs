@@ -28,7 +28,6 @@ namespace Assets.RoomManager
 
 		public void Awake()
 		{
-			Debug.Log($"ROOM AWAKE");
 			Instance = this;
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
@@ -70,7 +69,6 @@ namespace Assets.RoomManager
 			}
 
 			hasLoaded = true;
-			Debug.Log($"ROOM LOADED");
 		}
 
 		private void OnDrawGizmos()
