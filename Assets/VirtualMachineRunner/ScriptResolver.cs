@@ -26,10 +26,7 @@ namespace Assets.VirtualMachineRunner
 
 		public Dictionary<string, Func<Arguments, object>> BuiltInFunctions = new()
 		{
-			{ "layer_force_draw_depth", layer_force_draw_depth },
-			{ "layer_get_all", layer_get_all },
-			{ "layer_get_all_elements", layer_get_all_elements },
-			{ "layer_get_depth", layer_get_depth },
+			#region draw_
 			{ "draw_set_colour", draw_set_colour },
 			{ "draw_set_color", draw_set_colour }, // mfw
 			{ "draw_get_colour", draw_get_colour },
@@ -38,26 +35,20 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_set_font", draw_set_font },
 			{ "draw_set_halign", draw_set_halign },
 			{ "draw_set_valign", draw_set_valign },
-			{ "array_length_1d", array_length_1d },
-			{ "@@NewGMLArray@@", newgmlarray },
-			{ "asset_get_index", asset_get_index },
-			{ "event_inherited", event_inherited },
-			{ "ini_open", ini_open },
-			{ "ini_read_string", ini_read_string },
-			{ "ini_write_string", ini_write_string },
-			{ "ini_read_real", ini_read_real },
-			{ "ini_write_real", ini_write_real },
-			{ "ini_close", ini_close },
-			{ "font_add_sprite_ext", font_add_sprite_ext },
-			{ "variable_global_exists", variable_global_exists },
-			{ "ds_map_create", ds_map_create },
-			{ "ds_map_destroy", ds_map_destroy },
-			{ "ds_map_add", ds_map_add },
-			{ "ds_map_size", ds_map_size },
-			{ "ds_list_create", ds_list_create },
-			{ "ds_list_destroy", ds_list_destroy },
-			{ "ds_list_add", ds_list_add },
-			{ "show_debug_message", show_debug_message },
+			{ "draw_rectangle", draw_rectangle },
+			{ "draw_text", draw_text },
+			{ "draw_text_transformed", draw_text_transformed },
+			{ "draw_sprite", draw_sprite },
+			{ "draw_sprite_ext", draw_sprite_ext },
+			{ "draw_sprite_part_ext", draw_sprite_part_ext },
+			{ "draw_sprite_part", draw_sprite_part },
+			{ "draw_self", draw_self },
+			{ "draw_sprite_stretched", draw_sprite_stretched },
+			{ "draw_text_color", draw_text_colour },
+			{ "draw_text_colour", draw_text_colour},
+			#endregion
+
+			#region file_
 			{ "file_text_open_read", file_text_open_read },
 			{ "file_text_open_write", file_text_open_write },
 			{ "file_text_close", file_text_close },
@@ -71,40 +62,95 @@ namespace Assets.VirtualMachineRunner
 			{ "file_text_write_real", file_text_write_real },
 			{ "file_delete", file_delete },
 			{ "file_copy", file_copy },
-			{ "json_decode", json_decode },
-			{ "string", _string },
+			#endregion
+
+			#region ds_
+			{ "ds_map_create", ds_map_create },
+			{ "ds_map_destroy", ds_map_destroy },
+			{ "ds_map_add", ds_map_add },
+			{ "ds_map_size", ds_map_size },
+			{ "ds_list_create", ds_list_create },
+			{ "ds_list_destroy", ds_list_destroy },
+			{ "ds_list_add", ds_list_add },
 			{ "ds_map_find_value", ds_map_find_value },
-			{ "audio_group_load", audio_group_load },
-			{ "instance_exists", instance_exists },
-			{ "instance_create_depth", instance_create_depth },
-			{ "instance_number", instance_number },
-			{ "instance_destroy", instance_destroy },
-			{ "display_get_height", display_get_height },
-			{ "display_get_width", display_get_width },
-			{ "window_set_caption", window_set_caption },
-			{ "window_get_caption", window_get_caption },
-			{ "window_set_position", window_set_position },
-			{ "window_set_size", window_set_size },
-			{ "keyboard_check", keyboard_check },
-			{ "keyboard_check_pressed", keyboard_check_pressed },
-			{ "audio_group_is_loaded", audio_group_is_loaded },
-			{ "gamepad_button_check", gamepad_button_check },
-			{ "gamepad_axis_value", gamepad_axis_value },
-			{ "room_goto", room_goto },
-			{ "room_goto_next", room_goto_next },
-			{ "room_goto_previous", room_goto_previous },
-			{ "room_next", room_next },
-			{ "room_previous", room_previous },
+			#endregion
+
+			#region ini_
+			{ "ini_open", ini_open },
+			{ "ini_read_string", ini_read_string },
+			{ "ini_write_string", ini_write_string },
+			{ "ini_read_real", ini_read_real },
+			{ "ini_write_real", ini_write_real },
+			{ "ini_close", ini_close },
+			#endregion
+
+			#region string_
+			{ "string", _string },
+			{ "string_length", string_length },
+			{ "string_char_at", string_char_at },
+			{ "string_width", string_width },
+			{ "string_copy", string_copy },
+			{ "string_insert", string_insert },
+			{ "string_delete", string_delete },
+			{ "string_replace_all", string_replace_all },
+			{ "string_hash_to_newline", string_hash_to_newline },
+			#endregion
+
+			#region camera_
+			{ "camera_get_view_x", camera_get_view_x },
+			{ "camera_get_view_y", camera_get_view_y },
+			{ "camera_get_view_width", camera_get_view_width },
+			{ "camera_get_view_height", camera_get_view_height },
+			{ "camera_set_view_target", camera_set_view_target },
+			{ "camera_get_view_target", camera_get_view_target },
+			{ "camera_set_view_pos", camera_set_view_pos },
+			#endregion
+
+			#region audio_
 			{ "audio_create_stream", audio_create_stream },
 			{ "audio_destroy_stream", audio_destroy_stream },
-			{ "merge_colour", merge_colour },
-			{ "merge_color", merge_colour },
-			{ "window_center", window_center },
 			{ "audio_play_sound", audio_play_sound },
 			{ "audio_sound_gain", audio_sound_gain },
 			{ "audio_sound_pitch", audio_sound_pitch},
 			{ "audio_stop_all", audio_stop_all },
 			{ "audio_stop_sound", audio_stop_sound },
+			{ "audio_group_load", audio_group_load },
+			{ "audio_is_playing", audio_is_playing },
+			{ "audio_group_set_gain", audio_group_set_gain },
+			{ "audio_set_master_gain", audio_set_master_gain },
+			#endregion
+
+			#region window_
+			{ "window_set_caption", window_set_caption },
+			{ "window_get_caption", window_get_caption },
+			{ "window_set_position", window_set_position },
+			{ "window_set_size", window_set_size },
+			{ "window_center", window_center },
+			#endregion
+
+			#region layer_
+			{ "layer_force_draw_depth", layer_force_draw_depth },
+			{ "layer_get_all", layer_get_all },
+			{ "layer_get_all_elements", layer_get_all_elements },
+			{ "layer_get_depth", layer_get_depth },
+			#endregion
+
+			#region instance_
+			{ "instance_exists", instance_exists },
+			{ "instance_create_depth", instance_create_depth },
+			{ "instance_number", instance_number },
+			{ "instance_destroy", instance_destroy },
+			#endregion
+
+			#region room_
+			{ "room_goto", room_goto },
+			{ "room_goto_next", room_goto_next },
+			{ "room_goto_previous", room_goto_previous },
+			{ "room_next", room_next },
+			{ "room_previous", room_previous },
+			#endregion
+
+			#region Math
 			{ "floor", floor },
 			{ "ceil", ceil },
 			{ "abs", abs },
@@ -115,38 +161,35 @@ namespace Assets.VirtualMachineRunner
 			{ "irandom", irandom },
 			{ "irandom_range", irandom_range },
 			{ "round", round },
-			{ "string_hash_to_newline", string_hash_to_newline },
-			{ "draw_rectangle", draw_rectangle },
-			{ "draw_text", draw_text },
-			{ "draw_text_transformed", draw_text_transformed },
-			{ "draw_sprite", draw_sprite },
-			{ "draw_sprite_ext", draw_sprite_ext },
-			{ "draw_sprite_part_ext", draw_sprite_part_ext },
-			{ "draw_sprite_part", draw_sprite_part },
-			{ "draw_self", draw_self },
+			#endregion
+
+			{ "array_length_1d", array_length_1d },
+			{ "@@NewGMLArray@@", newgmlarray },
+			{ "asset_get_index", asset_get_index },
+			{ "event_inherited", event_inherited },
+			{ "font_add_sprite_ext", font_add_sprite_ext },
+			{ "variable_global_exists", variable_global_exists },
+			{ "show_debug_message", show_debug_message },
+			{ "json_decode", json_decode },
+			{ "display_get_height", display_get_height },
+			{ "display_get_width", display_get_width },
+			{ "keyboard_check", keyboard_check },
+			{ "keyboard_check_pressed", keyboard_check_pressed },
+			{ "audio_group_is_loaded", audio_group_is_loaded },
+			{ "gamepad_button_check", gamepad_button_check },
+			{ "gamepad_axis_value", gamepad_axis_value },
+			{ "merge_colour", merge_colour },
+			{ "merge_color", merge_colour },
 			{ "gamepad_is_connected", gamepad_is_connected },
 			{ "event_user", event_user },
-			{ "string_length", string_length },
-			{ "string_char_at", string_char_at },
-			{ "string_width", string_width },
-			{ "string_copy", string_copy },
-			{ "string_insert", string_insert },
-			{ "string_delete", string_delete },
-			{ "string_replace_all", string_replace_all },
 			{ "view_get_camera", view_get_camera },
-			{ "camera_get_view_x", camera_get_view_x },
-			{ "camera_get_view_y", camera_get_view_y },
-			{ "camera_get_view_width", camera_get_view_width },
-			{ "camera_get_view_height", camera_get_view_height },
-			{ "camera_set_view_target", camera_set_view_target },
-			{ "camera_get_view_target", camera_get_view_target },
-			{ "camera_set_view_pos", camera_set_view_pos },
 			{ "collision_rectangle", collision_rectangle },
 			{ "place_meeting", place_meeting },
 			{ "script_execute", script_execute },
 			{ "move_towards_point", move_towards_point },
 			{ "point_direction", point_direction },
-			{ "point_distance", point_distance }
+			{ "point_distance", point_distance },
+			{ "choose", choose }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -731,7 +774,7 @@ namespace Assets.VirtualMachineRunner
 			var val = args.Args[1];
 			var writer = _fileHandles[fileid].Writer;
 
-			if (val is not int or double or float)
+			if (val is not int and not double and not float)
 			{
 				// i have no fucking idea
 				writer.Write(0);
@@ -952,6 +995,41 @@ namespace Assets.VirtualMachineRunner
 		{
 			// TODO : actually implement this properly? DELTARUNITY doesnt use audio groups or any GM storage files (yet?)
 			return true;
+		}
+
+		public static object audio_is_playing(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+
+			if (index < GMConstants.FIRST_INSTANCE_ID)
+			{
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(index))
+				{
+					if (item != null)
+					{
+						return true;
+					}
+				}
+
+				return false;
+			}
+			else
+			{
+				var instance = AudioManager.AudioManager.Instance.GetAudioInstance(index);
+				return instance != null;
+			}
+		}
+
+		public static object audio_group_set_gain(Arguments args)
+		{
+			// TODO : actually implement this properly? DELTARUNITY doesnt use audio groups or any GM storage files (yet?)
+			return null;
+		}
+
+		public static object audio_set_master_gain(Arguments args)
+		{
+			// TODO : implement
+			return null;
 		}
 
 		public static object instance_exists(Arguments args)
@@ -1751,7 +1829,6 @@ namespace Assets.VirtualMachineRunner
 		public static object room_goto(Arguments args)
 		{
 			var index = Conv<int>(args.Args[0]);
-			Debug.Log($"room_goto {index}");
 			RoomManager.RoomManager.Instance.ChangeRoom(index);
 			return null;
 		}
@@ -2166,6 +2243,35 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
+		public static object draw_sprite_stretched(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var x = Conv<double>(args.Args[2]);
+			var y = Conv<double>(args.Args[3]);
+			var w = Conv<double>(args.Args[4]);
+			var h = Conv<double>(args.Args[5]);
+
+			SpriteManager.SpriteManager.draw_sprite_stretched(sprite, subimg, x, y, w, h);
+			return null;
+		}
+
+		public static object draw_text_colour(Arguments args)
+		{
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+			var str = Conv<string>(args.Args[2]);
+			var c1 = Conv<int>(args.Args[3]);
+			var c2 = Conv<int>(args.Args[4]);
+			var c3 = Conv<int>(args.Args[5]);
+			var c4 = Conv<int>(args.Args[6]);
+			var alpha = Conv<double>(args.Args[7]);
+
+			TextManager.TextManager.DrawTextColor(x, y, str, c1, c2, c3, c4, alpha);
+
+			return null;
+		}
+
 		public static object gamepad_is_connected(Arguments args)
 		{
 			var device = Conv<int>(args.Args[0]);
@@ -2501,6 +2607,11 @@ namespace Assets.VirtualMachineRunner
 			var vertDistance = Math.Abs(y2 - y1);
 
 			return Math.Sqrt((horizDistance * horizDistance) + (vertDistance * vertDistance));
+		}
+
+		public static object choose(Arguments args)
+		{
+			return args.Args[UnityEngine.Random.Range(0, args.Args.Length)];
 		}
 	}
 
