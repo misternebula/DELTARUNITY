@@ -300,6 +300,46 @@ namespace Assets.VirtualMachineRunner
 			return default;
 		}
 
+		private static void GetVariableInfo(string instructionStringData, out string variableName, out VariableType variableType, out VariablePrefix prefix, out int assetIndex)
+		{
+			variableName = instructionStringData;
+			var indexingArray = variableName.StartsWith("[array]");
+			if (indexingArray)
+			{
+				variableName = variableName[7..]; // skip [array]
+			}
+			var stackTop = variableName.StartsWith("[stacktop]");
+			if (stackTop)
+			{
+				variableName = variableName[10..]; // skip [stacktop]
+			}
+
+			variableType = VariableType.None;
+			prefix = VariablePrefix.None;
+			assetIndex = -1;
+			var split = variableName.Split('.');
+			var context = split[0];
+			variableName = split[1];
+
+			if (context == "global")
+			{
+				variableType = VariableType.Global;
+			}
+			else if (context == "local")
+			{
+				variableType = VariableType.Local;
+			}
+			else if (context == "self")
+			{
+				variableType = VariableType.Self;
+			}
+			else if (int.TryParse(context, out var index))
+			{
+				variableType = VariableType.Index;
+				assetIndex = index;
+			}
+		}
+
 		// BUG: throws sometimes instead of returning ExecutionResult.Failure
 		public static (ExecutionResult result, object data) ExecuteInstruction(VMScriptInstruction instruction)
 		{
@@ -383,15 +423,12 @@ namespace Assets.VirtualMachineRunner
 					}
 					else
 					{
-						//Debug.Log($" - isnt numeric");
 						if (instruction.Comparison == VMComparison.EQ)
 						{
-							//Debug.Log($"{first} {second} - EQ : {first.Equals(second)}");
 							Ctx.Stack.Push(first.Equals(second));
 						}
 						else if (instruction.Comparison == VMComparison.NEQ)
 						{
-							//Debug.Log($"{first} {second} - NEQ : {!first.Equals(second)}");
 							Ctx.Stack.Push(!first.Equals(second));
 						}
 						else
@@ -420,77 +457,38 @@ namespace Assets.VirtualMachineRunner
 								// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
 								// TODO: is self the only thing to use [stacktop]?
 
-								//Debug.Log($"Pushing variable {instruction.StringData}");
-								var variableName = instruction.StringData;
-								var indexingArray = variableName.StartsWith("[array]");
-								if (indexingArray)
-								{
-									variableName = variableName[7..]; // skip [array]
-								}
-								var stackTop = variableName.StartsWith("[stacktop]");
-								if (stackTop)
-								{
-									variableName = variableName[10..]; // skip [stacktop]
-								}
+								GetVariableInfo(instruction.StringData, out var variableName, out var variableType, out var prefix, out var assetIndex);
 
-								bool isGlobal = false, isLocal = false, isSelf = false, isAssetIndex = false;
-								var assetIndex = -1;
-								var split = variableName.Split('.');
-								var context = split[0];
-								variableName = split[1];
-
-								if (context == "global")
+								if (variableType == VariableType.Global)
 								{
-									isGlobal = true;
-								}
-								else if (context == "local")
-								{
-									isLocal = true;
-								}
-								else if (context == "self")
-								{
-									isSelf = true;
-								}
-								else if (int.TryParse(context, out var index))
-								{
-									isAssetIndex = true;
-									assetIndex = index;
-								}
-
-								if (isGlobal)
-								{
-									if (indexingArray)
+									if (prefix == VariablePrefix.Array)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName, index));
-										//Debug.Log($" - {VariableResolver.GetGlobalArrayIndex(variableName, index)}");
 									}
 									else
 									{
 										Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName));
-										//Debug.Log($" - {VariableResolver.GetGlobalVariable(variableName)}");
 									}
 								}
-								else if (isLocal)
+								else if (variableType == VariableType.Local)
 								{
-									if (indexingArray)
+									if (prefix == VariablePrefix.Array)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 										Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 											() => (List<object>)Ctx.Locals[variableName]));
-										//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
 									}
 									else
 									{
 										Ctx.Stack.Push(Ctx.Locals[variableName]);
-										//Debug.Log($" - {ctx.Locals[variableName]}");
 									}
 								}
-								else if (isSelf)
+								else if (variableType == VariableType.Self)
 								{
-									if (indexingArray)
+									if (prefix == VariablePrefix.Array)
 									{
 										var index = Convert<int>(Ctx.Stack.Pop());
 										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
@@ -504,7 +502,6 @@ namespace Assets.VirtualMachineRunner
 											{
 												Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 													() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
-												//Debug.Log($" - {((Dictionary<int, object>)ctx.Locals[variableName])[index]}");
 											}
 										}
 										else
@@ -522,7 +519,7 @@ namespace Assets.VirtualMachineRunner
 											}
 										}
 									}
-									else if (stackTop)
+									else if (prefix == VariablePrefix.Stacktop)
 									{
 										var stackTopValue = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
 
@@ -543,12 +540,12 @@ namespace Assets.VirtualMachineRunner
 										Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName));
 									}
 								}
-								else if (isAssetIndex)
+								else if (variableType == VariableType.Index)
 								{
 									// TODO : GM probably gets the "first" instance by lowest instance id or something.
 									var firstInstance = InstanceManager.Instance.FindByAssetId(assetIndex).First();
 
-									if (indexingArray)
+									if (prefix == VariablePrefix.Array)
 									{
 										// TODO : work out how this works
 										return (ExecutionResult.Failed, $"Don't know how to push arrayed asset index variable {variableName}");
@@ -560,24 +557,20 @@ namespace Assets.VirtualMachineRunner
 								}
 								else
 								{
-									Debug.LogError($"Don't know how to push variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
+									Debug.LogError($"Don't know how to push variable! name:{variableName} variableType:{variableType} prefix:{prefix}");
 								}
 								break;
 							case VMType.b:
-								//Debug.Log($"Pushing {instruction.BoolData}");
 								Ctx.Stack.Push(instruction.BoolData);
 								break;
 							case VMType.d:
-								//Debug.Log($"Pushing {instruction.DoubleData}");
 								Ctx.Stack.Push(instruction.DoubleData);
 								break;
 							case VMType.e:
 								// i think this is just an int always???
-								//Debug.Log($"Pushing {instruction.IntData}");
 								Ctx.Stack.Push(instruction.IntData);
 								break;
 							case VMType.s:
-								//Debug.Log($"Pushing {instruction.StringData}");
 								Ctx.Stack.Push(instruction.StringData);
 								break;
 							case VMType.None:
@@ -592,45 +585,11 @@ namespace Assets.VirtualMachineRunner
 						// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
 						// TODO: is self the only thing to use [stacktop]?
 
-						var variableName = instruction.StringData;
-						var indexingArray = variableName.StartsWith("[array]");
-						if (indexingArray)
-						{
-							variableName = variableName[7..]; // skip [array]
-						}
-						var stackTop = variableName.StartsWith("[stacktop]");
-						if (stackTop)
-						{
-							variableName = variableName[10..]; // skip [stacktop]
-						}
+						GetVariableInfo(instruction.StringData, out var variableName, out var variableType, out var prefix, out var assetIndex);
 
-						bool isGlobal = false, isLocal = false, isSelf = false, isAssetIndex = false;
-						var assetIndex = -1;
-						var split = variableName.Split('.');
-						var context = split[0];
-						variableName = split[1];
-
-						if (context == "global")
+						if (variableType == VariableType.Global)
 						{
-							isGlobal = true;
-						}
-						else if (context == "local")
-						{
-							isLocal = true;
-						}
-						else if (context == "self")
-						{
-							isSelf = true;
-						}
-						else if (int.TryParse(context, out var index))
-						{
-							isAssetIndex = true;
-							assetIndex = index;
-						}
-
-						if (isGlobal)
-						{
-							if (indexingArray)
+							if (prefix == VariablePrefix.Array)
 							{
 								int index = 0;
 								int instanceId = 0;
@@ -665,9 +624,9 @@ namespace Assets.VirtualMachineRunner
 								VariableResolver.SetGlobalVariable(variableName, value);
 							}
 						}
-						else if (isLocal)
+						else if (variableType == VariableType.Local)
 						{
-							if (indexingArray)
+							if (prefix == VariablePrefix.Array)
 							{
 								int index = 0;
 								int instanceId = 0;
@@ -699,9 +658,9 @@ namespace Assets.VirtualMachineRunner
 								Ctx.Locals[variableName] = value;
 							}
 						}
-						else if (isSelf)
+						else if (variableType == VariableType.Self)
 						{
-							if (indexingArray)
+							if (prefix == VariablePrefix.Array)
 							{
 								int index = 0;
 								int instanceId = 0;
@@ -761,7 +720,7 @@ namespace Assets.VirtualMachineRunner
 									}
 								}
 							}
-							else if (stackTop)
+							else if (prefix == VariablePrefix.Stacktop)
 							{
 								int instanceId = 0;
 								object value = null;
@@ -786,12 +745,12 @@ namespace Assets.VirtualMachineRunner
 								VariableResolver.SetSelfVariable(Ctx.Self, variableName, value);
 							}
 						}
-						else if (isAssetIndex)
+						else if (variableType == VariableType.Index)
 						{
 							// TODO : GM probably gets the "first" instance by lowest instance id or something.
 							var firstInstance = InstanceManager.Instance.FindByAssetId(assetIndex).First();
 
-							if (indexingArray)
+							if (prefix == VariablePrefix.Array)
 							{
 								// TODO : work out how this works
 								return (ExecutionResult.Failed, $"Don't know how to pop arrayed asset index variable {variableName}");
@@ -804,7 +763,7 @@ namespace Assets.VirtualMachineRunner
 						}
 						else
 						{
-							Debug.LogError($"Don't know how to pop to variable! name:{variableName} isGlobal:{isGlobal} isLocal:{isLocal} isSelf:{isSelf} indexingArray:{indexingArray}");
+							Debug.LogError($"Don't know how to push variable! name:{variableName} variableType:{variableType} prefix:{prefix}");
 						}
 
 						break;

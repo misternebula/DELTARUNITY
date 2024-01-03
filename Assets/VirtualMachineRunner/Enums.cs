@@ -12,6 +12,22 @@ namespace Assets.VirtualMachineRunner
 		JumpedToEnd
 	}
 
+	public enum VariableType
+	{
+		None,
+		Global,
+		Self,
+		Local,
+		Index
+	}
+
+	public enum VariablePrefix
+	{
+		None,
+		Stacktop,
+		Array
+	}
+
 	public enum EventType
 	{
 		None,
