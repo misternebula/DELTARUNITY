@@ -303,19 +303,24 @@ namespace Assets.VirtualMachineRunner
 		private static void GetVariableInfo(string instructionStringData, out string variableName, out VariableType variableType, out VariablePrefix prefix, out int assetIndex)
 		{
 			variableName = instructionStringData;
+			prefix = VariablePrefix.None;
+
 			var indexingArray = variableName.StartsWith("[array]");
 			if (indexingArray)
 			{
+				prefix = VariablePrefix.Array;
 				variableName = variableName[7..]; // skip [array]
 			}
+
 			var stackTop = variableName.StartsWith("[stacktop]");
 			if (stackTop)
 			{
+				prefix = VariablePrefix.Stacktop;
 				variableName = variableName[10..]; // skip [stacktop]
 			}
 
 			variableType = VariableType.None;
-			prefix = VariablePrefix.None;
+			
 			assetIndex = -1;
 			var split = variableName.Split('.');
 			var context = split[0];
