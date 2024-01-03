@@ -130,6 +130,16 @@ namespace Assets.AudioManager
 			return _audioClips[assetIndex];
 		}
 
+		public void StopAllAudio()
+		{
+			foreach (var item in _audioSources)
+			{
+				item.Source.Stop();
+				Destroy(item.Source);
+			}
+			_audioSources.Clear();
+		}
+
 		private int _highestSoundInstanceId = GMConstants.FIRST_INSTANCE_ID;
 
 		public int audio_play_sound(int index, int priority, bool loop, double gain, double offset, double pitch)
