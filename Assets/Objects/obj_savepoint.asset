@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_savepoint
+  m_EditorClassIdentifier: 
+  AssetId: 75
+  sprite: 368
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: 2591be42f7b7cac43809a58af1cc4079, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 3ab2e73b62c628944918f2f3ca76ca91, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 80c83e9cb0a1edb48af4c3d359935036, type: 2}
+  OtherScript:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: de47a313e1ece934089c4a78c651f90b, type: 2}
+  DrawScript:
+    _serializedList: []
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 5c394c52ae44f5846a7b81d5a814aaaa, type: 2}
