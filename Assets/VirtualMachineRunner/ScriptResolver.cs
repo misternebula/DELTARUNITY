@@ -13,6 +13,8 @@ using Assets.TextManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Assets.RoomManager;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using System.Reflection;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -25,6 +27,9 @@ namespace Assets.VirtualMachineRunner
 		public Dictionary<string, Func<Arguments, object>> BuiltInFunctions = new()
 		{
 			{ "layer_force_draw_depth", layer_force_draw_depth },
+			{ "layer_get_all", layer_get_all },
+			{ "layer_get_all_elements", layer_get_all_elements },
+			{ "layer_get_depth", layer_get_depth },
 			{ "draw_set_colour", draw_set_colour },
 			{ "draw_set_color", draw_set_colour }, // mfw
 			{ "draw_get_colour", draw_get_colour },
@@ -98,6 +103,8 @@ namespace Assets.VirtualMachineRunner
 			{ "audio_play_sound", audio_play_sound },
 			{ "audio_sound_gain", audio_sound_gain },
 			{ "audio_sound_pitch", audio_sound_pitch},
+			{ "audio_stop_all", audio_stop_all },
+			{ "audio_stop_sound", audio_stop_sound },
 			{ "floor", floor },
 			{ "ceil", ceil },
 			{ "abs", abs },
@@ -136,7 +143,10 @@ namespace Assets.VirtualMachineRunner
 			{ "camera_set_view_pos", camera_set_view_pos },
 			{ "collision_rectangle", collision_rectangle },
 			{ "place_meeting", place_meeting },
-			{ "script_execute", script_execute }
+			{ "script_execute", script_execute },
+			{ "move_towards_point", move_towards_point },
+			{ "point_direction", point_direction },
+			{ "point_distance", point_distance }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -161,6 +171,37 @@ namespace Assets.VirtualMachineRunner
 			// not implementing yet because uhhhhhhhhhhhhhhhhhhh
 
 			return null;
+		}
+
+		private static object layer_get_all(Arguments args)
+		{
+			// TODO : store layers in a dict
+			return Resources.FindObjectsOfTypeAll<GMLayer>().Select(x => (object)x.LayerId).ToList();
+		}
+
+		private static object layer_get_all_elements(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			// TODO : store layers in a dict
+			var layer = Resources.FindObjectsOfTypeAll<GMLayer>().First(x => x.LayerId == layer_id);
+			var list = new List<object>();
+
+			foreach (var item in layer.GetComponentsInChildren<DrawWithDepth>())
+			{
+				list.Add(item.instanceId);
+			}
+
+			return list.ToList();
+		}
+
+		private static object layer_get_depth(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			// TODO : store layers in a dict
+			var layer = Resources.FindObjectsOfTypeAll<GMLayer>().First(x => x.LayerId == layer_id);
+			return layer.Depth;
 		}
 
 		public static object draw_set_colour(Arguments args)
@@ -916,7 +957,7 @@ namespace Assets.VirtualMachineRunner
 		public static object instance_exists(Arguments args)
 		{
 			var obj = (int)args.Args[0];
-			if (obj > AssetIndexManager.Instance.GetHighestIndex(AssetType.objects))
+			if (obj > GMConstants.FIRST_INSTANCE_ID)
 			{
 				// instance id was passed
 				return InstanceManager.Instance.instance_exists_instanceid(obj);
@@ -1882,6 +1923,34 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
+		public static object audio_stop_all(Arguments args)
+		{
+			AudioManager.AudioManager.Instance.StopAllAudio();
+			return null;
+		}
+
+		public static object audio_stop_sound(Arguments args)
+		{
+			var id = Conv<int>(args.Args[0]);
+
+			if (id < GMConstants.FIRST_INSTANCE_ID)
+			{
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(id))
+				{
+					item.Source.Stop();
+					Destroy(item.Source.gameObject);
+				}
+			}
+			else
+			{
+				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(id);
+				soundAsset.Source.Stop();
+				Destroy(soundAsset.Source.gameObject);
+			}
+
+			return null;
+		}
+
 		public static object floor(Arguments args)
 		{
 			var n = Conv<double>(args.Args[0]);
@@ -2357,6 +2426,81 @@ namespace Assets.VirtualMachineRunner
 			var scriptName = AssetIndexManager.Instance.AssetList[AssetType.scripts].First(x => x.Value == scriptAssetId).Key;
 			var script = Instance.NameToScript[scriptName];
 			return VMExecuter.ExecuteScript(script, args.Ctx.Self, args.Ctx.ObjectDefinition, arguments: new Arguments() { Args = scriptArgs, Ctx = args.Ctx });
+		}
+
+		public static object move_towards_point(Arguments args)
+		{
+			var targetx = Conv<double>(args.Args[0]);
+			var targety = Conv<double>(args.Args[1]);
+			var sp = Conv<double>(args.Args[2]);
+
+			args.Ctx.Self.direction = (double)point_direction(new Arguments() { Args = new object[] { args.Ctx.Self.x, args.Ctx.Self.y, targetx, targety } });
+			args.Ctx.Self.speed = sp;
+
+			return null;
+		}
+
+		public static object point_direction(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+
+			// TODO : simplify this mess lol
+
+			var gmHoriz = x2 - x1;
+			var gmVert = y2 - y1;
+
+			if (gmHoriz >= 0 && gmVert == 0)
+			{
+				return 0;
+			}
+
+			if (gmHoriz > 0 && gmVert == 0)
+			{
+				return 0;
+			}
+
+			if (gmHoriz == 0 && gmVert < 0)
+			{
+				return 90;
+			}
+
+			// +gmVert means down, -gmVert means up
+			gmVert = -gmVert;
+
+			var angle = Math.Atan(gmVert / gmHoriz) * Mathf.Rad2Deg;
+
+			if (gmVert > 0)
+			{
+				if (gmHoriz > 0)
+				{
+					return angle;
+				}
+
+				return angle + 180;
+			}
+
+			if (gmHoriz > 0)
+			{
+				return 360 + angle;
+			}
+
+			return 180 + angle;
+		}
+
+		public static object point_distance(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+
+			var horizDistance = Math.Abs(x2 - x1);
+			var vertDistance = Math.Abs(y2 - y1);
+
+			return Math.Sqrt((horizDistance * horizDistance) + (vertDistance * vertDistance));
 		}
 	}
 
