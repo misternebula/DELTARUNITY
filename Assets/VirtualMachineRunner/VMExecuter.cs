@@ -729,7 +729,17 @@ namespace Assets.VirtualMachineRunner
 								}
 								else
 								{
-									var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+									NewGamemakerObject instance;
+
+									if (instanceId < GMConstants.FIRST_INSTANCE_ID)
+									{
+										// TODO : GM probably gets the "first" instance by lowest instance id or something.
+										instance = InstanceManager.Instance.FindByAssetId(instanceId).First();
+									}
+									else
+									{
+										instance = InstanceManager.Instance.FindByInstanceId(instanceId);
+									}
 
 									if (variableName == "alarm")
 									{
