@@ -41,35 +41,35 @@ namespace Assets.VirtualMachineRunner
 			list[index] = value;
 		}
 
-		private static readonly Dictionary<string, object> _globalVariables = new();
+		public static readonly Dictionary<string, object> GlobalVariables = new();
 
 		public static void SetGlobalArrayIndex(string name, int index, object value)
 		{
 			ArraySet(index, value,
 				() => GetGlobalVariable(name),
 				list => SetGlobalVariable(name, list),
-				() => _globalVariables.ContainsKey(name));
+				() => GlobalVariables.ContainsKey(name));
 		}
 
 		public static object GetGlobalArrayIndex(string name, int index)
 		{
 			return ArrayGet(index,
-				() => (List<object>)_globalVariables[name]);
+				() => (List<object>)GlobalVariables[name]);
 		}
 
 		public static void SetGlobalVariable(string name, object value)
 		{
-			_globalVariables[name] = value;
+			GlobalVariables[name] = value;
 		}
 
 		public static object GetGlobalVariable(string name)
 		{
-			return _globalVariables[name];
+			return GlobalVariables[name];
 		}
 
 		public static bool GlobalVariableExists(string name)
 		{
-			return _globalVariables.ContainsKey(name);
+			return GlobalVariables.ContainsKey(name);
 		}
 
 
