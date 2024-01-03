@@ -848,6 +848,16 @@ namespace Assets.VirtualMachineRunner
 					{
 						var instance = InstanceManager.Instance.FindByInstanceId(id);
 
+						if (instance == null)
+						{
+							if (instruction.JumpToEnd)
+							{
+								return (ExecutionResult.JumpedToEnd, null);
+							}
+
+							return (ExecutionResult.JumpedToLabel, instruction.IntData);
+						}
+
 						// TODO: how does return work??
 						var newCtx = new VMScriptExecutionContext
 						{
