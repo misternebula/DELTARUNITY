@@ -37,6 +37,8 @@ namespace Assets.RoomManager
 
 		public void ChangeRoom(string roomName)
 		{
+			Room.Instance = null;
+
 			var sceneCount = SceneManager.sceneCountInBuildSettings;
 			var scenes = new string[sceneCount];
 			for (var i = 0; i < sceneCount; i++)

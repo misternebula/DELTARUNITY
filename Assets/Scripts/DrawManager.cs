@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.RoomManager;
 using Assets.VirtualMachineRunner;
 using UnityEngine;
 using EventType = Assets.VirtualMachineRunner.EventType;
@@ -37,7 +38,7 @@ namespace Assets
 		{
 			foreach (var item in items)
 			{
-				if (item is NewGamemakerObject gm)
+				if (item is NewGamemakerObject gm && gm._createRan && Room.RoomLoaded)
 				{
 					NewGamemakerObject.ExecuteScript(gm, gm.Definition, EventType.Step, (int)stepType);
 				}
@@ -48,7 +49,7 @@ namespace Assets
 		{
 			foreach (var item in items)
 			{
-				if (item is NewGamemakerObject gm)
+				if (item is NewGamemakerObject gm && gm._createRan && Room.RoomLoaded)
 				{
 					if (drawType == DrawType.Draw)
 					{

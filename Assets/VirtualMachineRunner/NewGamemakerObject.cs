@@ -386,6 +386,11 @@ namespace Assets.VirtualMachineRunner
 
 		public sealed override void Draw()
 		{
+			if (!_createRan || !Room.RoomLoaded)
+			{
+				return;
+			}
+
 			if (friction != 0)
 			{
 				if (speed > 0)

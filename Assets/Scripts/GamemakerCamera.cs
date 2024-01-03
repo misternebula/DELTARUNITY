@@ -7,6 +7,7 @@ using Assets.TextManager;
 using Assets.VirtualMachineRunner;
 using UnityEngine.TextCore;
 using UnityEngine.TextCore.Text;
+using UnityEngine.Profiling;
 
 namespace Assets
 {
@@ -126,6 +127,11 @@ namespace Assets
 
 		public void OnPostRender()
 		{
+			if (!Room.RoomLoaded)
+			{
+				return;
+			}
+
 			RenderGL();
 		}
 
@@ -158,21 +164,58 @@ namespace Assets
 
 		private static void RenderSprite(GMSpriteJob spriteJob)
 		{
-			var screenRect = new Rect(-spriteJob.origin.x, spriteJob.origin.y, spriteJob.texture.width, -spriteJob.texture.height);
-			var sourceRect = new Rect(0, 0, 1, 1);
+			// TODO : add vertical culling
+
+			var topLeftX = spriteJob.screenPos.x - spriteJob.origin.x;
+			var topRightX = topLeftX + (spriteJob.texture.width * spriteJob.scale.x);
+			if (spriteJob is GMSpritePartJob part)
+			{
+				topRightX = topLeftX + part.width;
+			}
+
+			var cameraLeft = Instance.x;
+			var cameraRight = cameraLeft + Room.Instance.ViewSize.x;
+
+			if (topLeftX > cameraRight + 10)
+			{
+				return;
+			}
+
+			if (topRightX < cameraLeft - 10)
+			{
+				return;
+			}
+
+			Profiler.BeginSample("RenderSprite");
+
+			Profiler.BeginSample("Calc. screen & source rect");
+			Rect screenRect;
+			Rect sourceRect;
 
 			if (spriteJob is GMSpritePartJob partJob)
 			{
 				screenRect = new Rect(-spriteJob.origin.x, spriteJob.origin.y, partJob.width, -partJob.height);
-				sourceRect = new Rect(partJob.left / spriteJob.texture.width, ((spriteJob.texture.height - partJob.top - partJob.height) / spriteJob.texture.height), partJob.width / spriteJob.texture.width, partJob.height / spriteJob.texture.height);
+				sourceRect = new Rect(
+					partJob.left / spriteJob.texture.width,
+					(spriteJob.texture.height - partJob.top - partJob.height) / spriteJob.texture.height,
+					partJob.width / spriteJob.texture.width,
+					partJob.height / spriteJob.texture.height);
 			}
+			else
+			{
+				screenRect = new Rect(-spriteJob.origin.x, spriteJob.origin.y, spriteJob.texture.width, -spriteJob.texture.height);
+				sourceRect = new Rect(0, 0, 1, 1);
+			}
+			Profiler.EndSample();
 
 			GL.PushMatrix();
 
+			Profiler.BeginSample("Calc. matrix");
 			var pos = new Vector3(spriteJob.screenPos.x, -spriteJob.screenPos.y, 0);
 			var rot = Quaternion.Euler(0, 0, (float)spriteJob.angle);
 			var scale = new Vector3(spriteJob.scale.x, spriteJob.scale.y, 0);
 			GL.MultMatrix(Matrix4x4.TRS(pos, rot, scale));
+			Profiler.EndSample();
 
 			if (spriteJob.fogEnabled)
 			{
@@ -196,10 +239,12 @@ namespace Assets
 			}
 
 			GL.PopMatrix();
+			Profiler.EndSample();
 		}
 
 		private static void RenderRectangle(GMRectangleJob rectJob)
 		{
+			Profiler.BeginSample("RenderRectangle");
 			GL.PushMatrix();
 
 			var pos = new Vector3(rectJob.screenPos.x, -rectJob.screenPos.y, 0);
@@ -216,6 +261,7 @@ namespace Assets
 			GL.End();
 
 			GL.PopMatrix();
+			Profiler.EndSample();
 		}
 
 		private static void RenderText(GMTextJob textJob)

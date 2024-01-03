@@ -14,7 +14,9 @@ namespace Assets.RoomManager
 {
 	public class Room : MonoBehaviour
 	{
-		public static Room Instance { get; private set; }
+		public static bool RoomLoaded => Instance != null && Instance.hasLoaded;
+
+		public static Room Instance { get; set; }
 
 		public string Name => gameObject.name;
 		public Vector2 Size;
@@ -22,8 +24,11 @@ namespace Assets.RoomManager
 		public NewGamemakerObject ObjectToFollow;
 		public bool Persistent;
 
+		private bool hasLoaded;
+
 		public void Awake()
 		{
+			Debug.Log($"ROOM AWAKE");
 			Instance = this;
 
 			foreach (var item in FindObjectsOfType<NewGamemakerObject>())
@@ -63,6 +68,9 @@ namespace Assets.RoomManager
 				item._createRan = true;
 				NewGamemakerObject.ExecuteScript(item, item.Definition, EventType.Create);
 			}
+
+			hasLoaded = true;
+			Debug.Log($"ROOM LOADED");
 		}
 
 		private void OnDrawGizmos()
