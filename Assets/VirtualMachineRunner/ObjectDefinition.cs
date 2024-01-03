@@ -21,13 +21,13 @@ namespace Assets.VirtualMachineRunner
 		public bool visible = true;
 		public bool solid;
 		public bool persistent;
+
+
+
+
+
+
 		/// <summary>
-		/// 
-		/// 
-		/// 
-		/// 
-		/// 
-		//
 		/// analogous to a superclass
 		/// </summary>
 		public ObjectDefinition parent;
