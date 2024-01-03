@@ -206,90 +206,97 @@ namespace Assets.VirtualMachineRunner
 				return obj;
 			}
 
-			if (obj is string s)
+			try
 			{
-				// not sure how to implement numeric -> string properly
-
-				// "numbers, minus signs, decimal points and exponential parts in the string are taken into account,
-				// while other characters (such as letters) will cause an error to be thrown."
-
-				if (type == typeof(int))
+				if (obj is string s)
 				{
-					return int.Parse(s);
+					// not sure how to implement numeric -> string properly
+
+					// "numbers, minus signs, decimal points and exponential parts in the string are taken into account,
+					// while other characters (such as letters) will cause an error to be thrown."
+
+					if (type == typeof(int))
+					{
+						return int.Parse(s);
+					}
+
+					if (type == typeof(double))
+					{
+						return double.Parse(s);
+					}
+
+					if (type == typeof(bool))
+					{
+						return bool.Parse(s); // dunno if "true" or "false" should convert properly, since bools are just ints?
+					}
 				}
-
-				if (type == typeof(double))
+				else if (obj is int i)
 				{
-					return double.Parse(s);
+					if (type == typeof(bool))
+					{
+						return i > 0;
+					}
+
+					if (type == typeof(double))
+					{
+						return (double)i;
+					}
+
+					if (type == typeof(string))
+					{
+						return i.ToString(); // not sure if positive numbers need to have a "+" in front?
+					}
 				}
-
-				if (type == typeof(bool))
+				else if (obj is bool b)
 				{
-					return bool.Parse(s); // dunno if "true" or "false" should convert properly, since bools are just ints?
+					if (type == typeof(int))
+					{
+						return (int)(b ? 1 : 0);
+					}
+
+					if (type == typeof(double))
+					{
+						return (double)(b ? 1 : 0);
+					}
+
+					if (type == typeof(string))
+					{
+						return b ? "1" : "0"; // GM represents bools as integers
+					}
+				}
+				else if (obj is double or float)
+				{
+					var d = System.Convert.ToDouble(obj);
+
+					if (type == typeof(double) || type == typeof(float))
+					{
+						return d;
+					}
+
+					if (type == typeof(bool))
+					{
+						return d > 0.5; // https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Variable_Functions/bool.htm
+					}
+
+					if (type == typeof(int))
+					{
+						return (int)d;
+					}
+
+					if (type == typeof(string))
+					{
+						var isInt = Math.Abs(d % 1) <= (double.Epsilon * 100);
+						// https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Strings/string.htm
+						return isInt ? d.ToString("0") : (object)d.ToString("0.00");
+					}
 				}
 			}
-			else if (obj is int i)
+			catch
 			{
-				if (type == typeof(bool))
-				{
-					return i > 0;
-				}
-
-				if (type == typeof(double))
-				{
-					return (double)i;
-				}
-
-				if (type == typeof(string))
-				{
-					return i.ToString(); // not sure if positive numbers need to have a "+" in front?
-				}
-			}
-			else if (obj is bool b)
-			{
-				if (type == typeof(int))
-				{
-					return (int)(b ? 1 : 0);
-				}
-
-				if (type == typeof(double))
-				{
-					return (double)(b ? 1 : 0);
-				}
-
-				if (type == typeof(string))
-				{
-					return b ? "1" : "0"; // GM represents bools as integers
-				}
-			}
-			else if (obj is double or float)
-			{
-				var d = System.Convert.ToDouble(obj);
-
-				if (type == typeof(double) || type == typeof(float))
-				{
-					return d;
-				}
-
-				if (type == typeof(bool))
-				{
-					return d > 0.5; // https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Variable_Functions/bool.htm
-				}
-
-				if (type == typeof(int))
-				{
-					return (int)d;
-				}
-
-				if (type == typeof(string))
-				{
-					var isInt = Math.Abs(d % 1) <= (double.Epsilon * 100);
-					// https://manual.yoyogames.com/GameMaker_Language/GML_Reference/Strings/string.htm
-					return isInt ? d.ToString("0") : (object)d.ToString("0.00");
-				}
+				throw new Exception($"Exception while converting {obj} ({obj.GetType().FullName}) to {type}");
 			}
 
-			Debug.LogError($"Can't convert {obj} ({obj.GetType().FullName}) to {type}");
+			Debug.LogError($"Don't know how to convert {obj} ({obj.GetType().FullName}) to {type}");
 			return default;
 		}
 
