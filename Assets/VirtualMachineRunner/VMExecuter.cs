@@ -597,21 +597,28 @@ namespace Assets.VirtualMachineRunner
 							variableName = variableName[10..]; // skip [stacktop]
 						}
 
-						var isGlobal = variableName.StartsWith("global.");
-						var isLocal = variableName.StartsWith("local.");
-						var isSelf = variableName.StartsWith("self.");
+						bool isGlobal = false, isLocal = false, isSelf = false, isAssetIndex = false;
+						var assetIndex = -1;
+						var split = variableName.Split('.');
+						var context = split[0];
+						variableName = split[1];
 
-						if (isGlobal)
+						if (context == "global")
 						{
-							variableName = variableName[7..];
+							isGlobal = true;
 						}
-						else if (isLocal)
+						else if (context == "local")
 						{
-							variableName = variableName[6..];
+							isLocal = true;
 						}
-						else if (isSelf)
+						else if (context == "self")
 						{
-							variableName = variableName[5..];
+							isSelf = true;
+						}
+						else if (int.TryParse(context, out var index))
+						{
+							isAssetIndex = true;
+							assetIndex = index;
 						}
 
 						if (isGlobal)
@@ -760,6 +767,22 @@ namespace Assets.VirtualMachineRunner
 							{
 								var value = Ctx.Stack.Pop();
 								VariableResolver.SetSelfVariable(Ctx.Self, variableName, value);
+							}
+						}
+						else if (isAssetIndex)
+						{
+							// TODO : GM probably gets the "first" instance by lowest instance id or something.
+							var firstInstance = InstanceManager.Instance.FindByAssetId(assetIndex).First();
+
+							if (indexingArray)
+							{
+								// TODO : work out how this works
+								return (ExecutionResult.Failed, $"Don't know how to pop arrayed asset index variable {variableName}");
+							}
+							else
+							{
+								var value = Ctx.Stack.Pop();
+								VariableResolver.SetSelfVariable(firstInstance, variableName, value);
 							}
 						}
 						else
