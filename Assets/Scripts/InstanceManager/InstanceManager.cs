@@ -24,7 +24,7 @@ namespace Assets.Instances
 
 		public List<NewGamemakerObject> instances = new List<NewGamemakerObject>();
 
-		public int _highestInstanceId = 0;
+		private int _highestInstanceId = GMConstants.FIRST_INSTANCE_ID * 10;
 
 		private void Awake()
 		{
@@ -40,17 +40,21 @@ namespace Assets.Instances
 			var definition = dict[obj];
 
 			var newGO = new GameObject(definition.name);
+			newGO.SetActive(false);
+
 			var newGM = newGO.AddComponent<NewGamemakerObject>();
 			newGM.Definition = definition;
 
 			newGM.x = x;
 			newGM.y = y;
 			newGM.depth = depth;
-			newGM.instanceId = ++_highestInstanceId;
+			newGM.instanceId = _highestInstanceId++;
 			newGM.sprite_index = definition.sprite;
 			newGM.visible = definition.visible;
 			newGM.persistent = definition.persistent;
 			newGM.mask_id = definition.textureMaskId;
+
+			newGO.SetActive(true);
 
 			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.PreCreate);
 			NewGamemakerObject.ExecuteScript(newGM, definition, EventType.Create);
@@ -65,11 +69,19 @@ namespace Assets.Instances
 				return;
 			}
 
-			instances.Add(obj);
-			if (_highestInstanceId < obj.instanceId)
+			if (obj == null)
 			{
-				_highestInstanceId = obj.instanceId;
+				Debug.LogError($"Tried to register a null instance!");
+				return;
 			}
+
+			if (obj.Definition == null)
+			{
+				Debug.LogError($"Tried to register an instance with no definition! obj:{obj}");
+				return;
+			}
+
+			instances.Add(obj);
 		}
 
 		public int instance_number(int obj)
@@ -120,12 +132,6 @@ namespace Assets.Instances
 			}
 
 			var instance = instances.SingleOrDefault(x => x.instanceId == instanceId);
-
-			if (instance == null)
-			{
-				Debug.LogError($"Couldn't find instance for instanceId {instanceId}");
-			}
-
 			return instance;
 		}
 
