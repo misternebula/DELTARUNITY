@@ -18,7 +18,8 @@ namespace Assets.VirtualMachineRunner
 		Global,
 		Self,
 		Local,
-		Index
+		Index,
+		Other
 	}
 
 	public enum VariablePrefix

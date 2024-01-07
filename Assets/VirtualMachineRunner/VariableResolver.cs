@@ -123,34 +123,34 @@ namespace Assets.VirtualMachineRunner
 
 		public static object get_x(NewGamemakerObject instance) => instance.x;
 
-		public static void set_x(NewGamemakerObject instance, object value) => instance.x = VMExecuter.Convert<double>(value);
+		public static void set_x(NewGamemakerObject instance, object value) => instance.x = VMExecuter.Conv<double>(value);
 		public static object get_y(NewGamemakerObject instance) => instance.y;
-		public static void set_y(NewGamemakerObject instance, object value) => instance.y = VMExecuter.Convert<double>(value);
+		public static void set_y(NewGamemakerObject instance, object value) => instance.y = VMExecuter.Conv<double>(value);
 
 		public static object get_room_width(NewGamemakerObject instance) => (double)RoomManager.Room.Instance.Size.x;
 		public static object get_room_height(NewGamemakerObject instance) => (double)RoomManager.Room.Instance.Size.y;
 
 		public static object get_image_index(NewGamemakerObject instance) => instance.image_index;
-		public static void set_image_index(NewGamemakerObject instance, object value) => instance.image_index = VMExecuter.Convert<double>(value);
+		public static void set_image_index(NewGamemakerObject instance, object value) => instance.image_index = VMExecuter.Conv<double>(value);
 
 		public static object get_sprite_index(NewGamemakerObject instance) => instance.sprite_index;
-		public static void set_sprite_index(NewGamemakerObject instance, object value) => instance.sprite_index = VMExecuter.Convert<int>(value);
+		public static void set_sprite_index(NewGamemakerObject instance, object value) => instance.sprite_index = VMExecuter.Conv<int>(value);
 
 		public static object get_sprite_width(NewGamemakerObject instance) => instance.sprite_width;
 		public static object get_sprite_height(NewGamemakerObject instance) => instance.sprite_height;
 
 		public static object get_xstart(NewGamemakerObject instance) => instance.xstart;
-		public static void set_xstart(NewGamemakerObject instance, object value) => instance.xstart = VMExecuter.Convert<double>(value);
+		public static void set_xstart(NewGamemakerObject instance, object value) => instance.xstart = VMExecuter.Conv<double>(value);
 		public static object get_ystart(NewGamemakerObject instance) => instance.ystart;
-		public static void set_ystart(NewGamemakerObject instance, object value) => instance.ystart = VMExecuter.Convert<double>(value);
+		public static void set_ystart(NewGamemakerObject instance, object value) => instance.ystart = VMExecuter.Conv<double>(value);
 
 		public static object get_object_index(NewGamemakerObject instance) => instance.object_index;
 
 		public static object get_image_blend(NewGamemakerObject instance) => instance.image_blend;
-		public static void set_image_blend(NewGamemakerObject instance, object value) => instance.image_blend = VMExecuter.Convert<int>(value);
+		public static void set_image_blend(NewGamemakerObject instance, object value) => instance.image_blend = VMExecuter.Conv<int>(value);
 
 		public static object get_depth(NewGamemakerObject instance) => instance.depth;
-		public static void set_depth(NewGamemakerObject instance, object value) => instance.depth = VMExecuter.Convert<double>(value);
+		public static void set_depth(NewGamemakerObject instance, object value) => instance.depth = VMExecuter.Conv<double>(value);
 
 		public static object get_room(NewGamemakerObject instance) => RoomManager.RoomManager.Instance.GetRoomIndex(Room.Instance.Name);
 
@@ -160,49 +160,49 @@ namespace Assets.VirtualMachineRunner
 		public static object get_bbox_right(NewGamemakerObject instance) => (instance.sprite_index == -1 && instance.mask_id == -1) ? instance.x : instance.bbox_right;
 
 		public static object get_image_yscale(NewGamemakerObject instance) => instance.image_yscale;
-		public static void set_image_yscale(NewGamemakerObject instance, object value) => instance.image_yscale = VMExecuter.Convert<double>(value);
+		public static void set_image_yscale(NewGamemakerObject instance, object value) => instance.image_yscale = VMExecuter.Conv<double>(value);
 
 		public static object get_image_xscale(NewGamemakerObject instance) => instance.image_xscale;
-		public static void set_image_xscale(NewGamemakerObject instance, object value) => instance.image_xscale = VMExecuter.Convert<double>(value);
+		public static void set_image_xscale(NewGamemakerObject instance, object value) => instance.image_xscale = VMExecuter.Conv<double>(value);
 
 		public static void set_room(NewGamemakerObject instance, object value)
 		{
-			RoomManager.RoomManager.Instance.ChangeRoom(VMExecuter.Convert<int>(value));
+			RoomManager.RoomManager.Instance.ChangeRoom(VMExecuter.Conv<int>(value));
 		}
 
 		public static object get_image_speed(NewGamemakerObject instance) => instance.image_speed;
-		public static void set_image_speed(NewGamemakerObject instance, object value) => instance.image_speed = VMExecuter.Convert<double>(value);
+		public static void set_image_speed(NewGamemakerObject instance, object value) => instance.image_speed = VMExecuter.Conv<double>(value);
 
 		public static object get_visible(NewGamemakerObject instance) => instance.visible;
-		public static void set_visible(NewGamemakerObject instance, object value) => instance.visible = VMExecuter.Convert<bool>(value);
+		public static void set_visible(NewGamemakerObject instance, object value) => instance.visible = VMExecuter.Conv<bool>(value);
 
 		public static object get_image_alpha(NewGamemakerObject instance) => instance.image_alpha;
-		public static void set_image_alpha(NewGamemakerObject instance, object value) => instance.image_alpha = VMExecuter.Convert<double>(value);
+		public static void set_image_alpha(NewGamemakerObject instance, object value) => instance.image_alpha = VMExecuter.Conv<double>(value);
 
 		public static object get_speed(NewGamemakerObject instance) => instance.speed;
-		public static void set_speed(NewGamemakerObject instance, object value) => instance.speed = VMExecuter.Convert<double>(value);
+		public static void set_speed(NewGamemakerObject instance, object value) => instance.speed = VMExecuter.Conv<double>(value);
 
 		public static object get_hspeed(NewGamemakerObject instance) => instance.hspeed;
-		public static void set_hspeed(NewGamemakerObject instance, object value) => instance.hspeed = VMExecuter.Convert<double>(value);
+		public static void set_hspeed(NewGamemakerObject instance, object value) => instance.hspeed = VMExecuter.Conv<double>(value);
 
 		public static object get_vspeed(NewGamemakerObject instance) => instance.vspeed;
-		public static void set_vspeed(NewGamemakerObject instance, object value) => instance.vspeed = VMExecuter.Convert<double>(value);
+		public static void set_vspeed(NewGamemakerObject instance, object value) => instance.vspeed = VMExecuter.Conv<double>(value);
 
 		public static object get_direction(NewGamemakerObject instance) => instance.direction;
-		public static void set_direction(NewGamemakerObject instance, object value) => instance.direction = VMExecuter.Convert<double>(value);
+		public static void set_direction(NewGamemakerObject instance, object value) => instance.direction = VMExecuter.Conv<double>(value);
 
 		public static object get_view_current(NewGamemakerObject instance) => 0; // TODO : aghhhhh viewports aghhh
 
 		public static object get_persistent(NewGamemakerObject instance) => instance.persistent;
-		public static void set_persistent(NewGamemakerObject instance, object value) => instance.persistent = VMExecuter.Convert<bool>(value);
+		public static void set_persistent(NewGamemakerObject instance, object value) => instance.persistent = VMExecuter.Conv<bool>(value);
 
 		public static object get_id(NewGamemakerObject instance) => instance.instanceId;
 
 		public static object get_gravity(NewGamemakerObject instance) => instance.gravity;
-		public static void set_gravity(NewGamemakerObject instance, object value) => instance.gravity = VMExecuter.Convert<double>(value);
+		public static void set_gravity(NewGamemakerObject instance, object value) => instance.gravity = VMExecuter.Conv<double>(value);
 
 		public static object get_friction(NewGamemakerObject instance) => instance.friction;
-		public static void set_friction(NewGamemakerObject instance, object value) => instance.friction = VMExecuter.Convert<double>(value);
+		public static void set_friction(NewGamemakerObject instance, object value) => instance.friction = VMExecuter.Conv<double>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{

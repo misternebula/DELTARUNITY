@@ -83,6 +83,20 @@ namespace Assets
 				}
 			}
 
+			foreach (var item in stepList)
+			{
+				if (item is NewGamemakerObject gmo)
+				{
+					foreach (var id in gmo.Definition.CollisionScript.Keys)
+					{
+						if (CollisionManager.CollisionManager.instance_place_assetid(gmo.x, gmo.y, id, gmo) != null)
+						{
+							NewGamemakerObject.ExecuteScript(gmo, gmo.Definition, EventType.Collision, id);
+						}
+					}
+				}
+			}
+
 			RunStepScript(stepList, StepType.Step);
 			RunStepScript(stepList, StepType.EndStep);
 

@@ -1,6 +1,9 @@
 ﻿using Assets.Instances;
+using Assets.RoomManager;
 using Assets.Scripts;
 using Assets.Scripts.IniFiles;
+using Assets.SpriteManager;
+using Assets.TextManager;
 using Newtonsoft.Json.Linq;
 using NVorbis;
 using System;
@@ -9,12 +12,8 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using Assets.TextManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Assets.RoomManager;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using System.Reflection;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -133,6 +132,8 @@ namespace Assets.VirtualMachineRunner
 			{ "layer_get_all", layer_get_all },
 			{ "layer_get_all_elements", layer_get_all_elements },
 			{ "layer_get_depth", layer_get_depth },
+			{ "layer_tile_alpha", layer_tile_alpha },
+			{ "layer_get_element_type", layer_get_element_type },
 			#endregion
 
 			#region instance_
@@ -189,7 +190,9 @@ namespace Assets.VirtualMachineRunner
 			{ "move_towards_point", move_towards_point },
 			{ "point_direction", point_direction },
 			{ "point_distance", point_distance },
-			{ "choose", choose }
+			{ "choose", choose },
+			{ "real", real },
+			{ "collision_line", collision_line }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -203,7 +206,7 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		private static T Conv<T>(object obj) => VMExecuter.Convert<T>(obj);
+		private static T Conv<T>(object obj) => VMExecuter.Conv<T>(obj);
 
 		private static object layer_force_draw_depth(Arguments args)
 		{
@@ -245,6 +248,35 @@ namespace Assets.VirtualMachineRunner
 			// TODO : store layers in a dict
 			var layer = Resources.FindObjectsOfTypeAll<GMLayer>().First(x => x.LayerId == layer_id);
 			return layer.Depth;
+		}
+
+		private static object layer_tile_alpha(Arguments args)
+		{
+			var __index = Conv<int>(args.Args[0]);
+			var __alpha = Conv<double>(args.Args[1]);
+			Debug.Log($"Setting alpha of {__index} to {__alpha}");
+			FindObjectsOfType<GMTile>().First(x => x.instanceId == __index).Alpha = __alpha;
+			return null;
+		}
+
+		private static object layer_get_element_type(Arguments args)
+		{
+			var element_id = Conv<int>(args.Args[0]);
+
+			var element = Resources.FindObjectsOfTypeAll<DrawWithDepth>().First(x => x.instanceId == element_id);
+
+			if (element is GMBackground)
+			{
+				return 1; // background
+			}
+			else if (element is GMTile)
+			{
+				return 7; // tile
+			}
+			else
+			{
+				return 9; // undefined
+			}
 		}
 
 		public static object draw_set_colour(Arguments args)
@@ -764,7 +796,6 @@ namespace Assets.VirtualMachineRunner
 				result += (char)reader.Read();
 			}
 
-			Debug.Log($"Trying to parse {result}");
 			return double.Parse(result);
 		}
 
@@ -2612,6 +2643,31 @@ namespace Assets.VirtualMachineRunner
 		public static object choose(Arguments args)
 		{
 			return args.Args[UnityEngine.Random.Range(0, args.Args.Length)];
+		}
+
+		public static object real(Arguments args)
+		{
+			var str = Conv<string>(args.Args[0]);
+			return Conv<double>(str);
+		}
+
+		public static object collision_line(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+			var obj = Conv<int>(args.Args[4]); // TODO : can also be tile map or array
+			var prec = Conv<bool>(args.Args[5]);
+			var notme = Conv<bool>(args.Args[6]);
+
+			var ret = CollisionManager.CollisionManager.collision_line(x1, y1, x2, y2, obj, prec, notme);
+			if (ret == null)
+			{
+				return GMConstants.noone;
+			}
+
+			return ret.instanceId;
 		}
 	}
 

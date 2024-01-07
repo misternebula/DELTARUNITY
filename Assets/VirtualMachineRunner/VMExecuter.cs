@@ -21,7 +21,7 @@ namespace Assets.VirtualMachineRunner
 		public int EventIndex;
 	}
 
-	public static class VMExecuter
+	public static partial class VMExecuter
 	{
 		public static Stack<VMScriptExecutionContext> EnvironmentStack = new();
 		/// <summary>
@@ -172,7 +172,7 @@ namespace Assets.VirtualMachineRunner
 			}
 		}
 
-		public static T Convert<T>(object obj)
+		public static T Conv<T>(object obj)
 		{
 			if (typeof(T) != typeof(object))
 			{
@@ -300,51 +300,6 @@ namespace Assets.VirtualMachineRunner
 			return default;
 		}
 
-		private static void GetVariableInfo(string instructionStringData, out string variableName, out VariableType variableType, out VariablePrefix prefix, out int assetIndex)
-		{
-			variableName = instructionStringData;
-			prefix = VariablePrefix.None;
-
-			var indexingArray = variableName.StartsWith("[array]");
-			if (indexingArray)
-			{
-				prefix = VariablePrefix.Array;
-				variableName = variableName[7..]; // skip [array]
-			}
-
-			var stackTop = variableName.StartsWith("[stacktop]");
-			if (stackTop)
-			{
-				prefix = VariablePrefix.Stacktop;
-				variableName = variableName[10..]; // skip [stacktop]
-			}
-
-			variableType = VariableType.None;
-			
-			assetIndex = -1;
-			var split = variableName.Split('.');
-			var context = split[0];
-			variableName = split[1];
-
-			if (context == "global")
-			{
-				variableType = VariableType.Global;
-			}
-			else if (context == "local")
-			{
-				variableType = VariableType.Local;
-			}
-			else if (context == "self")
-			{
-				variableType = VariableType.Self;
-			}
-			else if (int.TryParse(context, out var index))
-			{
-				variableType = VariableType.Index;
-				assetIndex = index;
-			}
-		}
-
 		// BUG: throws sometimes instead of returning ExecutionResult.Failure
 		public static (ExecutionResult result, object data) ExecuteInstruction(VMScriptInstruction instruction)
 		{
@@ -361,7 +316,7 @@ namespace Assets.VirtualMachineRunner
 					}
 				case VMOpcode.BT:
 					{
-						var boolValue = Convert<bool>(Ctx.Stack.Pop());
+						var boolValue = Conv<bool>(Ctx.Stack.Pop());
 						if (!boolValue)
 						{
 							break;
@@ -376,7 +331,7 @@ namespace Assets.VirtualMachineRunner
 					}
 				case VMOpcode.BF:
 					{
-						var boolValue = Convert<bool>(Ctx.Stack.Pop());
+						var boolValue = Conv<bool>(Ctx.Stack.Pop());
 						if (boolValue)
 						{
 							break;
@@ -399,8 +354,8 @@ namespace Assets.VirtualMachineRunner
 
 					if (second is bool or int or double && first is bool or int or double)
 					{
-						var firstNumber = Convert<double>(first);
-						var secondNumber = Convert<double>(second);
+						var firstNumber = Conv<double>(first);
+						var secondNumber = Conv<double>(second);
 						switch (instruction.Comparison)
 						{
 							case VMComparison.LT:
@@ -448,331 +403,9 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.PUSHBLTN:
 				case VMOpcode.PUSHI:
 				case VMOpcode.PUSH:
-					{
-						switch (instruction.TypeOne)
-						{
-							case VMType.i:
-								//Debug.Log($"Pushing {instruction.IntData}");
-								Ctx.Stack.Push(instruction.IntData);
-								break;
-							case VMType.l:
-								Ctx.Stack.Push(instruction.LongData);
-								break;
-							case VMType.v:
-								// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
-								// TODO: is self the only thing to use [stacktop]?
-
-								GetVariableInfo(instruction.StringData, out var variableName, out var variableType, out var prefix, out var assetIndex);
-
-								if (variableType == VariableType.Global)
-								{
-									if (prefix == VariablePrefix.Array)
-									{
-										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-										Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName, index));
-									}
-									else
-									{
-										Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName));
-									}
-								}
-								else if (variableType == VariableType.Local)
-								{
-									if (prefix == VariablePrefix.Array)
-									{
-										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-										Ctx.Stack.Push(VariableResolver.ArrayGet(index,
-											() => (List<object>)Ctx.Locals[variableName]));
-									}
-									else
-									{
-										Ctx.Stack.Push(Ctx.Locals[variableName]);
-									}
-								}
-								else if (variableType == VariableType.Self)
-								{
-									if (prefix == VariablePrefix.Array)
-									{
-										var index = Convert<int>(Ctx.Stack.Pop());
-										var instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-										if (instanceId == GMConstants.self)
-										{
-											if (variableName == "alarm")
-											{
-												Ctx.Stack.Push(Ctx.Self.alarm[index]);
-											}
-											else
-											{
-												Ctx.Stack.Push(VariableResolver.ArrayGet(index,
-													() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
-											}
-										}
-										else
-										{
-											var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-
-											if (variableName == "alarm")
-											{
-												Ctx.Stack.Push(instance.alarm[index]);
-											}
-											else
-											{
-												Ctx.Stack.Push(VariableResolver.ArrayGet(index,
-													() => (List<object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName)));
-											}
-										}
-									}
-									else if (prefix == VariablePrefix.Stacktop)
-									{
-										var stackTopValue = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-
-										NewGamemakerObject instance = null;
-										if (stackTopValue < GMConstants.FIRST_INSTANCE_ID)
-										{
-											instance = InstanceManager.Instance.FindByAssetId(stackTopValue).FirstOrDefault();
-										}
-										else
-										{
-											instance = InstanceManager.Instance.FindByInstanceId(stackTopValue);
-										}
-
-										Ctx.Stack.Push(VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName));
-									}
-									else
-									{
-										Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName));
-									}
-								}
-								else if (variableType == VariableType.Index)
-								{
-									// TODO : GM probably gets the "first" instance by lowest instance id or something.
-									var firstInstance = InstanceManager.Instance.FindByAssetId(assetIndex).First();
-
-									if (prefix == VariablePrefix.Array)
-									{
-										// TODO : work out how this works
-										return (ExecutionResult.Failed, $"Don't know how to push arrayed asset index variable {variableName}");
-									}
-									else
-									{
-										Ctx.Stack.Push(VariableResolver.GetSelfVariable(firstInstance, Ctx.Locals, variableName));
-									}
-								}
-								else
-								{
-									Debug.LogError($"Don't know how to push variable! name:{variableName} variableType:{variableType} prefix:{prefix}");
-								}
-								break;
-							case VMType.b:
-								Ctx.Stack.Push(instruction.BoolData);
-								break;
-							case VMType.d:
-								Ctx.Stack.Push(instruction.DoubleData);
-								break;
-							case VMType.e:
-								// i think this is just an int always???
-								Ctx.Stack.Push(instruction.IntData);
-								break;
-							case VMType.s:
-								Ctx.Stack.Push(instruction.StringData);
-								break;
-							case VMType.None:
-							default:
-								throw new ArgumentOutOfRangeException();
-						}
-
-						break;
-					}
+					return PUSH(instruction);
 				case VMOpcode.POP:
-					{
-						// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
-						// TODO: is self the only thing to use [stacktop]?
-
-						GetVariableInfo(instruction.StringData, out var variableName, out var variableType, out var prefix, out var assetIndex);
-
-						if (variableType == VariableType.Global)
-						{
-							if (prefix == VariablePrefix.Array)
-							{
-								int index = 0;
-								int instanceId = 0;
-								object value = null;
-
-								if (instruction.TypeOne != VMType.i && instruction.TypeOne != VMType.v)
-								{
-									// uhhhhhhhh
-									return (ExecutionResult.Failed, $"POP : not i.X or v.X - {instruction.Raw}");
-								}
-
-								if (instruction.TypeOne == VMType.i)
-								{
-									value = Ctx.Stack.Pop();
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								}
-								else
-								{
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-									value = Ctx.Stack.Pop();
-								}
-
-								//Debug.Log($"Set global {variableName} index {index} to {value}");
-								VariableResolver.SetGlobalArrayIndex(variableName, index, value);
-							}
-							else
-							{
-								var value = Ctx.Stack.Pop();
-								//Debug.Log($"Set global {variableName} to {value}");
-								VariableResolver.SetGlobalVariable(variableName, value);
-							}
-						}
-						else if (variableType == VariableType.Local)
-						{
-							if (prefix == VariablePrefix.Array)
-							{
-								int index = 0;
-								int instanceId = 0;
-								object value = null;
-
-								if (instruction.TypeOne == VMType.i)
-								{
-									value = Ctx.Stack.Pop();
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								}
-								else
-								{
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-									value = Ctx.Stack.Pop();
-								}
-
-								//Debug.Log($"Set {variableName} index {index} to {value}");
-								VariableResolver.ArraySet(index, value,
-									() => Ctx.Locals[variableName],
-									list => Ctx.Locals[variableName] = list,
-									() => Ctx.Locals.ContainsKey(variableName));
-							}
-							else
-							{
-								var value = Ctx.Stack.Pop();
-								//Debug.Log($"Set {variableName} to {value}");
-								Ctx.Locals[variableName] = value;
-							}
-						}
-						else if (variableType == VariableType.Self)
-						{
-							if (prefix == VariablePrefix.Array)
-							{
-								int index = 0;
-								int instanceId = 0;
-								object value = null;
-
-								if (instruction.TypeOne == VMType.i)
-								{
-									value = Ctx.Stack.Pop();
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								}
-								else
-								{
-									index = Convert<int>(Ctx.Stack.Pop());
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-									value = Ctx.Stack.Pop();
-								}
-
-								if (instanceId == GMConstants.self)
-								{
-									if (variableName == "alarm")
-									{
-										Ctx.Self.alarm[index] = Convert<int>(value);
-									}
-									else
-									{
-										VariableResolver.ArraySet(index, value,
-											() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
-											list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
-											() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
-									}
-								}
-								else
-								{
-									NewGamemakerObject instance;
-
-									if (instanceId < GMConstants.FIRST_INSTANCE_ID)
-									{
-										// TODO : GM probably gets the "first" instance by lowest instance id or something.
-										instance = InstanceManager.Instance.FindByAssetId(instanceId).First();
-									}
-									else
-									{
-										instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-									}
-
-									if (variableName == "alarm")
-									{
-										instance.alarm[index] = Convert<int>(value);
-									}
-									else
-									{
-										VariableResolver.ArraySet(index, value,
-											() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName),
-											list => VariableResolver.SetSelfVariable(instance, variableName, list),
-											() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
-									}
-								}
-							}
-							else if (prefix == VariablePrefix.Stacktop)
-							{
-								int instanceId = 0;
-								object value = null;
-
-								if (instruction.TypeOne == VMType.i)
-								{
-									value = Ctx.Stack.Pop();
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-								}
-								else
-								{
-									instanceId = Convert<int>(Ctx.Stack.Pop()); // -5 = global, -7 = local, https://manual.yoyogames.com/GameMaker_Language/GML_Overview/Instance_Keywords.htm
-									value = Ctx.Stack.Pop();
-								}
-
-								var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
-								VariableResolver.SetSelfVariable(instance, variableName, value);
-							}
-							else
-							{
-								var value = Ctx.Stack.Pop();
-								VariableResolver.SetSelfVariable(Ctx.Self, variableName, value);
-							}
-						}
-						else if (variableType == VariableType.Index)
-						{
-							// TODO : GM probably gets the "first" instance by lowest instance id or something.
-							var firstInstance = InstanceManager.Instance.FindByAssetId(assetIndex).First();
-
-							if (prefix == VariablePrefix.Array)
-							{
-								// TODO : work out how this works
-								return (ExecutionResult.Failed, $"Don't know how to pop arrayed asset index variable {variableName}");
-							}
-							else
-							{
-								var value = Ctx.Stack.Pop();
-								VariableResolver.SetSelfVariable(firstInstance, variableName, value);
-							}
-						}
-						else
-						{
-							Debug.LogError($"Don't know how to push variable! name:{variableName} variableType:{variableType} prefix:{prefix}");
-						}
-
-						break;
-					}
+					return POP(instruction);
 				case VMOpcode.RET:
 					return (ExecutionResult.ReturnedValue, Ctx.Stack.Pop());
 				case VMOpcode.CONV:
@@ -796,6 +429,21 @@ namespace Assets.VirtualMachineRunner
 
 					if (ScriptResolver.Instance.BuiltInFunctions.TryGetValue(instruction.FunctionName, out var builtInFunction))
 					{
+						if (builtInFunction == null)
+						{
+							Debug.LogError($"NULL FUNC");
+						}
+
+						if (Ctx == null)
+						{
+							Debug.LogError($"NULL CTX");
+						}
+
+						if (Ctx.Stack == null)
+						{
+							Debug.LogError($"NULL STACK");
+						}
+
 						Ctx.Stack.Push(builtInFunction(arguments));
 						break;
 					}
@@ -808,99 +456,9 @@ namespace Assets.VirtualMachineRunner
 
 					return (ExecutionResult.Failed, $"Can't resolve script {instruction.FunctionName} !");
 				case VMOpcode.PUSHENV:
-					var id = Convert<int>(Ctx.Stack.Pop());
-					var currentContext = Ctx;
-
-					// marks the beginning of the instances pushed. popenv will stop jumping when it reaches this
-					// SUPER HACKY. there HAS to be a better way of doing this
-					EnvironmentStack.Push(null);
-
-					if (id < GMConstants.FIRST_INSTANCE_ID)
-					{
-						// asset id
-						var instances = InstanceManager.Instance.FindByAssetId(id);
-
-						// dont run anything if no instances
-						if (instances.Count == 0)
-						{
-							if (instruction.JumpToEnd)
-							{
-								return (ExecutionResult.JumpedToEnd, null);
-							}
-
-							return (ExecutionResult.JumpedToLabel, instruction.IntData);
-						}
-
-						foreach (var instance in instances)
-						{
-							// TODO: how does return work??
-							var newCtx = new VMScriptExecutionContext
-							{
-								Self = instance,
-								ObjectDefinition = instance.Definition,
-								Stack = new(currentContext.Stack),
-								Locals = new(currentContext.Locals),
-								ReturnValue = currentContext.ReturnValue,
-								EventType = currentContext.EventType,
-								EventIndex = currentContext.EventIndex,
-							};
-
-							EnvironmentStack.Push(newCtx);
-						}
-					}
-					else
-					{
-						var instance = InstanceManager.Instance.FindByInstanceId(id);
-
-						if (instance == null)
-						{
-							if (instruction.JumpToEnd)
-							{
-								return (ExecutionResult.JumpedToEnd, null);
-							}
-
-							return (ExecutionResult.JumpedToLabel, instruction.IntData);
-						}
-
-						// TODO: how does return work??
-						var newCtx = new VMScriptExecutionContext
-						{
-							Self = instance,
-							ObjectDefinition = instance.Definition,
-							Stack = new(currentContext.Stack),
-							Locals = new(currentContext.Locals),
-							ReturnValue = currentContext.ReturnValue,
-							EventType = currentContext.EventType,
-							EventIndex = currentContext.EventIndex,
-						};
-
-						EnvironmentStack.Push(newCtx);
-					}
-					break;
+					return PUSHENV(instruction);
 				case VMOpcode.POPENV:
-					var currentInstance = EnvironmentStack.Pop();
-					var nextInstance = Ctx;
-
-					// no instances pushed
-					if (currentInstance == null)
-					{
-						break;
-					}
-
-					// no instances left
-					if (nextInstance == null)
-					{
-						EnvironmentStack.Pop();
-						break;
-					}
-
-					// run block with next instance
-					if (instruction.JumpToEnd)
-					{
-						return (ExecutionResult.JumpedToEnd, null);
-					}
-
-					return (ExecutionResult.JumpedToLabel, instruction.IntData);
+					return POPENV(instruction);
 				case VMOpcode.DUP:
 					{
 						var indexBack = instruction.IntData;
@@ -913,122 +471,32 @@ namespace Assets.VirtualMachineRunner
 						break;
 					}
 				case VMOpcode.ADD:
-					var valTwo = Ctx.Stack.Pop();
-					var valOne = Ctx.Stack.Pop();
-
-					var hasString = instruction.TypeOne == VMType.s || instruction.TypeTwo == VMType.s;
-					var variableIsString = (instruction.TypeOne == VMType.v && valOne is string) || (instruction.TypeTwo == VMType.v && valTwo is string);
-
-					// strings need to concat
-					if (hasString || variableIsString)
-					{
-						var stringOne = Convert<string>(valOne);
-						var stringTwo = Convert<string>(valTwo);
-						Ctx.Stack.Push(stringOne + stringTwo);
-						break;
-					}
-
-					// technically should convert using TypeOne and TypeTwo, but later instructions convert anyway so it's fine
-					Ctx.Stack.Push(Convert<double>(valOne) + Convert<double>(valTwo));
-					break;
+					return ADD(instruction);
 				case VMOpcode.SUB:
-					{
-						var numTwo = Convert<double>(Ctx.Stack.Pop());
-						var numOne = Convert<double>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(numOne - numTwo);
-						break;
-					}
+					return SUB(instruction);
 				case VMOpcode.MUL:
-					{
-						// multiplication is commutative so this shouldnt matter, but eh. consistency.
-						var numTwo = Convert<double>(Ctx.Stack.Pop());
-						var numOne = Convert<double>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(numOne * numTwo);
-						break;
-					}
+					return MUL(instruction);
 				case VMOpcode.DIV:
-					{
-						var numTwo = Convert<double>(Ctx.Stack.Pop());
-						var numOne = Convert<double>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(numOne / numTwo);
-						break;
-					}
+					return DIV(instruction);
 				case VMOpcode.REM:
-					{
-						var numTwo = Convert<double>(Ctx.Stack.Pop());
-						var numOne = Convert<double>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(numOne % numTwo);
-						break;
-					}
-				// TODO: distinguish between above and below
-				// Remainder and Modulus have the same value for positive values.
-				// % in C# is NOT modulo - it's remainder.
-				// Modulus always has the same sign as the divisor, and remainder has the same sign as the dividend
-				// (dividend / divisor = quotient)
-				// 10 REM 3 = 1
-				// -10 REM 3 = -1
-				// 10 REM -3 = 1
-				// -10 REM -3 = -1
-				// 10 MOD 3 = 1
-				// -10 MOD 3 = 2
-				// 10 MOD -3 = -2
-				// -10 MOD -3 = -1
+					return REM(instruction);
 				case VMOpcode.MOD:
-					{
-						var numTwo = Convert<double>(Ctx.Stack.Pop());
-						var numOne = Convert<double>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(numOne % numTwo);
-						break;
-					}
+					return MOD(instruction);
 				case VMOpcode.NEG:
-					Ctx.Stack.Push(-Convert<double>(Ctx.Stack.Pop()));
-					break;
+					return NEG(instruction);
 				case VMOpcode.AND:
-					{
-						// should other binary types handle ops?
-						var intTwo = Convert<int>(Ctx.Stack.Pop());
-						var intOne = Convert<int>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(intOne & intTwo);
-						break;
-					}
+					return AND(instruction);
 				case VMOpcode.OR:
-					{
-						var intTwo = Convert<int>(Ctx.Stack.Pop());
-						var intOne = Convert<int>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(intOne | intTwo);
-						break;
-					}
+					return OR(instruction);
 				case VMOpcode.XOR:
-					{
-						var intTwo = Convert<int>(Ctx.Stack.Pop());
-						var intOne = Convert<int>(Ctx.Stack.Pop());
-
-						Ctx.Stack.Push(intOne ^ intTwo);
-						break;
-					}
+					return XOR(instruction);
 				case VMOpcode.NOT:
-					switch (instruction.TypeOne)
-					{
-						case VMType.b:
-							Ctx.Stack.Push(!Convert<bool>(Ctx.Stack.Pop()));
-							break;
-						default:
-							Debug.LogError($"Don't know how to NOT {instruction.TypeOne}");
-							break;
-					}
-					break;
+					return NOT(instruction);
 				case VMOpcode.SHL:
 					{
 						// is this the right order?
-						var intTwo = Convert<int>(Ctx.Stack.Pop());
-						var intOne = Convert<int>(Ctx.Stack.Pop());
+						var intTwo = Conv<int>(Ctx.Stack.Pop());
+						var intOne = Conv<int>(Ctx.Stack.Pop());
 
 						Ctx.Stack.Push(intOne << intTwo);
 						break;
@@ -1036,16 +504,21 @@ namespace Assets.VirtualMachineRunner
 				case VMOpcode.SHR:
 					{
 						// is this the right order?
-						var intTwo = Convert<int>(Ctx.Stack.Pop());
-						var intOne = Convert<int>(Ctx.Stack.Pop());
+						var intTwo = Conv<int>(Ctx.Stack.Pop());
+						var intOne = Conv<int>(Ctx.Stack.Pop());
 
 						Ctx.Stack.Push(intOne >> intTwo);
 						break;
 					}
 				case VMOpcode.CHKINDEX:
-					// don't really know what this does.
-					// possibly does bounds check and error throw? used before setting array index
-					break;
+					var index = Ctx.Stack.Peek();
+
+					if (index is int)
+					{
+						break;
+					}
+
+					throw new Exception($"CHKINDEX failed - {index}");
 				case VMOpcode.CALLV:
 				case VMOpcode.BREAK:
 				case VMOpcode.EXIT:

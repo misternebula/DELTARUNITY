@@ -24,6 +24,14 @@ namespace Assets.CollisionManager
 		UserDefined = 2
 	}
 
+	public class BBox
+	{
+		public float left;
+		public float right;
+		public float top;
+		public float bottom;
+	}
+
 	public class ColliderClass
 	{
 		public NewGamemakerObject GMObject;
@@ -44,22 +52,22 @@ namespace Assets.CollisionManager
 
 		public Vector4 Margins;
 
-		public Vector2 BBTopLeft => new(
-			_pos.x + (Margins.x * _scale.x) - (Origin.x * _scale.x),
-			_pos.y - (Margins.w * _scale.y) + (Origin.y * _scale.y));
-
-		public Vector2 BBBottomRight => new(
-			_pos.x + (Margins.y * _scale.x) - (Origin.x * _scale.x),
-			_pos.y - (Margins.z * _scale.y) + (Origin.y * _scale.y));
+		public BBox BBox => new()
+		{
+			left = _pos.x + (Margins.x * _scale.x) - (Origin.x * _scale.x),
+			top = _pos.y - (Margins.w * _scale.y) + (Origin.y * _scale.y),
+			right = _pos.x + (Margins.y * _scale.x) - (Origin.x * _scale.x),
+			bottom = _pos.y - (Margins.z * _scale.y) + (Origin.y * _scale.y)
+		};
 
 		public Vector3 BBCenter => new(
-			(BBTopLeft.x + BBBottomRight.x) / 2,
-			(BBTopLeft.y + BBBottomRight.y) / 2,
+			(BBox.left + BBox.right) / 2,
+			(BBox.top + BBox.bottom) / 2,
 			0);
 
 		public Vector3 BBSize => new(
-			BBBottomRight.x - BBTopLeft.x,
-			BBTopLeft.y - BBBottomRight.y,
+			BBox.right - BBox.left,
+			BBox.top - BBox.bottom,
 			1);
 
 		/// <summary>
@@ -542,10 +550,10 @@ namespace Assets.CollisionManager
 
 				if (precise && checkBox.SepMasks == SepMasks.Precise)
 				{
-					var iTopLeftX = Mathf.Max((float)topLeftX, checkBox.BBTopLeft.x);
-					var iTopLeftY = Mathf.Min((float)-topLeftY, checkBox.BBTopLeft.y);
-					var iBottomRightX = Mathf.Min((float)bottomRightX, checkBox.BBBottomRight.x);
-					var iBottomRightY = Mathf.Max((float)-bottomRightY, checkBox.BBBottomRight.y);
+					var iTopLeftX = Mathf.Max((float)topLeftX, checkBox.BBox.left);
+					var iTopLeftY = Mathf.Min((float)-topLeftY, checkBox.BBox.top);
+					var iBottomRightX = Mathf.Min((float)bottomRightX, checkBox.BBox.right);
+					var iBottomRightY = Mathf.Max((float)-bottomRightY, checkBox.BBox.bottom);
 
 					var iWidth = Mathf.FloorToInt(Mathf.Abs(iTopLeftX - iBottomRightX));
 					var iHeight = Mathf.FloorToInt(Mathf.Abs(iTopLeftY - iBottomRightY));
@@ -637,10 +645,10 @@ namespace Assets.CollisionManager
 
 				if (precise && checkBox.SepMasks == SepMasks.Precise)
 				{
-					var iTopLeftX = Mathf.Max((float)topLeftX, checkBox.BBTopLeft.x);
-					var iTopLeftY = Mathf.Min((float)-topLeftY, checkBox.BBTopLeft.y);
-					var iBottomRightX = Mathf.Min((float)bottomRightX, checkBox.BBBottomRight.x);
-					var iBottomRightY = Mathf.Max((float)-bottomRightY, checkBox.BBBottomRight.y);
+					var iTopLeftX = Mathf.Max((float)topLeftX, checkBox.BBox.left);
+					var iTopLeftY = Mathf.Min((float)-topLeftY, checkBox.BBox.top);
+					var iBottomRightX = Mathf.Min((float)bottomRightX, checkBox.BBox.right);
+					var iBottomRightY = Mathf.Max((float)-bottomRightY, checkBox.BBox.bottom);
 
 					var iWidth = Mathf.FloorToInt(Mathf.Abs(iTopLeftX - iBottomRightX));
 					var iHeight = Mathf.FloorToInt(Mathf.Abs(iTopLeftY - iBottomRightY));
@@ -706,27 +714,90 @@ namespace Assets.CollisionManager
 			return instance_place_instanceid(x, y, instanceId, current);
 		}
 
-		public static NewGamemakerObject collision_line(float x1, float y1, float x2, float y2, string name, bool prec, bool notme)
+		public static NewGamemakerObject collision_line(double x1, double y1, double x2, double y2, int obj, bool prec, bool notme)
 		{
-			if (prec)
+			// Adapted from https://github.com/YoYoGames/GameMaker-HTML5/blob/develop/scripts/yyInstance.js#L2037
+
+			// make sure line runs left to right
+			if (x2 < x1)
 			{
-				throw new NotImplementedException("uh oh - precise collision!");
+				(x1, x2) = (x2, x1);
+				(y1, y2) = (y2, y1);
 			}
 
-			throw new NotImplementedException();
+			foreach (var item in colliders)
+			{
+				// TODO : test against obj and notme
+
+				if (Math.Min(x1, x2) >= item.BBox.right + 1)
+				{
+					continue;
+				}
+
+				if (Math.Max(x1, x2) < item.BBox.left)
+				{
+					continue;
+				}
+
+				if (Math.Min(y1, y2) >= item.BBox.bottom + 1)
+				{
+					continue;
+				}
+
+				if (Math.Max(y1, y2) < item.BBox.top)
+				{
+					continue;
+				}
+
+				if (x1 < item.BBox.left)
+				{
+					y1 += (item.BBox.left - x1) * (y2 - y1) / (x2 - x1);
+					x1 = item.BBox.left;
+				}
+
+				if (x2 > (item.BBox.right + 1))
+				{
+					y2 += (item.BBox.right + 1 - x2) * (y2 - y1) / (x2 - x1);
+					x2 = item.BBox.right + 1;
+				}
+
+				if ((y1 < item.BBox.top) && (y2 < item.BBox.top))
+				{ 
+					continue; 
+				}
+
+				if ((y1 >= item.BBox.bottom + 1) && (y2 >= item.BBox.bottom + 1))
+				{ 
+					continue; 
+				}
+
+				if (item.SepMasks == SepMasks.RotatedRect)
+				{
+					// TODO : implement this
+					throw new NotImplementedException();
+				}
+
+				if (!prec || item.SepMasks == SepMasks.AxisAlignedRect)
+				{
+					return item.GMObject;
+				}
+
+				// TODO : handle precise collision
+				throw new NotImplementedException();
+			}
 
 			return null;
 		}
 
-		private static bool DoBoxesOverlap(ColliderClass a, ColliderClass b) 
-			=> a.BBTopLeft.x <= b.BBBottomRight.x
-			&& a.BBBottomRight.x >= b.BBTopLeft.x
-			&& a.BBTopLeft.y >= b.BBBottomRight.y
-			&& a.BBBottomRight.y <= b.BBTopLeft.y;
+		private static bool DoBoxesOverlap(ColliderClass a, ColliderClass b)
+			=> a.BBox.left <= b.BBox.right
+			&& a.BBox.right >= b.BBox.left
+			&& a.BBox.top >= b.BBox.bottom
+			&& a.BBox.bottom <= b.BBox.top;
 
 		private static bool DoBoxesOverlap(double x1, double y1, double x2, double y2, ColliderClass b)
-			=> x1 <= (b.BBBottomRight.x - 1) && x2 - 1 >= b.BBTopLeft.x &&
-			   y1 >= (b.BBBottomRight.y - 1) && y2 - 1 <= b.BBTopLeft.y;
+			=> x1 <= (b.BBox.right - 1) && x2 - 1 >= b.BBox.left &&
+			   y1 >= (b.BBox.bottom - 1) && y2 - 1 <= b.BBox.top;
 
 		public static (bool[,] buffer, Vector2Int topLeftOffset) RotateMask(bool[,] mask, double angle, int pivotX, int pivotY, double xScale, double yScale)
 		{
@@ -852,8 +923,6 @@ namespace Assets.CollisionManager
 			{
 				Gizmos.color = Color.red;
 				Gizmos.DrawWireCube(box.BBCenter, box.BBSize);
-				Gizmos.DrawWireSphere(box.BBTopLeft, 5);
-				Gizmos.DrawWireSphere(box.BBBottomRight, 5);
 				Gizmos.color = Color.yellow;
 				Gizmos.DrawWireSphere(box.Position, 5);
 				Gizmos.color = Color.white;

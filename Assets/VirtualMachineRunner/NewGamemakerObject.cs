@@ -509,7 +509,8 @@ namespace Assets.VirtualMachineRunner
 					return TryExecuteDict(definition.AlarmScript, otherData);
 				case EventType.Step:
 					return TryExecuteDict(definition.StepScript, (StepType)otherData);
-				// collision
+				case EventType.Collision:
+					return TryExecuteDict(definition.CollisionScript, otherData);
 				// keyboard
 				// mouse
 				case EventType.Other:
@@ -528,7 +529,6 @@ namespace Assets.VirtualMachineRunner
 				case EventType.KeyRelease:
 				case EventType.Trigger:
 				case EventType.Gesture:
-				case EventType.Collision:
 				case EventType.Keyboard:
 				case EventType.Mouse:
 				default:

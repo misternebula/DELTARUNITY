@@ -22,11 +22,6 @@ namespace Assets.VirtualMachineRunner
 		public bool solid;
 		public bool persistent;
 
-
-
-
-
-
 		/// <summary>
 		/// analogous to a superclass
 		/// </summary>
@@ -44,7 +39,9 @@ namespace Assets.VirtualMachineRunner
 		[SerializedDictionary("Subtype ID", "Actions")]
 		public SerializedDictionary<StepType, VMScript> StepScript = new();
 
-		//collision
+		[SerializedDictionary("Asset ID", "Actions")]
+		public SerializedDictionary<int, VMScript> CollisionScript = new();
+
 		//keyboard
 		//mouse
 
