@@ -10,30 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_darkslide
+  m_Name: obj_darkeyepuzzle_switch
   m_EditorClassIdentifier: 
-  AssetId: 73
-  sprite: 406
+  AssetId: 223
+  sprite: 373
   visible: 0
   solid: 0
   persistent: 0
-  parent: {fileID: 0}
+  parent: {fileID: 11400000, guid: 63b76fc0241c78646a6a0cdc2b71d710, type: 2}
   textureMaskId: -1
-  CreateScript: {fileID: 11400000, guid: b0d27b199be24bb4ebfe02aa831e6d89, type: 2}
+  CreateScript: {fileID: 0}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
-    _serializedList:
-    - Key: 0
-      Value: {fileID: 11400000, guid: ba126a36f2000184abf1ffdb323c4f95, type: 2}
-  CollisionScript:
-    _serializedList:
-    - Key: 326
-      Value: {fileID: 11400000, guid: 9687ac4b92296304fbedb8a819353e17, type: 2}
-  OtherScript:
     _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: 6a2fcc4058d9aad43bd73334a0125e18, type: 2}
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 11400000, guid: 2a61c0fb105ed094385b28f984023d7f, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: d97115fc2c89ea94d8c50d4c8b0eecdd, type: 2}

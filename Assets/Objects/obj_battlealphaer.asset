@@ -10,30 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_darkslide
+  m_Name: obj_battlealphaer
   m_EditorClassIdentifier: 
-  AssetId: 73
-  sprite: 406
-  visible: 0
+  AssetId: 169
+  sprite: 908
+  visible: 1
   solid: 0
   persistent: 0
   parent: {fileID: 0}
   textureMaskId: -1
-  CreateScript: {fileID: 11400000, guid: b0d27b199be24bb4ebfe02aa831e6d89, type: 2}
+  CreateScript: {fileID: 11400000, guid: 666be51383ba350458cf2e8037c27a06, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
-    _serializedList:
-    - Key: 0
-      Value: {fileID: 11400000, guid: ba126a36f2000184abf1ffdb323c4f95, type: 2}
+    _serializedList: []
   CollisionScript:
-    _serializedList:
-    - Key: 326
-      Value: {fileID: 11400000, guid: 9687ac4b92296304fbedb8a819353e17, type: 2}
+    _serializedList: []
   OtherScript:
     _serializedList: []
   DrawScript:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 54676ead3c757a046ad97d6318c65142, type: 2}
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 11400000, guid: 2a61c0fb105ed094385b28f984023d7f, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: 2776340577bcfb64c87e73f450c9c47e, type: 2}

@@ -10,30 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
-  m_Name: obj_darkslide
+  m_Name: obj_caterpillarchara
   m_EditorClassIdentifier: 
-  AssetId: 73
-  sprite: 406
-  visible: 0
+  AssetId: 165
+  sprite: 813
+  visible: 1
   solid: 0
   persistent: 0
   parent: {fileID: 0}
   textureMaskId: -1
-  CreateScript: {fileID: 11400000, guid: b0d27b199be24bb4ebfe02aa831e6d89, type: 2}
+  CreateScript: {fileID: 11400000, guid: 649d8288777908648bbc89eb56c57ff3, type: 2}
   DestroyScript: {fileID: 0}
   AlarmScript:
     _serializedList: []
   StepScript:
     _serializedList:
-    - Key: 0
-      Value: {fileID: 11400000, guid: ba126a36f2000184abf1ffdb323c4f95, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: 894d070bd5106604ca0475150b58a8ff, type: 2}
   CollisionScript:
-    _serializedList:
-    - Key: 326
-      Value: {fileID: 11400000, guid: 9687ac4b92296304fbedb8a819353e17, type: 2}
+    _serializedList: []
   OtherScript:
     _serializedList: []
   DrawScript:
     _serializedList: []
   CleanUpScript: {fileID: 0}
-  PreCreateScript: {fileID: 11400000, guid: 2a61c0fb105ed094385b28f984023d7f, type: 2}
+  PreCreateScript: {fileID: 11400000, guid: 8f2fae020ba638c4f95088b07e99b9ae, type: 2}
