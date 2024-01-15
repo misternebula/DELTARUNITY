@@ -66,10 +66,10 @@ namespace Assets.VirtualMachineRunner
 			switch (instruction.TypeOne)
 			{
 				case VMType.i:
-					VMExecuter.Ctx.Stack.Push(instruction.IntData);
+					Ctx.Stack.Push(instruction.IntData);
 					break;
 				case VMType.l:
-					VMExecuter.Ctx.Stack.Push(instruction.LongData);
+					Ctx.Stack.Push(instruction.LongData);
 					break;
 				case VMType.v:
 					// TODO: [stacktop] and [array] should use data stack (array might not always tho?)
@@ -81,47 +81,53 @@ namespace Assets.VirtualMachineRunner
 					{
 						if (prefix == VariablePrefix.Array)
 						{
-							var index = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop());
-							var instanceId = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop()); 
+							var index = Conv<int>(Ctx.Stack.Pop());
+							var instanceId = Conv<int>(Ctx.Stack.Pop()); 
 
 							Ctx.Stack.Push(VariableResolver.GetGlobalArrayIndex(variableName, index));
+							return (ExecutionResult.Success, null);
 						}
 						else
 						{
 							Ctx.Stack.Push(VariableResolver.GetGlobalVariable(variableName));
+							return (ExecutionResult.Success, null);
 						}
 					}
 					else if (variableType == VariableType.Local)
 					{
 						if (prefix == VariablePrefix.Array)
 						{
-							var index = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop());
-							var instanceId = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop());
+							var index = Conv<int>(Ctx.Stack.Pop());
+							var instanceId = Conv<int>(Ctx.Stack.Pop());
 
-							VMExecuter.Ctx.Stack.Push(VariableResolver.ArrayGet(index, () => (List<object>)VMExecuter.Ctx.Locals[variableName]));
+							Ctx.Stack.Push(VariableResolver.ArrayGet(index, () => (List<object>)Ctx.Locals[variableName]));
+							return (ExecutionResult.Success, null);
 						}
 						else
 						{
-							VMExecuter.Ctx.Stack.Push(VMExecuter.Ctx.Locals[variableName]);
+							Ctx.Stack.Push(Ctx.Locals[variableName]);
+							return (ExecutionResult.Success, null);
 						}
 					}
 					else if (variableType == VariableType.Self)
 					{
 						if (prefix == VariablePrefix.Array)
 						{
-							var index = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop());
-							var instanceId = VMExecuter.Conv<int>(VMExecuter.Ctx.Stack.Pop());
+							var index = Conv<int>(Ctx.Stack.Pop());
+							var instanceId = Conv<int>(Ctx.Stack.Pop());
 
 							if (instanceId == GMConstants.self)
 							{
 								if (variableName == "alarm")
 								{
 									Ctx.Stack.Push(Ctx.Self.alarm[index]);
+									return (ExecutionResult.Success, null);
 								}
 								else
 								{
 									Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 										() => (List<object>)VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName)));
+									return (ExecutionResult.Success, null);
 								}
 							}
 							else
@@ -131,17 +137,19 @@ namespace Assets.VirtualMachineRunner
 								if (variableName == "alarm")
 								{
 									Ctx.Stack.Push(instance.alarm[index]);
+									return (ExecutionResult.Success, null);
 								}
 								else
 								{
 									Ctx.Stack.Push(VariableResolver.ArrayGet(index,
 										() => (List<object>)VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName)));
+									return (ExecutionResult.Success, null);
 								}
 							}
 						}
 						else if (prefix == VariablePrefix.Stacktop)
 						{
-							var stackTopValue = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+							var stackTopValue = Conv<int>(Ctx.Stack.Pop());
 
 							NewGamemakerObject instance = null;
 							if (stackTopValue < GMConstants.FIRST_INSTANCE_ID)
@@ -154,10 +162,12 @@ namespace Assets.VirtualMachineRunner
 							}
 
 							Ctx.Stack.Push(VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
 						}
 						else
 						{
 							Ctx.Stack.Push(VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
 						}
 					}
 					else if (variableType == VariableType.Index)
@@ -173,12 +183,42 @@ namespace Assets.VirtualMachineRunner
 						else
 						{
 							Ctx.Stack.Push(VariableResolver.GetSelfVariable(firstInstance, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
 						}
 					}
-					else
+					else if (variableType == VariableType.Other)
 					{
-						Debug.LogError($"Don't know how to push variable! raw:{instruction.StringData} variableType:{variableType} prefix:{prefix}");
+						var temp = EnvironmentStack.Pop();
+						var instance = EnvironmentStack.Peek();
+						EnvironmentStack.Push(temp);
+
+						if (prefix == VariablePrefix.Array)
+						{
+
+						}
+						else
+						{
+							Ctx.Stack.Push(VariableResolver.GetSelfVariable(instance.Self, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
+						}
 					}
+
+					Debug.LogError($"Don't know how to push variable! raw:{instruction.StringData} variableType:{variableType} prefix:{prefix}");
+
+					Debug.Log("::Stack::");
+					foreach (var item in Ctx.Stack)
+					{
+						Debug.Log(item);
+					}
+
+					Debug.Log("::Environment Stack::");
+					foreach (var item in EnvironmentStack)
+					{
+						Debug.Log(item);
+					}
+
+					return (ExecutionResult.Failed, null);
+
 					break;
 				case VMType.b:
 					Ctx.Stack.Push(instruction.BoolData);
@@ -225,22 +265,24 @@ namespace Assets.VirtualMachineRunner
 					if (instruction.TypeOne == VMType.i)
 					{
 						value = Ctx.Stack.Pop();
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 					}
 					else
 					{
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 						value = Ctx.Stack.Pop();
 					}
 
 					VariableResolver.SetGlobalArrayIndex(variableName, index, value);
+					return (ExecutionResult.Success, null);
 				}
 				else
 				{
 					var value = Ctx.Stack.Pop();
 					VariableResolver.SetGlobalVariable(variableName, value);
+					return (ExecutionResult.Success, null);
 				}
 			}
 			else if (variableType == VariableType.Local)
@@ -254,13 +296,13 @@ namespace Assets.VirtualMachineRunner
 					if (instruction.TypeOne == VMType.i)
 					{
 						value = Ctx.Stack.Pop();
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 					}
 					else
 					{
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 						value = Ctx.Stack.Pop();
 					}
 
@@ -268,11 +310,13 @@ namespace Assets.VirtualMachineRunner
 						() => Ctx.Locals[variableName],
 						list => Ctx.Locals[variableName] = list,
 						() => Ctx.Locals.ContainsKey(variableName));
+					return (ExecutionResult.Success, null);
 				}
 				else
 				{
 					var value = Ctx.Stack.Pop();
 					Ctx.Locals[variableName] = value;
+					return (ExecutionResult.Success, null);
 				}
 			}
 			else if (variableType == VariableType.Self)
@@ -286,13 +330,13 @@ namespace Assets.VirtualMachineRunner
 					if (instruction.TypeOne == VMType.i)
 					{
 						value = Ctx.Stack.Pop();
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 					}
 					else
 					{
-						index = VMExecuter.Conv<int>(Ctx.Stack.Pop());
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						index = Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 						value = Ctx.Stack.Pop();
 					}
 
@@ -300,7 +344,8 @@ namespace Assets.VirtualMachineRunner
 					{
 						if (variableName == "alarm")
 						{
-							Ctx.Self.alarm[index] = VMExecuter.Conv<int>(value);
+							Ctx.Self.alarm[index] = Conv<int>(value);
+							return (ExecutionResult.Success, null);
 						}
 						else
 						{
@@ -308,6 +353,7 @@ namespace Assets.VirtualMachineRunner
 								() => VariableResolver.GetSelfVariable(Ctx.Self, Ctx.Locals, variableName),
 								list => VariableResolver.SetSelfVariable(Ctx.Self, variableName, list),
 								() => VariableResolver.ContainsSelfVariable(Ctx.Self, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
 						}
 					}
 					else
@@ -326,7 +372,8 @@ namespace Assets.VirtualMachineRunner
 
 						if (variableName == "alarm")
 						{
-							instance.alarm[index] = VMExecuter.Conv<int>(value);
+							instance.alarm[index] = Conv<int>(value);
+							return (ExecutionResult.Success, null);
 						}
 						else
 						{
@@ -334,6 +381,7 @@ namespace Assets.VirtualMachineRunner
 								() => VariableResolver.GetSelfVariable(instance, Ctx.Locals, variableName),
 								list => VariableResolver.SetSelfVariable(instance, variableName, list),
 								() => VariableResolver.ContainsSelfVariable(instance, Ctx.Locals, variableName));
+							return (ExecutionResult.Success, null);
 						}
 					}
 				}
@@ -345,21 +393,23 @@ namespace Assets.VirtualMachineRunner
 					if (instruction.TypeOne == VMType.i)
 					{
 						value = Ctx.Stack.Pop();
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 					}
 					else
 					{
-						instanceId = VMExecuter.Conv<int>(Ctx.Stack.Pop());
+						instanceId = Conv<int>(Ctx.Stack.Pop());
 						value = Ctx.Stack.Pop();
 					}
 
 					var instance = InstanceManager.Instance.FindByInstanceId(instanceId);
 					VariableResolver.SetSelfVariable(instance, variableName, value);
+					return (ExecutionResult.Success, null);
 				}
 				else
 				{
 					var value = Ctx.Stack.Pop();
 					VariableResolver.SetSelfVariable(Ctx.Self, variableName, value);
+					return (ExecutionResult.Success, null);
 				}
 			}
 			else if (variableType == VariableType.Index)
@@ -376,14 +426,42 @@ namespace Assets.VirtualMachineRunner
 				{
 					var value = Ctx.Stack.Pop();
 					VariableResolver.SetSelfVariable(firstInstance, variableName, value);
+					return (ExecutionResult.Success, null);
 				}
 			}
-			else
+			else if (variableType == VariableType.Other)
 			{
-				Debug.LogError($"Don't know how to push variable! name:{variableName} variableType:{variableType} prefix:{prefix}");
+				var temp = EnvironmentStack.Pop();
+				var instance = EnvironmentStack.Peek();
+				EnvironmentStack.Push(temp);
+
+				if (prefix == VariablePrefix.Array)
+				{
+
+				}
+				else
+				{
+					var value = Ctx.Stack.Pop();
+					VariableResolver.SetSelfVariable(instance.Self, variableName, value);
+					return (ExecutionResult.Success, null);
+				}
 			}
 
-			return (ExecutionResult.Success, null);
+			Debug.LogError($"Don't know how to pop to variable! raw:{instruction.StringData} variableType:{variableType} prefix:{prefix}");
+
+			Debug.Log("::Stack::");
+			foreach (var item in Ctx.Stack)
+			{
+				Debug.Log(item);
+			}
+
+			Debug.Log("::Environment Stack::");
+			foreach (var item in EnvironmentStack)
+			{
+				Debug.Log(item);
+			}
+
+			return (ExecutionResult.Failed, null);
 		}
 	}
 }

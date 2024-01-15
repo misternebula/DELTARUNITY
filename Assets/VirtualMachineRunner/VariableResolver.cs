@@ -100,6 +100,7 @@ namespace Assets.VirtualMachineRunner
 			{ "image_speed", (get_image_speed, set_image_speed)},
 			{ "visible", (get_visible, set_visible)},
 			{ "image_alpha", (get_image_alpha, set_image_alpha)},
+			{ "image_angle", (get_image_angle, set_image_angle)},
 			{ "speed", (get_speed, set_speed)},
 			{ "hspeed", (get_hspeed, set_hspeed)},
 			{ "vspeed", (get_vspeed, set_vspeed)},
@@ -108,7 +109,8 @@ namespace Assets.VirtualMachineRunner
 			{ "persistent", (get_persistent, set_persistent) },
 			{ "id", (get_id, null) },
 			{ "gravity", (get_gravity, set_gravity) },
-			{ "friction", (get_friction, set_friction) }
+			{ "friction", (get_friction, set_friction) },
+			{ "room_persistent", (get_room_persistent, set_room_persistent)}
 		};
 
 		public static object get_working_directory(NewGamemakerObject instance)
@@ -179,6 +181,9 @@ namespace Assets.VirtualMachineRunner
 		public static object get_image_alpha(NewGamemakerObject instance) => instance.image_alpha;
 		public static void set_image_alpha(NewGamemakerObject instance, object value) => instance.image_alpha = VMExecuter.Conv<double>(value);
 
+		public static object get_image_angle(NewGamemakerObject instance) => instance.image_angle;
+		public static void set_image_angle(NewGamemakerObject instance, object value) => instance.image_angle = VMExecuter.Conv<double>(value);
+
 		public static object get_speed(NewGamemakerObject instance) => instance.speed;
 		public static void set_speed(NewGamemakerObject instance, object value) => instance.speed = VMExecuter.Conv<double>(value);
 
@@ -203,6 +208,9 @@ namespace Assets.VirtualMachineRunner
 
 		public static object get_friction(NewGamemakerObject instance) => instance.friction;
 		public static void set_friction(NewGamemakerObject instance, object value) => instance.friction = VMExecuter.Conv<double>(value);
+
+		public static object get_room_persistent(NewGamemakerObject instance) => Room.Instance.Persistent;
+		public static void set_room_persistent(NewGamemakerObject instance, object value) => Room.Instance.Persistent = VMExecuter.Conv<bool>(value);
 
 		public static object GetSelfVariable(NewGamemakerObject self, Dictionary<string, object> locals, string name)
 		{

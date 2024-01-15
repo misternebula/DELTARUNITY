@@ -10,10 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Assets.VirtualMachineRunner
 {
@@ -93,6 +96,7 @@ namespace Assets.VirtualMachineRunner
 			{ "string_delete", string_delete },
 			{ "string_replace_all", string_replace_all },
 			{ "string_hash_to_newline", string_hash_to_newline },
+			{ "string_pos", string_pos },
 			#endregion
 
 			#region camera_
@@ -117,6 +121,9 @@ namespace Assets.VirtualMachineRunner
 			{ "audio_is_playing", audio_is_playing },
 			{ "audio_group_set_gain", audio_group_set_gain },
 			{ "audio_set_master_gain", audio_set_master_gain },
+			{ "audio_pause_sound", audio_pause_sound },
+			{ "audio_resume_sound", audio_resume_sound },
+			{ "audio_sound_set_track_position", audio_sound_set_track_position },
 			#endregion
 
 			#region window_
@@ -134,6 +141,27 @@ namespace Assets.VirtualMachineRunner
 			{ "layer_get_depth", layer_get_depth },
 			{ "layer_tile_alpha", layer_tile_alpha },
 			{ "layer_get_element_type", layer_get_element_type },
+			{ "layer_get_name", layer_get_name },
+			{ "layer_create", layer_create },
+			{ "layer_x", layer_x },
+			{ "layer_y", layer_y },
+			{ "layer_get_x", layer_get_x },
+			{ "layer_get_y", layer_get_y },
+			{ "layer_hspeed", layer_hspeed },
+			{ "layer_vspeed", layer_vspeed },
+			{ "layer_get_hspeed", layer_get_hspeed },
+			{ "layer_get_vspeed", layer_get_vspeed },
+			{ "layer_background_create", layer_background_create },
+			{ "layer_background_visible", layer_background_visible },
+			{ "layer_background_htiled", layer_background_htiled },
+			{ "layer_background_vtiled", layer_background_vtiled },
+			{ "layer_background_xscale", layer_background_xscale },
+			{ "layer_background_yscale", layer_background_yscale },
+			{ "layer_background_stretch", layer_background_stretch },
+			{ "layer_background_blend", layer_background_blend },
+			{ "layer_background_alpha", layer_background_alpha },
+			{ "layer_background_exists", layer_background_exists },
+			{ "layer_depth", layer_depth },
 			#endregion
 
 			#region instance_
@@ -162,6 +190,8 @@ namespace Assets.VirtualMachineRunner
 			{ "irandom", irandom },
 			{ "irandom_range", irandom_range },
 			{ "round", round },
+			{ "min", min },
+			{ "max", max },
 			#endregion
 
 			{ "array_length_1d", array_length_1d },
@@ -221,16 +251,14 @@ namespace Assets.VirtualMachineRunner
 
 		private static object layer_get_all(Arguments args)
 		{
-			// TODO : store layers in a dict
-			return Resources.FindObjectsOfTypeAll<GMLayer>().Select(x => (object)x.LayerId).ToList();
+			return GMLayer.LayerDict.Values.Select(x => (object)x.LayerId).ToList();
 		}
 
 		private static object layer_get_all_elements(Arguments args)
 		{
 			var layer_id = Conv<int>(args.Args[0]);
 
-			// TODO : store layers in a dict
-			var layer = Resources.FindObjectsOfTypeAll<GMLayer>().First(x => x.LayerId == layer_id);
+			var layer = GMLayer.LayerDict[layer_id];
 			var list = new List<object>();
 
 			foreach (var item in layer.GetComponentsInChildren<DrawWithDepth>())
@@ -245,8 +273,7 @@ namespace Assets.VirtualMachineRunner
 		{
 			var layer_id = Conv<int>(args.Args[0]);
 
-			// TODO : store layers in a dict
-			var layer = Resources.FindObjectsOfTypeAll<GMLayer>().First(x => x.LayerId == layer_id);
+			var layer = GMLayer.LayerDict[layer_id];
 			return layer.Depth;
 		}
 
@@ -254,7 +281,6 @@ namespace Assets.VirtualMachineRunner
 		{
 			var __index = Conv<int>(args.Args[0]);
 			var __alpha = Conv<double>(args.Args[1]);
-			Debug.Log($"Setting alpha of {__index} to {__alpha}");
 			FindObjectsOfType<GMTile>().First(x => x.instanceId == __index).Alpha = __alpha;
 			return null;
 		}
@@ -277,6 +303,229 @@ namespace Assets.VirtualMachineRunner
 			{
 				return 9; // undefined
 			}
+		}
+
+		private static object layer_get_name(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var layer = GMLayer.LayerDict[layer_id];
+
+			return layer.name;
+		}
+
+		private static object layer_create(Arguments args)
+		{
+			var depth = Conv<int>(args.Args[0]);
+			var name = "";
+			if (args.Args.Length > 1)
+			{
+				name = Conv<string>(args.Args[1]);
+			}
+
+			var id = Resources.FindObjectsOfTypeAll<GMLayer>().Max(x => x.LayerId) + 1;
+
+			if (string.IsNullOrEmpty(name))
+			{
+				name = $"_layer_{Guid.NewGuid()}";
+			}
+
+			var newObj = new GameObject(name);
+			newObj.SetActive(false);
+			var layer = newObj.AddComponent<GMLayer>();
+			layer.Depth = depth;
+			layer.LayerId = id;
+			newObj.SetActive(true);
+
+			return id;
+		}
+
+		private static object layer_x(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var x = Conv<double>(args.Args[1]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			layer.X = x;
+			return null;
+		}
+
+		private static object layer_y(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			layer.Y = y;
+			return null;
+		}
+
+		private static object layer_get_x(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			return layer.X;
+		}
+
+		private static object layer_get_y(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			return layer.Y;
+		}
+
+		private static object layer_hspeed(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var hspd = Conv<double>(args.Args[1]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			layer.HSpeed = hspd;
+			return null;
+		}
+
+		private static object layer_vspeed(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var vspd = Conv<double>(args.Args[1]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			layer.VSpeed = vspd;
+			return null;
+		}
+
+		private static object layer_get_vspeed(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			return layer.VSpeed;
+		}
+
+		private static object layer_get_hspeed(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			return layer.HSpeed;
+		}
+
+		private static object layer_background_create(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var sprite = Conv<int>(args.Args[1]);
+
+			Debug.Log($"layer_background_create layer_id:{layer_id} sprite:{sprite}");
+
+			var layer = GMLayer.LayerDict[layer_id];
+
+			layer.gameObject.SetActive(false);
+			var background = layer.gameObject.AddComponent<GMBackground>();
+			background.sprite = sprite;
+			background.depth = layer.Depth;
+			background.instanceId = InstanceManager.Instance._highestInstanceId++;
+			layer.gameObject.SetActive(true);
+
+			return background.instanceId;
+		}
+
+		private static object layer_background_visible(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var visible = Conv<bool>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.Visible = visible;
+			return null;
+		}
+
+		private static object layer_background_vtiled(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var vtiled = Conv<bool>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.VTiled = vtiled;
+			return null;
+		}
+
+		private static object layer_background_htiled(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var htiled = Conv<bool>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.HTiled = htiled;
+			return null;
+		}
+
+		private static object layer_background_stretch(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var stretch = Conv<bool>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.Stretch = stretch;
+			return null;
+		}
+
+		private static object layer_background_xscale(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var xscale = Conv<double>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.XScale = xscale;
+			return null;
+		}
+
+		private static object layer_background_yscale(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var yscale = Conv<double>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.YScale = yscale;
+			return null;
+		}
+
+		private static object layer_background_alpha(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var alpha = Conv<double>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.Alpha = alpha;
+			return null;
+		}
+
+		private static object layer_background_blend(Arguments args)
+		{
+			var background_element_id = Conv<int>(args.Args[0]);
+			var blend = Conv<int>(args.Args[1]);
+
+			var background = GMBackground.BackgroundDict[background_element_id];
+			background.Color = blend;
+			return null;
+		}
+
+		private static object layer_background_exists(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var background_element_id = Conv<int>(args.Args[1]);
+
+			return Resources.FindObjectsOfTypeAll<GMLayer>().Any(x => x.LayerId == layer_id && x.GetComponent<GMBackground>() != null && x.GetComponent<GMBackground>().instanceId == background_element_id);
+		}
+
+		private static object layer_depth(Arguments args)
+		{
+			var layer_id = Conv<int>(args.Args[0]);
+			var depth = Conv<int>(args.Args[1]);
+
+			var layer = GMLayer.LayerDict[layer_id];
+			layer.Depth = depth;
+			return null;
 		}
 
 		public static object draw_set_colour(Arguments args)
@@ -1060,6 +1309,61 @@ namespace Assets.VirtualMachineRunner
 		public static object audio_set_master_gain(Arguments args)
 		{
 			// TODO : implement
+			return null;
+		}
+
+		public static object audio_pause_sound(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+
+			if (index < GMConstants.FIRST_INSTANCE_ID)
+			{
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(index))
+				{
+					item.Source.Pause();
+				}
+			}
+			else
+			{
+				AudioManager.AudioManager.Instance.GetAudioInstance(index).Source.Pause();
+			}
+
+			return null;
+		}
+
+		public static object audio_resume_sound(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+
+			if (index < GMConstants.FIRST_INSTANCE_ID)
+			{
+				foreach (var item in AudioManager.AudioManager.Instance.GetAudioInstances(index))
+				{
+					item.Source.Play();
+				}
+			}
+			else
+			{
+				AudioManager.AudioManager.Instance.GetAudioInstance(index).Source.Play();
+			}
+
+			return null;
+		}
+
+		public static object audio_sound_set_track_position(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+			var time = Conv<double>(args.Args[1]);
+
+			if (index < GMConstants.FIRST_INSTANCE_ID)
+			{
+				// TODO : All further instances of this sound need to start at the given time
+			}
+			else
+			{
+				AudioManager.AudioManager.Instance.GetAudioInstance(index).Source.time = (float)time;
+			}
+
 			return null;
 		}
 
@@ -1913,6 +2217,7 @@ namespace Assets.VirtualMachineRunner
 		public static object audio_destroy_stream(Arguments args)
 		{
 			var index = Conv<int>(args.Args[0]);
+			Debug.Log($"audio_destroy_stream index:{index}");
 			AudioManager.AudioManager.Instance.UnregisterAudio(index);
 			return null;
 		}
@@ -1976,7 +2281,9 @@ namespace Assets.VirtualMachineRunner
 				listener_mask = Conv<int>(args.Args[6]);
 			}
 
-			return AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
+			var ret = AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
+			Debug.Log($"audio_play_sound index:{index} instanceid:{ret}");
+			return ret;
 		}
 
 		public static object audio_sound_gain(Arguments args)
@@ -1984,6 +2291,8 @@ namespace Assets.VirtualMachineRunner
 			var index = Conv<int>(args.Args[0]);
 			var volume = Conv<double>(args.Args[1]);
 			var time = Conv<double>(args.Args[2]);
+
+			Debug.Log($"audio_sound_gain index:{index} volume:{volume} time:{time}");
 
 			if (index >= GMConstants.FIRST_INSTANCE_ID)
 			{
@@ -2033,6 +2342,7 @@ namespace Assets.VirtualMachineRunner
 
 		public static object audio_stop_all(Arguments args)
 		{
+			Debug.Log($"audio_stop_all");
 			AudioManager.AudioManager.Instance.StopAllAudio();
 			return null;
 		}
@@ -2040,6 +2350,7 @@ namespace Assets.VirtualMachineRunner
 		public static object audio_stop_sound(Arguments args)
 		{
 			var id = Conv<int>(args.Args[0]);
+			Debug.Log($"audio_stop_sound id:{id}");
 
 			if (id < GMConstants.FIRST_INSTANCE_ID)
 			{
@@ -2130,6 +2441,28 @@ namespace Assets.VirtualMachineRunner
 			return Mathf.RoundToInt((float)num);
 		}
 
+		public static object min(Arguments args)
+		{
+			var arguments = new double[args.Args.Length];
+			for (var i = 0; i < args.Args.Length; i++)
+			{
+				arguments[i] = Conv<double>(args.Args[i]);
+			}
+
+			return arguments.Min();
+		}
+
+		public static object max(Arguments args)
+		{
+			var arguments = new double[args.Args.Length];
+			for (var i = 0; i < args.Args.Length; i++)
+			{
+				arguments[i] = Conv<double>(args.Args[i]);
+			}
+
+			return arguments.Max();
+		}
+
 		public static object string_hash_to_newline(Arguments args)
 		{
 			var text = Conv<string>(args.Args[0]);
@@ -2140,6 +2473,14 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return text.Replace("#", Environment.NewLine);
+		}
+
+		public static object string_pos(Arguments args)
+		{
+			var substr = Conv<string>(args.Args[0]);
+			var str = Conv<string>(args.Args[1]);
+
+			return str.IndexOf(substr) + 1;
 		}
 
 		public static object draw_rectangle(Arguments args)
@@ -2470,6 +2811,8 @@ namespace Assets.VirtualMachineRunner
 			{
 				instance = InstanceManager.Instance.FindByInstanceId(id);
 			}
+
+			Debug.Log($"camera_set_view_target {instance}");
 
 			GamemakerCamera.Instance.ObjectToFollow = instance;
 

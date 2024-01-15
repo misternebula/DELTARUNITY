@@ -59,6 +59,7 @@ namespace Assets.AudioManager
 		public int RegisterAudioClip(AudioClip clip)
 		{
 			var index = AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
+			Debug.Log($"Register audioclip {clip.name} with index {index}");
 			var asset = new AudioAsset
 			{
 				Clip = clip,

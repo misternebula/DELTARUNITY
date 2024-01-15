@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_darklanding
+  m_EditorClassIdentifier: 
+  AssetId: 69
+  sprite: 374
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: c7c8f1a34f0cb444e806960961302f31, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList:
+    - Key: 4
+      Value: {fileID: 11400000, guid: 18a42cbac46691041b9025b60a381c8d, type: 2}
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 2000140e10ea5dc4d8d1265a45d24231, type: 2}
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList: []
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 9a0ff47ed1541fa48917ec12f0ccd6f7, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 07b8c3d4e6a5c9a44b42130cfcca2435, type: 2}

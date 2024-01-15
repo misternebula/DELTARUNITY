@@ -10,6 +10,8 @@ namespace Assets
 {
 	public class GMLayer : MonoBehaviour
 	{
+		public static Dictionary<int, GMLayer> LayerDict = new();
+
 		public int LayerId;
 		public int Depth;
 		public double X;
@@ -20,6 +22,8 @@ namespace Assets
 
 		private void Awake()
 		{
+			LayerDict[LayerId] = this;
+
 			var gmObjects = GetComponentsInChildren<DrawWithDepth>();
 
 			foreach (var gmObject in gmObjects)

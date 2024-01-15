@@ -89,9 +89,12 @@ namespace Assets
 				{
 					foreach (var id in gmo.Definition.CollisionScript.Keys)
 					{
-						if (CollisionManager.CollisionManager.instance_place_assetid(gmo.x, gmo.y, id, gmo) != null)
+						var collide = CollisionManager.CollisionManager.instance_place_assetid(gmo.x, gmo.y, id, gmo);
+						if (collide != null)
 						{
+							VMExecuter.EnvironmentStack.Push(new VMScriptExecutionContext() {Self = collide, ObjectDefinition = collide.Definition, Stack = new()});
 							NewGamemakerObject.ExecuteScript(gmo, gmo.Definition, EventType.Collision, id);
+							VMExecuter.EnvironmentStack.Pop();
 						}
 					}
 				}

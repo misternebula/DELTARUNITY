@@ -19,6 +19,22 @@ namespace Assets.VirtualMachineRunner
 		public object ReturnValue;
 		public EventType EventType;
 		public int EventIndex;
+
+		public override string ToString()
+		{
+			if (Self == null)
+			{
+				return "NULL SELF";
+			}
+
+			var ret = $"{Self.name} ({Self.instanceId})\r\nStack:";
+			foreach (var item in Stack)
+			{
+				ret += $"- {item}\r\n";
+			}
+
+			return ret;
+		}
 	}
 
 	public static partial class VMExecuter

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Assets;
 using Assets.RoomManager;
 using Assets.SpriteManager;
@@ -6,6 +7,8 @@ using UnityEngine;
 
 public class GMBackground : DrawWithDepth
 {
+	public static Dictionary<int, GMBackground> BackgroundDict = new();
+
 	public bool Visible = true;
 	public bool Foreground;
 	public int sprite;
@@ -91,6 +94,7 @@ public class GMBackground : DrawWithDepth
 
 	private void Awake()
 	{
+		BackgroundDict[instanceId] = this;
 		_layer = GetComponent<GMLayer>();
 		DrawManager.Register(this);
 	}

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_legend
+  m_EditorClassIdentifier: 
+  AssetId: 322
+  sprite: -1
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: ed125ca570eda8f40ae06f75dad42a02, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList:
+    - Key: 4
+      Value: {fileID: 11400000, guid: 3f9badde01583794987fb5ffb57a2389, type: 2}
+  StepScript:
+    _serializedList: []
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList: []
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 991ef35b64f4b9d4c866f99764e38012, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: fa01eab3686e85541bebdd8a7840a03e, type: 2}

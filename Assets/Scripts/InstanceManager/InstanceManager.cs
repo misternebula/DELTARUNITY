@@ -24,7 +24,7 @@ namespace Assets.Instances
 
 		public List<NewGamemakerObject> instances = new List<NewGamemakerObject>();
 
-		private int _highestInstanceId = GMConstants.FIRST_INSTANCE_ID * 10;
+		public int _highestInstanceId = 103506 + 1; // TODO : this changes per game - get from data.win
 
 		private void Awake()
 		{
