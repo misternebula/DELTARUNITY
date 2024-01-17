@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using NVorbis;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -222,7 +223,10 @@ namespace Assets.VirtualMachineRunner
 			{ "point_distance", point_distance },
 			{ "choose", choose },
 			{ "real", real },
-			{ "collision_line", collision_line }
+			{ "collision_line", collision_line },
+			{ "sprite_get_number", sprite_get_number },
+			{ "draw_line_width", draw_line_width },
+			{ "d3d_set_fog", d3d_set_fog }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -1325,7 +1329,12 @@ namespace Assets.VirtualMachineRunner
 			}
 			else
 			{
-				AudioManager.AudioManager.Instance.GetAudioInstance(index).Source.Pause();
+				var instance = AudioManager.AudioManager.Instance.GetAudioInstance(index);
+				if (instance != null)
+				{
+					instance.Source.Pause();
+				}
+				
 			}
 
 			return null;
@@ -1369,7 +1378,8 @@ namespace Assets.VirtualMachineRunner
 
 		public static object instance_exists(Arguments args)
 		{
-			var obj = (int)args.Args[0];
+			var obj = Conv<int>(args.Args[0]);
+
 			if (obj > GMConstants.FIRST_INSTANCE_ID)
 			{
 				// instance id was passed
@@ -2282,7 +2292,6 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			var ret = AudioManager.AudioManager.Instance.audio_play_sound(index, priority, loop, gain, offset, pitch);
-			Debug.Log($"audio_play_sound index:{index} instanceid:{ret}");
 			return ret;
 		}
 
@@ -2292,12 +2301,15 @@ namespace Assets.VirtualMachineRunner
 			var volume = Conv<double>(args.Args[1]);
 			var time = Conv<double>(args.Args[2]);
 
-			Debug.Log($"audio_sound_gain index:{index} volume:{volume} time:{time}");
-
 			if (index >= GMConstants.FIRST_INSTANCE_ID)
 			{
 				// instance id
 				var soundAsset = AudioManager.AudioManager.Instance.GetAudioInstance(index);
+				if (soundAsset == null)
+				{
+					return null;
+				}
+
 				AudioManager.AudioManager.Instance.ChangeGain(soundAsset.Source, volume, time);
 			}
 			else
@@ -3011,6 +3023,50 @@ namespace Assets.VirtualMachineRunner
 			}
 
 			return ret.instanceId;
+		}
+
+		public static object sprite_get_number(Arguments args)
+		{
+			var index = Conv<int>(args.Args[0]);
+			return SpriteManager.SpriteManager.GetNumberOfFrames(index);
+		}
+
+		public static object draw_line_width(Arguments args)
+		{
+			var x1 = Conv<double>(args.Args[0]);
+			var y1 = Conv<double>(args.Args[1]);
+			var x2 = Conv<double>(args.Args[2]);
+			var y2 = Conv<double>(args.Args[3]);
+			var w = Conv<int>(args.Args[4]);
+
+			GamemakerCamera.RenderJobs.Add(new GMLineJob()
+			{
+				blend = SpriteManager.SpriteManager.DrawColor.BGRToColor(),
+				alpha = SpriteManager.SpriteManager.DrawAlpha,
+				start = new Vector2((float)x1, (float)y1),
+				end = new Vector2((float)x2, (float)y2),
+				width = w
+			});
+
+			return null;
+		}
+
+		public static object d3d_set_fog(Arguments args)
+		{
+			var enable = Conv<bool>(args.Args[0]);
+			var colour = Conv<int>(args.Args[1]);
+			var start = Conv<double>(args.Args[2]);
+			var end = Conv<double>(args.Args[3]);
+
+			if ((start != 0 && start != 1) || (end != 0 && end != 1))
+			{
+				throw new NotImplementedException("actual fog");
+			}
+
+			SpriteManager.SpriteManager.FogEnabled = enable;
+			SpriteManager.SpriteManager.FogColor = colour;
+
+			return null;
 		}
 	}
 
