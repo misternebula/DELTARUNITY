@@ -246,8 +246,20 @@ namespace Assets.VirtualMachineRunner
 						return bool.Parse(s); // dunno if "true" or "false" should convert properly, since bools are just ints?
 					}
 				}
-				else if (obj is int i)
+				else if (obj is int or long)
 				{
+					var i = System.Convert.ToInt64(obj);
+
+					if (type == typeof(int))
+					{
+						return (int)i;
+					}
+
+					if (type == typeof(long))
+					{
+						return i;
+					}
+
 					if (type == typeof(bool))
 					{
 						return i > 0;
