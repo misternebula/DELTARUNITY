@@ -53,7 +53,21 @@ namespace Assets
 				{
 					if (drawType == DrawType.Draw)
 					{
-						if (!gm.Definition.DrawScript.ContainsKey(DrawType.Draw))
+						var hasDrawScript = gm.Definition.DrawScript.ContainsKey(DrawType.Draw);
+
+						var currentParent = gm.Definition.parent;
+						while (currentParent != null)
+						{
+							if (currentParent.DrawScript.ContainsKey(DrawType.Draw))
+							{
+								hasDrawScript = true;
+								break;
+							}
+
+							currentParent = currentParent.parent;
+						}
+
+						if (!hasDrawScript)
 						{
 							SpriteManager.SpriteManager.DrawSelf(gm);
 							continue;
