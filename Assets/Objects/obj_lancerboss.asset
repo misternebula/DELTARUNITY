@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_lancerboss
+  m_EditorClassIdentifier: 
+  AssetId: 278
+  sprite: 426
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: 3ac9289f08ee40e48a2070850eaa7b12, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: e4f74262ac834b44da50e04dd1ca667c, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList:
+    - Key: 4
+      Value: {fileID: 11400000, guid: f11f3d16fa832694e9091b13a3abc087, type: 2}
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: ddce2e3a52f9e904ba3ffb773085fef8, type: 2}
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 22
+      Value: {fileID: 11400000, guid: 77514b8d9be49194296767826861d222, type: 2}
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: d492426016f6ad04482b6fbb251badd8, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 7446537f14a601f46827cd3a0a3c1f9c, type: 2}
