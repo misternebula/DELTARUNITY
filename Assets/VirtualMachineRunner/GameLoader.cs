@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.RoomManager;
 using UnityEngine;
 
 namespace Assets.VirtualMachineRunner
@@ -26,7 +27,8 @@ namespace Assets.VirtualMachineRunner
 				VMExecuter.ExecuteScript(script, null, null);
 			}
 
-			RoomManager.RoomManager.Instance.ChangeRoom(0);
+			RoomManager.RoomManager.Instance.ChangeRoomAfterEvent(0);
+			RoomManager.RoomManager.Instance.ChangeToWaitingRoom();
 		}
 	}
 }
