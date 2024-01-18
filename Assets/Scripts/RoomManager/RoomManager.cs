@@ -8,12 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Assets.RoomManager
 {
 	internal class RoomManager : MonoBehaviour
 	{
 		public static RoomManager Instance { get; private set; }
+
+		public bool ChangeRoomAfterEventExecution = false;
+
+		/// <summary>
+		/// What script called the function to change rooms.
+		/// </summary>
+		public string ScriptName = null;
+
+		/// <summary>
+		/// The room to change to.
+		/// </summary>
+		public string RoomName = null;
 
 		public void Awake()
 		{
@@ -30,36 +43,9 @@ namespace Assets.RoomManager
 			DontDestroyOnLoad(GamemakerCamera.Instance.gameObject);
 		}
 
-		public void ChangeRoom(int index)
+		public void ChangeToWaitingRoom()
 		{
-			ChangeRoom(_roomList[index]);
-		}
-
-		public void ChangeRoom(string roomName)
-		{
-			Room.Instance = null;
-
-			var sceneCount = SceneManager.sceneCountInBuildSettings;
-			var scenes = new string[sceneCount];
-			for (var i = 0; i < sceneCount; i++)
-			{
-				scenes[i] = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
-			}
-
-			if (!scenes.Contains(roomName))
-			{
-				Debug.LogError($"Couldn't find room {roomName}");
-				SceneManager.LoadScene("PLACE_DOG");
-				return;
-			}
-
-			if (Room.Instance != null && Room.Instance.Persistent)
-			{
-				// oh god we gotta save the current scene aaaaaaaa
-				throw new NotImplementedException();
-			}
-
-			// destroy events could destroy other objects, cant modify during iteration
+			// events could destroy other objects, cant modify during iteration
 			var instanceList = new List<NewGamemakerObject>(InstanceManager.Instance.instances);
 
 			foreach (var instance in instanceList)
@@ -69,8 +55,6 @@ namespace Assets.RoomManager
 					continue;
 				}
 
-				NewGamemakerObject.ExecuteScript(instance, instance.Definition, VirtualMachineRunner.EventType.Other, (int)OtherType.RoomEnd);
-				
 				if (instance.persistent)
 				{
 					continue;
@@ -85,7 +69,46 @@ namespace Assets.RoomManager
 
 			InstanceManager.Instance.instances = InstanceManager.Instance.instances.Where(x => x != null && x.persistent).ToList();
 
-			SceneManager.LoadScene(roomName);
+			Room.Instance = null;
+			ChangeRoomAfterEventExecution = false;
+			ScriptName = null;
+			SceneManager.LoadScene(RoomName);
+			RoomName = null;
+		}
+
+		public void ChangeRoomAfterEvent(int index)
+		{
+			ChangeRoomAfterEvent(_roomList[index]);
+		}
+
+		public void ChangeRoomAfterEvent(string roomName)
+		{
+			if (VMExecuter.currentExecutingScript.Count > 0)
+			{
+				ScriptName = VMExecuter.currentExecutingScript.Peek().name;
+			}
+
+			ChangeRoomAfterEventExecution = true;
+			RoomName = roomName;
+
+			if (Room.Instance != null && Room.Instance.Persistent)
+			{
+				// oh god we gotta save the current scene aaaaaaaa
+				throw new NotImplementedException();
+			}
+
+			// events could destroy other objects, cant modify during iteration
+			var instanceList = new List<NewGamemakerObject>(InstanceManager.Instance.instances);
+
+			foreach (var instance in instanceList)
+			{
+				if (instance == null)
+				{
+					continue;
+				}
+
+				NewGamemakerObject.ExecuteScript(instance, instance.Definition, VirtualMachineRunner.EventType.Other, (int)OtherType.RoomEnd);
+			}
 		}
 
 		public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -264,12 +287,12 @@ namespace Assets.RoomManager
 
 		public void room_goto_next()
 		{
-			ChangeRoom(_roomList[_roomList.IndexOf(Room.Instance.Name) + 1]);
+			ChangeRoomAfterEvent(_roomList[_roomList.IndexOf(Room.Instance.Name) + 1]);
 		}
 
 		public void room_goto_previous()
 		{
-			ChangeRoom(_roomList[_roomList.IndexOf(Room.Instance.Name) - 1]);
+			ChangeRoomAfterEvent(_roomList[_roomList.IndexOf(Room.Instance.Name) - 1]);
 		}
 
 		public int GetRoomIndex(string name)

@@ -45,6 +45,8 @@ namespace Assets.VirtualMachineRunner
 		/// </summary>
 		public static VMScriptExecutionContext Ctx => EnvironmentStack.Peek();
 
+		public static Stack<VMScript> currentExecutingScript = new();
+
 		public static object ExecuteScript(VMScript script, NewGamemakerObject obj, ObjectDefinition objectDefinition = null, EventType eventType = EventType.None, int eventIndex = 0, Arguments arguments = null)
 		{
 			if (script == null)
@@ -83,15 +85,12 @@ namespace Assets.VirtualMachineRunner
 			var instructionIndex = script.Labels[0]; // this *should* always be 0, but idk.
 			var lastJumpedLabel = 0; // just for debugging
 
+			currentExecutingScript.Push(script);
+
 			while (true)
 			{
 				ExecutionResult executionResult;
 				object data;
-
-				/*if (script.Name == "DEVICE_CONTACT_Step_0" && lastJumpedLabel == 31)
-				{
-					Debug.Log($"Executing {script.Instructions[instructionIndex].Raw}");
-				}*/
 
 				try
 				{
@@ -102,24 +101,6 @@ namespace Assets.VirtualMachineRunner
 					executionResult = ExecutionResult.Failed;
 					data = e;
 				}
-
-				/*if (script.Name == "DEVICE_CONTACT_Step_0" && lastJumpedLabel == 31 && executionResult != ExecutionResult.Failed)
-				{
-					if (Ctx.Stack.Count > 0)
-					{
-						var stack = "";
-						foreach (var item in Ctx.Stack)
-						{
-							stack += $"{item}, ";
-						}
-
-						Debug.Log($" - Stack is now: {stack}");
-					}
-					else
-					{
-						Debug.Log($" - Nothing on stack.");
-					}
-				}*/
 
 				if (executionResult == ExecutionResult.Failed)
 				{
@@ -163,6 +144,16 @@ namespace Assets.VirtualMachineRunner
 			// Current object has finished executing, remove from stack
 			var returnValue = Ctx.ReturnValue;
 			EnvironmentStack.Pop();
+
+			currentExecutingScript.Pop();
+
+			if (RoomManager.RoomManager.Instance.ChangeRoomAfterEventExecution)
+			{
+				if (RoomManager.RoomManager.Instance.ScriptName == null || RoomManager.RoomManager.Instance.ScriptName == script.name)
+				{
+					RoomManager.RoomManager.Instance.ChangeToWaitingRoom();
+				}
+			}
 
 			return returnValue;
 		}
