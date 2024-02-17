@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_fieldmuslogo
+  m_EditorClassIdentifier: 
+  AssetId: 132
+  sprite: 862
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: 6e5c40d64937eda41a34cb7f159e06e8, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: bc108230073a1164aa15500ee4163eb2, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 1d49c977fedd77d43a106a6e3be75347, type: 2}
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: ad870e28af23b46449c6e53f7cccb9b6, type: 2}
+  DrawScript:
+    _serializedList: []
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 14150a2ccfa41b044938266dd5767b7c, type: 2}

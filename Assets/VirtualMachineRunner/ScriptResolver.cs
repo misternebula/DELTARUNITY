@@ -48,7 +48,8 @@ namespace Assets.VirtualMachineRunner
 			{ "draw_self", draw_self },
 			{ "draw_sprite_stretched", draw_sprite_stretched },
 			{ "draw_text_color", draw_text_colour },
-			{ "draw_text_colour", draw_text_colour},
+			{ "draw_text_colour", draw_text_colour },
+			{ "draw_sprite_tiled_ext", draw_sprite_tiled_ext },
 			#endregion
 
 			#region file_
@@ -226,7 +227,10 @@ namespace Assets.VirtualMachineRunner
 			{ "collision_line", collision_line },
 			{ "sprite_get_number", sprite_get_number },
 			{ "draw_line_width", draw_line_width },
-			{ "d3d_set_fog", d3d_set_fog }
+			{ "d3d_set_fog", d3d_set_fog },
+			{ "lengthdir_x", lengthdir_x },
+			{ "lengthdir_y", lengthdir_y },
+			{ "distance_to_point", distance_to_point }
 		};
 
 		public Dictionary<string, VMScript> NameToScript = new();
@@ -2174,7 +2178,7 @@ namespace Assets.VirtualMachineRunner
 		public static object room_goto(Arguments args)
 		{
 			var index = Conv<int>(args.Args[0]);
-			RoomManager.RoomManager.Instance.ChangeRoom(index);
+			RoomManager.RoomManager.Instance.ChangeRoomAfterEvent(index);
 			return null;
 		}
 
@@ -2227,7 +2231,6 @@ namespace Assets.VirtualMachineRunner
 		public static object audio_destroy_stream(Arguments args)
 		{
 			var index = Conv<int>(args.Args[0]);
-			Debug.Log($"audio_destroy_stream index:{index}");
 			AudioManager.AudioManager.Instance.UnregisterAudio(index);
 			return null;
 		}
@@ -2656,6 +2659,57 @@ namespace Assets.VirtualMachineRunner
 			return null;
 		}
 
+		public static object draw_sprite_tiled_ext(Arguments args)
+		{
+			var sprite = Conv<int>(args.Args[0]);
+			var subimg = Conv<int>(args.Args[1]);
+			var x = Conv<double>(args.Args[2]);
+			var y = Conv<double>(args.Args[3]);
+			var xscale = Conv<double>(args.Args[4]);
+			var yscale = Conv<double>(args.Args[5]);
+			var colour = Conv<int>(args.Args[6]);
+			var alpha = Conv<double>(args.Args[7]);
+
+			var spriteTex = SpriteManager.SpriteManager.GetSprite(sprite, subimg);
+
+			var sizeWidth = spriteTex.width;
+			var sizeHeight = spriteTex.height;
+
+			var tempX = x;
+			var tempY = y;
+
+			var viewTopLeftX = GamemakerCamera.Instance.x;
+			var viewTopLeftY = GamemakerCamera.Instance.y;
+
+			while (tempX > viewTopLeftX)
+			{
+				tempX -= sizeWidth;
+			}
+
+			while (tempY > viewTopLeftY)
+			{
+				tempY -= sizeHeight;
+			}
+
+			// tempX and tempY are now the topleft-most co-ords that are offscreen
+
+			var xOffscreenValue = viewTopLeftX - tempX;
+			var yOffscreenValue = viewTopLeftY - tempY;
+
+			var countToDrawHoriz = Mathf.CeilToInt((Room.Instance.ViewSize.x + (float)xOffscreenValue) / sizeWidth);
+			var countToDrawVert = Mathf.CeilToInt((Room.Instance.ViewSize.y + (float)yOffscreenValue) / sizeHeight);
+
+			for (var i = 0; i < countToDrawVert; i++)
+			{
+				for (var j = 0; j < countToDrawHoriz; j++)
+				{
+					SpriteManager.SpriteManager.DrawSpriteExt(sprite, subimg, tempX + (j * sizeWidth), tempY + (i * sizeHeight), xscale, yscale, 0, colour, alpha);
+				}
+			}
+
+			return null;
+		}
+
 		public static object gamepad_is_connected(Arguments args)
 		{
 			var device = Conv<int>(args.Args[0]);
@@ -3067,6 +3121,50 @@ namespace Assets.VirtualMachineRunner
 			SpriteManager.SpriteManager.FogColor = colour;
 
 			return null;
+		}
+
+		public static object lengthdir_x(Arguments args)
+		{
+			var len = Conv<double>(args.Args[0]);
+			var dir = Conv<double>(args.Args[1]);
+
+			return len * Math.Cos(dir * Mathf.Deg2Rad);
+		}
+
+		public static object lengthdir_y(Arguments args)
+		{
+			var len = Conv<double>(args.Args[0]);
+			var dir = Conv<double>(args.Args[1]);
+
+			return -len * Math.Sin(dir * Mathf.Deg2Rad);
+		}
+
+		public static object distance_to_point(Arguments args)
+		{
+			var x = Conv<double>(args.Args[0]);
+			var y = Conv<double>(args.Args[1]);
+
+			var self = args.Ctx.Self;
+
+			if (args.Ctx.Self.mask_id == -1 && args.Ctx.Self.sprite_index == -1)
+			{
+				// TODO : Docs just say this means the result will be "incorrect". Wtf does that mean???
+				// just assuming it does point_distance
+
+				var horizDistance = Math.Abs(self.x - x);
+				var vertDistance = Math.Abs(self.y - y);
+
+				return Math.Sqrt((horizDistance * horizDistance) + (vertDistance * vertDistance));
+			}
+
+			var centerX = (self.bbox_left + self.bbox_right) / 2.0;
+			var centerY = (self.bbox_top + self.bbox_bottom) / 2.0;
+			var width = self.bbox_right - self.bbox_left;
+			var height = self.bbox_bottom - self.bbox_top;
+
+			var dx = Math.Max(Math.Abs(x - centerX) - (width / 2.0), 0);
+			var dy = Math.Max(Math.Abs(y - centerY) - (height / 2.0), 0);
+			return Math.Sqrt((dx * dx) + (dy * dy));
 		}
 	}
 

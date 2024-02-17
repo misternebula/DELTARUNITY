@@ -169,14 +169,19 @@ namespace Assets.VirtualMachineRunner
 
 		public static void set_room(NewGamemakerObject instance, object value)
 		{
-			RoomManager.RoomManager.Instance.ChangeRoom(VMExecuter.Conv<int>(value));
+			RoomManager.RoomManager.Instance.ChangeRoomAfterEvent(VMExecuter.Conv<int>(value));
 		}
 
 		public static object get_image_speed(NewGamemakerObject instance) => instance.image_speed;
 		public static void set_image_speed(NewGamemakerObject instance, object value) => instance.image_speed = VMExecuter.Conv<double>(value);
 
 		public static object get_visible(NewGamemakerObject instance) => instance.visible;
-		public static void set_visible(NewGamemakerObject instance, object value) => instance.visible = VMExecuter.Conv<bool>(value);
+
+		public static void set_visible(NewGamemakerObject instance, object value)
+		{
+			Debug.Log($"{instance} visible = {VMExecuter.Conv<bool>(value)}");
+			instance.visible = VMExecuter.Conv<bool>(value);
+		}
 
 		public static object get_image_alpha(NewGamemakerObject instance) => instance.image_alpha;
 		public static void set_image_alpha(NewGamemakerObject instance, object value) => instance.image_alpha = VMExecuter.Conv<double>(value);

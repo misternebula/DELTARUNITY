@@ -272,7 +272,6 @@ namespace Assets
 			}
 
 			var lines = textJob.text.Split(Environment.NewLine);
-			var longestLineWidth = TextManager.TextManager.StringWidth(textJob.text);
 			var textHeight = TextManager.TextManager.StringHeight(textJob.text);
 
 			for (var i = 0; i < lines.Length; i++)
@@ -300,10 +299,10 @@ namespace Assets
 					yOffset = -textHeight;
 				}
 
-				var lineLeftX = textJob.screenPos.x + xOffset;
-				var lineRightX = textJob.screenPos.x + xOffset + width;
-				var lineTopY = -textJob.screenPos.y - yOffset;
-				var lineBottomY = -textJob.screenPos.y - yOffset - TextManager.TextManager.StringHeight(line);
+				var stringLeft = textJob.screenPos.x + xOffset;
+				var stringRight = textJob.screenPos.x + xOffset + width;
+				var stringTop = -textJob.screenPos.y - yOffset;
+				var stringBottom = -textJob.screenPos.y - yOffset - TextManager.TextManager.StringHeight(line);
 
 				float map(float s, float a1, float a2, float b1, float b2)
 				{
@@ -380,22 +379,22 @@ namespace Assets
 
 						// top left of letter
 						GL.TexCoord2(leftX, topY);
-						GL.Color(LerpBetweenColors(c1, c2, lineLeftX, lineRightX, topLeftX));
+						GL.Color(LerpBetweenColors(c1, c2, stringLeft, stringRight, topLeftX));
 						GL.Vertex3(topLeftX, topLeftY, 0);
 
 						// top right of letter
 						GL.TexCoord2(rightX, topY);
-						GL.Color(LerpBetweenColors(c1, c2, lineLeftX, lineRightX, topLeftX + glyph.w));
+						GL.Color(LerpBetweenColors(c1, c2, stringLeft, stringRight, topLeftX + glyph.w));
 						GL.Vertex3(topLeftX + glyph.w, topLeftY, 0);
 
 						// bottom right of letter
 						GL.TexCoord2(rightX, bottomY);
-						GL.Color(LerpBetweenColors(c4, c3, lineLeftX, lineRightX, topLeftX + glyph.w));
+						GL.Color(LerpBetweenColors(c4, c3, stringLeft, stringRight, topLeftX + glyph.w));
 						GL.Vertex3(topLeftX + glyph.w, topLeftY - glyph.h, 0);
 
 						// bottom left of letter
 						GL.TexCoord2(leftX, bottomY);
-						GL.Color(LerpBetweenColors(c4, c3, lineLeftX, lineRightX, topLeftX));
+						GL.Color(LerpBetweenColors(c4, c3, stringLeft, stringRight, topLeftX));
 						GL.Vertex3(topLeftX, topLeftY - glyph.h, 0);
 
 						GL.End();

@@ -59,7 +59,7 @@ namespace Assets.AudioManager
 		public int RegisterAudioClip(AudioClip clip)
 		{
 			var index = AssetIndexManager.Instance.Register(AssetType.sounds, clip.name);
-			Debug.Log($"Register audioclip {clip.name} with index {index}");
+
 			var asset = new AudioAsset
 			{
 				Clip = clip,
@@ -209,16 +209,20 @@ namespace Assets.AudioManager
 			{
 				yield break;
 			}
-
-			float timeElapsed = 0;
-			float start = source.volume;
-			while (timeElapsed < duration)
+			else
 			{
-				source.volume = Mathf.Lerp(start, (float)volume, (float)(timeElapsed / duration));
-				timeElapsed += Time.deltaTime;
-				yield return null;
+				var timeElapsed = 0f;
+				var start = source.volume;
+
+				while (timeElapsed < duration)
+				{
+					source.volume = Mathf.Lerp(start, (float)volume, (float)(timeElapsed / duration));
+					timeElapsed += Time.deltaTime;
+					yield return null;
+				}
+
+				source.volume = (float)volume;
 			}
-			source.volume = (float)volume;
 		}
 	}
 }

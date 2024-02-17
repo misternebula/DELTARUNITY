@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_lancerbike
+  m_EditorClassIdentifier: 
+  AssetId: 201
+  sprite: 426
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: 32abc65a059c3ca438fae8e1fc5ac803, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 77129c085a59ae141b09d0a52faf113f, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 8a7acb9a440bce646bf33f6661a140f7, type: 2}
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList:
+    - Key: 15
+      Value: {fileID: 11400000, guid: a83544872d028a749b1b4e03b1da9719, type: 2}
+  DrawScript:
+    _serializedList: []
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 9b723ffba666c9f46947b86893e4845f, type: 2}

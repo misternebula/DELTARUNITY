@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_chaseenemy
+  m_EditorClassIdentifier: 
+  AssetId: 161
+  sprite: 499
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 0}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 0d5d45d058d11f045a5c7c58c55fd074, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList:
+    - Key: 4
+      Value: {fileID: 11400000, guid: 432c6d0043f07224aa7a2274a868019f, type: 2}
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 81056bf8c392e394fa637f8cd7fe178b, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: 15707ae72c321054b823193d2776bea8, type: 2}
+  CollisionScript:
+    _serializedList:
+    - Key: 326
+      Value: {fileID: 11400000, guid: a9931844087d57949a3871fcdf55926f, type: 2}
+  OtherScript:
+    _serializedList:
+    - Key: 10
+      Value: {fileID: 11400000, guid: b4f875e6bd6253244bdecac2c75fe065, type: 2}
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: cecf7c4eca823bf47892414732343923, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: e4d6d98f19507ab42b1aae6a1ab63d14, type: 2}

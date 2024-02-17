@@ -86,6 +86,8 @@ namespace Assets.TextManager
 
 		public static int StringHeight(string text)
 		{
+			// TODO : wtf is this?
+
 			var lines = text.Split(Environment.NewLine);
 
 			// get tallest character in last line

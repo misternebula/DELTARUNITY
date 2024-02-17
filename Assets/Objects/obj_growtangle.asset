@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f60d14e5798c4ab4da4e794fe968c, type: 3}
+  m_Name: obj_growtangle
+  m_EditorClassIdentifier: 
+  AssetId: 303
+  sprite: 658
+  visible: 1
+  solid: 0
+  persistent: 0
+  parent: {fileID: 11400000, guid: c9b59dd293683d44896244a27bb4551e, type: 2}
+  textureMaskId: -1
+  CreateScript: {fileID: 11400000, guid: 19de7e4b720caf0499cebe7227d61741, type: 2}
+  DestroyScript: {fileID: 0}
+  AlarmScript:
+    _serializedList: []
+  StepScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 8c474d194b355f049b4dca88e5d96a8b, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: 389c53389398be542b8ae3a0e41a6ac7, type: 2}
+  CollisionScript:
+    _serializedList: []
+  OtherScript:
+    _serializedList: []
+  DrawScript:
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 8fbc4be8053f878498500f624e7d6aa4, type: 2}
+  CleanUpScript: {fileID: 0}
+  PreCreateScript: {fileID: 11400000, guid: 3545a5babfff9ac4297d39188d5ee871, type: 2}
